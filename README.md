@@ -23,7 +23,7 @@ Laravel 5.1 with user authentication, registration with email confirmation, soci
 |Custom 404 Page|
 
 ### Quick Project Setup
-1. Run `sudo git clone XXXXXXXXXXXXXXXXXXXXXXXXXXXXX laravel-authentication`
+1. Run `sudo git clone https://github.com/jeremykenedy/laravel-auth.git laravel-authentication`
 2. Create a MySQL database for the project
     * ```mysql -u root -p```, if using Vagrant: ```mysql -u homestead -psecret```
     * ```create database laravelAuth;```
