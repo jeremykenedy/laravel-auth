@@ -34,7 +34,22 @@ Laravel 5.1 with user authentication, registration with email confirmation, soci
 6. From the projects root folder run `sudo chmod -R 755 ../laravel-authentication`
 7. From the projects root folder run `php artisan key:generate`
 8. From the projects root folder run `php artisan migrate`
-9. From the projects root folder run `php artisan db:seed`
+9. From the projects root folder run `composer dump-autoload`
+10. From the projects root folder run `php artisan db:seed`
+
+###### Seeds
+1. Seeded Roles
+   * user
+   * editor
+   * administrator
+2. Seeded Example **User**
+   * **Username**: user
+   * **Email**: jeremy@jeremykenedy.com
+   * **Password**: password
+2. Seeded Example **Admin**
+   * **Username**: admin
+   * **Email**: jeremykenedy@gmail.com
+   * **Password**: password
 
 And thats it with the caveat of setting up and configuring your development environemnt. I recommend [VAGRANT](https://docs.vagrantup.com/v2/getting-started/) or the Laravel configure version of Vagrant called [HOMESTEAD](http://laravel.com/docs/5.1/homestead).
 
@@ -147,7 +162,6 @@ laravel-admin/
     ├── app/
     │    ├── User.php
     │    └── Http/
-    │       ├── breadcrumbs.php
     │       ├── kernal.php
     │       ├── routes.php
     │       ├── Controllers/
@@ -159,31 +173,23 @@ laravel-admin/
     │       │   ├── UsersController.php
     │       │   └── WelcomeController.php
     │       ├── Middleware/
-    │       │   ├── Admin.php
     │       │   ├── Authenticate.php
     │       │   ├── EncryptCookies.php
     │       │   ├── RedirectAuthenticated.php
-    │       │   ├── SuperAdmin.php
     │       │   └── VerifyCsrfToken.php
     │       └── Requests/
     │           └── Request.php
     ├── config/
     │   ├── app.php
     │   ├── auth.php
-    │   ├── bootstrapper.php
-    │   ├── breadcrumbs.php
-    │   ├── broadcasting.php
     │   ├── cache.php
     │   ├── compile.php
     │   ├── database.php
     │   ├── filesystems.php
-    │   ├── gravatar.php
-    │   ├── image.php
     │   ├── mail.php
     │   ├── queue.php
     │   ├── services.php
     │   ├── session.php
-    │   ├── sluggable.php
     │   └── view.php
     ├── database/
     │   ├── migrations/
