@@ -20,29 +20,5 @@ class PasswordController extends Controller {
 	*/
 
 	use ResetsPasswords;
-	use CaptchaTrait;
-
-	/**
-	 * Create a new password controller instance.
-	 *
-	 * @param  \Illuminate\Contracts\Auth\Guard  $auth
-	 * @param  \Illuminate\Contracts\Auth\PasswordBroker  $passwords
-	 * @return void
-	 */
-	public function __construct(Guard $auth, PasswordBroker $passwords)
-	{
-
-	    if($this->captchaCheck() == false)
-	    {
-	        return redirect()->back()
-	            ->withErrors(['Wrong Captcha'])
-	            ->withInput();
-	    }
-
-		$this->auth = $auth;
-		$this->passwords = $passwords;
-
-		$this->middleware('guest');
-	}
 
 }
