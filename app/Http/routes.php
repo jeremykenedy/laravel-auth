@@ -13,6 +13,7 @@
 | http://laravel.com/docs/5.1/authorization
 | http://laravel.com/docs/5.1/routing
 | http://laravel.com/docs/5.0/schema
+| http://socialiteproviders.github.io/
 |
 */
 
@@ -59,7 +60,9 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('home', function () {
     return redirect('/');
 });
-
+Route::get('app', function () {
+    return redirect('/');
+});
 
 //***************************************************************************************//
 //***************************** USER ROUTING EXAMPLES BELOW *****************************//

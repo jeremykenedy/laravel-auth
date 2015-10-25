@@ -205,7 +205,7 @@ class AuthController extends Controller {
 				$new_social_user->activation_code 	= $the_activation_code;
                 $new_social_user->save();
                 $social_data 						= new Social;
-                $social_data->social_id 				= $user->id;
+                $social_data->social_id 			= $user->id;
                 $social_data->provider 				= $provider;
                 $new_social_user->social()->save($social_data);
 
@@ -228,12 +228,12 @@ class AuthController extends Controller {
         if( $this->auth->user()->hasRole('user'))
         {
             //return redirect()->route('user.home');
-        	return redirect('pages.home');
+        	return redirect('app');
         }
 
         if( $this->auth->user()->hasRole('administrator'))
         {
-        	return redirect('pages.home');
+        	return redirect('app');
             //return redirect()->route('admin.home');
         }
 

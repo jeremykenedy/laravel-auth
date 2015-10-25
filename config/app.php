@@ -145,8 +145,9 @@ return [
 		App\Providers\ConfigServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Illuminate\Html\HtmlServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class
+        Illuminate\Html\HtmlServiceProvider::class,					// https://github.com/illuminate/html
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        SocialiteProviders\Manager\ServiceProvider::class,
 	],
 
 	/*
@@ -195,7 +196,14 @@ return [
         'URL'           => Illuminate\Support\Facades\URL::class,
         'Validator'     => Illuminate\Support\Facades\Validator::class,
         'View'          => Illuminate\Support\Facades\View::class,
-        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+
+        // ADD BACK IN LARAVEL FORM CLASSES WITH ALIASES - https://github.com/illuminate/html
+        'HTML'          => Illuminate\Html\HtmlFacade::class,
+        'Form'          => Illuminate\Html\FormFacade::class,
+
+        // ADD SOCIALITE
+        'Socialite' 	=> Laravel\Socialite\Facades\Socialite::class,
+
 	],
 
 ];

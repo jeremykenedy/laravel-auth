@@ -14,6 +14,7 @@ return [
 	'anEmailWasSent'	=> 'An email was sent to :email on :date.',
 	'clickHereResend'	=> 'Click here to resend the email.',
 
+	//LABELS
 	'whoops'			=> 'Whoops!',
 	'someProblems'		=> 'There were some problems with your input.',
 	'email'				=> 'E-Mail Address',
@@ -27,12 +28,22 @@ return [
 	'confirmPassword'	=> 'Confirm Password',
 	'register'			=> 'Register',
 
+	//PLACEHOLDERS
+	'ph_name'			=> 'Username',
+	'ph_email'			=> 'E-mail Address',
+
+	'ph_firstname'		=> 'First Name',
+	'ph_lastname'		=> 'Last Name',
+	'ph_password'		=> 'Password',
+	'ph_password_conf'	=> 'Confirm Password',
+
+	//
 	'sendResetLink'		=> 'Send Password Reset Link',
 	'resetPassword'		=> 'Reset Password',
 
 	'loggedIn'			=> 'You are logged in!',
 
-	//emails
+	//EMAIL
 	'pleaseActivate'	=> 'Please activate your account.',
 	'clickHereReset'	=> 'Click here to reset your password: ',
 	'clickHereActivate'	=> 'Click here to activate your account: ',

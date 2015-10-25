@@ -12,6 +12,8 @@ return [
 	| default location for this type of information, allowing packages
 	| to have a conventional place to find your various credentials.
 	|
+	| # http://socialiteproviders.github.io/
+	|
 	*/
 
 	'mailgun' => [
@@ -51,6 +53,36 @@ return [
         'client_id'     => env('GOOGLE_ID'),
         'client_secret' => env('GOOGLE_SECRET'),
         'redirect'      => env('GOOGLE_REDIRECT')
-    ]
+    ],
+
+	'github' => [
+	    'client_id' 	=> env('GITHUB_ID'),
+	    'client_secret' => env('GITHUB_SECRET'),
+	    'redirect' 		=> env('GITHUB_URL'),
+	],
+
+	'youtube' => [
+	    'client_id' 	=> env('YOUTUBE_KEY'),
+	    'client_secret' => env('YOUTUBE_SECRET'),
+	    'redirect' 		=> env('YOUTUBE_REDIRECT_URI'),
+	],
+
+	'twitch' => [
+	    'client_id' 	=> env('TWITCH_KEY'),
+	    'client_secret' => env('TWITCH_SECRET'),
+	    'redirect' 		=> env('TWITCH_REDIRECT_URI'),
+	],
+
+	'instagram' => [
+	    'client_id' 	=> env('INSTAGRAM_KEY'),
+	    'client_secret' => env('INSTAGRAM_SECRET'),
+	    'redirect' 		=> env('INSTAGRAM_REDIRECT_URI'),
+	],
+
+	'37signals' => [
+	    'client_id' 	=> env('37SIGNALS_KEY'),
+	    'client_secret' => env('37SIGNALS_SECRET'),
+	    'redirect' 		=> env('37SIGNALS_REDIRECT_URI'),
+	],
 
 ];

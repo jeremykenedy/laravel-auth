@@ -1,5 +1,5 @@
 {
-	"name": "laravel/laravel",
+	"name": "jeremykenedy/laravel-auth",
 	"description": "The Laravel Framework.",
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
@@ -9,7 +9,11 @@
 		"laravel/framework": "5.1.*",
         "illuminate/html": "5.*",
 		"google/recaptcha": "~1.1",
-		"laravel/socialite": "^2.0"
+		"laravel/socialite": "^2.0",
+		"socialiteproviders/youtube": "^1.1",
+		"socialiteproviders/twitch": "^1.1",
+		"socialiteproviders/instagram": "^1.1",
+		"socialiteproviders/37signals": "^1.1"
 	},
 	"require-dev": {
         "fzaninotto/faker": "~1.4",
