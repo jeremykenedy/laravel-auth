@@ -18,7 +18,7 @@ Laravel 5.1 with user authentication, registration with email confirmation, soci
 |User roles implementation|
 |User Login with remember password|
 |User Password Reset|
-|User Facebook, Twitter, and Google Plus authentication using Laravel Socialite|
+|User Socialite Logins ready to go - See API list below|
 |Google Captcha Protection|
 |Custom 404 Page|
 
@@ -67,6 +67,55 @@ And thats it with the caveat of setting up and configuring your development envi
 * ```/logout```
 * ```/register```
 * ```/reset```
+
+### Get Socialite Login API Keys:
+* [Google Captcha API] (https://www.google.com/recaptcha/admin#list)
+* [Facebook API] (https://developers.facebook.com/)
+* [Twitter API] (https://apps.twitter.com/)
+* [Google &plus; API] (https://console.developers.google.com/)
+* [GitHub API] (https://github.com/settings/applications/new)
+* [YouTube API] (https://developers.google.com/youtube/v3/getting-started)
+* [Twitch TV API] (http://www.twitch.tv/kraken/oauth2/clients/new)
+* [Instagram API] (https://instagram.com/developer/register/)
+* [37 Signals API] (https://github.com/basecamp/basecamp-classic-api)
+
+#### Add More Socialite Logins
+* See full list of providers: [http://socialiteproviders.github.io](http://socialiteproviders.github.io/#providers)
+* **Steps**:
+  1. Go to [http://socialiteproviders.github.io](http://socialiteproviders.github.io/providers/twitch/) and select the provider to be added.
+  2. From the projects root folder in terminal run compser command to get the needed package.
+     * Example:
+      ```
+         composer require socialiteproviders/twitch
+      ```
+  3. From the projects root folder run ```composer update```
+  4. Add the service provider to ```/app/services.php```
+     * Example:
+     ```
+   	'twitch' => [
+   	    'client_id' 	=> env('TWITCH_KEY'),
+   	    'client_secret' => env('TWITCH_SECRET'),
+   	    'redirect' 		=> env('TWITCH_REDIRECT_URI'),
+   	],     
+     ```
+  5. Add the API credentials to ``` /.env  ```
+     * Example:
+      ```
+         TWITCH_KEY=YOURKEYHERE
+         TWITCH_SECRET=YOURSECRETHERE
+         TWITCH_REDIRECT_URI=http://YOURWEBSITEURL.COM/social/handle/twitch
+      ```
+  6. Add the social media login link:
+      * Example:
+      In file ```/resources/views/auth/login.blade.php``` add on of the following:
+         * Conventional HTML:
+            ```
+               <a href="{{ route('social.redirect', ['provider' => 'twitch']) }}" class="btn btn-lg btn-primary btn-block google" type="submit">Twitch</a>
+            ```      
+         * Use Laravel HTML Facade (recommended)
+            ```
+               {!! HTML::link(route('social.redirect', ['provider' => 'twitch']), 'Twitch', array('class' => 'btn btn-lg btn-primary btn-block twitch')) !!}
+            ```
 
 ## [Laravel](http://laravel.com/) PHP Framework
 
