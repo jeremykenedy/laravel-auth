@@ -79,9 +79,9 @@ And thats it with the caveat of setting up and configuring your development envi
 * [Instagram API] (https://instagram.com/developer/register/)
 * [37 Signals API] (https://github.com/basecamp/basecamp-classic-api)
 
-#### Add More Socialite Logins
+### Add More Socialite Logins
 * See full list of providers: [http://socialiteproviders.github.io](http://socialiteproviders.github.io/#providers)
-* **Steps**:
+###### **Steps**:
   1. Go to [http://socialiteproviders.github.io](http://socialiteproviders.github.io/providers/twitch/) and select the provider to be added.
   2. From the projects root folder in terminal run compser command to get the needed package.
      * Example:
