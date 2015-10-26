@@ -107,7 +107,7 @@ And thats it with the caveat of setting up and configuring your development envi
       ```
   6. Add the social media login link:
       * Example:
-      In file ```/resources/views/auth/login.blade.php``` add on of the following:
+      In file ```/resources/views/auth/login.blade.php``` add ONE of the following:
          * Conventional HTML:
             ```
             
