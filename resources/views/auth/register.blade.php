@@ -96,7 +96,7 @@
 	</div>
 @endsection
 
-@section('additional_content')
+@section('template_scripts')
 
 	{!! HTML::script('https://www.google.com/recaptcha/api.js', array('type' => 'text/javascript')) !!}
     <script type="text/javascript">
