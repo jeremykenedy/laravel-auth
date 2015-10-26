@@ -109,17 +109,17 @@ And thats it with the caveat of setting up and configuring your development envi
       * Example:
       In file ```/resources/views/auth/login.blade.php``` add ONE of the following:
          * Conventional HTML:
-            ```
-            
-               <a href="{{ route('social.redirect', ['provider' => 'twitch']) }}" class="btn btn-lg btn-primary btn-block twitch">Twitch</a>
-            
-            ```      
+      ```
+      
+         <a href="{{ route('social.redirect', ['provider' => 'twitch']) }}" class="btn btn-lg btn-primary btn-block twitch">Twitch</a>
+      
+      ```      
          * Use Laravel HTML Facade (recommended)
-            ```
-            
-               {!! HTML::link(route('social.redirect', ['provider' => 'twitch']), 'Twitch', array('class' => 'btn btn-lg btn-primary btn-block twitch')) !!}
-            
-            ```
+      ```
+      
+         {!! HTML::link(route('social.redirect', ['provider' => 'twitch']), 'Twitch', array('class' => 'btn btn-lg btn-primary btn-block twitch')) !!}
+      
+      ```
 
 --
 
