@@ -110,11 +110,15 @@ And thats it with the caveat of setting up and configuring your development envi
       In file ```/resources/views/auth/login.blade.php``` add on of the following:
          * Conventional HTML:
             ```
+            
                <a href="{{ route('social.redirect', ['provider' => 'twitch']) }}" class="btn btn-lg btn-primary btn-block google" type="submit">Twitch</a>
+            
             ```      
          * Use Laravel HTML Facade (recommended)
             ```
+            
                {!! HTML::link(route('social.redirect', ['provider' => 'twitch']), 'Twitch', array('class' => 'btn btn-lg btn-primary btn-block twitch')) !!}
+            
             ```
 
 ## [Laravel](http://laravel.com/) PHP Framework
