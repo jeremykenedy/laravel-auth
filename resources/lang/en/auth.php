@@ -2,7 +2,6 @@
 
 return [
 
-
 	'successActivated'	=> 'Success, your account has been activated.',
 	'unsuccessful'		=> 'Your account could not be activated; please try again.',
 	'notCreated'		=> 'Your account could not be created; please try again.',
@@ -40,7 +39,6 @@ return [
 	//
 	'sendResetLink'		=> 'Send Password Reset Link',
 	'resetPassword'		=> 'Reset Password',
-
 	'loggedIn'			=> 'You are logged in!',
 
 	//EMAIL

@@ -59,13 +59,15 @@ class AuthController extends Controller {
 	public function validator(array $data)
 	{
 		return Validator::make($data, [
-				'name' 			=> 'required|max:255',
+				'name' 			=> 'required|max:255|unique:users',
 				'first_name' 	=> 'required|max:255',
 				'last_name' 	=> 'required|max:255',
 				'email' 		=> 'required|email|max:255|unique:users',
 				'password' 		=> 'required|confirmed|min:6',
 			]);
 	}
+
+
 
 	/**
 	 * Handle a registration request for the application.
@@ -98,12 +100,12 @@ class AuthController extends Controller {
 		$user->email = $request->input('email');
 		$user->password = bcrypt($request->input('password'));
 		$user->activation_code = $activation_code;
-        $user_role = Role::whereName('user')->first();
-        $user->assignRole($user_role);
 
 		if ($user->save()) {
 
 			$this->sendEmail($user);
+	        $user_role = Role::whereName('user')->first();
+	        $user->assignRole($user_role);
 
 			return view('auth.activateAccount')
 				->with('email', $request->input('email'));
@@ -113,6 +115,7 @@ class AuthController extends Controller {
 			\Session::flash('message', \Lang::get('notCreated') );
 			return redirect()->back()->withInput();
 		}
+
 	}
 	//*/
 
