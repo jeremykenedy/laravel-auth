@@ -111,7 +111,7 @@ And thats it with the caveat of setting up and configuring your development envi
          * Conventional HTML:
             ```
             
-               <a href="{{ route('social.redirect', ['provider' => 'twitch']) }}" class="btn btn-lg btn-primary btn-block google" type="submit">Twitch</a>
+               <a href="{{ route('social.redirect', ['provider' => 'twitch']) }}" class="btn btn-lg btn-primary btn-block twitch">Twitch</a>
             
             ```      
          * Use Laravel HTML Facade (recommended)
