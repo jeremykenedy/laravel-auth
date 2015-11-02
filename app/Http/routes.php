@@ -56,6 +56,12 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
+// USER PROFILE ROUTES
+
+
+
+
+
 // PAGE ROUTE ALIASES
 Route::get('home', function () {
     return redirect('/');
