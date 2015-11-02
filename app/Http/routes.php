@@ -56,8 +56,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
-// USER PROFILE ROUTES
-
 
 
 
@@ -69,6 +67,17 @@ Route::get('home', function () {
 Route::get('app', function () {
     return redirect('/');
 });
+
+
+
+// USER PROFILE ROUTES - MAKE SURE LAST
+//Route::get('/{profile}', 'ProfilesController@show');
+Route::get('profile/{profile}', [
+    'as' 			=> 'user',
+    'uses' 			=> 'ProfilesController@show'
+]);
+
+
 
 //***************************************************************************************//
 //***************************** USER ROUTING EXAMPLES BELOW *****************************//
