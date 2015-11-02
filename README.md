@@ -22,6 +22,12 @@ Laravel 5.1 with user authentication, registration with email confirmation, soci
 |Google Captcha Protection|
 |Custom 404 Page|
 
+| Next up on development  |
+| :------------ |
+|Add eloquent user profiles with gravatar|
+|Maybe use Google APIv3 for user address entry lookup|
+|Maybe capture IP to users table upon signup|
+
 ### Quick Project Setup
 1. Run `sudo git clone https://github.com/jeremykenedy/laravel-auth.git laravel-authentication`
 2. Create a MySQL database for the project
