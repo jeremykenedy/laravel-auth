@@ -56,10 +56,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
-
-
-
-
 // PAGE ROUTE ALIASES
 Route::get('home', function () {
     return redirect('/');
@@ -68,14 +64,26 @@ Route::get('app', function () {
     return redirect('/');
 });
 
-
-
-// USER PROFILE ROUTES - MAKE SURE LAST
-//Route::get('/{profile}', 'ProfilesController@show');
-Route::get('profile/{profile}', [
-    'as' 			=> 'user',
-    'uses' 			=> 'ProfilesController@show'
+// USER PROFILE ROUTES
+Route::resource('profile', 'ProfilesController', [
+    'as'        => 'user',
+    'only'      => ['show', 'edit', 'update']
 ]);
+
+//Route::get('/{profile}', 'ProfilesController@show');
+//Route::get('/{username}', ['as' => 'profile', 'uses' => 'ProfilesController@show']);
+// Route::get('profile/{profile}', [
+//     'as'            => 'user',
+//     'uses'          => 'ProfilesController@show'
+// ]);
+
+
+
+
+
+
+
+
 
 
 

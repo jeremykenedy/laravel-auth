@@ -10,5 +10,5 @@ return [
 	'register'		=> 'Register',
 	'resetPword'	=> 'Reset Password',
 	'toggleNav'		=> 'Toggle Navigation',
-
+	'profile'		=> 'Profile',
 ];

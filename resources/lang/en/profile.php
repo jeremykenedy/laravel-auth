@@ -3,13 +3,13 @@
 return [
 
 	// PROFILE ERRORS
-	'notYourProfile'			=> 'Hmmm, that\'s not your profile',
-	'notYourProfileTitle'		=> 'Something went wrong',
+	'notYourProfile'			=> 'This isn\'t the profile you\'re looking for.',
+	'notYourProfileTitle'		=> 'Hmmm, something went wrong...',
 
 	// PROFILE PAGE TITLES
 	'showProfileTitle'			=> 'User Profile',
 
-	// USER PROFILE INFO TITILE
+	// USER PROFILE INFO TITLES
 	'showProfileUsername'		=> 'Username',
 	'showProfileFirstName'		=> 'First Name',
 	'showProfileLastName'		=> 'Last Name',
@@ -18,8 +18,12 @@ return [
 	// USER PROFILE BIO TITLES
 	'showProfileLocation'		=> 'Location',
 	'showProfileBio'			=> 'Bio',
+	'showProfileTwitterUsername'=> 'Twitter Username',
+	'showProfileGitHubUsername'	=> 'Github Username',
 
 	// PROFILE PAGE FORM
+
+
 
 
 ];

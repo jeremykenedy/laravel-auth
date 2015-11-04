@@ -30,23 +30,50 @@ class ProfilesController extends Controller {
     }
 
 
+
+
+
+
+    /**
+     * /username
+     *
+     * @param $username
+     * @return Response
+     */
     public function show($username)
     {
         try {
-
-            $user = User::with('profile')->wherename($username)->firstOrFail();
-
+            $user = $this->getUserByUsername($username);
             //dd($user->toArray());
-
-
         } catch (ModelNotFoundException $e) {
-
             return view('pages.status')
                 ->with('error',\Lang::get('profile.notYourProfile'))
                 ->with('error_title',\Lang::get('profile.notYourProfileTitle'));
-
         }
-       return view('profiles.show')->withUser($user);
-
+        return view('profiles.show')->withUser($user);
     }
+
+    /**
+     * Fetch user
+     * (You can extract this to repository method)
+     *
+     * @param $username
+     * @return mixed
+     */
+    public function getUserByUsername($username)
+    {
+        return User::with('profile')->wherename($username)->firstOrFail();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }
