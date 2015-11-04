@@ -22,4 +22,18 @@ return [
 	// USER EDIT PROFILE PAGE
 	'editProfileTitle'			=> 'Edit User Profile',
 
+	// USER EDIT PROFILE FORM
+	'label-location'			=> 'Your location:',
+	'ph-location'				=> 'Enter your location',
+
+	'label-bio'					=> 'Your bio:',
+	'ph-bio'					=> 'Enter your bio',
+
+	'label-github_username'		=> 'Your GitHub username:',
+	'ph-github_username'		=> 'Enter your GitHub username',
+
+	'label-twitter_username'	=> 'Your Twitter username:',
+	'ph-twitter_username'		=> 'Enter your Twitter username',
+	'submitButton'				=> 'Submit',
+
 ];
