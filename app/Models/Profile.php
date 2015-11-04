@@ -4,11 +4,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model {
 
-
-
-
-
-
+	/**
+	 * Fillable fields for a Profile
+	 *
+	 * @var array
+	 */
+	protected $fillable = [
+		'location', 'bio',
+		'twitter_username', 'github_username'
+	];
 
 	/**
 	 * A profile belongs to a user
@@ -19,12 +23,5 @@ class Profile extends Model {
 	{
 		return $this->belongsTo('User');
 	}
-
-
-
-
-
-
-
 
 }

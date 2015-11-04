@@ -64,20 +64,25 @@ Route::get('app', function () {
     return redirect('/');
 });
 
-// USER PROFILE ROUTES
-Route::resource('profile', 'ProfilesController', [
-    'as'        => 'user',
-    'only'      => ['show', 'edit', 'update']
-]);
+// // USER PROFILE ROUTES
+// Route::resource('profile', 'ProfilesController', [
+//     'as'        => 'user',
+//     'only'      => ['show', 'edit', 'update']
+// ]);
 
-Route::get('/profile/edit', [
-    'as'            => 'profile.edit',
-    'uses'          => 'UserController@edit'
-]);
+// Route::get('/profile/edit', [
+//     'as'            => 'profile.edit',
+//     'uses'          => 'UserController@edit'
+// ]);
 
+// Route::get('/profile/update', [
+//     'as'            => 'profile.update',
+//     'uses'          => 'UserController@update'
+// ]);
 
-
-
+# Profile
+Route::resource('profile', 'ProfilesController', ['only' => ['show', 'edit', 'update']]);
+Route::get('/{username}', ['as' => 'profile', 'uses' => 'ProfilesController@show']);
 
 
 

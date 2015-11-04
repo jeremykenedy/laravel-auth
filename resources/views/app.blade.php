@@ -9,10 +9,12 @@
 		{{-- FONTS --}}
 		{!! HTML::style('//fonts.googleapis.com/css?family=Roboto:400,300', array('type' => 'text/css', 'rel' => 'stylesheet')) !!}
 
-		@yield('template_fastload_css')
-
 		{{-- STYLESHEETS --}}
 		{!! HTML::style(asset('/css/app.css'), array('type' => 'text/css', 'rel' => 'stylesheet')) !!}
+
+		<style type="text/css">
+			@yield('template_fastload_css')
+		</style>
 
 	    {{-- HTML5 Shim and Respond.js for IE8 support --}}
 	    <!--[if lt IE 9]>
