@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<title>{{ Lang::get('titles.app') }}</title>
-		
+
 		<link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
 
 		<style>

@@ -29,11 +29,6 @@ class ProfilesController extends Controller {
         $this->middleware('auth');
     }
 
-
-
-
-
-
     /**
      * /username
      *
@@ -65,10 +60,18 @@ class ProfilesController extends Controller {
         return User::with('profile')->wherename($username)->firstOrFail();
     }
 
+    /**
+     * /profiles/username/edit
+     *
+     * @param $username
+     * @return mixed
+     */
+    public function edit($username)
+    {
+        $user = $this->getUserByUsername($username);
+        return view('profiles.edit')->withUser($user);
 
-
-
-
+    }
 
 
 

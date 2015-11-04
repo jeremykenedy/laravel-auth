@@ -4,11 +4,12 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes" name="viewport">
-
-		<title>{{ Lang::get('titles.app') }}</title>
+		<title>@if (trim($__env->yieldContent('template_title')))@yield('template_title') | @endif {{ Lang::get('titles.app') }}</title>
 
 		{{-- FONTS --}}
 		{!! HTML::style('//fonts.googleapis.com/css?family=Roboto:400,300', array('type' => 'text/css', 'rel' => 'stylesheet')) !!}
+
+		@yield('template_fastload_css')
 
 		{{-- STYLESHEETS --}}
 		{!! HTML::style(asset('/css/app.css'), array('type' => 'text/css', 'rel' => 'stylesheet')) !!}
@@ -27,8 +28,7 @@
 	</head>
 	<body>
 
-
-		@include('partials/nav')
+		@include('partials.nav')
 
 		@yield('content')
 

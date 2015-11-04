@@ -1,5 +1,9 @@
 @extends('app')
 
+@section('template_title')
+	Register
+@endsection
+
 @section('content')
 	<div class="container-fluid">
 		<div class="row">

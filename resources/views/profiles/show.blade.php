@@ -1,5 +1,9 @@
 @extends('app')
 
+@section('template_title')
+	{{ $user->name }}'s Profile
+@endsection
+
 @section('content')
 	<div class="container">
 		<div class="row">
@@ -68,16 +72,12 @@
 
 						</dl>
 
-						@if (!$user->profile)
-
-							<p>No profile yet.</p>
-
-							{{--
-								@if ($user->isCurrent())
-									{{ link_to_route('profile.edit', 'Edit Your Profile', $user->username) }}
-								@endif
-							--}}
-
+						@if ($user->profile)
+							{!! HTML::link(url('/profile/'.Auth::user()->name.'/edit'), Lang::get('titles.editProfile')) !!}
+						@else
+							<p>
+								No profile yet.
+							</p>
 						@endif
 
 					</div>

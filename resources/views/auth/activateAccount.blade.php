@@ -1,5 +1,9 @@
 @extends('app')
 
+@section('template_title')
+	Activation Sent
+@endsection
+
 @section('content')
 	<div class="container">
 		<div class="row">

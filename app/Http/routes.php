@@ -70,10 +70,21 @@ Route::resource('profile', 'ProfilesController', [
     'only'      => ['show', 'edit', 'update']
 ]);
 
+Route::get('/profile/edit', [
+    'as'            => 'profile.edit',
+    'uses'          => 'UserController@edit'
+]);
+
+
+
+
+
+
+
 //Route::get('/{profile}', 'ProfilesController@show');
 //Route::get('/{username}', ['as' => 'profile', 'uses' => 'ProfilesController@show']);
 // Route::get('profile/{profile}', [
-//     'as'            => 'user',
+//     'as'            => 'profile',
 //     'uses'          => 'ProfilesController@show'
 // ]);
 

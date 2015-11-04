@@ -11,4 +11,7 @@ return [
 	'resetPword'	=> 'Reset Password',
 	'toggleNav'		=> 'Toggle Navigation',
 	'profile'		=> 'Profile',
+	'editProfile'	=> 'Edit Profile',
+
+
 ];

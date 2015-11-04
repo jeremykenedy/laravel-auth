@@ -1,5 +1,9 @@
 @extends('app')
 
+@section('template_title')
+	Sorry, it's not going to work out
+@endsection
+
 @section('content')
 	<div class="container">
 		<div class="row">
