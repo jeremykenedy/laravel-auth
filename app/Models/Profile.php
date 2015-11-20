@@ -10,8 +10,10 @@ class Profile extends Model {
 	 * @var array
 	 */
 	protected $fillable = [
-		'location', 'bio',
-		'twitter_username', 'github_username'
+		'location',
+		'bio',
+		'twitter_username',
+		'github_username'
 	];
 
 	/**

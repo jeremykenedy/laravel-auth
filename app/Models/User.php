@@ -6,8 +6,8 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract
-{
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
+
     use Authenticatable, CanResetPassword;
 
     /**
@@ -31,6 +31,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     protected $hidden = ['password', 'remember_token'];
 
+    // REGISTRATION VALIDATION RULES
     public static $rules = [
         'name'                  => 'required',
         'first_name'            => 'required',
@@ -41,6 +42,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         'g-recaptcha-response'  => 'required'
     ];
 
+    // REGISTRATION ERROR MESSAGES
     public static $messages = [
         'name.required'         => 'Username is required',
         'first_name.required'   => 'First Name is required',
@@ -53,6 +55,18 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         'g-recaptcha-response.required' => 'Captcha is required'
     ];
 
+    // ACCOUNT EMAIL ACTIVATION
+    public function accountIsActive($code) {
+        $user = User::where('activation_code', '=', $code)->first();
+        $user->active = 1;
+        $user->activation_code = '';
+        if($user->save()) {
+            \Auth::login($user);
+        }
+        return true;
+    }
+
+    // USER ROLES
     public function roles()
     {
         return $this->belongsToMany('App\Models\Role')->withTimestamps();
@@ -78,6 +92,37 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->roles()->detach($role);
     }
 
+    // USER PROFILES
+    public function profile()
+    {
+        return $this->hasOne('App\Models\Profile');
+    }
+    public function profiles()
+    {
+        return $this->belongsToMany('App\Models\Profile')->withTimestamps();
+    }
+
+    public function hasProfile($name)
+    {
+        foreach($this->profiles as $profile)
+        {
+            if($profile->name == $name) return true;
+        }
+
+        return false;
+    }
+
+    public function assignProfile($profile)
+    {
+        return $this->profiles()->attach($profile);
+    }
+
+    public function removeProfile($profile)
+    {
+        return $this->profiles()->detach($profile);
+    }
+
+    // SOCIAL MEDIA AUTH
     public function social()
     {
         return $this->hasMany('App\Models\Social');

@@ -4,6 +4,9 @@
 	{{ $user->name }}'s Profile
 @endsection
 
+@section('template_fastload_css')
+@endsection
+
 @section('content')
 	<div class="container">
 		<div class="row">
@@ -82,9 +85,8 @@
 						@if ($user->profile)
 							{!! HTML::link(url('/profile/'.Auth::user()->name.'/edit'), Lang::get('titles.editProfile')) !!}
 						@else
-							<p>
-								No profile yet.
-							</p>
+							<p>No profile yet.</p>
+							{!! HTML::link(url('/profile/'.Auth::user()->name.'/edit'), Lang::get('titles.createProfile')) !!}
 						@endif
 
 					</div>
@@ -92,4 +94,7 @@
 			</div>
 		</div>
 	</div>
+@endsection
+
+@section('template_scripts')
 @endsection
