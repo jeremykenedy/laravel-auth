@@ -2,6 +2,7 @@
 
 use App\Logic\Mailers\UserMailer;
 use App\Models\Role;
+use App\Models\Profile;
 use App\User;
 use App\Models\Password;
 use Hash, Carbon\Carbon;
@@ -30,6 +31,9 @@ class UserRepository {
         $role = Role::whereName('user')->first();
         $user->assignRole($role);
 
+        //Assign Profile
+        $profile = new Profile;
+        $user->profile()->save($profile);
     }
 
     public function resetPassword( User $user  )

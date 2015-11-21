@@ -20,6 +20,7 @@ return [
 	'rememberMe'		=> ' Remember Me',
 	'login'				=> 'Login',
 	'forgot'			=> 'Forgot Your Password?',
+	'forgot_message'	=> 'Password Troubles?',
 	'name'				=> 'Username',
 	'first_name'		=> 'First Name',
 	'last_name'			=> 'Last Name',

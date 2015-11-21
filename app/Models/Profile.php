@@ -10,8 +10,10 @@ class Profile extends Model {
 	 * @var array
 	 */
 	protected $fillable = [
-		'location', 'bio',
-		'twitter_username', 'github_username'
+		'location',
+		'bio',
+		'twitter_username',
+		'github_username'
 	];
 
 	/**
@@ -21,7 +23,7 @@ class Profile extends Model {
 	 */
 	public function user()
 	{
-		return $this->belongsTo('User');
+		return $this->belongsTo('App\User');
 	}
 
 }

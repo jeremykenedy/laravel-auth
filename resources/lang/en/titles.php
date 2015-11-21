@@ -12,6 +12,6 @@ return [
 	'toggleNav'		=> 'Toggle Navigation',
 	'profile'		=> 'Profile',
 	'editProfile'	=> 'Edit Profile',
-
+	'createProfile'	=> 'Create Profile',
 
 ];

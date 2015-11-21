@@ -15,8 +15,7 @@ class UpdateUsersTable extends Migration {
 		Schema::table('users', function(Blueprint $table)
 		{
 			$table->string('activation_code')->after('password');
-			$table->boolean('active')
-				->default(0)->after('activation_code');
+			$table->boolean('active')->default(0)->after('activation_code');
 			$table->tinyInteger('resent')->unsigned()->after('active');
 		});
 	}

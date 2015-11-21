@@ -81,9 +81,10 @@ Route::get('app', function () {
 // ]);
 
 # Profile
-Route::resource('profile', 'ProfilesController', ['only' => ['show', 'edit', 'update']]);
-Route::get('/{username}', ['as' => 'profile', 'uses' => 'ProfilesController@show']);
-
+Route::group(['middleware' => 'currentUser'], function () {
+	Route::resource('profile', 'ProfilesController', ['only' => ['show', 'edit', 'update']]);
+});
+Route::get('/{username}', ['as' => '{username}', 'uses' => 'ProfilesController@show']);
 
 
 //Route::get('/{profile}', 'ProfilesController@show');

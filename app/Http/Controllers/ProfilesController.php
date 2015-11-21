@@ -7,28 +7,37 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Logic\User\UserRepository;
+use App\Models\Profile;
 use App\User;
+use Validator;
 use Input;
 
-// use Illuminate\Database\Eloquent\Builder;
-// use Illuminate\Database\Query\Expression;
-// use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-// use Illuminate\Contracts\Auth\Guard;
-// use Illuminate\Support\Facades;
-// use App\Models\Role;
-
 class ProfilesController extends Controller {
-
-
 
     //use AuthenticatesAndRegistersUsers;
     protected $auth;
     protected $userRepository;
 
-    // RUN VIEW THROUGH AUTH MIDDLWARE
+    // RUN VIEW THROUGH AUTH MIDDLWARE via the CONSTRUCTOR
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    public function profile_validator(array $data)
+    {
+        return Validator::make($data, [
+            'location'          => 'required',
+            'bio'               => '',
+            'twitter_username'  => '',
+            'github_username'   => ''
+        ]);
     }
 
     /**
@@ -70,11 +79,17 @@ class ProfilesController extends Controller {
      */
     public function edit($username)
     {
-        $user = $this->getUserByUsername($username)->firstOrFail();
+        try {
+            $user = $this->getUserByUsername($username);
+            //dd($user->toArray());
+        } catch (ModelNotFoundException $e) {
+            return view('pages.status')
+                ->with('error',\Lang::get('profile.notYourProfile'))
+                ->with('error_title',\Lang::get('profile.notYourProfileTitle'));
+        }
+        //dd($user->toArray());
         return view('profiles.edit')->withUser($user);
-
     }
-
 
     /**
      * Update a user's profile
@@ -83,25 +98,33 @@ class ProfilesController extends Controller {
      * @return mixed
      * @throws Laracasts\Validation\FormValidationException
      */
-    public function update($username)
+    public function update($username, Request $request)
     {
-        $user = $this->getUserByUsername($username)->firstOrFail();
+        $user = $this->getUserByUsername($username);
 
         $input = Input::only('location', 'bio', 'twitter_username', 'github_username');
 
-/*
-        $this->profileForm->validate($input);
+        $profile_validator = $this->profile_validator($request->all());
 
-*/
+        if ($profile_validator->fails()) {
 
-        $user->profile->fill($input)->save();
+            $this->throwValidationException(
+                $request, $profile_validator
+            );
+
+            return redirect('profile/'.$user->name.'/edit')->withErrors($validator)->withInput();
+        }
+
+        if ($user->profile == null) {
+            $profile = new Profile;
+            $profile->fill($input);
+            $user->profile()->save($profile);
+        } else {
+            $user->profile->fill($input)->save();
+        }
 
         return redirect('profile/'.$user->name.'/edit')->with('status', 'Profile updated!');
 
-
     }
-
-
-
 
 }

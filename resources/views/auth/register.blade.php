@@ -17,7 +17,7 @@
 								<div class="form-group">
 									<div class="col-sm-10 col-sm-offset-1">
 										<div class="alert alert-danger">
-											<strong>{{ Lang::get('auth.whoops') }}</strong> {{ Lang::get('auth.someProblems') }}<br><br>
+											<strong>{{ Lang::get('auth.whoops') }}</strong> {{ Lang::get('auth.someProblems') }}<br /><br />
 											<ul>
 												@foreach ($errors->all() as $error)
 													<li>{{ $error }}</li>

@@ -9,6 +9,7 @@ use App\Logic\User\UserRepository;
 use App\User;
 use App\Models\Social;
 use App\Models\Role;
+use App\Models\Profile;
 use App\Traits\CaptchaTrait;
 use Laravel\Socialite\Facades\Socialite;
 use Validator;
@@ -59,15 +60,13 @@ class AuthController extends Controller {
 	public function validator(array $data)
 	{
 		return Validator::make($data, [
-				'name' 			=> 'required|max:255|unique:users',
-				'first_name' 	=> 'required|max:255',
-				'last_name' 	=> 'required|max:255',
-				'email' 		=> 'required|email|max:255|unique:users',
-				'password' 		=> 'required|confirmed|min:6',
-			]);
+			'name' 			=> 'required|max:255|unique:users',
+			'first_name' 	=> 'required|max:255',
+			'last_name' 	=> 'required|max:255',
+			'email' 		=> 'required|email|max:255|unique:users',
+			'password' 		=> 'required|confirmed|min:6',
+		]);
 	}
-
-
 
 	/**
 	 * Handle a registration request for the application.
@@ -79,9 +78,7 @@ class AuthController extends Controller {
 	{
 	    if($this->captchaCheck() == false)
 	    {
-	        return redirect()->back()
-	            ->withErrors(['Sorry, Wrong Captcha'])
-	            ->withInput();
+	        return redirect()->back()->withErrors(['Sorry, Wrong Captcha'])->withInput();
 	    }
 
 		$validator = $this->validator($request->all());
@@ -92,14 +89,14 @@ class AuthController extends Controller {
             );
         }
 
-		$activation_code = str_random(60) . $request->input('email');
-		$user = new User;
-		$user->name = $request->input('name');
-		$user->first_name = $request->input('first_name');
-		$user->last_name = $request->input('last_name');
-		$user->email = $request->input('email');
-		$user->password = bcrypt($request->input('password'));
-		$user->activation_code = $activation_code;
+		$activation_code 		= str_random(60) . $request->input('email');
+		$user 					= new User;
+		$user->name 			= $request->input('name');
+		$user->first_name 		= $request->input('first_name');
+		$user->last_name 		= $request->input('last_name');
+		$user->email 			= $request->input('email');
+		$user->password 		= bcrypt($request->input('password'));
+		$user->activation_code 	= $activation_code;
 
 		if ($user->save()) {
 
@@ -107,8 +104,10 @@ class AuthController extends Controller {
 	        $user_role = Role::whereName('user')->first();
 	        $user->assignRole($user_role);
 
-			return view('auth.activateAccount')
-				->with('email', $request->input('email'));
+            $profile = new Profile;
+            $user->profile()->save($profile);
+
+			return view('auth.activateAccount')->with('email', $request->input('email'));
 
 		} else {
 
@@ -122,8 +121,8 @@ class AuthController extends Controller {
 	public function sendEmail(User $user)
 	{
 		$data = array(
-				'name' => $user->name,
-				'code' => $user->activation_code,
+			'name' => $user->name,
+			'code' => $user->activation_code,
 		);
 
 		\Mail::queue('emails.activateAccount', $data, function($message) use ($user) {
@@ -137,14 +136,12 @@ class AuthController extends Controller {
 		$user = \Auth::user();
 		if( $user->resent >= 3 )
 		{
-			return view('auth.tooManyEmails')
-				->with('email', $user->email);
+			return view('auth.tooManyEmails')->with('email', $user->email);
 		} else {
 			$user->resent = $user->resent + 1;
 			$user->save();
 			$this->sendEmail($user);
-			return view('auth.activateAccount')
-				->with('email', $user->email);
+			return view('auth.activateAccount')->with('email', $user->email);
 		}
 	}
 
@@ -165,8 +162,7 @@ class AuthController extends Controller {
     {
         $providerKey = \Config::get('services.' . $provider);
         if(empty($providerKey))
-            return view('pages.status')
-                ->with('error','No such provider');
+            return view('pages.status')->with('error','No such provider');
 
         return Socialite::driver( $provider )->redirect();
 
@@ -202,7 +198,12 @@ class AuthController extends Controller {
 					$new_social_user->name			= $name[0];
 				}
                 $new_social_user->first_name      	= $name[0];
-                $new_social_user->last_name        	= $name[1];
+
+                // CHECK FOR LAST NAME
+                if (isset($name[1])) {
+                	$new_social_user->last_name     = $name[1];
+                }
+
                 $new_social_user->active           	= '1';
 				$the_activation_code 				= str_random(60) . $user->email;
 				$new_social_user->activation_code 	= $the_activation_code;
@@ -212,11 +213,16 @@ class AuthController extends Controller {
                 $social_data->provider 				= $provider;
                 $new_social_user->social()->save($social_data);
 
-                // Add role
+                // ADD ROLE
                 $role = Role::whereName('user')->first();
                 $new_social_user->assignRole($role);
 
                 $social_user = $new_social_user;
+
+                // LINK TO PROFILE TABLE
+	            $profile = new Profile;
+	            $social_user->profile()->save($profile);
+
             }
             else
             {

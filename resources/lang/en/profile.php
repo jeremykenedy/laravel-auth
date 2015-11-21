@@ -5,6 +5,7 @@ return [
 	// PROFILE ERRORS
 	'notYourProfile'			=> 'This isn\'t the profile you\'re looking for.',
 	'notYourProfileTitle'		=> 'Hmmm, something went wrong...',
+	'noProfileYet'				=> 'No profile yet.',
 
 	// USER PROFILE TITLES
 	'showProfileUsername'		=> 'Username',

@@ -13,24 +13,22 @@
 				<div class="panel-body">
 
 					@if (count($errors) > 0)
-						<div class="row">
+						<div class="alert alert-danger">
+							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 							<div class="form-group">
-								<div class="col-sm-10 col-sm-offset-1">
-									<div class="alert alert-danger">
-										<strong>{{ Lang::get('auth.whoops') }}</strong> {{ Lang::get('auth.someProblems') }}<br><br>
-										<ul>
-											@foreach ($errors->all() as $error)
-												<li>{{ $error }}</li>
-											@endforeach
-										</ul>
-									</div>
-								</div>
+								<strong>{{ Lang::get('auth.whoops') }}</strong> {{ Lang::get('auth.someProblems') }}<br /><br />
+								<ul>
+									@foreach ($errors->all() as $error)
+										<li>{{ $error }}</li>
+									@endforeach
+									<li>{!! HTML::link(url('/password/email'), Lang::get('auth.forgot_message'), array('id' => 'forgot_message',)) !!}</li>
+								</ul>
+
 							</div>
 						</div>
 					@endif
 
 					{!! Form::open(array('url' => 'auth/login', 'method' => 'POST', 'class' => 'lockscreen-credentials form-horizontal', 'role' => 'form')) !!}
-						{!! csrf_field() !!}
 						<div class="form-group has-feedback">
 							{!! Form::label('email', Lang::get('auth.email') , array('class' => 'col-sm-4 control-label')); !!}
 							<div class="col-sm-6">
