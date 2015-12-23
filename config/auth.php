@@ -28,8 +28,8 @@ return [
 	|
 	*/
 
-	'model' => 'App\User',
-//    'model' => 'App\Models\User',
+    'model' => 'App\Models\User',
+
 	/*
 	|--------------------------------------------------------------------------
 	| Authentication Table
