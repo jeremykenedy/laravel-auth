@@ -92,6 +92,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->roles()->detach($role);
     }
 
+    // SOCIAL MEDIA AUTH
+    public function social()
+    {
+        return $this->hasMany('App\Models\Social');
+    }
+
     // USER PROFILES
     public function profile()
     {
@@ -120,11 +126,5 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function removeProfile($profile)
     {
         return $this->profiles()->detach($profile);
-    }
-
-    // SOCIAL MEDIA AUTH
-    public function social()
-    {
-        return $this->hasMany('App\Models\Social');
     }
 }

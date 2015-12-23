@@ -8,13 +8,12 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Logic\User\UserRepository;
 use App\Models\Profile;
-use App\User;
+use App\Models\User;
 use Validator;
 use Input;
 
 class ProfilesController extends Controller {
 
-    //use AuthenticatesAndRegistersUsers;
     protected $auth;
     protected $userRepository;
 
@@ -81,13 +80,11 @@ class ProfilesController extends Controller {
     {
         try {
             $user = $this->getUserByUsername($username);
-            //dd($user->toArray());
         } catch (ModelNotFoundException $e) {
             return view('pages.status')
                 ->with('error',\Lang::get('profile.notYourProfile'))
                 ->with('error_title',\Lang::get('profile.notYourProfileTitle'));
         }
-        //dd($user->toArray());
         return view('profiles.edit')->withUser($user);
     }
 
@@ -101,9 +98,7 @@ class ProfilesController extends Controller {
     public function update($username, Request $request)
     {
         $user = $this->getUserByUsername($username);
-
         $input = Input::only('location', 'bio', 'twitter_username', 'github_username');
-
         $profile_validator = $this->profile_validator($request->all());
 
         if ($profile_validator->fails()) {

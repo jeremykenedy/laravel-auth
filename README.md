@@ -97,7 +97,7 @@ And thats it with the caveat of setting up and configuring your development envi
    	    'client_id' 	=> env('TWITCH_KEY'),
    	    'client_secret' => env('TWITCH_SECRET'),
    	    'redirect' 		=> env('TWITCH_REDIRECT_URI'),
-   	],     
+   	],
      ```
   5. Add the API credentials to ``` /.env  ```
      * Example:
@@ -111,15 +111,15 @@ And thats it with the caveat of setting up and configuring your development envi
       In file ```/resources/views/auth/login.blade.php``` add ONE of the following:
          * Conventional HTML:
       ```
-      
+
          <a href="{{ route('social.redirect', ['provider' => 'twitch']) }}" class="btn btn-lg btn-primary btn-block twitch">Twitch</a>
-      
-      ```      
+
+      ```
          * Use Laravel HTML Facade (recommended)
       ```
-      
+
          {!! HTML::link(route('social.redirect', ['provider' => 'twitch']), 'Twitch', array('class' => 'btn btn-lg btn-primary btn-block twitch')) !!}
-      
+
       ```
 
 --
@@ -154,7 +154,7 @@ Bootstrap is a sleek, intuitive, and powerful front-end framework for faster and
 
 [Bootstrap](http://getbootstrap.com)'s documentation, included in this repo in the root directory, is built with [Jekyll](http://jekyllrb.com) and publicly hosted on GitHub Pages at [<http://getbootstrap.com>](http://getbootstrap.com).
 
-## laravel-admin
+## laravel-auth
 
 [![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg)](https://travis-ci.org/twbs/bootstrap)
 [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
@@ -203,7 +203,7 @@ GOOGLE_REDIRECT=http://yourwebsiteURLhere.com/social/handle/google
 
 ### File Structure
 ```
-laravel-admin/
+laravel-auth/
     ├── .bowerrc
     ├── .env
     ├── bower.json
@@ -216,25 +216,48 @@ laravel-admin/
     ├── README.md
     ├── server.php
     ├── app/
-    │    ├── User.php
-    │    └── Http/
-    │       ├── kernal.php
-    │       ├── routes.php
-    │       ├── Controllers/
-    │       │   ├── Auth/
-    │       │   │   ├── AuthController.php
-    │       │   │   └── PasswordController.php
-    │       │   ├── adminController.php
-    │       │   ├── Controller.php
-    │       │   ├── UsersController.php
-    │       │   └── WelcomeController.php
-    │       ├── Middleware/
-    │       │   ├── Authenticate.php
-    │       │   ├── EncryptCookies.php
-    │       │   ├── RedirectAuthenticated.php
-    │       │   └── VerifyCsrfToken.php
-    │       └── Requests/
-    │           └── Request.php
+    │   ├── Http/
+    │   │  ├── kernal.php
+    │   │  ├── routes.php
+    │   │  ├── Controllers/
+    │   │  │   ├── Auth/
+    │   │  │   │   ├── AuthController.php
+    │   │  │   │   └── PasswordController.php
+    │   │  │   ├── Controller.php
+    │   │  │   ├── HomeController.php
+    │   │  │   ├── ProfilesController.php
+    │   │  │   ├── UserController.php
+    │   │  │   └── WelcomeController.php
+    │   │  ├── Middleware/
+    │   │  │   ├── Authenticate.php
+    │   │  │   ├── CheckCurrentUser.php
+    │   │  │   ├── EncryptCookies.php
+    │   │  │   ├── RedirectAuthenticated.php
+    │   │  │   └── VerifyCsrfToken.php
+    │   │  └── Requests/
+    │   │      └── Request.php
+    │   ├── Logic/
+    │   │   ├── Mailers/
+    │   │   │   ├── Mailer.php
+    │   │   │   └── UserMailer.php
+    │   │   └── User/
+    │   │       └── UserRepository.php
+    │   ├── Models/
+    │   │   ├── Password.php
+    │   │   ├── Profile.php
+    │   │   ├── Role.php
+    │   │   ├── Social.php
+    │   │   └── User.php
+    │   ├── Providers/
+    │   │   ├── AppServiceProvider.php
+    │   │   ├── BusServiceProvider.php
+    │   │   ├── ConfigServiceProvider.php
+    │   │   ├── EventServiceProvider.php
+    │   │   └── RouteServiceProvider.php
+    │   ├── Services/
+    │   │   └── Registrar.php
+    │   └── Traits/
+    │       └── CaptchaTrait.php
     ├── config/
     │   ├── app.php
     │   ├── auth.php
@@ -249,49 +272,66 @@ laravel-admin/
     │   └── view.php
     ├── database/
     │   ├── migrations/
-    │   │   ├──
-    │   │   ├──
-    │   │   └──
+    │   │   ├── 2014_10_12_000000_create_users_table.php
+    │   │   ├── 2014_10_12_100000_create_password_resets_table.php
+    │   │   ├── 2015_05_15_124334_update_users_table.php
+    │   │   ├── 2015_10_21_173121_create_users_roles.php
+    │   │   ├── 2015_10_21_173333_create_user_role.php
+    │   │   ├── 2015_10_21_173520_create_social_logins.php
+    │   │   └── 2015_11_02_004932_create_profiles_table.php
     │   └── seeds/
-    │       ├──
-    │       ├──
-    │       └── DatabaseSeeder.php
+    │       ├── DatabaseSeeder.php
+    │       └── SeedRoles.php
     ├── public/
     │   ├── .htaccess
     │   ├── index.php
     │   └── assets/
     │       ├── css/
-    │       ├── fonts
-    │       └── js
-    └── resources/
-        ├── assets/
-        ├── lang/
-        └── views/
-            ├── app.blade.php
-            ├── app.home.php   //TODO[maybe.. :)~ ]: TO BE REMOVED AFTER CAN SAFELY CONFIRM OK
-            ├── emails/
-            │   ├── activateAccount.blade.php
-            │   └── password.blade.php
-            ├── auth/
-            │   ├── activateAccount.blade.php
-            │   ├── guest_activate.blade.php
-            │   ├── login.blade.php
-            │   ├── password.blade.php
-            │   ├── register.blade.php
-            │   ├── reset.blade.php
-            │   └── tooManyEmails.blade.php
-            ├── emails/
-            │   ├── activateAccount.blade.php
-            │   └── password.blade.php
-            ├── errors/
-            │   ├── 403.blade.php
-            │   ├── 404.blade.php
-            │   └── 503.blade.php
-            ├── pages/
-            │   ├── home.blade.php
-            │   └── status.blade.php
-            └── vendor/
-
+    │       ├── fonts/
+    │       └── ~~js/~~
+    ├── resources/
+    │   ├── assets/
+    │   │   └── Less/
+    │   │       ├── bootstrap/
+    │   │       └── app.less
+    │   ├── lang/
+    │   │   └── en/
+    │   │       ├── auth.php
+    │   │       ├── email.php
+    │   │       ├── pagination.php
+    │   │       ├── passwords.php
+    │   │       ├── profile.php
+    │   │       ├── titles.php
+    │   │       └── validation.php
+    │   └── views/
+    │       ├── app.blade.php
+    │       ├── welcome.blade.php
+    │       ├── auth/
+    │       │   ├── activateAccount.blade.php
+    │       │   ├── guest_activate.blade.php
+    │       │   ├── login.blade.php
+    │       │   ├── password.blade.php
+    │       │   ├── register.blade.php
+    │       │   ├── reset.blade.php
+    │       │   └── tooManyEmails.blade.php
+    │       ├── emails/
+    │       │   ├── activateAccount.blade.php
+    │       │   └── password.blade.php
+    │       ├── errors/
+    │       │   ├── 403.blade.php
+    │       │   ├── 404.blade.php
+    │       │   └── 503.blade.php
+    │       ├── pages/
+    │       │   ├── home.blade.php
+    │       │   └── status.blade.php
+    │       ├── partials
+    │       │   └── nav.blade.php
+    │       └── profiles
+    │           ├── edit.blade.php
+    │           └── show.blade.php
+    ├── storage/
+    ├── tests/
+    └── vendor/
 ```
 
 #### Laravel Developement Packages Used References
@@ -331,7 +371,6 @@ laravel-admin/
 | ```sudo ssh vagrant@127.0.0.1 -p 222``` | Access Vagrant VM via SSH. Password is ``` vagrant  ``` |
 | ```mysql -u homestead -psecret``` | Access Vagrant VM MySQL. Password is ``` vagrant  ``` |
 
-For reference AdminLTE can be installed into projects using Bower.
 If you do not have Bower, it can be installed using Node Package Manager (NPM).
 If you do not have NPM, it can be installed using NODE JS.
 
@@ -376,13 +415,6 @@ sudo brew update
 sudo brew tap homebrew/dupes
 sudo brew tap homebrew/php
 sudo brew install composer
-```
-
-###Install AdminLTE
-####AdminLTE can be installed using the following command:
-Note: Run from projects public folder
-```
-sudo git clone https://github.com/jeremykenedy/AdminLTE.git admin
 ```
 
 #### Very Helpful Aliases
@@ -691,7 +723,7 @@ Note: Replace examples URI used in Vargrant/Homestead configuration file and use
 ##
 127.0.0.1        localhost
 255.255.255.255  broadcasthost
-192.168.10.10    laravel-admin.local
+192.168.10.10    laravel-authentication.local
 ```
 
 ---

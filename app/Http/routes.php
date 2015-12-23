@@ -17,10 +17,21 @@
 |
 */
 
+// PAGE ROUTE ALIASES
+Route::get('home', function () {
+    return redirect('/');
+});
+Route::get('app', function () {
+    return redirect('/');
+});
+Route::get('dashboard', function () {
+    return redirect('/');
+});
+
 // ALL AUTHENTICATION ROUTES - HANDLED IN THE CONTROLLERS
 Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
+	'auth' 		=> 'Auth\AuthController',
+	'password' 	=> 'Auth\PasswordController',
 ]);
 
 // REGISTRATION EMAIL CONFIRMATION ROUTES
@@ -28,8 +39,14 @@ Route::get('/resendEmail', 'Auth\AuthController@resendEmail');
 Route::get('/activate/{code}', 'Auth\AuthController@activateAccount');
 
 // LARAVEL SOCIALITE AUTHENTICATION ROUTES
-Route::get('/social/redirect/{provider}',   ['as' => 'social.redirect',   'uses' => 'Auth\AuthController@getSocialRedirect']);
-Route::get('/social/handle/{provider}',     ['as' => 'social.handle',     'uses' => 'Auth\AuthController@getSocialHandle']);
+Route::get('/social/redirect/{provider}', [
+	'as' 	=> 'social.redirect',
+	'uses' 	=> 'Auth\AuthController@getSocialRedirect'
+]);
+Route::get('/social/handle/{provider}', [
+	'as' 	=> 'social.handle',
+	'uses' 	=> 'Auth\AuthController@getSocialHandle'
+]);
 
 // AUTHENTICATION ALIASES/REDIRECTS
 Route::get('login', function () {
@@ -50,59 +67,54 @@ Route::group(['middleware' => 'auth'], function () {
 
 	// HOMEPAGE ROUTE
 	Route::get('/', [
-	    'as' 			=> 'user',
-	    'uses' 			=> 'UserController@index'
+	    'as' 		=> 'user',
+	    'uses' 		=> 'UserController@index'
+	]);
+
+	// INCEPTIONED MIDDLEWARE TO CHECK TO ALLOW ACCESS TO CURRENT USER ONLY
+	Route::group(['middleware'=> 'currentUser'], function () {
+			Route::resource(
+				'profile',
+				'ProfilesController', [
+					'only' 	=> [
+						'show',
+						'edit',
+						'update'
+					]
+				]
+			);
+	});
+	Route::get('profile/{username}', [
+		'as' 		=> '{username}',
+		'uses' 		=> 'ProfilesController@show'
+	]);
+
+	Route::get('dashboard/profile/{username}', [
+		'as' 		=> '{username}',
+		'uses' 		=> 'ProfilesController@show'
 	]);
 
 });
 
-// PAGE ROUTE ALIASES
-Route::get('home', function () {
-    return redirect('/');
+// ADMINISTRATOR ACCESS LEVEL PAGE ROUTES - RUNNING THROUGH ADMINISTRATOR MIDDLEWARE
+Route::group(['middleware' => 'administrator'], function () {
+
+	// TEST ROUTE ONLY ROUTE
+	Route::get('administrator', function () {
+	    echo 'Welcome to your ADMINISTRATOR page '. Auth::user()->email .'.';
+	});
+
 });
-Route::get('app', function () {
-    return redirect('/');
+
+// EDITOR ACCESS LEVEL PAGE ROUTES - RUNNING THROUGH EDITOR MIDDLEWARE
+Route::group(['middleware' => 'editor'], function () {
+
+	//TEST ROUTE ONLY
+	Route::get('editor', function () {
+	    echo 'Welcome to your EDITOR page '. Auth::user()->email .'.';
+	});
+
 });
-
-// // USER PROFILE ROUTES
-// Route::resource('profile', 'ProfilesController', [
-//     'as'        => 'user',
-//     'only'      => ['show', 'edit', 'update']
-// ]);
-
-// Route::get('/profile/edit', [
-//     'as'            => 'profile.edit',
-//     'uses'          => 'UserController@edit'
-// ]);
-
-// Route::get('/profile/update', [
-//     'as'            => 'profile.update',
-//     'uses'          => 'UserController@update'
-// ]);
-
-# Profile
-Route::group(['middleware' => 'currentUser'], function () {
-	Route::resource('profile', 'ProfilesController', ['only' => ['show', 'edit', 'update']]);
-});
-Route::get('/{username}', ['as' => '{username}', 'uses' => 'ProfilesController@show']);
-
-
-//Route::get('/{profile}', 'ProfilesController@show');
-//Route::get('/{username}', ['as' => 'profile', 'uses' => 'ProfilesController@show']);
-// Route::get('profile/{profile}', [
-//     'as'            => 'profile',
-//     'uses'          => 'ProfilesController@show'
-// ]);
-
-
-
-
-
-
-
-
-
-
 
 //***************************************************************************************//
 //***************************** USER ROUTING EXAMPLES BELOW *****************************//

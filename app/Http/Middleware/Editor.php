@@ -2,11 +2,8 @@
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Http\RedirectResponse;
-use App\User;
 
-
-class CheckCurrentUser
+class Editor
 {
     /**
      * The Guard implementation.
@@ -27,7 +24,7 @@ class CheckCurrentUser
     }
 
     /**
-     * Handle an incoming request.
+     * CHECK IF USER IS EDITOR
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -35,14 +32,18 @@ class CheckCurrentUser
      */
     public function handle($request, Closure $next)
     {
-
-        if ($request->user())
-        {
-            return $next($request);
+        if ($this->auth->guest()) {
+            if ($request->ajax()) {
+                return response('Unauthorized.', 401);
+            } else {
+                return redirect()->guest('auth/login');
+            }
         } else {
-            abort(403, 'Unauthorized action.');
+            if ($this->auth->user()->hasRole('editor') || $this->auth->user()->hasRole('administrator')) {
+                return $next($request);
+            } else {
+                return redirect()->guest('home');
+            }
         }
-
     }
-
 }

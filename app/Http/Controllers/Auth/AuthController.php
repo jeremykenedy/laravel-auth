@@ -2,11 +2,12 @@
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades;
 use App\Logic\User\UserRepository;
-use App\User;
+use App\Models\User;
 use App\Models\Social;
 use App\Models\Role;
 use App\Models\Profile;
@@ -27,8 +28,14 @@ class AuthController extends Controller {
 	|
 	*/
 
+
+	use AuthenticatesAndRegistersUsers
+    {
+        getLogout as authLogout;
+    }
 	use CaptchaTrait;
-	use AuthenticatesAndRegistersUsers;
+	use ThrottlesLogins;
+
     protected $auth;
     protected $userRepository;
 
