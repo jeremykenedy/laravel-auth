@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades;
 use App\Logic\User\UserRepository;
+use App\Logic\User\CaptureIp;
 use App\Models\User;
 use App\Models\Social;
 use App\Models\Role;
@@ -96,14 +97,18 @@ class AuthController extends Controller {
             );
         }
 
-		$activation_code 		= str_random(60) . $request->input('email');
-		$user 					= new User;
-		$user->name 			= $request->input('name');
-		$user->first_name 		= $request->input('first_name');
-		$user->last_name 		= $request->input('last_name');
-		$user->email 			= $request->input('email');
-		$user->password 		= bcrypt($request->input('password'));
-		$user->activation_code 	= $activation_code;
+		$activation_code 			= str_random(60) . $request->input('email');
+		$user 						= new User;
+		$user->name 				= $request->input('name');
+		$user->first_name 			= $request->input('first_name');
+		$user->last_name 			= $request->input('last_name');
+		$user->email 				= $request->input('email');
+		$user->password 			= bcrypt($request->input('password'));
+		$user->activation_code 		= $activation_code;
+
+		// GET IP ADDRESS
+		$userIpAddress 				= new CaptureIp;
+		$user->signup_ip_address	= $userIpAddress->getClientIp();
 
 		if ($user->save()) {
 
@@ -119,11 +124,9 @@ class AuthController extends Controller {
 		} else {
 
 			\Session::flash('message', \Lang::get('notCreated') );
-			return redirect()->back()->withInput();
 		}
 
 	}
-	//*/
 
 	public function sendEmail(User $user)
 	{
@@ -156,6 +159,7 @@ class AuthController extends Controller {
 	{
 
 		if($user->accountIsActive($code)) {
+
 			\Session::flash('message', \Lang::get('auth.successActivated') );
 			return redirect('home');
 		}
@@ -211,18 +215,25 @@ class AuthController extends Controller {
                 	$new_social_user->last_name     = $name[1];
                 }
 
-                $new_social_user->active           	= '1';
-				$the_activation_code 				= str_random(60) . $user->email;
-				$new_social_user->activation_code 	= $the_activation_code;
+                $new_social_user->active           					= '1';
+				$the_activation_code 								= str_random(60) . $user->email;
+				$new_social_user->activation_code 					= $the_activation_code;
+
+				// GET IP ADDRESS
+				$userIpAddress 										= new CaptureIp;
+				$new_social_user->signup_sm_ip_address				= $userIpAddress->getClientIp();
+
                 $new_social_user->save();
-                $social_data 						= new Social;
-                $social_data->social_id 			= $user->id;
-                $social_data->provider 				= $provider;
+                $social_data 										= new Social;
+                $social_data->social_id 							= $user->id;
+                $social_data->provider 								= $provider;
                 $new_social_user->social()->save($social_data);
 
                 // ADD ROLE
                 $role = Role::whereName('user')->first();
                 $new_social_user->assignRole($role);
+
+				// TODO: ADD LOGIC TO CAPTURE SOCIAL LOGIN USERNAME AND SAVE IT TO PROFILE
 
                 $social_user = $new_social_user;
 
@@ -255,4 +266,6 @@ class AuthController extends Controller {
 
         return \App::abort(500);
     }
+
 }
+

@@ -15,6 +15,7 @@
 				<li>{!! HTML::link(url('/'), Lang::get('titles.home')) !!}</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+
 				@if (Auth::guest())
 					<li>{!! HTML::link(url('/auth/login'), Lang::get('titles.login')) !!}</li>
 					<li>{!! HTML::link(url('/auth/register'), Lang::get('titles.register')) !!}</li>

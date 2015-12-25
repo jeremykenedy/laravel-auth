@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use App\Logic\User\CaptureIp;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
@@ -58,8 +59,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     // ACCOUNT EMAIL ACTIVATION
     public function accountIsActive($code) {
         $user = User::where('activation_code', '=', $code)->first();
-        $user->active = 1;
-        $user->activation_code = '';
+
+        // GET IP ADDRESS
+        $userIpAddress                          = new CaptureIp;
+        $user->signup_confirmation_ip_address   = $userIpAddress->getClientIp();
+        $user->active                           = 1;
+        $user->activation_code                  = '';
         if($user->save()) {
             \Auth::login($user);
         }
