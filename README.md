@@ -29,7 +29,7 @@ Laravel 5.1 with user authentication, registration with email confirmation, soci
 | :------------ |
 |Add eloquent user profiles with gravatar <- This is currently done in [laravel-admin](https://github.com/jeremykenedy/laravel-admin)|
 |Maybe use Google APIv3 for user address entry lookup|
-|Maybe capture IP to users table upon signup|
+|~~Maybe capture IP to users table upon signup~~ <- ADDED|
 
 ### Quick Project Setup
 1. Run `sudo git clone https://github.com/jeremykenedy/laravel-auth.git laravel-authentication`
