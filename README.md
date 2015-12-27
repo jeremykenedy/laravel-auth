@@ -28,7 +28,7 @@ Laravel 5.1 with user authentication, registration with email confirmation, soci
 | Next up on development  |
 | :------------ |
 |Add eloquent user profiles with gravatar <- This is currently done in [laravel-admin](https://github.com/jeremykenedy/laravel-admin)|
-|Maybe use Google APIv3 for user address entry lookup|
+|~~Maybe use Google APIv3 for user address entry lookup~~ <- ADDED|
 |~~Maybe capture IP to users table upon signup~~ <- ADDED|
 
 ### Quick Project Setup
