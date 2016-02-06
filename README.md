@@ -52,7 +52,7 @@ Laravel 5.1 with user authentication, registration with email confirmation, soci
    * editor
    * administrator
 
-And thats it with the caveat of setting up and configuring your development environemnt. I recommend [VAGRANT](https://docs.vagrantup.com/v2/getting-started/) or the Laravel configure version of Vagrant called [HOMESTEAD](http://laravel.com/docs/5.1/homestead).
+And thats it with the caveat of setting up and configuring your development environemnt. I recommend [VAGRANT](https://docs.vagrantup.com/v2/getting-started/) or the Laravel configured instance of Vagrant called [HOMESTEAD](http://laravel.com/docs/5.1/homestead).
 
 ### Laravel-Authentication URL's (routes)
 * ```/```
