@@ -156,11 +156,6 @@ Bootstrap is a sleek, intuitive, and powerful front-end framework for faster and
 
 [Bootstrap](http://getbootstrap.com)'s documentation, included in this repo in the root directory, is built with [Jekyll](http://jekyllrb.com) and publicly hosted on GitHub Pages at [<http://getbootstrap.com>](http://getbootstrap.com).
 
-## laravel-auth
-
-[![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg)](https://travis-ci.org/twbs/bootstrap)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
-
 Example `.env` file:
 ```
 APP_ENV=local
