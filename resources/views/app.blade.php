@@ -14,6 +14,11 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
+
+
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
 		<style type="text/css">
 			@yield('template_fastload_css')
 		</style>
