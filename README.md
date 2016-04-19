@@ -1,4 +1,4 @@
-### Laravel-Auth is a Complete Build of Laravel 5.1 with FULL Email and Social Authentication - COMPLETE WORKING Implementation. [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+### Laravel-Auth is a Complete Build of Laravel 5.1 with FULL Email and Social Authentication - COMPLETE WORKING Implementation. [![License](http://jeremykenedy.com/license-gpl3.svg)](https://packagist.org/packages/laravel/framework)
 
 [![Selenium Test Status](https://saucelabs.com/browser-matrix/bootstrap.svg)](https://saucelabs.com/u/bootstrap)
 
@@ -6,9 +6,11 @@ Laravel 5.1 with user authentication, registration with email confirmation, soci
 
 ###### Updates:
 * Added eloquent editable user profile.
+* Added IP Capture
+* Added CRUD(Create, Read, Update, Delete) User Management
 
 ###### A [Laravel](http://laravel.com/) 5.1.x with minimal [Bootstrap](http://getbootstrap.com) 3.5.x project.
-| Laravel 5.1 Complete Authentication Features  |
+| Laravel-Auth Features  |
 | :------------ |
 |Built on [Laravel](http://laravel.com/) 5.1|
 |Uses [MySQL](https://github.com/mysql) Database|
@@ -22,14 +24,18 @@ Laravel 5.1 with user authentication, registration with email confirmation, soci
 |User Socialite Logins ready to go - See API list below|
 |Google Captcha Protection|
 |Custom 404 Page|
+|Capture IP to users table upon signup|
+|Eloquent user profiles|
+|CRUD(Create, Read, Update, Delete) User Management|
 
 | Next up on development  |
 | :------------ |
-|Add eloquent user profiles with gravatar <- This is currently done in [laravel-admin](https://github.com/jeremykenedy/laravel-admin)|
-|~~Maybe use Google APIv3 for user address entry lookup~~ <- ADDED|
-|~~Maybe capture IP to users table upon signup~~ <- ADDED|
+|Add User Gravatar <- This is currently done in [laravel-admin](https://github.com/jeremykenedy/laravel-admin)|
+|Add Google Maps API v3 for User Location lookup|
+|Add User Location Geocoding and Map|
 
 ### Quick Project Setup
+###### (Not including the dev environment)
 1. Run `sudo git clone https://github.com/jeremykenedy/laravel-auth.git laravel-authentication`
 2. Create a MySQL database for the project
     * ```mysql -u root -p```, if using Vagrant: ```mysql -u homestead -psecret```
@@ -199,12 +205,13 @@ GOOGLE_SECRET=YOURGOOGLEPLUSsecretHERE
 GOOGLE_REDIRECT=http://yourwebsiteURLhere.com/social/handle/google
 ```
 
-### File Structure
+### File Structure of Common Used Files
 ```
 laravel-auth/
-    ├── .bowerrc
-    ├── .env
-    ├── bower.json
+    ├── .env.example
+    ├── .gitattributes
+    ├── .gitignore
+    ├── artisan
     ├── composer.json
     ├── gulpfile.js
     ├── LICENSE
@@ -225,20 +232,25 @@ laravel-auth/
     │   │  │   ├── HomeController.php
     │   │  │   ├── ProfilesController.php
     │   │  │   ├── UserController.php
+    │   │  │   ├── UsersManagementController.php
     │   │  │   └── WelcomeController.php
     │   │  ├── Middleware/
+    │   │  │   ├── Administrator.php
     │   │  │   ├── Authenticate.php
     │   │  │   ├── CheckCurrentUser.php
+    │   │  │   ├── Editor.php
     │   │  │   ├── EncryptCookies.php
     │   │  │   ├── RedirectAuthenticated.php
     │   │  │   └── VerifyCsrfToken.php
     │   │  └── Requests/
     │   │      └── Request.php
     │   ├── Logic/
+    │   │   ├── macros.php
     │   │   ├── Mailers/
     │   │   │   ├── Mailer.php
     │   │   │   └── UserMailer.php
     │   │   └── User/
+    │   │       ├── CaptureIp.php
     │   │       └── UserRepository.php
     │   ├── Models/
     │   │   ├── Password.php
@@ -251,6 +263,7 @@ laravel-auth/
     │   │   ├── BusServiceProvider.php
     │   │   ├── ConfigServiceProvider.php
     │   │   ├── EventServiceProvider.php
+    │   │   ├── MacroServiceProvider.php
     │   │   └── RouteServiceProvider.php
     │   ├── Services/
     │   │   └── Registrar.php
@@ -276,13 +289,18 @@ laravel-auth/
     │   │   ├── 2015_10_21_173121_create_users_roles.php
     │   │   ├── 2015_10_21_173333_create_user_role.php
     │   │   ├── 2015_10_21_173520_create_social_logins.php
-    │   │   └── 2015_11_02_004932_create_profiles_table.php
+    │   │   ├── 2015_11_02_004932_create_profiles_table.php
+    │   │   ├── 2015_12_25_010553_add_signup_ip_address_to_users_table.php
+    │   │   ├── 2015_12_25_011117_add_signup_confirmation_ip_address_to_users_table.php
+    │   │   ├── 2015_12_25_025231_add_signup_sm_ip_address_to_users_table.php
+    │   │   └── 2016_04_19_045644_add_signup_admin_ip_address_to_users_table.php
     │   └── seeds/
     │       ├── DatabaseSeeder.php
     │       └── SeedRoles.php
     ├── public/
     │   ├── .htaccess
     │   ├── index.php
+    │   ├── robots.txt
     │   └── assets/
     │       ├── css/
     │       ├── fonts/
@@ -295,7 +313,10 @@ laravel-auth/
     │   ├── lang/
     │   │   └── en/
     │   │       ├── auth.php
-    │   │       ├── email.php
+    │   │       ├── emails.php
+    │   │       ├── forms.php
+    │   │       ├── links-and-buttons.php
+    │   │       ├── modals.php
     │   │       ├── pagination.php
     │   │       ├── passwords.php
     │   │       ├── profile.php
@@ -304,6 +325,12 @@ laravel-auth/
     │   └── views/
     │       ├── app.blade.php
     │       ├── welcome.blade.php
+    │       ├── admin/
+    │       │   ├── create-user.blade.php
+    │       │   ├── edit-user.blade.php
+    │       │   ├── edit-users.blade.php
+    │       │   ├── show-user.blade.php
+    │       │   └── show-users.blade.php
     │       ├── auth/
     │       │   ├── activateAccount.blade.php
     │       │   ├── guest_activate.blade.php
@@ -319,14 +346,21 @@ laravel-auth/
     │       │   ├── 403.blade.php
     │       │   ├── 404.blade.php
     │       │   └── 503.blade.php
+    │       ├── modals/
+    │       │   ├── modal-delete.blade.php
+    │       │   └── modal-save.blade.php
     │       ├── pages/
     │       │   ├── home.blade.php
     │       │   └── status.blade.php
     │       ├── partials
+    │       │   ├── form-status.blade.php
     │       │   └── nav.blade.php
-    │       └── profiles
-    │           ├── edit.blade.php
-    │           └── show.blade.php
+    │       ├── profiles
+    │       │   ├── edit.blade.php
+    │       │   └── show.blade.php
+    │       └── scripts
+    │           ├── delete-modal-script.blade.php
+    │           └── save-modal-script.blade.php
     ├── storage/
     ├── tests/
     └── vendor/
