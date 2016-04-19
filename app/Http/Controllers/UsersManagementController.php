@@ -141,9 +141,7 @@ class UsersManagementController extends Controller {
             'email'         	=> 'required|email|max:255',
             'location'          => '',
             'bio'               => '',
-            'twitter_username'  => '',
-            'career_title'      => '',
-            'education'         => ''
+            'twitter_username'  => ''
         ]);
     }
 
@@ -156,17 +154,16 @@ class UsersManagementController extends Controller {
     public function create_new_validator(array $data)
     {
         return Validator::make($data, [
-            'name'          => 'required|max:255|unique:users',
-            'email'         => 'required|email|max:255|unique:users',
-            'first_name'    => 'required|max:255',
-            'last_name'     => 'required|max:255',
-            'password'      => 'required|confirmed|min:6',
-            'user_level'    => 'required|numeric|min:1',
+            'name'              => 'required|max:255|unique:users',
+            'email'             => 'required|email|max:255|unique:users',
+            'first_name'        => 'required|max:255',
+            'last_name'         => 'required|max:255',
+            'password'          => 'required|confirmed|min:6',
+            'user_level'        => 'required|numeric|min:1',
             'location'          => '',
             'bio'               => '',
             'twitter_username'  => '',
-            'career_title'      => '',
-            'education'         => ''
+            'github_username'   => ''
         ]);
     }
 
@@ -185,8 +182,6 @@ class UsersManagementController extends Controller {
         $editorRole         = $user->hasRole('editor');
         $adminRole          = $user->hasRole('administrator');
 
-
-
         $access;
 
         if($userRole)
@@ -201,7 +196,6 @@ class UsersManagementController extends Controller {
         return view('admin.edit-user', [
                 'user'                      => $user,
                 'access'                    => $access,
-                //'totaltwitterFollowers'     => $totaltwitterFollowers,
             ]
         )->with('status', 'Successfully updated user!');
 
@@ -235,9 +229,36 @@ class UsersManagementController extends Controller {
             $user->name                 = $request->input('name');
             $user->email                = $request->input('email');
 
-            $input = Input::only('role_id');
+            $user->profile->bio         = $request->input('bio');
+
+            $input                      = Input::only('role_id');
+
+
             $user->removeRole($current_roles);
             $user->assignRole($input);
+
+
+            $profile = Profile::find($id);
+            $profileInputs = Input::only(
+                'location',
+                 'bio',
+                 'twitter_username'
+            );
+
+            // CHECK IF PROFILE EXISTS THEN CREATE OR SAVE PROFILE
+            if ($user->profile == null) {
+
+                $profile = new Profile;
+                $profile->fill($profileInputs);
+                $user->profile()->save($profile);
+
+            } else {
+
+                $user->profile->fill($profileInputs)->save();
+
+            }
+
+            // SAVE USER CORE SETTINGS
             $user->save();
 
             return redirect('users/' . $user->id . '/edit')->with('status', 'Successfully updated the user!');
@@ -283,9 +304,6 @@ class UsersManagementController extends Controller {
             $userAccessLevel        = $request->input('user_level');
             $user->password         = bcrypt($request->input('password'));
 
-            // GET GRAVATAR
-            $user->gravatar         = Gravatar::get($request->input('email'));
-
             // GET ACTIVATION CODE
             $user->activation_code  = $activation_code;
             $user->active           = '1';
@@ -297,9 +315,6 @@ class UsersManagementController extends Controller {
             // SAVE THE USER
             $user->save();
 
-            // GET GRAVATAR
-            $user->gravatar         = Gravatar::get($user->email);
-
             // ADD ROLE
             $user->assignRole($userAccessLevel);
 
@@ -309,10 +324,7 @@ class UsersManagementController extends Controller {
             $profileInputs = Input::only(
                 'location',
                  'bio',
-                 'twitter_username',
-                 'github_username',
-                 'career_title',
-                 'education'
+                 'twitter_username'
             );
             $profile->fill($profileInputs);
             $user->profile()->save($profile);

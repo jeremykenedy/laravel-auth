@@ -8,17 +8,14 @@
 
 		{{-- FONTS --}}
 		{!! HTML::style('//fonts.googleapis.com/css?family=Roboto:400,300', array('type' => 'text/css', 'rel' => 'stylesheet')) !!}
+		@yield('template_linked_fonts')
 
 		{{-- STYLESHEETS --}}
 		{!! HTML::style(asset('/css/app.css'), array('type' => 'text/css', 'rel' => 'stylesheet')) !!}
+		{!! HTML::style(asset('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css'), array('type' => 'text/css', 'rel' => 'stylesheet')) !!}
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+		@yield('template_linked_css')
 
-
-
-
-
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
 		<style type="text/css">
 			@yield('template_fastload_css')
 		</style>

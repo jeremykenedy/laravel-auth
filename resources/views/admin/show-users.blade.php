@@ -4,6 +4,10 @@
 	Show Users
 @endsection
 
+@section('template_linked_css')
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
+@endsection
+
 @section('template_fastload_css')
 @endsection
 
@@ -50,8 +54,6 @@
 @endsection
 
 @section('template_scripts')
-
-
 
 	<script type="text/javascript" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>

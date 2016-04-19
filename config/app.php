@@ -146,6 +146,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,					// https://github.com/illuminate/html
+    	App\Providers\MacroServiceProvider::class,					// TAKE NOTE: This needs to load after HtmlServiceProvider
         Laravel\Socialite\SocialiteServiceProvider::class,
         SocialiteProviders\Manager\ServiceProvider::class,
 	],
