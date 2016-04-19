@@ -2,6 +2,16 @@
 
 return [
 
+    /*
+    |--------------------------------------------------------------------------
+    | User Profiles Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | The following language lines are the default lines which match user profile
+    | pages, messages, forms, labels, placeholders, links, and buttons.
+    |
+    */
+
 	// PROFILE ERRORS
 	'notYourProfile'			=> 'This isn\'t the profile you\'re looking for.',
 	'notYourProfileTitle'		=> 'Hmmm, something went wrong...',
@@ -18,7 +28,7 @@ return [
 	'showProfileGitHubUsername'	=> 'Github Username',
 
 	// USER PROFILE PAGE
-	'showProfileTitle'			=> 'User Profile',
+	'showProfileTitle'			=> ':username\'s Profile',
 
 	// USER EDIT PROFILE PAGE
 	'editProfileTitle'			=> 'Edit User Profile',
@@ -35,6 +45,7 @@ return [
 
 	'label-twitter_username'	=> 'Your Twitter username:',
 	'ph-twitter_username'		=> 'Enter your Twitter username',
-	'submitButton'				=> 'Submit',
+
+	'submitButton'				=> 'Save',
 
 ];

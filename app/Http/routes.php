@@ -104,6 +104,20 @@ Route::group(['middleware' => 'administrator'], function () {
 	    echo 'Welcome to your ADMINISTRATOR page '. Auth::user()->email .'.';
 	});
 
+	// SHOW ALL USERS PAGE ROUTE
+	Route::resource('users', 'UsersManagementController');
+	Route::get('users', [
+		'as' 			=> '{username}',
+		'uses' 			=> 'UsersManagementController@showUsersMainPanel'
+	]);
+
+	// EDIT USERS PAGE ROUTE
+	Route::get('edit-users', [
+		'as' 			=> '{username}',
+		'uses' 			=> 'UsersManagementController@editUsersMainPanel'
+	]);
+
+
 });
 
 // EDITOR ACCESS LEVEL PAGE ROUTES - RUNNING THROUGH EDITOR MIDDLEWARE

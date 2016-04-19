@@ -14,6 +14,15 @@ use Input;
 
 class ProfilesController extends Controller {
 
+    /*
+    |--------------------------------------------------------------------------
+    | User Profiles Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller renders the "View Profile" and "Edit Profile" pages.
+    |
+    */
+
     protected $auth;
     protected $userRepository;
 
@@ -111,11 +120,14 @@ class ProfilesController extends Controller {
         }
 
         if ($user->profile == null) {
+
             $profile = new Profile;
             $profile->fill($input);
             $user->profile()->save($profile);
+
         } else {
             $user->profile->fill($input)->save();
+
         }
 
         return redirect('profile/'.$user->name.'/edit')->with('status', 'Profile updated!');

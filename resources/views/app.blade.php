@@ -12,6 +12,8 @@
 		{{-- STYLESHEETS --}}
 		{!! HTML::style(asset('/css/app.css'), array('type' => 'text/css', 'rel' => 'stylesheet')) !!}
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
 		<style type="text/css">
 			@yield('template_fastload_css')
 		</style>
