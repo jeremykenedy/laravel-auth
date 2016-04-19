@@ -13,7 +13,9 @@
 			<div class="col-md-10 col-md-offset-1">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						{{ Lang::get('profile.showProfileTitle') }}
+
+						{{ Lang::get('profile.showProfileTitle',['username' => $user->name]) }}
+
 					</div>
 					<div class="panel-body">
 
@@ -91,11 +93,15 @@
 
 						@if ($user->profile)
 							@if (Auth::user()->id == $user->id)
-								{!! HTML::link(url('/profile/'.Auth::user()->name.'/edit'), Lang::get('titles.editProfile')) !!}
+
+								{!! HTML::icon_link(URL::to('/profile/'.Auth::user()->name.'/edit'), 'fa fa-fw fa-cog', Lang::get('titles.editProfile'), array('class' => 'btn btn-small btn-info btn-block')) !!}
+
 							@endif
 						@else
+
 							<p>{{ Lang::get('profile.noProfileYet') }}</p>
-							{!! HTML::link(url('/profile/'.Auth::user()->name.'/edit'), Lang::get('titles.createProfile')) !!}
+							{!! HTML::icon_link(URL::to('/profile/'.Auth::user()->name.'/edit'), 'fa fa-fw fa-plus ', Lang::get('titles.createProfile'), array('class' => 'btn btn-small btn-info btn-block')) !!}
+
 						@endif
 
 					</div>

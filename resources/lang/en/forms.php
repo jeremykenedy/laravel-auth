@@ -63,7 +63,7 @@ return [
 	'create_user_button_text'			=> 'Create New User',
 
 	// EDIT USER AS ADMINISTRATOR FORM
-	'edit-user-admin-title'				=>	'Edit User Information',
+	'edit-user-admin-title'				=>'Edit User Information',
 
 	'label-username'					=> 'Username',
 	'ph-username'						=> 'Username',
@@ -76,7 +76,7 @@ return [
 	'option-user'						=>	'User',
 	'option-editor'						=>	'Editor',
 	'option-admin'						=>	'Administrator',
-	'submit-btn-text'					=>	'Edit the User!',
+	'submit-btn-text'					=>	' Edit the User!',
 
 	'submit-btn-icon'					=>	'fa-save',
 	'username-icon'						=>	'fa-user',
