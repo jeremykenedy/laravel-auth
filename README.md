@@ -23,6 +23,8 @@ Laravel 5.1 with user authentication, registration with email confirmation, soci
 |User Socialite Logins ready to go - See API list below|
 |Google Captcha Protection|
 |Google Maps API v3 for User Location lookup|
+|Google Maps API v3 for Geocoding user address|
+|Google Maps API v3 for rendering user location map|
 |Capture IP to users table upon signup|
 |Eloquent user profiles|
 |CRUD (Create, Read, Update, Delete) User Management|
@@ -42,7 +44,7 @@ Laravel 5.1 with user authentication, registration with email confirmation, soci
     * ```create database laravelAuth;```
     * ```\q```
 3. From the projects root run `cp .env.example .env`
-4. Configure your `.env` file
+4. Configure your `.env` file // NOTE: Google API Key will prevent maps error
 5. Run `sudo composer update` from the projects root folder
 6. From the projects root folder run `sudo chmod -R 755 ../laravel-authentication`
 7. From the projects root folder run `php artisan key:generate`
@@ -83,6 +85,9 @@ And thats it with the caveat of setting up and configuring your development envi
 * [Twitch TV API] (http://www.twitch.tv/kraken/oauth2/clients/new)
 * [Instagram API] (https://instagram.com/developer/register/)
 * [37 Signals API] (https://github.com/basecamp/basecamp-classic-api)
+
+### Other API keys
+* [Google Maps API v3 Key] (https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key)
 
 ### Add More Socialite Logins
 * See full list of providers: [http://socialiteproviders.github.io](http://socialiteproviders.github.io/#providers)
@@ -327,6 +332,8 @@ laravel-auth/
     │       │   └── show.blade.php
     │       └── scripts
     │           ├── delete-modal-script.blade.php
+    │           ├── gmaps-address-lookup-api3.blade.php
+    │           ├── google-maps-geocode-and-map.blade.php
     │           └── save-modal-script.blade.php
     ├── storage/
     ├── tests/

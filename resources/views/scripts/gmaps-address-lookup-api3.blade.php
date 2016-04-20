@@ -1,5 +1,3 @@
-{!! HTML::script('//maps.googleapis.com/maps/api/js?libraries=places&dummy=.js', array('type' => 'text/javascript')) !!}
-
 <script type="text/javascript">
     //FUNCTION TO ASSIST WITH AUTO ADDRESS INPUT USING GOOGLE MAPS API3
     //<![CDATA[

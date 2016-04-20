@@ -5,6 +5,13 @@
 @endsection
 
 @section('template_fastload_css')
+
+	#map-canvas{
+		min-height: 300px;
+		height: 100%;
+		width: 100%;
+	}
+
 @endsection
 
 @section('content')
@@ -57,7 +64,11 @@
 										{{ Lang::get('profile.showProfileLocation') }}
 									</dt>
 									<dd>
-										{{ $user->profile->location }}
+										{{ $user->profile->location }} <br />
+										Latitude: <span id="latitude"></span> / Longitude: <span id="longitude"></span> <br />
+
+										<div id="map-canvas"></div>
+
 									</dd>
 								@endif
 
@@ -112,4 +123,7 @@
 @endsection
 
 @section('template_scripts')
+
+	@include('scripts.google-maps-geocode-and-map')
+
 @endsection
