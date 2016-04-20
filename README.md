@@ -6,6 +6,8 @@ Laravel 5.1 with user authentication, registration with email confirmation, soci
 * Added eloquent editable user profile
 * Added IP Capture
 * Added Google Maps API v3 for User Location lookup
+* Added Google Maps API v3 for User Location Input Geocoding
+* Added Google Maps API v3 for User Location Map with Options
 * Added CRUD(Create, Read, Update, Delete) User Management
 
 ###### A [Laravel](http://laravel.com/) 5.1.x with minimal [Bootstrap](http://getbootstrap.com) 3.5.x project.
