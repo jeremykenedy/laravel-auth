@@ -14,7 +14,7 @@
 			<ul class="nav navbar-nav">
 				<li>{!! HTML::link(url('/'), Lang::get('titles.home')) !!}</li>
 
-	          	@if (Auth::user()->hasRole('administrator'))
+				@if (!Auth::guest() && Auth::user()->hasRole('administrator'))
 
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -27,7 +27,7 @@
 						</ul>
 					</li>
 
-	          	@endif
+				@endif
 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
