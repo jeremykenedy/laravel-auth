@@ -11,7 +11,12 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">{{ Lang::get('titles.home') }}</div>
 				<div class="panel-body">
-					{{ Lang::get('auth.loggedIn') }}
+					<h1>
+						Welcome <small>{{ Auth::user()->name }}</small>
+					</h1>
+					<p>
+						{{ Lang::get('auth.loggedIn') }}
+					</p>
 				</div>
 			</div>
 		</div>

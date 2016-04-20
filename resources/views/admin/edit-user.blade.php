@@ -102,9 +102,22 @@
 						      	</div>
 							</div>
 
+
+							<div class="form-group has-feedback row">
+								{!! Form::label('github_username', Lang::get('forms.create_user_label_github_username'), array('class' => 'col-md-3 control-label')); !!}
+								<div class="col-md-9">
+						      		<div class="input-group">
+						        		{!! Form::text('github_username', $user->profile->github_username, array('id' => 'github_username', 'class' => 'form-control', 'placeholder' => Lang::get('forms.create_user_ph_github_username'))) !!}
+						        		<label class="input-group-addon" for="github_username"><i class="fa fa-fw {{ Lang::get('forms.create_user_icon_github_username') }}" aria-hidden="true"></i></label>
+						      		</div>
+						      	</div>
+							</div>
+
 						</div>
 						<div class="panel-footer">
+
 							{!! Form::button('<i class="fa fa-fw '.Lang::get('forms.submit-btn-icon').'" aria-hidden="true"></i> '.Lang::get('forms.submit-btn-text'), array('class' => 'btn btn-primary btn-lg btn-block margin-bottom-1','type' => 'button', 'data-toggle' => 'modal', 'data-target' => '#confirmSave', 'data-title' => Lang::get('modals.edit_user__modal_text_confirm_btn'), 'data-message' => Lang::get('modals.edit_user__modal_text_confirm_message'))) !!}
+
 						</div>
 
 					{!! Form::close() !!}
@@ -121,6 +134,7 @@
 
 @section('template_scripts')
 
+	@include('scripts.gmaps-address-lookup-api3')
 	@include('scripts.delete-modal-script')
 	@include('scripts.save-modal-script')
 

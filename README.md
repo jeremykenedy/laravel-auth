@@ -3,8 +3,9 @@
 Laravel 5.1 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing.  Super easy setup, can be done in 15 minutes. It will take longer to obtain your Facebook, Twitter, and Google Plus API Keys than it will to set this up.
 
 ###### Updates:
-* Added eloquent editable user profile.
+* Added eloquent editable user profile
 * Added IP Capture
+* Added Google Maps API v3 for User Location lookup
 * Added CRUD(Create, Read, Update, Delete) User Management
 
 ###### A [Laravel](http://laravel.com/) 5.1.x with minimal [Bootstrap](http://getbootstrap.com) 3.5.x project.
@@ -21,15 +22,16 @@ Laravel 5.1 with user authentication, registration with email confirmation, soci
 |User Password Reset|
 |User Socialite Logins ready to go - See API list below|
 |Google Captcha Protection|
-|Custom 404 Page|
+|Google Maps API v3 for User Location lookup|
 |Capture IP to users table upon signup|
 |Eloquent user profiles|
-|CRUD(Create, Read, Update, Delete) User Management|
+|CRUD (Create, Read, Update, Delete) User Management|
+|Custom 404 Page|
 
 | Next up on development  |
 | :------------ |
 |Add User Gravatar <- This is currently done in [laravel-admin](https://github.com/jeremykenedy/laravel-admin)|
-|Add Google Maps API v3 for User Location lookup|
+
 |Add User Location Geocoding and Map|
 
 ### Quick Project Setup

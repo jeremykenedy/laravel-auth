@@ -141,7 +141,8 @@ class UsersManagementController extends Controller {
             'email'         	=> 'required|email|max:255',
             'location'          => '',
             'bio'               => '',
-            'twitter_username'  => ''
+            'twitter_username'  => '',
+            'github_username'   => ''
         ]);
     }
 
@@ -237,12 +238,12 @@ class UsersManagementController extends Controller {
             $user->removeRole($current_roles);
             $user->assignRole($input);
 
-
             $profile = Profile::find($id);
             $profileInputs = Input::only(
                 'location',
-                 'bio',
-                 'twitter_username'
+                'bio',
+                'twitter_username',
+                'github_username'
             );
 
             // CHECK IF PROFILE EXISTS THEN CREATE OR SAVE PROFILE
@@ -323,8 +324,9 @@ class UsersManagementController extends Controller {
 
             $profileInputs = Input::only(
                 'location',
-                 'bio',
-                 'twitter_username'
+                'bio',
+                'twitter_username',
+                'github_username'
             );
             $profile->fill($profileInputs);
             $user->profile()->save($profile);

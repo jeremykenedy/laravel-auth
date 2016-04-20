@@ -125,7 +125,6 @@
 						      	</div>
 							</div>
 
-							{{--
 							<div class="form-group has-feedback row">
 								{!! Form::label('github_username', Lang::get('forms.create_user_label_github_username'), array('class' => 'col-md-3 control-label')); !!}
 								<div class="col-md-9">
@@ -135,7 +134,6 @@
 						      		</div>
 						      	</div>
 							</div>
-							--}}
 
 							{!! Form::button('<i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;' . Lang::get('forms.create_user_button_text'), array('class' => 'btn btn-primary btn-flat btn-lg margin-bottom-1 col-md-offset-3','type' => 'submit')) !!}
 
@@ -151,9 +149,6 @@
 
 @section('template_scripts')
 
-{{--     @include('admin.structure.dashboard-scripts')
-	@include('scripts.html5-password-check');
-	@include('scripts.show-hide-passwords');
-	@include('scripts.address-lookup-g-api') --}}
+	@include('scripts.gmaps-address-lookup-api3')
 
 @endsection
