@@ -13,7 +13,7 @@ class AddSignupAdminIpAddressToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            if (!Schema::hasColumn('users', 'email')) {
+            if (!Schema::hasColumn('users', 'admin_ip_address')) {
                 $table->string('admin_ip_address')->after('signup_sm_ip_address');
             }
         });
