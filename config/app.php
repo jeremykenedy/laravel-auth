@@ -130,8 +130,7 @@ return [
 		 */
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
-        Illuminate\Bus\BusServiceProvider::class,
-        Illuminate\Cache\CacheServiceProvider::class,
+        Illuminate\Cache\CacheServiceProvider::class,        Illuminate\Bus\BusServiceProvider::class,
         Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
         Illuminate\Cookie\CookieServiceProvider::class,
         Illuminate\Database\DatabaseServiceProvider::class,
@@ -154,8 +153,6 @@ return [
 		 * Application Service Providers...
 		 */
         App\Providers\AppServiceProvider::class,
-		App\Providers\BusServiceProvider::class,
-		App\Providers\ConfigServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,

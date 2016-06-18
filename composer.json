@@ -37,20 +37,18 @@
 		]
 	},
 	"scripts": {
-        "post-root-package-install": [
-            "php -r \"copy('.env.example', '.env');\""
-        ],
-        "post-create-project-cmd": [
-            "php artisan key:generate"
-        ],
-        "post-install-cmd": [
-            "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "php artisan optimize"
-        ],
-        "post-update-cmd": [
-            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan optimize"
-        ]
+		"post-install-cmd": [
+			"php artisan clear-compiled",
+			"php artisan optimize"
+		],
+		"post-update-cmd": [
+			"php artisan clear-compiled",
+			"php artisan optimize"
+		],
+		"post-create-project-cmd": [
+			"php -r \"copy('.env.example', '.env');\"",
+			"php artisan key:generate"
+		]
 	},
 	"config": {
 		"preferred-install": "dist"
