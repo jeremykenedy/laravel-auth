@@ -3,7 +3,7 @@
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\RedirectResponse;
-use App\User;
+use App\Models\User;
 
 
 class CheckCurrentUser

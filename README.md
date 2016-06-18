@@ -1,42 +1,26 @@
-### Laravel-Auth is a Complete Build of Laravel 5.1 with FULL Email and Social Authentication - COMPLETE WORKING Implementation. [![License](http://jeremykenedy.com/license-mit.svg)](https://packagist.org/packages/laravel/framework)
+### Laravel-Auth is a Complete Build of Laravel 5.2 with FULL Email and Social Authentication - COMPLETE WORKING Implementation. [![License](http://jeremykenedy.com/license-mit.svg)]()
 
-Laravel 5.1 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing.  Super easy setup, can be done in 15 minutes. It will take longer to obtain your Facebook, Twitter, and Google Plus API Keys than it will to set this up.
+Laravel 5.2 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing.  Super easy setup, can be done in 15 minutes. It will take longer to obtain your Facebook, Twitter, and Google Plus API Keys than it will to set this up.
 
-###### Updates:
-* Added eloquent editable user profile
-* Added IP Capture
-* Added Google Maps API v3 for User Location lookup
-* Added Google Maps API v3 for User Location Input Geocoding
-* Added Google Maps API v3 for User Location Map with Options
-* Added CRUD(Create, Read, Update, Delete) User Management
-
-###### A [Laravel](http://laravel.com/) 5.1.x with minimal [Bootstrap](http://getbootstrap.com) 3.5.x project.
+###### A [Laravel](http://laravel.com/) 5.2.x with minimal [Bootstrap](http://getbootstrap.com) 3.5.x project.
 | Laravel-Auth Features  |
 | :------------ |
-|Built on [Laravel](http://laravel.com/) 5.1|
+|Built on [Laravel](http://laravel.com/) 5.2|
 |Uses [MySQL](https://github.com/mysql) Database|
-|Uses [Artisan](http://laravel.com/docs/5.1/artisan) to manage database migration, schema creations, and create/publish page controller templates|
+|Uses [Artisan](http://laravel.com/docs/5.2/artisan) to manage database migration, schema creations, and create/publish page controller templates|
 |Dependencies are managed with [COMPOSER](https://getcomposer.org/)|
 |Laravel Scaffolding **User** and **Administrator Authentication**.|
-|User Registration with email verification|
-|User roles implementation|
-|User Login with remember password|
-|User Password Reset|
-|User Socialite Logins ready to go - See API list below|
-|Google Captcha Protection|
-|Google Maps API v3 for User Location lookup|
-|Google Maps API v3 for Geocoding user address|
-|Google Maps API v3 for rendering user location map|
-|Capture IP to users table upon signup|
-|Eloquent user profiles|
+|User Socialite Logins ready to go - See API list used below|
+|Google Maps API v3 for User Location lookup and Geocoding|
 |CRUD (Create, Read, Update, Delete) User Management|
+|Google Captcha Protection with Google API|
+|User Registration with email verification|
+|Capture IP to users table upon signup|
+|User Password Reset via Email Token|
+|User Login with remember password|
+|User roles implementation|
+|Eloquent user profiles|
 |Custom 404 Page|
-
-| Next up on development  |
-| :------------ |
-|Add User Gravatar <- This is currently done in [laravel-admin](https://github.com/jeremykenedy/laravel-admin)|
-
-|Add User Location Geocoding and Map|
 
 ### Quick Project Setup
 ###### (Not including the dev environment)
@@ -69,13 +53,22 @@ And thats it with the caveat of setting up and configuring your development envi
 * ```/auth/register```
 * ```/password/email```
 
-
 ### Laravel-Authentication Alias Redirect URL's (routes)
 * ```/home```
+* ```/reset```
 * ```/login```
 * ```/logout```
 * ```/register```
-* ```/reset```
+
+### Laravel-Authentication Profile Routes
+* ```/profile/{username}```
+* ```/profile/{username}/edit``` <- Editing in this view is limited to current user only.
+
+### Laravel-Authentication Admin Routes
+* ```/users```
+* ```/users/create```
+* ```/users{user_id}```
+* ```/users{user_id}/edit```
 
 ### Get Socialite Login API Keys:
 * [Google Captcha API] (https://www.google.com/recaptcha/admin#list)
@@ -140,17 +133,25 @@ And thats it with the caveat of setting up and configuring your development envi
 Example `.env` file:
 ```
 APP_ENV=local
-APP_DEBUG=true
 APP_KEY=SomeRandomString
+APP_DEBUG=true
+APP_LOG_LEVEL=debug
+APP_URL=http://localhost
 
-DB_HOST=localhost
-DB_DATABASE=homestead
-DB_USERNAME=YOURDATABSEusernameHERE
-DB_PASSWORD=YOURDATABSEpasswordHERE
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravelAuth
+DB_USERNAME=homestead
+DB_PASSWORD=secret
 
 CACHE_DRIVER=file
 SESSION_DRIVER=file
 QUEUE_DRIVER=sync
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
 
 MAIL_DRIVER=smtp
 MAIL_HOST=smtp.gmail.com
@@ -173,10 +174,40 @@ TW_ID=YOURTWITTERidHERE
 TW_SECRET=YOURTWITTERkeyHERE
 TW_REDIRECT=http://yourwebsiteURLhere.com/social/handle/twitter
 
-# https://console.developers.google.com/
+# https://console.developers.google.com/ - NEED OAUTH CREDS
 GOOGLE_ID=YOURGOOGLEPLUSidHERE
 GOOGLE_SECRET=YOURGOOGLEPLUSsecretHERE
 GOOGLE_REDIRECT=http://yourwebsiteURLhere.com/social/handle/google
+
+# https://github.com/settings/applications/new
+GITHUB_ID=YOURIDHERE
+GITHUB_SECRET=YOURSECRETHERE
+GITHUB_URL=https://larablog.io/social/handle/github
+
+# https://developers.google.com/youtube/v3/getting-started
+YOUTUBE_KEY=YOURKEYHERE
+YOUTUBE_SECRET=YOURSECRETHERE
+YOUTUBE_REDIRECT_URI=https://larablog.io/social/handle/youtube
+
+# http://www.twitch.tv/kraken/oauth2/clients/new
+TWITCH_KEY=YOURKEYHERE
+TWITCH_SECRET=YOURSECRETHERE
+TWITCH_REDIRECT_URI=http://laravel-authentication.local/social/handle/twitch
+
+# https://instagram.com/developer/register/
+INSTAGRAM_KEY=YOURKEYHERE
+INSTAGRAM_SECRET=YOURSECRETHERE
+INSTAGRAM_REDIRECT_URI=http://laravel-authentication.local/social/handle/instagram
+
+# https://basecamp.com/
+# https://github.com/basecamp/basecamp-classic-api
+37SIGNALS_KEY=YOURKEYHERE
+37SIGNALS_SECRET=YOURSECRETHERE
+37SIGNALS_REDIRECT_URI=http://laravel-authentication.local/social/handle/37signals
+
+// NOTE: YOU CAN REMOVE THE KEY CALL IN app.blade.php IF YOU GET A POP UP AND DO NOT WANT TO SETUP A KEY FOR DEV
+# Google Maps API v3 Key - https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key
+GOOGLEMAPS_API_KEY=YOURGOOGLEMAPSkeyHERE
 ```
 
 ### File Structure of Common Used Files
@@ -345,11 +376,21 @@ laravel-auth/
 ---
 
 #### Laravel Developement Packages Used References
-* [Documentation and Usage](https://github.com/illuminate/html)
 * http://laravel.com/docs/5.1/authentication
 * http://laravel.com/docs/5.1/authorization
 * http://laravel.com/docs/5.1/routing
 * http://laravel.com/docs/5.0/schema
+
+---
+
+###### Updates:
+* Update from Laravel 5.1 to 5.2
+* Added eloquent editable user profile
+* Added IP Capture
+* Added Google Maps API v3 for User Location lookup
+* Added Google Maps API v3 for User Location Input Geocoding
+* Added Google Maps API v3 for User Location Map with Options
+* Added CRUD(Create, Read, Update, Delete) User Management
 
 ---
 
@@ -619,8 +660,6 @@ Alias to **hide all hidden files** on MAC OS X filesystem:
 ```
 alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
 ```
-
-
 
 ##### GIT CLI Quick alias functions
 ###### Quick GIT PUSH
