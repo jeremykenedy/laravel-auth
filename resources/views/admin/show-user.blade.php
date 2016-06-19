@@ -109,13 +109,13 @@
 
 							<div class="col-xs-6">
 
-								{!! HTML::icon_link(URL::to('users/' . $user->id . '/edit'), 'fa fa-fw '.Lang::get('forms.submit-btn-icon')  , Lang::get('forms.submit-btn-text'), array('class' => 'btn btn-small btn-info btn-block')) !!}
+								{!! HTML::icon_link(URL::to('users/' . $user->id . '/edit'), 'fa fa-fw '.Lang::get('forms.submit-btn-icon')  , Lang::get('forms.submit-btn-text'), array('class' => 'btn btn-raised btn-small btn-info btn-block')) !!}
 
 							</div>
 
 							{!! Form::open(array('url' => 'users/' . $user->id, 'class' => 'col-xs-6')) !!}
 								{!! Form::hidden('_method', 'DELETE') !!}
-								{!! Form::button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> Delete this User', array('class' => 'btn btn-danger btn-block btn-flat','type' => 'button', 'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => 'Delete User', 'data-message' => 'Are you sure you want to delete this user ?')) !!}
+								{!! Form::button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> Delete this User', array('class' => 'btn btn-raised btn-danger btn-block btn-flat','type' => 'button', 'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => 'Delete User', 'data-message' => 'Are you sure you want to delete this user ?')) !!}
 							{!! Form::close() !!}
 
 						</div>

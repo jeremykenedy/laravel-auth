@@ -7,12 +7,19 @@
 		<title>@if (trim($__env->yieldContent('template_title')))@yield('template_title') | @endif {{ Lang::get('titles.app') }}</title>
 
 		{{-- FONTS --}}
-		{!! HTML::style('//fonts.googleapis.com/css?family=Roboto:400,300', array('type' => 'text/css', 'rel' => 'stylesheet')) !!}
+		{!! HTML::style('//fonts.googleapis.com/css?family=Roboto:300,400,500,700', array('type' => 'text/css', 'rel' => 'stylesheet')) !!}
+		{!! HTML::style('//fonts.googleapis.com/icon?family=Material+Icons', array('type' => 'text/css', 'rel' => 'stylesheet')) !!}
 		@yield('template_linked_fonts')
 
 		{{-- STYLESHEETS --}}
 		{!! HTML::style(asset('/css/app.css'), array('type' => 'text/css', 'rel' => 'stylesheet')) !!}
 		{!! HTML::style(asset('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css'), array('type' => 'text/css', 'rel' => 'stylesheet')) !!}
+		{!! HTML::style(asset('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/bootstrap-material-design.min.css'), array('type' => 'text/css', 'rel' => 'stylesheet')) !!}
+		{!! HTML::style(asset('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/ripples.min.css'), array('type' => 'text/css', 'rel' => 'stylesheet')) !!}
+
+		{{--
+			{!! HTML::style(asset('/css/app.css'), array('type' => 'text/css', 'rel' => 'stylesheet')) !!}
+		--}}
 
 		@yield('template_linked_css')
 
@@ -40,8 +47,17 @@
 
 		{{-- SCRIPTS --}}
 		{!! HTML::script('//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js', array('type' => 'text/javascript')) !!}
-		{!! HTML::script('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js', array('type' => 'text/javascript')) !!}
+		{!! HTML::script('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js', array('type' => 'text/javascript')) !!}
+
+		{!! HTML::script('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/material.min.js', array('type' => 'text/javascript')) !!}
+		{!! HTML::script('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/ripples.min.js', array('type' => 'text/javascript')) !!}
+
+		<script type="text/javascript">
+		  	$.material.init();
+		</script>
+
 		{!! HTML::script('//maps.googleapis.com/maps/api/js?key='.env("GOOGLEMAPS_API_KEY").'&libraries=places&dummy=.js', array('type' => 'text/javascript')) !!}
+
 		@yield('template_scripts')
 
 	</body>

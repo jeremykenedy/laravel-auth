@@ -25,9 +25,9 @@
 				<table id="users_table" class="table table-striped table-hover">
 					<thead>
 						<tr class="success">
-							<th>ID</th>
+							<th class="hidden-xs">ID</th>
 							<th>Username</th>
-							<th>Email</th>
+							<th class="hidden-sm hidden-xs">Email</th>
 							<th colspan="3">Actions</th>
 
 						</tr>
@@ -35,11 +35,11 @@
 					<tbody>
 						@foreach($users as $key => $value)
 							<tr>
-								<td>{{ $value->id }}</td>
+								<td class="hidden-xs">{{ $value->id }}</td>
 								<td>{{ $value->name }}
 
 								</td>
-								<td>
+								<td class="hidden-sm hidden-xs">
 									<a href="mailto:{{ $value->email }}" title="Send email to {{ $value->email }}">
 										{{ $value->email }}
 									</a>
@@ -47,14 +47,23 @@
 								<td>
 									{!! Form::open(array('url' => 'users/' . $value->id, 'class' => 'pull-right')) !!}
 										{!! Form::hidden('_method', 'DELETE') !!}
-										{!! Form::button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> Delete this User', array('class' => 'btn btn-danger btn-block btn-flat','type' => 'button', 'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => 'Delete User', 'data-message' => 'Are you sure you want to delete this user ?')) !!}
+										{!! Form::button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i><span class="hidden-xs">Delete</span> <span class="hidden-md hidden-sm hidden-xs">this User</span></a>', array('class' => 'btn btn-danger btn-raised btn-block btn-flat','type' => 'button', 'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => 'Delete User', 'data-message' => 'Are you sure you want to delete this user ?')) !!}
 									{!! Form::close() !!}
 								</td>
 								<td>
-									<a class="btn btn-small btn-success btn-block btn-flat" href="{{ URL::to('users/' . $value->id) }}">Show this User</a>
+									<a class="btn btn-small btn-raised btn-success btn-block btn-flat" href="{{ URL::to('users/' . $value->id) }}">
+										<i class="fa fa-eye fa-fw" aria-hidden="true"></i>
+										<span class="hidden-xs">Show</span>
+										<span class="hidden-md hidden-sm hidden-xs">this User</span>
+									</a>
+									</a>
 								</td>
 								<td>
-									<a class="btn btn-small btn-info btn-block btn-flat" href="{{ URL::to('users/' . $value->id . '/edit') }}">Edit this User</a>
+									<a class="btn btn-small btn-raised btn-info btn-block btn-flat" href="{{ URL::to('users/' . $value->id . '/edit') }}">
+										<i class="fa fa-cog fa-fw" aria-hidden="true"></i>
+										<span class="hidden-xs">Edit</span>
+										<span class="hidden-md hidden-sm hidden-xs">this User</span>
+									</a>
 								</td>
 							</tr>
 						@endforeach
@@ -67,7 +76,7 @@
 			<div class="row margin-top-1">
 
 				<div class="col-md-3">
-					{!! HTML::icon_link( "/users/create", 'fa-fw fa '.Lang::get('links-and-buttons.link_icon_user_create'), Lang::get('links-and-buttons.link_title_user_create'), array('class' =>'btn btn-primary btn-flat btn-block')) !!}
+					{!! HTML::icon_link( "/users/create", 'fa-fw fa '.Lang::get('links-and-buttons.link_icon_user_create'), Lang::get('links-and-buttons.link_title_user_create'), array('class' =>'btn btn-primary btn-flat btn-block btn-raised')) !!}
 				</div>
 
 			</div>

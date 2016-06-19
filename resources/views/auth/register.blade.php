@@ -88,7 +88,7 @@
 
 							<div class="form-group">
 								<div class="col-sm-6 col-sm-offset-4">
-									{!! Form::button(Lang::get('auth.register'), array('class' => 'btn btn-primary','type' => 'submit')) !!}
+									{!! Form::button(Lang::get('auth.register'), array('class' => 'btn btn-success btn-block btn-raised','type' => 'submit')) !!}
 								</div>
 							</div>
 

@@ -28,12 +28,12 @@ return [
 	'register'			=> 'Register',
 
 	// PLACEHOLDERS
-	'ph_name'			=> 'Username',
-	'ph_email'			=> 'E-mail Address',
-	'ph_firstname'		=> 'First Name',
-	'ph_lastname'		=> 'Last Name',
-	'ph_password'		=> 'Password',
-	'ph_password_conf'	=> 'Confirm Password',
+	'ph_name'			=> '',
+	'ph_email'			=> '',
+	'ph_firstname'		=> '',
+	'ph_lastname'		=> '',
+	'ph_password'		=> '',
+	'ph_password_conf'	=> '',
 
 	// USER FLASH MESSAGES
 	'sendResetLink'		=> 'Send Password Reset Link',

@@ -54,7 +54,7 @@
 
 							<div class="form-group">
 								<div class="col-sm-6 col-sm-offset-4">
-									{!! Form::button(Lang::get('auth.sendResetLink'), array('class' => 'btn btn-primary','type' => 'submit')) !!}
+									{!! Form::button(Lang::get('auth.sendResetLink'), array('class' => 'btn btn-primary btn-raised','type' => 'submit')) !!}
 								</div>
 							</div>
 						{!! Form::close() !!}

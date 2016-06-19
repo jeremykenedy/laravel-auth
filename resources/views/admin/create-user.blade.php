@@ -135,8 +135,9 @@
 						      	</div>
 							</div>
 
-							{!! Form::button('<i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;' . Lang::get('forms.create_user_button_text'), array('class' => 'btn btn-primary btn-flat btn-lg margin-bottom-1 col-md-offset-3','type' => 'submit')) !!}
-
+							<div class="col-md-9 col-md-offset-3">
+								{!! Form::button('<i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;' . Lang::get('forms.create_user_button_text'), array('class' => 'btn btn-primary btn-flat btn-raised btn-lg margin-bottom-1 col-md-offset-3','type' => 'submit')) !!}
+							</div>
 						{!! Form::close() !!}
 
 					</div>
