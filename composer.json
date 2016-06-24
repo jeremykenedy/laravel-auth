@@ -10,10 +10,10 @@
         "laravelcollective/html": "^5.2",
 		"google/recaptcha": "~1.1",
 		"laravel/socialite": "^2.0",
-		"socialiteproviders/youtube": "^1.1",
-		"socialiteproviders/twitch": "^1.1",
-		"socialiteproviders/instagram": "^1.1",
-		"socialiteproviders/37signals": "^1.1"
+		"socialiteproviders/youtube": "^2.0",
+		"socialiteproviders/twitch": "^2.0",
+		"socialiteproviders/instagram": "^2.0",
+		"socialiteproviders/37signals": "^2.0"
 	},
 	"require-dev": {
         "fzaninotto/faker": "~1.4",
