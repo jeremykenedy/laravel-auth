@@ -1,5 +1,7 @@
 ### Laravel-Auth is a Complete Build of Laravel 5.2 with FULL Email and Social Authentication - COMPLETE WORKING Implementation. [![License](http://jeremykenedy.com/license-mit.svg)]()
 
+** Update ** I am currently working on updating this to Laravel 5.3 then 5.4 :)~
+
 Laravel 5.2 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing.  Super easy setup, can be done in 15 minutes. It will take longer to obtain your Facebook, Twitter, and Google Plus API Keys than it will to set this up.
 
 ###### A [Laravel](http://laravel.com/) 5.2.x with minimal [Bootstrap](http://getbootstrap.com) 3.5.x project.
