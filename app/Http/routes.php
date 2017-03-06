@@ -18,21 +18,21 @@
 */
 
 // PAGE ROUTE ALIASES
-Route::get('home', function () {
-    return redirect('/');
-});
-Route::get('app', function () {
-    return redirect('/');
-});
-Route::get('dashboard', function () {
-    return redirect('/');
-});
+// Route::get('home', function () {
+//     return redirect('/');
+// });
+// Route::get('app', function () {
+//     return redirect('/');
+// });
+// Route::get('dashboard', function () {
+//     return redirect('/');
+// });
 
 // ALL AUTHENTICATION ROUTES - HANDLED IN THE CONTROLLERS
-Route::controllers([
-	'auth' 		=> 'Auth\AuthController',
-	'password' 	=> 'Auth\PasswordController',
-]);
+// Route::controllers([
+// 	'auth' 		=> 'Auth\AuthController',
+// 	'password' 	=> 'Auth\PasswordController',
+// ]);
 
 // REGISTRATION EMAIL CONFIRMATION ROUTES
 Route::get('/resendEmail', 'Auth\AuthController@resendEmail');

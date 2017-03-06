@@ -6,8 +6,8 @@
 	"type": "project",
 	"require": {
 		"php": ">=5.5.9",
-		"laravel/framework": "5.1.*",
-        "illuminate/html": "5.*",
+		"laravel/framework": "5.3.*",
+        "laravelcollective/html": "5.3",
 		"google/recaptcha": "~1.1",
 		"laravel/socialite": "^2.0",
 		"socialiteproviders/youtube": "^1.1",
@@ -16,6 +16,8 @@
 		"socialiteproviders/37signals": "^1.1"
 	},
 	"require-dev": {
+		"symfony/css-selector": "3.1.*",
+		"symfony/dom-crawler": "3.1.*",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~4.0",

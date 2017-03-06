@@ -12,7 +12,7 @@
 					<div class="panel-heading">{{ Lang::get('titles.home') }}</div>
 					<div class="panel-body">
 						<p>
-							{ Lang::get('auth.tooManyEmails', ['email' => $email] ) }}
+							{{ Lang::get('auth.tooManyEmails', ['email' => $email] ) }}
 						</p>
 					</div>
 				</div>

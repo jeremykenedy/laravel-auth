@@ -1,4 +1,6 @@
-<?php namespace App\Logic\User;
+<?php
+
+namespace App\Logic\User;
 
 use App\Logic\Mailers\UserMailer;
 use App\Models\Role;
