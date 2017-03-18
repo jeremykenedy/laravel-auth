@@ -40,11 +40,14 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 3. From the projects root run `cp .env.example .env`
 4. Configure your `.env` file // NOTE: Google API Key will prevent maps error
 5. Run `sudo composer update` from the projects root folder
-6. From the projects root folder run `sudo chmod -R 755 ../laravel-auth`
-7. From the projects root folder run `php artisan key:generate`
-8. From the projects root folder run `php artisan migrate`
-9. From the projects root folder run `composer dump-autoload`
-10. From the projects root folder run `php artisan db:seed`
+6. Run `php artisan vendor:publish --provider="jeremykenedy\LaravelRoles\RolesServiceProvider" --tag=config`
+7. Run `php artisan vendor:publish --provider="jeremykenedy\LaravelRoles\RolesServiceProvider" --tag=migrations`
+8. Run `php artisan vendor:publish --provider="jeremykenedy\LaravelRoles\RolesServiceProvider" --tag=seeds`
+9. From the projects root folder run `sudo chmod -R 755 ../laravel-auth`
+10. From the projects root folder run `php artisan key:generate`
+11. From the projects root folder run `php artisan migrate`
+12. From the projects root folder run `composer dump-autoload`
+13. From the projects root folder run `php artisan db:seed`
 
 ##### Rebuild Front using Laravel [Mix](https://laravel.com/docs/5.4/mix) (optional)
 1. From the projects root folder run `npm install`
