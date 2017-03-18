@@ -12,12 +12,12 @@ return [
     |
     */
 
-	// PROFILE ERRORS
+	// profile erros
 	'notYourProfile'			=> 'This isn\'t the profile you\'re looking for.',
 	'notYourProfileTitle'		=> 'Hmmm, something went wrong...',
 	'noProfileYet'				=> 'No profile yet.',
 
-	// USER PROFILE TITLES
+	// USER profile title
 	'showProfileUsername'		=> 'Username',
 	'showProfileFirstName'		=> 'First Name',
 	'showProfileLastName'		=> 'Last Name',
@@ -27,13 +27,13 @@ return [
 	'showProfileTwitterUsername'=> 'Twitter Username',
 	'showProfileGitHubUsername'	=> 'Github Username',
 
-	// USER PROFILE PAGE
+	// USER profile page
 	'showProfileTitle'			=> ':username\'s Profile',
 
-	// USER EDIT PROFILE PAGE
+	// USER EDIT profile page
 	'editProfileTitle'			=> 'Edit User Profile',
 
-	// USER EDIT PROFILE FORM
+	// User edit profile form
 	'label-location'			=> 'Your location:',
 	'ph-location'				=> 'Enter your location',
 
@@ -45,6 +45,9 @@ return [
 
 	'label-twitter_username'	=> 'Your Twitter username:',
 	'ph-twitter_username'		=> 'Enter your Twitter username',
+
+	// Messages
+	'updateSuccess'				=> 'Profile updated! ',
 
 	'submitButton'				=> 'Save',
 

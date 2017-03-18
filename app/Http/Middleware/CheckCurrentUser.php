@@ -1,31 +1,17 @@
-<?php namespace App\Http\Middleware;
+<?php
 
+namespace App\Http\Middleware;
+
+use Auth;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\RedirectResponse;
-use App\Models\User;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Route;
 
 class CheckCurrentUser
 {
-    /**
-     * The Guard implementation.
-     *
-     * @var Guard
-     */
-    protected $auth;
-
-    /**
-     * Create a new filter instance.
-     *
-     * @param  Guard  $auth
-     * @return void
-     */
-    public function __construct(Guard $auth)
-    {
-        $this->auth = $auth;
-    }
-
     /**
      * Handle an incoming request.
      *
@@ -36,13 +22,25 @@ class CheckCurrentUser
     public function handle($request, Closure $next)
     {
 
-        if ($request->user())
+        if (!$request->user())
         {
-            return $next($request);
-        } else {
             abort(403, 'Unauthorized action.');
         }
+
+        return $next($request);
+
+    }
+
+    public function terminate($request, $response)
+    {
+
+        $user           = Auth::user();
+        $currentRoute   = Route::currentRouteName();
+        Log::info('CheckCurrentUser middlware was used: ' . $currentRoute . '. ', [$user]);
 
     }
 
 }
+
+
+

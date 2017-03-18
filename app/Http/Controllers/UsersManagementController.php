@@ -1,171 +1,141 @@
-<?php namespace App\Http\Controllers;
+<?php
+
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Logic\User\UserRepository;
-use App\Logic\User\CaptureIp;
-use App\Models\UsersRole;
-use App\Models\Profile;
 use App\Http\Requests;
-use App\Models\Social;
+use App\Models\Profile;
 use App\Models\User;
-use App\Models\Role;
-
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Support\Facades;
+use App\Traits\ActivationTrait;
+use App\Traits\CaptchaTrait;
+use App\Traits\CaptureIpTrait;
+use Auth;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
-
+use jeremykenedy\LaravelRoles\Models\Permission;
+use jeremykenedy\LaravelRoles\Models\Role;
 use Validator;
-use Gravatar;
-use Input;
 
-class UsersManagementController extends Controller {
-
-	/*
-	|--------------------------------------------------------------------------
-	| Users Management Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller renders the "Show Users", "Edit Users",
-	| and "Create User" pages. This class also
-    | has the method to delete a user.
-    |
-	*/
+class UsersManagementController extends Controller
+{
 
     /**
      * Create a new controller instance.
      *
-     * @param  \Illuminate\Contracts\Auth\Registrar  $registrar
      * @return void
      */
-    public function __construct(UserRepository $userRepository)
+    public function __construct()
     {
-        $this->userRepository = $userRepository;
+        $this->middleware('auth');
     }
 
-	/**
-	 * Show the Users Management Main Page to the Admin.
-	 *
-	 * @return Response
-	 */
-	public function showUsersMainPanel()
-	{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $users = User::all();
+        $roles = Role::all();
 
-        $user                   = \Auth::user();
-        $users 			        = \DB::table('users')->get();
+        return View('usersmanagement.show-users', compact('users', 'roles'));
 
-        $total_users 	        = \DB::table('users')->count();
-
-        $attemptsAllowed        = 4;
-
-        $total_users_confirmed  = \DB::table('users')->count();
-        $total_users_confirmed  = \DB::table('users')->where('active', '1')->count();
-        $total_users_locked = \DB::table('users')->where('resent', '>', 3)->count();
-
-
-        $total_users_new        = \DB::table('users')->where('active', '0')->count();
-
-
-        $userRole               = $user->hasRole('user');
-        $editorRole             = $user->hasRole('editor');
-        $adminRole              = $user->hasRole('administrator');
-
-        if($userRole)
-        {
-            $access = 'User';
-        } elseif ($editorRole) {
-            $access = 'Editor';
-        } elseif ($adminRole) {
-            $access = 'Administrator';
-        }
-
-        return view('admin.show-users', [
-        		'users' 		          => $users,
-        		'total_users' 	          => $total_users,
-        		'user' 			          => $user,
-        		'access' 	              => $access,
-        		'total_users'             => $total_users,
-                'total_users_confirmed'   => $total_users_confirmed,
-                'total_users_locked'      => $total_users_locked,
-                'total_users_new'         => $total_users_new,
-        	]
-        );
-	}
+    }
 
     /**
-     * Edit the Users Management Main Page to the Admin.
+     * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function editUsersMainPanel()
+    public function create()
     {
 
-        $user               = \Auth::user();
-        $users              = \DB::table('users')->get();
-        $total_users        = \DB::table('users')->count();
-        $userRole           = $user->hasRole('user');
-        $editorRole         = $user->hasRole('editor');
-        $adminRole          = $user->hasRole('administrator');
+        $roles = Role::all();
 
-        if($userRole)
-        {
-            $access = 'User';
-        } elseif ($editorRole) {
-            $access = 'Editor';
-        } elseif ($adminRole) {
-            $access = 'Administrator';
-        }
+        $data = [
+            'roles' => $roles
+        ];
 
-        return view('admin.edit-users', [
-                'users'             => $users,
-                'total_users'       => $total_users,
-                'user'              => $user,
-                'access'            => $access,
+        return view('usersmanagement.create-user')->with($data);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+
+        $validator = Validator::make($request->all(),
+            [
+                'name'                  => 'required|max:255|unique:users',
+                'first_name'            => '',
+                'last_name'             => '',
+                'email'                 => 'required|email|max:255|unique:users',
+                'password'              => 'required|min:6|max:20|confirmed',
+                'password_confirmation' => 'required|same:password',
+                'role'                  => 'required'
+            ],
+            [
+                'name.unique'           => trans('auth.userNameTaken'),
+                'name.required'         => trans('auth.userNameRequired'),
+                'first_name.required'   => trans('auth.fNameRequired'),
+                'last_name.required'    => trans('auth.lNameRequired'),
+                'email.required'        => trans('auth.emailRequired'),
+                'email.email'           => trans('auth.emailInvalid'),
+                'password.required'     => trans('auth.passwordRequired'),
+                'password.min'          => trans('auth.PasswordMin'),
+                'password.max'          => trans('auth.PasswordMax'),
+                'role.required'         => trans('auth.roleRequired')
             ]
         );
+
+        if ($validator->fails()) {
+
+            $this->throwValidationException(
+                $request, $validator
+            );
+
+        } else {
+
+            $ipAddress  = new CaptureIpTrait;
+            $profile    = new Profile;
+
+            $user =  User::create([
+                'name'              => $request->input('name'),
+                'first_name'        => $request->input('first_name'),
+                'last_name'         => $request->input('last_name'),
+                'email'             => $request->input('email'),
+                'password'          => bcrypt($request->input('password')),
+                'token'             => str_random(64),
+                'admin_ip_address'  => $ipAddress->getClientIp(),
+                'activated'         => 1
+            ]);
+
+            $user->profile()->save($profile);
+            $user->attachRole($request->input('role'));
+            $user->save();
+
+            return redirect('users')->with('success', trans('usersmanagement.createSuccess'));
+
+        }
     }
 
     /**
-     * Get a validator for an incoming update user request.
+     * Display the specified resource.
      *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function validator(array $data)
+    public function show($id)
     {
-        return Validator::make($data, [
-            'name'          	=> 'required|max:255',
-            'email'         	=> 'required|email|max:255',
-            'location'          => '',
-            'bio'               => '',
-            'twitter_username'  => '',
-            'github_username'   => ''
-        ]);
-    }
 
-    /**
-     * Get a validator for an incoming create user request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    public function create_new_validator(array $data)
-    {
-        return Validator::make($data, [
-            'name'              => 'required|max:255|unique:users',
-            'email'             => 'required|email|max:255|unique:users',
-            'first_name'        => 'required|max:255',
-            'last_name'         => 'required|max:255',
-            'password'          => 'required|confirmed|min:6',
-            'user_level'        => 'required|numeric|min:1',
-            'location'          => '',
-            'bio'               => '',
-            'twitter_username'  => '',
-            'github_username'   => ''
-        ]);
+        $user = User::find($id);
+
+        return view('usersmanagement.show-user')->withUser($user);
     }
 
     /**
@@ -177,29 +147,20 @@ class UsersManagementController extends Controller {
     public function edit($id)
     {
 
-        // GET THE USER
-        $user               = User::find($id);
-        $userRole           = $user->hasRole('user');
-        $editorRole         = $user->hasRole('editor');
-        $adminRole          = $user->hasRole('administrator');
+        $user = User::findOrFail($id);
+        $roles = Role::all();
 
-        $access;
-
-        if($userRole)
-        {
-            $access = '1';
-        } elseif ($editorRole) {
-            $access = '2';
-        } elseif ($adminRole) {
-            $access = '3';
+        foreach ($user->roles as $user_role) {
+            $currentRole = $user_role;
         }
 
-        return view('admin.edit-user', [
-                'user'                      => $user,
-                'access'                    => $access,
-            ]
-        )->with('status', 'Successfully updated user!');
+        $data = [
+            'user'          => $user,
+            'roles'         => $roles,
+            'currentRole'   => $currentRole
+        ];
 
+        return view('usersmanagement.edit-user')->with($data);
     }
 
     /**
@@ -212,144 +173,44 @@ class UsersManagementController extends Controller {
     public function update(Request $request, $id)
     {
 
-        $current_roles = array('3','2','1');
+        $currentUser = Auth::user();
+        $user        = User::find($id);
+        $emailCheck  = ($request->input('email') != '') && ($request->input('email') != $user->email);
 
-        $rules = array(
-            'name'              => 'required',
-            'email'             => 'required|email',
-        );
-
-        $validator = $this->validator($request->all(), $rules);
-
+        if ($emailCheck) {
+            $validator = Validator::make($request->all(), [
+                'name'      => 'required|max:255',
+                'email'     => 'email|max:255|unique:users',
+                'password'  => 'present|confirmed|min:6'
+            ]);
+        } else {
+            $validator = Validator::make($request->all(), [
+                'name'      => 'required|max:255',
+                'password'  => 'nullable|confirmed|min:6'
+            ]);
+        }
         if ($validator->fails()) {
             $this->throwValidationException(
                 $request, $validator
             );
         } else {
-            $user 				        = User::find($id);
-            $user->name                 = $request->input('name');
-            $user->email                = $request->input('email');
+            $user->name = $request->input('name');
 
-            $user->profile->bio         = $request->input('bio');
-
-            $input                      = Input::only('role_id');
-
-
-            $user->removeRole($current_roles);
-            $user->assignRole($input);
-
-            $profile = Profile::find($id);
-            $profileInputs = Input::only(
-                'location',
-                'bio',
-                'twitter_username',
-                'github_username'
-            );
-
-            // CHECK IF PROFILE EXISTS THEN CREATE OR SAVE PROFILE
-            if ($user->profile == null) {
-
-                $profile = new Profile;
-                $profile->fill($profileInputs);
-                $user->profile()->save($profile);
-
-            } else {
-
-                $user->profile->fill($profileInputs)->save();
-
+            if ($emailCheck) {
+                $user->email = $request->input('email');
             }
 
-            // SAVE USER CORE SETTINGS
+            if ($request->input('password') != null) {
+                $user->password = bcrypt($request->input('password'));
+            }
+
+            $user->detachAllRoles();
+            $user->attachRole($request->input('role'));
+            //$user->activated = 1;
+
             $user->save();
-
-            return redirect('users/' . $user->id . '/edit')->with('status', 'Successfully updated the user!');
-
+            return back()->with('success', trans('usersmanagement.updateSuccess'));
         }
-    }
-
-    /**
-     * Show the form for creating a new User
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('admin.create-user');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-
-        $create_new_validator = $this->create_new_validator($request->all());
-
-        if ($create_new_validator->fails()) {
-            $this->throwValidationException(
-                $request, $create_new_validator
-            );
-        }
-        else
-        {
-
-            $activation_code        = str_random(60) . $request->input('email');
-            $user                   = new User;
-            $user->email            = $request->input('email');
-            $user->name             = $request->input('name');
-            $user->first_name       = $request->input('first_name');
-            $user->last_name        = $request->input('last_name');
-            $userAccessLevel        = $request->input('user_level');
-            $user->password         = bcrypt($request->input('password'));
-
-            // GET ACTIVATION CODE
-            $user->activation_code  = $activation_code;
-            $user->active           = '1';
-
-            // GET IP ADDRESS
-            $userIpAddress          = new CaptureIp;
-            $user->admin_ip_address = $userIpAddress->getClientIp();
-
-            // SAVE THE USER
-            $user->save();
-
-            // ADD ROLE
-            $user->assignRole($userAccessLevel);
-
-            // CREATE PROFILE LINK TO TABLE
-            $profile = new Profile;
-
-            $profileInputs = Input::only(
-                'location',
-                'bio',
-                'twitter_username',
-                'github_username'
-            );
-            $profile->fill($profileInputs);
-            $user->profile()->save($profile);
-
-            // THE SUCCESSFUL RETURN
-            return redirect('edit-users')->with('status', 'Successfully created user!');
-
-        }
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-    	// GET USER
-        $user = User::find($id);
-
-        return view('admin.show-user')->withUser($user);
     }
 
     /**
@@ -360,11 +221,15 @@ class UsersManagementController extends Controller {
      */
     public function destroy($id)
     {
-        // DELETE USER
-        $user = User::find($id);
-        $user->delete();
 
-        return redirect('edit-users')->with('status', 'Successfully deleted the user!');
+        $currentUser = Auth::user();
+        $user = User::findOrFail($id);
+
+        if ($user->id != $currentUser->id) {
+            $user->delete();
+            return redirect('users')->with('success', trans('usersmanagement.deleteSuccess'));
+        }
+        return back()->with('error', trans('usersmanagement.deleteSelfError'));
+
     }
-
 }

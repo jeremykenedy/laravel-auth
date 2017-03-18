@@ -1,0 +1,14 @@
+@mixin generate-margins {
+	@each $direction in $directions {
+		@for $i from 0 through $numOfMarginClasses - 1 {
+			.margin-#{$direction}-#{$i} {
+				margin-#{$direction}: (#{$i}em);
+			}
+		}
+	}
+}
+@include generate-margins();
+
+.margin-half {
+	margin: .5em;
+}

@@ -1,0 +1,52 @@
+.facebook {
+    background-color: $facebook;
+    border-color: $facebook;
+    &:hover {
+        background-color: lighten($facebook, 10%);
+        border-color: lighten($facebook, 10%);
+    }
+    &:focus,
+    &:active {
+        background-color: darken($facebook, 10%) !important;
+        border-color: darken($facebook, 10%) !important;
+    }
+}
+.twitter {
+    background-color: $twitter;
+    border-color: $twitter;
+    &:hover {
+        background-color: lighten($twitter, 10%) ;
+        border-color: lighten($twitter, 10%);
+    }
+    &:focus,
+    &:active {
+        background-color: darken($twitter, 10%) !important;
+        border-color: darken($twitter, 10%) !important;
+    }
+}
+.google {
+    background-color: $google;
+    border-color: $google;
+    &:hover {
+        background-color: lighten($google, 10%);
+        border-color: lighten($google, 10%);
+    }
+    &:focus,
+    &:active {
+        background-color: darken($google, 10%) !important;
+        border-color: darken($google, 10%) !important;
+    }
+}
+.github {
+    background-color: $github;
+    border-color: $github;
+    &:hover {
+        background-color: lighten($github, 10%);
+        border-color: lighten($github, 10%);
+    }
+    &:focus,
+    &:active {
+        background-color: darken($github, 10%) !important;
+        border-color: darken($github, 10%) !important;
+    }
+}

@@ -1,15 +1,17 @@
-### Laravel-Auth is a Complete Build of Laravel 5.2 with FULL Email and Social Authentication - COMPLETE WORKING Implementation. [![License](http://jeremykenedy.com/license-mit.svg)]()
+### Laravel-Auth is a Complete Build of Laravel 5.4 with Email Registration Verifivation, Social Authentication, User Roles and Permissions, User Profiles, and Admin restricted user managment system.
 
-** Update ** I am currently working on updating this to Laravel 5.3 then 5.4 :)~
+[![License](http://jeremykenedy.com/license-mit.svg)](https://raw.githubusercontent.com/jeremykenedy/laravel-auth/LICENSE) [![Build Status](https://travis-ci.org/jeremykenedy/laravel-auth.svg?branch=master)](https://travis-ci.org/jeremykenedy/laravel-auth)
 
-Laravel 5.2 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing.  Super easy setup, can be done in 15 minutes. It will take longer to obtain your Facebook, Twitter, and Google Plus API Keys than it will to set this up.
+#### READY FOR USE!
 
-###### A [Laravel](http://laravel.com/) 5.2.x with minimal [Bootstrap](http://getbootstrap.com) 3.5.x project.
+Laravel 5.4 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing.  Super easy setup, can be done in 15 minutes. It will take longer to obtain your Facebook, Twitter, and Google Plus API Keys than it will to set this up.
+
+###### A [Laravel](http://laravel.com/) 5.4.x with minimal [Bootstrap](http://getbootstrap.com) 3.7.x project.
 | Laravel-Auth Features  |
 | :------------ |
-|Built on [Laravel](http://laravel.com/) 5.2|
+|Built on [Laravel](http://laravel.com/) 5.4|
 |Uses [MySQL](https://github.com/mysql) Database|
-|Uses [Artisan](http://laravel.com/docs/5.2/artisan) to manage database migration, schema creations, and create/publish page controller templates|
+|Uses [Artisan](http://laravel.com/docs/5.4/artisan) to manage database migration, schema creations, and create/publish page controller templates|
 |Dependencies are managed with [COMPOSER](https://getcomposer.org/)|
 |Laravel Scaffolding **User** and **Administrator Authentication**.|
 |User Socialite Logins ready to go - See API list used below|
@@ -17,16 +19,20 @@ Laravel 5.2 with user authentication, registration with email confirmation, soci
 |CRUD (Create, Read, Update, Delete) User Management|
 |Google Captcha Protection with Google API|
 |User Registration with email verification|
+|Makes us of Laravel [Mix](https://laravel.com/docs/5.4/mix) to compile assets|
+|Makes use of Language Localization Files|
+|Restrict User Email Activation Attemts|
 |Capture IP to users table upon signup|
 |User Password Reset via Email Token|
 |User Login with remember password|
 |User roles implementation|
 |Eloquent user profiles|
-|Custom 404 Page|
+|404 Page|
+|403 Page|
 
-### Quick Project Setup
-###### (Not including the dev environment)
-1. Run `sudo git clone https://github.com/jeremykenedy/laravel-auth.git laravel-authentication`
+### Installation Instructions
+
+1. Run `sudo git clone https://github.com/jeremykenedy/laravel-auth.git laravel-auth`
 2. Create a MySQL database for the project
     * ```mysql -u root -p```, if using Vagrant: ```mysql -u homestead -psecret```
     * ```create database laravelAuth;```
@@ -34,59 +40,71 @@ Laravel 5.2 with user authentication, registration with email confirmation, soci
 3. From the projects root run `cp .env.example .env`
 4. Configure your `.env` file // NOTE: Google API Key will prevent maps error
 5. Run `sudo composer update` from the projects root folder
-6. From the projects root folder run `sudo chmod -R 755 ../laravel-authentication`
+6. From the projects root folder run `sudo chmod -R 755 ../laravel-auth`
 7. From the projects root folder run `php artisan key:generate`
 8. From the projects root folder run `php artisan migrate`
 9. From the projects root folder run `composer dump-autoload`
 10. From the projects root folder run `php artisan db:seed`
 
+##### Rebuild Front using Laravel [Mix](https://laravel.com/docs/5.4/mix) (optional)
+1. From the projects root folder run `npm install`
+2. From the projects root folder run `npm run dev` or `npm run production`
+  * You can watch assets with `npm run watch`
+
+##### Build Cache (optional)
+1. From the projects root folder run `sudo php artisan config:cache`
+
 ###### Seeds
 1. Seeded Roles
-   * user
-   * editor
-   * administrator
+  * Unverified - Level 0
+  * User  - Level 1
+  * Administrator - Level 5
 
-And thats it with the caveat of setting up and configuring your development environemnt. I recommend [VAGRANT](https://docs.vagrantup.com/v2/getting-started/) or the Laravel configured instance of Vagrant called [HOMESTEAD](http://laravel.com/docs/5.1/homestead).
+2. Seeded Permissions
+  * view.users
+  * create.users
+  * edit.users
+  * delete.users
 
-### Laravel-Authentication URL's (routes)
+###### And thats it with the caveat of setting up and configuring your development environemnt. I recommend [Laravel Homestead](https://laravel.com/docs/5.4/homestead)
+
+### Routes
+
+#### Laravel-Authentication URL's (routes)
 * ```/```
-* ```/auth/login```
-* ```/auth/logout```
-* ```/auth/register```
-* ```/password/email```
-
-### Laravel-Authentication Alias Redirect URL's (routes)
-* ```/home```
-* ```/reset```
 * ```/login```
 * ```/logout```
 * ```/register```
+* ```/password/email```
+* ```/password/reset```
+* ```/activate```
+* ```/activate/{token}```
+* ```/activation-required```
 
-### Laravel-Authentication Profile Routes
+#### Laravel-Authentication Profile Routes
 * ```/profile/{username}```
 * ```/profile/{username}/edit``` <- Editing in this view is limited to current user only.
 
-### Laravel-Authentication Admin Routes
+#### Laravel-Authentication Admin Routes
 * ```/users```
 * ```/users/create```
 * ```/users{user_id}```
 * ```/users{user_id}/edit```
 
-### Get Socialite Login API Keys:
-* [Google Captcha API] (https://www.google.com/recaptcha/admin#list)
-* [Facebook API] (https://developers.facebook.com/)
-* [Twitter API] (https://apps.twitter.com/)
-* [Google &plus; API] (https://console.developers.google.com/)
-* [GitHub API] (https://github.com/settings/applications/new)
-* [YouTube API] (https://developers.google.com/youtube/v3/getting-started)
-* [Twitch TV API] (http://www.twitch.tv/kraken/oauth2/clients/new)
-* [Instagram API] (https://instagram.com/developer/register/)
-* [37 Signals API] (https://github.com/basecamp/basecamp-classic-api)
+### Socialite
 
-### Other API keys
-* [Google Maps API v3 Key] (https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key)
+#### Get Socialite Login API Keys:
+* [Google Captcha API](https://www.google.com/recaptcha/admin#list)
+* [Facebook API](https://developers.facebook.com/)
+* [Twitter API](https://apps.twitter.com/)
+* [Google &plus; API](https://console.developers.google.com/)
+* [GitHub API](https://github.com/settings/applications/new)
+* [YouTube API](https://developers.google.com/youtube/v3/getting-started)
+* [Twitch TV API](http://www.twitch.tv/kraken/oauth2/clients/new)
+* [Instagram API](https://instagram.com/developer/register/)
+* [37 Signals API](https://github.com/basecamp/basecamp-classic-api)
 
-### Add More Socialite Logins
+#### Add More Socialite Logins
 * See full list of providers: [http://socialiteproviders.github.io](http://socialiteproviders.github.io/#providers)
 ###### **Steps**:
   1. Go to [http://socialiteproviders.github.io](http://socialiteproviders.github.io/providers/twitch/) and select the provider to be added.
@@ -128,14 +146,18 @@ And thats it with the caveat of setting up and configuring your development envi
 
       ```
 
---
+### Other API keys
+* [Google Maps API v3 Key](https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key)
 
-## Environment File
+
+### Environment File
 
 Example `.env` file:
+
 ```
+
 APP_ENV=local
-APP_KEY=SomeRandomString
+APP_KEY=
 APP_DEBUG=true
 APP_LOG_LEVEL=debug
 APP_URL=http://localhost
@@ -147,6 +169,7 @@ DB_DATABASE=laravelAuth
 DB_USERNAME=homestead
 DB_PASSWORD=secret
 
+BROADCAST_DRIVER=log
 CACHE_DRIVER=file
 SESSION_DRIVER=file
 QUEUE_DRIVER=sync
@@ -156,11 +179,31 @@ REDIS_PASSWORD=null
 REDIS_PORT=6379
 
 MAIL_DRIVER=smtp
-MAIL_HOST=smtp.gmail.com
-MAIL_PORT=465
-MAIL_USERNAME=YOURGMAILusernameHERE
-MAIL_PASSWORD=YOURGMAILpasswordHERE
-MAIL_ENCRYPTION=tls
+MAIL_HOST=mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+
+MAIL_FROM_ADDRESS=
+MAIL_FROM_NAME=''
+
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
+
+ACTIVATION=true
+ACTIVATION_LIMIT_TIME_PERIOD=24
+ACTIVATION_LIMIT_MAX_ATTEMPTS=3
+
+// NOTE: YOU CAN REMOVE THE KEY CALL IN app.blade.php IF YOU GET A POP UP AND DO NOT WANT TO SETUP A KEY FOR DEV
+# Google Maps API v3 Key - https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key
+GOOGLEMAPS_API_KEY=YOURGOOGLEMAPSkeyHERE
+
+# https://console.developers.google.com/ - NEED OAUTH CREDS
+GOOGLE_ID=YOURGOOGLEPLUSidHERE
+GOOGLE_SECRET=YOURGOOGLEPLUSsecretHERE
+GOOGLE_REDIRECT=http://yourwebsiteURLhere.com/social/handle/google
 
 # https://www.google.com/recaptcha/admin#list
 RE_CAP_SITE=YOURGOOGLECAPTCHAsitekeyHERE
@@ -176,11 +219,6 @@ TW_ID=YOURTWITTERidHERE
 TW_SECRET=YOURTWITTERkeyHERE
 TW_REDIRECT=http://yourwebsiteURLhere.com/social/handle/twitter
 
-# https://console.developers.google.com/ - NEED OAUTH CREDS
-GOOGLE_ID=YOURGOOGLEPLUSidHERE
-GOOGLE_SECRET=YOURGOOGLEPLUSsecretHERE
-GOOGLE_REDIRECT=http://yourwebsiteURLhere.com/social/handle/google
-
 # https://github.com/settings/applications/new
 GITHUB_ID=YOURIDHERE
 GITHUB_SECRET=YOURSECRETHERE
@@ -194,198 +232,29 @@ YOUTUBE_REDIRECT_URI=https://larablog.io/social/handle/youtube
 # http://www.twitch.tv/kraken/oauth2/clients/new
 TWITCH_KEY=YOURKEYHERE
 TWITCH_SECRET=YOURSECRETHERE
-TWITCH_REDIRECT_URI=http://laravel-authentication.local/social/handle/twitch
+TWITCH_REDIRECT_URI=http://laravel-auth.local/social/handle/twitch
 
 # https://instagram.com/developer/register/
 INSTAGRAM_KEY=YOURKEYHERE
 INSTAGRAM_SECRET=YOURSECRETHERE
-INSTAGRAM_REDIRECT_URI=http://laravel-authentication.local/social/handle/instagram
+INSTAGRAM_REDIRECT_URI=http://laravel-auth.local/social/handle/instagram
 
 # https://basecamp.com/
 # https://github.com/basecamp/basecamp-classic-api
 37SIGNALS_KEY=YOURKEYHERE
 37SIGNALS_SECRET=YOURSECRETHERE
-37SIGNALS_REDIRECT_URI=http://laravel-authentication.local/social/handle/37signals
+37SIGNALS_REDIRECT_URI=http://laravel-auth.local/social/handle/37signals
 
-// NOTE: YOU CAN REMOVE THE KEY CALL IN app.blade.php IF YOU GET A POP UP AND DO NOT WANT TO SETUP A KEY FOR DEV
-# Google Maps API v3 Key - https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key
-GOOGLEMAPS_API_KEY=YOURGOOGLEMAPSkeyHERE
 ```
-
-### File Structure of Common Used Files
-```
-laravel-auth/
-    ├── .env.example
-    ├── .gitattributes
-    ├── .gitignore
-    ├── artisan
-    ├── composer.json
-    ├── gulpfile.js
-    ├── LICENSE
-    ├── package.json
-    ├── phpspec.yml
-    ├── phpunit.xml
-    ├── README.md
-    ├── server.php
-    ├── app/
-    │   ├── Http/
-    │   │  ├── kernal.php
-    │   │  ├── routes.php
-    │   │  ├── Controllers/
-    │   │  │   ├── Auth/
-    │   │  │   │   ├── AuthController.php
-    │   │  │   │   └── PasswordController.php
-    │   │  │   ├── Controller.php
-    │   │  │   ├── HomeController.php
-    │   │  │   ├── ProfilesController.php
-    │   │  │   ├── UserController.php
-    │   │  │   ├── UsersManagementController.php
-    │   │  │   └── WelcomeController.php
-    │   │  ├── Middleware/
-    │   │  │   ├── Administrator.php
-    │   │  │   ├── Authenticate.php
-    │   │  │   ├── CheckCurrentUser.php
-    │   │  │   ├── Editor.php
-    │   │  │   ├── EncryptCookies.php
-    │   │  │   ├── RedirectAuthenticated.php
-    │   │  │   └── VerifyCsrfToken.php
-    │   │  └── Requests/
-    │   │      └── Request.php
-    │   ├── Logic/
-    │   │   ├── macros.php
-    │   │   ├── Mailers/
-    │   │   │   ├── Mailer.php
-    │   │   │   └── UserMailer.php
-    │   │   └── User/
-    │   │       ├── CaptureIp.php
-    │   │       └── UserRepository.php
-    │   ├── Models/
-    │   │   ├── Password.php
-    │   │   ├── Profile.php
-    │   │   ├── Role.php
-    │   │   ├── Social.php
-    │   │   └── User.php
-    │   ├── Providers/
-    │   │   ├── AppServiceProvider.php
-    │   │   ├── BusServiceProvider.php
-    │   │   ├── ConfigServiceProvider.php
-    │   │   ├── EventServiceProvider.php
-    │   │   ├── MacroServiceProvider.php
-    │   │   └── RouteServiceProvider.php
-    │   ├── Services/
-    │   │   └── Registrar.php
-    │   └── Traits/
-    │       └── CaptchaTrait.php
-    ├── config/
-    │   ├── app.php
-    │   ├── auth.php
-    │   ├── cache.php
-    │   ├── compile.php
-    │   ├── database.php
-    │   ├── filesystems.php
-    │   ├── mail.php
-    │   ├── queue.php
-    │   ├── services.php
-    │   ├── session.php
-    │   └── view.php
-    ├── database/
-    │   ├── migrations/
-    │   │   ├── 2014_10_12_000000_create_users_table.php
-    │   │   ├── 2014_10_12_100000_create_password_resets_table.php
-    │   │   ├── 2015_05_15_124334_update_users_table.php
-    │   │   ├── 2015_10_21_173121_create_users_roles.php
-    │   │   ├── 2015_10_21_173333_create_user_role.php
-    │   │   ├── 2015_10_21_173520_create_social_logins.php
-    │   │   ├── 2015_11_02_004932_create_profiles_table.php
-    │   │   ├── 2015_12_25_010553_add_signup_ip_address_to_users_table.php
-    │   │   ├── 2015_12_25_011117_add_signup_confirmation_ip_address_to_users_table.php
-    │   │   ├── 2015_12_25_025231_add_signup_sm_ip_address_to_users_table.php
-    │   │   └── 2016_04_19_045644_add_signup_admin_ip_address_to_users_table.php
-    │   └── seeds/
-    │       ├── DatabaseSeeder.php
-    │       └── SeedRoles.php
-    ├── public/
-    │   ├── .htaccess
-    │   ├── index.php
-    │   ├── robots.txt
-    │   └── assets/
-    │       ├── css/
-    │       ├── fonts/
-    │       └── ~~js/~~
-    ├── resources/
-    │   ├── assets/
-    │   │   └── Less/
-    │   │       ├── bootstrap/
-    │   │       └── app.less
-    │   ├── lang/
-    │   │   └── en/
-    │   │       ├── auth.php
-    │   │       ├── emails.php
-    │   │       ├── forms.php
-    │   │       ├── links-and-buttons.php
-    │   │       ├── modals.php
-    │   │       ├── pagination.php
-    │   │       ├── passwords.php
-    │   │       ├── profile.php
-    │   │       ├── titles.php
-    │   │       └── validation.php
-    │   └── views/
-    │       ├── app.blade.php
-    │       ├── welcome.blade.php
-    │       ├── admin/
-    │       │   ├── create-user.blade.php
-    │       │   ├── edit-user.blade.php
-    │       │   ├── edit-users.blade.php
-    │       │   ├── show-user.blade.php
-    │       │   └── show-users.blade.php
-    │       ├── auth/
-    │       │   ├── activateAccount.blade.php
-    │       │   ├── guest_activate.blade.php
-    │       │   ├── login.blade.php
-    │       │   ├── password.blade.php
-    │       │   ├── register.blade.php
-    │       │   ├── reset.blade.php
-    │       │   └── tooManyEmails.blade.php
-    │       ├── emails/
-    │       │   ├── activateAccount.blade.php
-    │       │   └── password.blade.php
-    │       ├── errors/
-    │       │   ├── 403.blade.php
-    │       │   ├── 404.blade.php
-    │       │   └── 503.blade.php
-    │       ├── modals/
-    │       │   ├── modal-delete.blade.php
-    │       │   └── modal-save.blade.php
-    │       ├── pages/
-    │       │   ├── home.blade.php
-    │       │   └── status.blade.php
-    │       ├── partials
-    │       │   ├── form-status.blade.php
-    │       │   └── nav.blade.php
-    │       ├── profiles
-    │       │   ├── edit.blade.php
-    │       │   └── show.blade.php
-    │       └── scripts
-    │           ├── delete-modal-script.blade.php
-    │           ├── gmaps-address-lookup-api3.blade.php
-    │           ├── google-maps-geocode-and-map.blade.php
-    │           └── save-modal-script.blade.php
-    ├── storage/
-    ├── tests/
-    └── vendor/
-```
-
----
 
 #### Laravel Developement Packages Used References
-* http://laravel.com/docs/5.1/authentication
-* http://laravel.com/docs/5.1/authorization
-* http://laravel.com/docs/5.1/routing
-* http://laravel.com/docs/5.0/schema
-
----
+* http://laravel.com/docs/5.4/authentication
+* http://laravel.com/docs/5.4/authorization
+* http://laravel.com/docs/5.4/routing
+* http://laravel.com/docs/5.1/schema
 
 ###### Updates:
+* Major overhaul on Laravel 5.4
 * Update from Laravel 5.1 to 5.2
 * Added eloquent editable user profile
 * Added IP Capture
@@ -394,37 +263,207 @@ laravel-auth/
 * Added Google Maps API v3 for User Location Map with Options
 * Added CRUD(Create, Read, Update, Delete) User Management
 
+### Screenshots
+![Login](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/1laravel-auth2-login)
+![Register](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/2laravel-auth2-register)
+![Registration Confirmation](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/3laravel-auth2-account-req-activation)
+![Registration Email](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/4laravel-auth2-activation-email)
+![Registration Complete](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/5laravel-auth2-userhome-with-flash-success)
+![Intial User Profile](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/6laravel-auth2-profile-mapless)
+![Edit User Profile](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/7laravel-auth2-profile-edit)
+![Find Location Using Google Maps API v3](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/8laravel-auth2-edit-profile-lookup)
+![Profile Updated](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/9laravel-auth2-flash-success)
+![Profile Semi-completed](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/10laravel-auth2-profile-with-map)
+![Admin Panel Users List](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/11laravel-auth2-users-list)
+![Admin Panel Delete User](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/12laravel-auth2-modal-delete)
+![Admin Panel Flash Error](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/13laravel-auth2-flash-error)
+![Admin Panel Show User](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/14laravel-auth2-show-edit)
+![Admin Panel Edit User](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/15laravel-auth2-edit-user)
+![Admin Panel Save Edits](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/16laravel-auth2-modal-save)
+![Admin Panel Create User](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/17laravel-auth-create-user)
+
+### Laravel Auth License
+Laravel-auth is licensed under the MIT license. Enjoy!
+
 ---
 
-## [Laravel](http://laravel.com/) PHP Framework
+<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-[![Build Status](https://travis-ci.org/laravel/framework.png)](https://travis-ci.org/laravel/framework) [![Latest Stable Version](https://poser.pugx.org/laravel/framework/version.png)](https://packagist.org/packages/laravel/framework) [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.png)](https://packagist.org/packages/laravel/framework) [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+## About Laravel
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-### Official Laravel Documentation
+Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
+## Learning Laravel
 
-### Contributing To Laravel
+Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
 
-**All Laravel Framework related issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
+If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
 
-### Laravel License
+## Contributing
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
 
-## [Bootstrap](http://getbootstrap.com) Front-End Framework
+## Security Vulnerabilities
 
-[![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg)](https://travis-ci.org/twbs/bootstrap) ![Bower version](https://img.shields.io/bower/v/bootstrap.svg) [![npm version](https://img.shields.io/npm/v/bootstrap.svg)](https://www.npmjs.com/package/bootstrap) [![devDependency Status](https://img.shields.io/david/dev/twbs/bootstrap.svg)](https://david-dm.org/twbs/bootstrap#info=devDependencies) [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+
+## License
+
+The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+
+
+# [Bootstrap](https://getbootstrap.com)
+
+[![Slack](https://bootstrap-slack.herokuapp.com/badge.svg)](https://bootstrap-slack.herokuapp.com)
+![Bower version](https://img.shields.io/bower/v/bootstrap.svg)
+[![npm version](https://img.shields.io/npm/v/bootstrap.svg)](https://www.npmjs.com/package/bootstrap)
+[![Gem version](https://img.shields.io/gem/v/bootstrap.svg)](https://rubygems.org/gems/bootstrap)
+[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap)
+[![devDependency Status](https://img.shields.io/david/dev/twbs/bootstrap.svg)](https://david-dm.org/twbs/bootstrap?type=dev)
+[![Meteor Atmosphere](https://img.shields.io/badge/meteor-twbs%3Abootstrap-blue.svg)](https://atmospherejs.com/twbs/bootstrap)
+[![Packagist Prerelease](https://img.shields.io/packagist/vpre/twbs/bootstrap.svg)](https://packagist.org/packages/twbs/bootstrap)
+[![NuGet](https://img.shields.io/nuget/vpre/bootstrap.svg)](https://www.nuget.org/packages/bootstrap/4.0.0-alpha5)
+
+[![Selenium Test Status](https://saucelabs.com/browser-matrix/bootstrap.svg)](https://saucelabs.com/u/bootstrap)
 
 Bootstrap is a sleek, intuitive, and powerful front-end framework for faster and easier web development, created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thornton](https://twitter.com/fat), and maintained by the [core team](https://github.com/orgs/twbs/people) with the massive support and involvement of the community.
 
-[Bootstrap](http://getbootstrap.com)'s documentation, included in this repo in the root directory, is built with [Jekyll](http://jekyllrb.com) and publicly hosted on GitHub Pages at [<http://getbootstrap.com>](http://getbootstrap.com).
+To get started, check out <https://getbootstrap.com>!
+
+## Table of contents
+
+- [Quick start](#quick-start)
+- [Bugs and feature requests](#bugs-and-feature-requests)
+- [Documentation](#documentation)
+- [Contributing](#contributing)
+- [Community](#community)
+- [Versioning](#versioning)
+- [Creators](#creators)
+- [Copyright and license](#copyright-and-license)
+
+## Quick start
+
+Several quick start options are available:
+
+- [Download the latest release.](https://github.com/twbs/bootstrap/archive/v4.0.0-alpha.6.zip)
+- Clone the repo: `git clone https://github.com/twbs/bootstrap.git`
+- Install with [npm](https://www.npmjs.com): `npm install bootstrap@4.0.0-alpha.6`
+- Install with [yarn](https://github.com/yarnpkg/yarn): `yarn add bootstrap@4.0.0-alpha.6`
+- Install with [Composer](https://getcomposer.org): `composer require twbs/bootstrap:4.0.0-alpha.6`
+- Install with [Bower](https://bower.io): `bower install bootstrap#v4.0.0-alpha.6`
+- Install with [NuGet](https://www.nuget.org): CSS: `Install-Package bootstrap -Pre` Sass: `Install-Package bootstrap.sass -Pre` (`-Pre` is only required until Bootstrap v4 has a stable release).
+
+Read the [Getting started page](https://getbootstrap.com/getting-started/) for information on the framework contents, templates and examples, and more.
+
+### What's included
+
+Within the download you'll find the following directories and files, logically grouping common assets and providing both compiled and minified variations. You'll see something like this:
+
+```
+bootstrap/
+├── css/
+│   ├── bootstrap.css
+│   ├── bootstrap.css.map
+│   ├── bootstrap.min.css
+│   └── bootstrap.min.css.map
+└── js/
+    ├── bootstrap.js
+    └── bootstrap.min.js
+```
+
+We provide compiled CSS and JS (`bootstrap.*`), as well as compiled and minified CSS and JS (`bootstrap.min.*`). CSS [source maps](https://developers.google.com/web/tools/chrome-devtools/debug/readability/source-maps) (`bootstrap.*.map`) are available for use with certain browsers' developer tools.
+
+
+## Bugs and feature requests
+
+Have a bug or a feature request? Please first read the [issue guidelines](https://github.com/twbs/bootstrap/blob/master/CONTRIBUTING.md#using-the-issue-tracker) and search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/twbs/bootstrap/issues/new).
+
+
+## Documentation
+
+Bootstrap's documentation, included in this repo in the root directory, is built with [Jekyll](https://jekyllrb.com) and publicly hosted on GitHub Pages at <https://getbootstrap.com>. The docs may also be run locally.
+
+### Running documentation locally
+
+1. Run through the [tooling setup](https://github.com/twbs/bootstrap/blob/v4-dev/docs/getting-started/build-tools.md#tooling-setup) to install Jekyll (the site builder) and other Ruby dependencies with `bundle install`.
+2. Run `grunt` (or a specific set of Grunt tasks) to rebuild distributed CSS and JavaScript files, as well as our docs assets.
+3. From the root `/bootstrap` directory, run `bundle exec jekyll serve` in the command line.
+4. Open <http://localhost:9001> in your browser, and voilà.
+
+Learn more about using Jekyll by reading its [documentation](https://jekyllrb.com/docs/home/).
+
+### Documentation for previous releases
+
+Documentation for v2.3.2 has been made available for the time being at <https://getbootstrap.com/2.3.2/> while folks transition to Bootstrap 3.
+
+[Previous releases](https://github.com/twbs/bootstrap/releases) and their documentation are also available for download.
+
+
+
+## Contributing
+
+Please read through our [contributing guidelines](https://github.com/twbs/bootstrap/blob/master/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
+
+Moreover, if your pull request contains JavaScript patches or features, you must include [relevant unit tests](https://github.com/twbs/bootstrap/tree/master/js/tests). All HTML and CSS should conform to the [Code Guide](https://github.com/mdo/code-guide), maintained by [Mark Otto](https://github.com/mdo).
+
+Editor preferences are available in the [editor config](https://github.com/twbs/bootstrap/blob/master/.editorconfig) for easy use in common text editors. Read more and download plugins at <http://editorconfig.org>.
+
+
+
+## Community
+
+Get updates on Bootstrap's development and chat with the project maintainers and community members.
+
+- Follow [@getbootstrap on Twitter](https://twitter.com/getbootstrap).
+- Read and subscribe to [The Official Bootstrap Blog](https://blog.getbootstrap.com).
+- Join [the official Slack room](https://bootstrap-slack.herokuapp.com).
+- Chat with fellow Bootstrappers in IRC. On the `irc.freenode.net` server, in the `##bootstrap` channel.
+- Implementation help may be found at Stack Overflow (tagged [`bootstrap-4`](https://stackoverflow.com/questions/tagged/bootstrap-4)).
+- Developers should use the keyword `bootstrap` on packages which modify or add to the functionality of Bootstrap when distributing through [npm](https://www.npmjs.com/browse/keyword/bootstrap) or similar delivery mechanisms for maximum discoverability.
+
+
+
+## Versioning
+
+For transparency into our release cycle and in striving to maintain backward compatibility, Bootstrap is maintained under [the Semantic Versioning guidelines](http://semver.org/). Sometimes we screw up, but we'll adhere to those rules whenever possible.
+
+See [the Releases section of our GitHub project](https://github.com/twbs/bootstrap/releases) for changelogs for each release version of Bootstrap. Release announcement posts on [the official Bootstrap blog](https://blog.getbootstrap.com) contain summaries of the most noteworthy changes made in each release.
+
+
+## Creators
+
+**Mark Otto**
+
+- <https://twitter.com/mdo>
+- <https://github.com/mdo>
+
+**Jacob Thornton**
+
+- <https://twitter.com/fat>
+- <https://github.com/fat>
+
+
+
+## Copyright and license
+
+Code and documentation copyright 2011-2017 the [Bootstrap Authors](https://github.com/twbs/bootstrap/graphs/contributors) and [Twitter, Inc.](https://twitter.com) Code released under the [MIT License](https://github.com/twbs/bootstrap/blob/master/LICENSE). Docs released under [Creative Commons](https://github.com/twbs/bootstrap/blob/master/docs/LICENSE).
 
 ---
 
@@ -806,7 +845,7 @@ Note: Replace examples URI used in Vargrant/Homestead configuration file and use
 ##
 127.0.0.1        localhost
 255.255.255.255  broadcasthost
-192.168.10.10    laravel-authentication.local
+192.168.10.10    laravel-auth.local
 ```
 
 ---

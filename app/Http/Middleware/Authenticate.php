@@ -1,60 +1,81 @@
-<?php namespace App\Http\Middleware;
+<?php
 
+namespace App\Http\Middleware;
+
+use Auth;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Route;
 
-class Authenticate {
+class Authenticate
+{
+    /**
+     * The Guard implementation.
+     *
+     * @var Guard
+     */
+    protected $auth;
 
-	/**
-	 * The Guard implementation.
-	 *
-	 * @var Guard
-	 */
-	protected $auth;
+    /**
+     * Create a new filter instance.
+     *
+     * @param  Guard  $auth
+     * @return void
+     */
 
-	/**
-	 * Create a new filter instance.
-	 *
-	 * @param  Guard  $auth
-	 * @return void
-	 */
-	public function __construct(Guard $auth)
-	{
-		$this->auth = $auth;
-	}
+    public function __construct(Guard $auth)
+    {
+        $this->auth = $auth;
+    }
 
-	/**
-	 * Handle an incoming request.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \Closure  $next
-	 * @return mixed
-	 */
-	public function handle($request, Closure $next)
-	{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
 
-		if ($this->auth->guest())
-		{
-			if ($request->ajax())
-			{
-				return response('Unauthorized.', 401);
-				//abort(403);
-			}
-			else
-			{
-				return redirect()->guest('auth/login');
-			}
-		}
+////////////////
+     * @param $role
+////////////////
 
-		if (!\Auth::user()->active) {
-			//\Session::flash('message', 'Please activate your account to proceed.');
-			//return redirect()->guest('auth.guest_activate');
-			return view('auth.guest_activate')
-				->with( 'email', \Auth::user()->email )
-				->with( 'date', \Auth::user()->created_at->format('Y-m-d') );
-		}
 
-		return $next($request);
-	}
+     * @return mixed
+     */
+
+    public function handle($request, Closure $next, $role)
+    {
+        if(!$this->auth->check())
+        {
+            return redirect()->to('/login')
+                ->with('status', 'success')
+                ->with('message', 'Please login.');
+        }
+////////////////
+        // if($role == 'all')
+        // {
+        //     return $next($request);
+        // }
+
+        // if( $this->auth->guest() || !$this->auth->user()->hasRole($role))
+        // {
+        //     abort(403);
+        // }
+////////////////
+        return $next($request);
+
+    }
+
+    public function terminate($request, $response)
+    {
+
+        $user           = Auth::user();
+        $currentRoute   = Route::currentRouteName();
+        Log::info('Authenticate middlware was used: ' . $currentRoute . '. ', [$user]);
+
+    }
+
 
 }

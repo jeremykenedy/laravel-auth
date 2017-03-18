@@ -1,0 +1,47 @@
+.modal {
+
+    .modal-header {
+        border-top-left-radius: 5px;
+        -moz-border-radius-top-left: 5px;
+        -webkit-border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        -moz-border-radius-top-right: 5px;
+        -webkit-border-top-right-radius: 5px;
+    }
+
+    &.modal-success {
+        .modal-header {
+            color: $white;
+            background-color: $brand-success;
+        }
+    }
+
+    &.modal-warning {
+        .modal-header {
+            color: $white;
+            background-color: $brand-warning;
+        }
+    }
+
+    &.modal-danger {
+        .modal-header {
+            color: $white;
+            background-color: $brand-danger;
+        }
+    }
+
+    &.modal-info {
+        .modal-header {
+            color: $white;
+            background-color: $brand-info;
+        }
+    }
+
+    &.modal-primary {
+        .modal-header {
+            color: $white;
+            background-color: $brand-primary;
+        }
+    }
+
+}

@@ -3,7 +3,7 @@
 return [
 
 	'app'			=> 'Laravel',
-	'app2'			=> 'Laravel 5',
+	'app2'			=> 'Laravel Auth 2.0',
 	'home'			=> 'Home',
 	'login'			=> 'Login',
 	'logout'		=> 'Logout',
@@ -13,7 +13,13 @@ return [
 	'profile'		=> 'Profile',
 	'editProfile'	=> 'Edit Profile',
 	'createProfile'	=> 'Create Profile',
-	'adminUserList'	=> 'Users List',
+
+	'activation'	=> 'Registration Started  | Activation Required',
+	'exceeded'		=> 'Activation Error',
+
+	'editProfile'	=> 'Edit Profile',
+	'createProfile'	=> 'Create Profile',
+	'adminUserList'	=> 'Users Administration',
 	'adminEditUsers'=> 'Edit Users',
 	'adminNewUser'	=> 'Create New User',
 

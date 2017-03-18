@@ -1,4 +1,4 @@
-@extends('app')
+@extends('layouts.app')
 
 @section('template_title')
 	{{ $user->name }}'s Profile
@@ -122,7 +122,7 @@
 	</div>
 @endsection
 
-@section('template_scripts')
+@section('footer_scripts')
 
 	@include('scripts.google-maps-geocode-and-map')
 

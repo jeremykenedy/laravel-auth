@@ -1,32 +1,25 @@
-<?php namespace App\Http\Controllers;
+<?php
+
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use App\Logic\User\UserRepository;
+use Illuminate\Support\Facades\Input;
 use App\Models\Profile;
 use App\Models\User;
 use Validator;
-use Input;
 
-class ProfilesController extends Controller {
 
-    /*
-    |--------------------------------------------------------------------------
-    | User Profiles Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller renders the "View Profile" and "Edit Profile" pages.
-    |
-    */
+class ProfilesController extends Controller
+{
 
-    protected $auth;
-    protected $userRepository;
-
-    // RUN VIEW THROUGH AUTH MIDDLWARE via the CONSTRUCTOR
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -41,30 +34,11 @@ class ProfilesController extends Controller {
     public function profile_validator(array $data)
     {
         return Validator::make($data, [
-            'location'          => 'required',
-            'bio'               => '',
-            'twitter_username'  => '',
-            'github_username'   => ''
+            'location'          => '',
+            'bio'               => 'max:500',
+            'twitter_username'  => 'max:50',
+            'github_username'   => 'max:50'
         ]);
-    }
-
-    /**
-     * /username
-     *
-     * @param $username
-     * @return Response
-     */
-    public function show($username)
-    {
-        try {
-            $user = $this->getUserByUsername($username);
-            //dd($user->toArray());
-        } catch (ModelNotFoundException $e) {
-            return view('pages.status')
-                ->with('error',\Lang::get('profile.notYourProfile'))
-                ->with('error_title',\Lang::get('profile.notYourProfileTitle'));
-        }
-        return view('profiles.show')->withUser($user);
     }
 
     /**
@@ -80,6 +54,28 @@ class ProfilesController extends Controller {
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param string $username
+     * @return Response
+     */
+    public function show($username)
+    {
+        try {
+
+            $user = $this->getUserByUsername($username);
+
+        } catch (ModelNotFoundException $exception) {
+
+            abort(404);
+
+        }
+
+        return view('profiles.show')->withUser($user);
+
+    }
+
+    /**
      * /profiles/username/edit
      *
      * @param $username
@@ -88,11 +84,13 @@ class ProfilesController extends Controller {
     public function edit($username)
     {
         try {
+
             $user = $this->getUserByUsername($username);
-        } catch (ModelNotFoundException $e) {
+
+        } catch (ModelNotFoundException $exception) {
             return view('pages.status')
-                ->with('error',\Lang::get('profile.notYourProfile'))
-                ->with('error_title',\Lang::get('profile.notYourProfileTitle'));
+                ->with('error', trans('profile.notYourProfile'))
+                ->with('error_title', trans('profile.notYourProfileTitle'));
         }
         return view('profiles.edit')->withUser($user);
     }
@@ -130,7 +128,7 @@ class ProfilesController extends Controller {
 
         }
 
-        return redirect('profile/'.$user->name.'/edit')->with('status', 'Profile updated!');
+        return redirect('profile/'.$user->name.'/edit')->with('success', trans('profile.updateSuccess'));
 
     }
 

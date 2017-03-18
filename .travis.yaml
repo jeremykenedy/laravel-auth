@@ -1,0 +1,26 @@
+language: php
+
+php:
+
+  - 5.6
+  - 7.0
+  - 7.1
+  - hhvm
+
+services:
+  - mysql
+
+before_script:
+  - cp .env.travis .env
+  - mysql -u root -e 'create database laravelAuth;'
+  - composer self-update
+  - composer install --dev --prefer-source --no-interaction
+  - php artisan key:generate
+  - php artisan migrate:install --env=testing --no-interaction
+  - composer dump-autoload
+  - php artisan db:seed
+  - sudo chgrp -R www-data storage bootstrap/cache
+  - sudo chmod -R ug+rwx storage bootstrap/cache
+  - sudo php artisan config:cache
+
+script: vendor/bin/phpspec run

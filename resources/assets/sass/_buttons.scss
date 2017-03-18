@@ -1,0 +1,15 @@
+.btn {
+    @include transitions();
+}
+
+.btn-youtube {
+	@include btn-social(#e52d27);
+}
+
+.btn-twitch {
+	@include btn-social(#6441A4);
+}
+
+.btn-basecamp {
+	@include btn-social(#3cb371);
+}

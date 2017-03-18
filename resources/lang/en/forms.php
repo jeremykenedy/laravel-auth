@@ -60,10 +60,14 @@ return [
 	'create_user_ph_education'			=> 'User Education',
 	'create_user_icon_education'		=> 'fa-graduation-cap',
 
+	'create_user_label_role'			=> 'User Role',
+	'create_user_ph_role'				=> 'Select User Role',
+	'create_user_icon_role'				=> 'fa-shield',
+
 	'create_user_button_text'			=> 'Create New User',
 
 	// EDIT USER AS ADMINISTRATOR FORM
-	'edit-user-admin-title'				=>'Edit User Information',
+	'edit-user-admin-title'				=>	'Edit User Information',
 
 	'label-username'					=> 'Username',
 	'ph-username'						=> 'Username',
@@ -76,7 +80,7 @@ return [
 	'option-user'						=>	'User',
 	'option-editor'						=>	'Editor',
 	'option-admin'						=>	'Administrator',
-	'submit-btn-text'					=>	' Edit the User!',
+	'submit-btn-text'					=>	'Edit the User!',
 
 	'submit-btn-icon'					=>	'fa-save',
 	'username-icon'						=>	'fa-user',

@@ -1,25 +1,34 @@
-@extends('app')
-
-@section('template_title')
-	Welcome {{ Auth::user()->name }}
-@endsection
+@extends('layouts.app')
 
 @section('content')
-<div class="container">
-	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
-			<div class="panel panel-default">
-				<div class="panel-heading">{{ Lang::get('titles.home') }}</div>
-				<div class="panel-body">
-					<h1>
-						Welcome <small>{{ Auth::user()->name }}</small>
-					</h1>
-					<p>
-						{{ Lang::get('auth.loggedIn') }}
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+
+    @include('partials.status-panel')
+
+    <div class="container">
+
+        <p><b>Unlimited</b> number of social providers via Socialite package. Live Demo uses:</p>
+        <p style="margin-bottom:15px;">
+        <span class="tag green">Facebook</span>
+        <span class="tag green">Twitter</span>
+        <span class="tag green">Google+</span>
+        <span class="tag green">GitHub</span>
+        </p>
+
+        <div class="headline">
+            <h2>Adding new Social provider easy as copy/paste login button</h2>
+        </div>
+
+        <p>Checkout example file where you add new buttons:</p>
+
+        <script src="https://gist.github.com/ivanderbu2/a3703b455981521e79add5bdead4b6d1.js"></script>
+
+        <p>After this you only need to add OAuth keys to <code>services.php</code> config file:</p>
+
+        <script src="https://gist.github.com/ivanderbu2/fae7d5d42a08053099d7fdb63d9c24bd.js"></script>
+
+        <p><a class="btn btn-primary btn-lg" href="{{url('register')}}" role="button">Try Register Feature</a></p>
+
+        <p>If you have any improvements or ideas please post comments here: <a href="https://tuts.codingo.me/laravel-social-and-email-authentication#disqus_thread">Laravel 5.3 Social and Email Multi-Authentication</a></p>
+    </div>
+
 @endsection
