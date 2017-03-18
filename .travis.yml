@@ -21,7 +21,6 @@ before_script:
   - php artisan key:generate
   - php artisan migrate:install --env=testing --no-interaction
   - composer dump-autoload
-  - php artisan db:seed
   - sudo chgrp -R www-data storage bootstrap/cache
   - sudo chmod -R ug+rwx storage bootstrap/cache
   - sudo php artisan config:cache
