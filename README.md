@@ -1,12 +1,33 @@
-### Laravel-Auth is a Complete Build of Laravel 5.4 with Email Registration Verifivation, Social Authentication, User Roles and Permissions, User Profiles, and Admin restricted user managment system.
+#### Laravel-Auth is a Complete Build of Laravel 5.4 with Email Registration Verifivation, Social Authentication, User Roles and Permissions, User Profiles, and Admin restricted user managment system.
 
 [![License](http://jeremykenedy.com/license-mit.svg)](https://raw.githubusercontent.com/jeremykenedy/laravel-auth/LICENSE) [![Build Status](https://travis-ci.org/jeremykenedy/laravel-auth.svg?branch=master)](https://travis-ci.org/jeremykenedy/laravel-auth)
 
 #### READY FOR USE!
+- [About](#about)
+- [Features](#features)
+- [Installation Instructions](#installation-instructions)
+    - [Rebuild Front End Assets with Mix (optional)](#rebuild-front-end-assets-with-mix)
+    - [Optionally Build Cache](#optionally-build-cache)
+- [Seeds](#seeds)
+- [Routes](#routes)
+  - [Authentication Routes](#authentication-routes)
+  - [Profile Routes](#profile-routes)
+  - [Admin Routes](#admin-routes)
+- [Socialite](#socialite)
+  - [Get Socialite Login API Keys](#get-socialite-login-api-keys)
+  - [Add More Socialite Logins](#add-more-socialite-logins)
+- [Other API keys](#other-api-keys)
+- [Environment File](#environment-file)
+- [Updates](#updates)
+- [Screenshots](#screenshots)
+- [Laravel Auth License](#laravel-auth-license)
 
-Laravel 5.4 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing.  Super easy setup, can be done in 15 minutes. It will take longer to obtain your Facebook, Twitter, and Google Plus API Keys than it will to set this up.
+### About
+Laravel 5.4 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
 
-###### A [Laravel](http://laravel.com/) 5.4.x with minimal [Bootstrap](http://getbootstrap.com) 3.7.x project.
+### Features
+#### A [Laravel](http://laravel.com/) 5.4.x with minimal [Bootstrap](http://getbootstrap.com) 3.7.x project.
+
 | Laravel-Auth Features  |
 | :------------ |
 |Built on [Laravel](http://laravel.com/) 5.4|
@@ -31,7 +52,6 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 |403 Page|
 
 ### Installation Instructions
-
 1. Run `sudo git clone https://github.com/jeremykenedy/laravel-auth.git laravel-auth`
 2. Create a MySQL database for the project
     * ```mysql -u root -p```, if using Vagrant: ```mysql -u homestead -psecret```
@@ -49,15 +69,22 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 12. From the projects root folder run `composer dump-autoload`
 13. From the projects root folder run `php artisan db:seed`
 
-##### Rebuild Front using Laravel [Mix](https://laravel.com/docs/5.4/mix) (optional)
+
+#### Rebuild Front End Assets with Mix
+
+###### Rebuilding the front end of that project is OPTIONAL and can be done using Laravel [Mix](https://laravel.com/docs/5.4/mix) which is Elixers replacment.
+
+
 1. From the projects root folder run `npm install`
 2. From the projects root folder run `npm run dev` or `npm run production`
   * You can watch assets with `npm run watch`
 
-##### Build Cache (optional)
+#### Optionally Build Cache
 1. From the projects root folder run `sudo php artisan config:cache`
 
-###### Seeds
+###### And thats it with the caveat of setting up and configuring your development environemnt. I recommend [Laravel Homestead](https://laravel.com/docs/5.4/homestead)
+
+### Seeds
 1. Seeded Roles
   * Unverified - Level 0
   * User  - Level 1
@@ -69,11 +96,9 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
   * edit.users
   * delete.users
 
-###### And thats it with the caveat of setting up and configuring your development environemnt. I recommend [Laravel Homestead](https://laravel.com/docs/5.4/homestead)
-
 ### Routes
 
-#### Laravel-Authentication URL's (routes)
+#### Authentication Routes
 * ```/```
 * ```/login```
 * ```/logout```
@@ -84,11 +109,11 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 * ```/activate/{token}```
 * ```/activation-required```
 
-#### Laravel-Authentication Profile Routes
+#### Profile Routes
 * ```/profile/{username}```
 * ```/profile/{username}/edit``` <- Editing in this view is limited to current user only.
 
-#### Laravel-Authentication Admin Routes
+#### Admin Routes
 * ```/users```
 * ```/users/create```
 * ```/users{user_id}```
@@ -120,11 +145,11 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
   4. Add the service provider to ```/app/services.php```
      * Example:
      ```
-   	'twitch' => [
-   	    'client_id' 	=> env('TWITCH_KEY'),
-   	    'client_secret' => env('TWITCH_SECRET'),
-   	    'redirect' 		=> env('TWITCH_REDIRECT_URI'),
-   	],
+    'twitch' => [
+        'client_id'   => env('TWITCH_KEY'),
+        'client_secret' => env('TWITCH_SECRET'),
+        'redirect'    => env('TWITCH_REDIRECT_URI'),
+    ],
      ```
   5. Add the API credentials to ``` /.env  ```
      * Example:
