@@ -37,6 +37,7 @@ class User extends Authenticatable
         'last_name',
         'email',
         'password',
+        'activated',
         'token',
         'signup_ip_address',
         'signup_confirmation_ip_address',
