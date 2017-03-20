@@ -96,6 +96,13 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
   * edit.users
   * delete.users
 
+3. Seeded Users
+
+|Email|Password|Access|
+|:------------|:------------|:------------|
+|user@user.com|password|User Access|
+|admin@admin.com|password|Admin Access|
+
 ### Routes
 
 #### Authentication Routes
