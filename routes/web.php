@@ -42,7 +42,7 @@ Route::group(['middleware' => ['auth', 'activated']], function() {
     Route::get('/activation-required', ['uses' => 'Auth\ActivateController@activationRequired'])->name('activation-required');
     Route::get('/logout', ['uses' => 'Auth\LoginController@logout'])->name('logout');
 
-    // User Homepage Route
+    //  Homepage Route - Redirect based on user role is in controller.
     Route::get('/home', ['as' => 'public.home',   'uses' => 'UserController@index']);
 
     // Show users profile - viewable by other users.

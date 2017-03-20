@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -25,7 +26,16 @@ class UserController extends Controller
     public function index()
     {
 
-        return view('panels.user.home');
+        $user = Auth::user();
+
+        if ($user->isAdmin()) {
+
+            return view('pages.admin.home');
+
+
+        }
+
+        return view('pages.user.home');
 
     }
 

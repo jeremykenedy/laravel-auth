@@ -22,6 +22,7 @@ class ActivateController extends Controller
     use ActivationTrait;
 
     private static $userHomeRoute   = 'public.home';
+    private static $adminHomeRoute   = 'public.home';
     private static $activationView  = 'auth.activation';
     private static $activationRoute = 'activation-required';
 
@@ -38,6 +39,12 @@ class ActivateController extends Controller
     public static function getUserHomeRoute() {
 
         return self::$userHomeRoute;
+
+    }
+
+    public static function getAdminHomeRoute() {
+
+        return self::$adminHomeRoute;
 
     }
 
@@ -58,6 +65,12 @@ class ActivateController extends Controller
         if ($user->activated) {
 
             Log::info('Activated user attempted to visit ' . $currentRoute . '. ', [$user]);
+
+            if ($user->isAdmin()) {
+                return redirect()->route(self::$getAdminHomeRoute())
+                ->with('status', 'info')
+                ->with('message', trans('auth.alreadyActivated'));
+            }
 
             return redirect()->route(self::getUserHomeRoute())
                 ->with('status', 'info')
@@ -170,6 +183,12 @@ class ActivateController extends Controller
         }
 
         Log::info('Registered user successfully activated. ' . $currentRoute . '. ', [$user]);
+
+        if ($user->isAdmin()) {
+            return redirect()->route(self::$getAdminHomeRoute())
+            ->with('status', 'success')
+            ->with('message', trans('auth.successActivated'));
+        }
 
         return redirect()->route(self::getUserHomeRoute())
             ->with('status', 'success')
