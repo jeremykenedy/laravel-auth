@@ -38,6 +38,10 @@
             ]) !!};
         </script>
 
+        @if ($theme != null)
+            <link rel="stylesheet" type="text/css" href="{{ $theme->link }}">
+        @endif
+
         @yield('head')
 
     </head>

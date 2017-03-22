@@ -48,8 +48,11 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 |User Login with remember password|
 |User roles implementation|
 |Eloquent user profiles|
+|User Themes|
 |404 Page|
 |403 Page|
+
+
 
 ### Installation Instructions
 1. Run `sudo git clone https://github.com/jeremykenedy/laravel-auth.git laravel-auth`
@@ -73,7 +76,6 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 #### Rebuild Front End Assets with Mix
 
 ###### Rebuilding the front end of that project is OPTIONAL and can be done using Laravel [Mix](https://laravel.com/docs/5.4/mix) which is Elixers replacment.
-
 
 1. From the projects root folder run `npm install`
 2. From the projects root folder run `npm run dev` or `npm run production`
@@ -103,10 +105,13 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 |user@user.com|password|User Access|
 |admin@admin.com|password|Admin Access|
 
+4. Themes Seed List
+  * [ThemesTableSeeder](https://github.com/jeremykenedy/laravel-auth/blob/master/database/seeds/ThemesTableSeeder.php)
+
+
 ### Routes
 
 #### Authentication Routes
-* ```/```
 * ```/login```
 * ```/logout```
 * ```/register```
@@ -145,12 +150,15 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
   1. Go to [http://socialiteproviders.github.io](http://socialiteproviders.github.io/providers/twitch/) and select the provider to be added.
   2. From the projects root folder in terminal run compser command to get the needed package.
      * Example:
+
       ```
          composer require socialiteproviders/twitch
       ```
+
   3. From the projects root folder run ```composer update```
   4. Add the service provider to ```/app/services.php```
      * Example:
+
      ```
     'twitch' => [
         'client_id'   => env('TWITCH_KEY'),
@@ -158,23 +166,29 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
         'redirect'    => env('TWITCH_REDIRECT_URI'),
     ],
      ```
+
   5. Add the API credentials to ``` /.env  ```
      * Example:
+
       ```
          TWITCH_KEY=YOURKEYHERE
          TWITCH_SECRET=YOURSECRETHERE
          TWITCH_REDIRECT_URI=http://YOURWEBSITEURL.COM/social/handle/twitch
       ```
+
   6. Add the social media login link:
       * Example:
       In file ```/resources/views/auth/login.blade.php``` add ONE of the following:
          * Conventional HTML:
+
       ```
 
          <a href="{{ route('social.redirect', ['provider' => 'twitch']) }}" class="btn btn-lg btn-primary btn-block twitch">Twitch</a>
 
       ```
+
          * Use Laravel HTML Facade (recommended)
+
       ```
 
          {!! HTML::link(route('social.redirect', ['provider' => 'twitch']), 'Twitch', array('class' => 'btn btn-lg btn-primary btn-block twitch')) !!}
@@ -286,9 +300,14 @@ INSTAGRAM_REDIRECT_URI=http://laravel-auth.local/social/handle/instagram
 * http://laravel.com/docs/5.4/authentication
 * http://laravel.com/docs/5.4/authorization
 * http://laravel.com/docs/5.4/routing
-* http://laravel.com/docs/5.1/schema
+* https://laravel.com/docs/5.4/migrations
+* https://laravel.com/docs/5.4/queries
+* https://laravel.com/docs/5.4/views
+* https://laravel.com/docs/5.4/eloquent
+* https://laravel.com/docs/5.4/eloquent-relationships
 
 ###### Updates:
+* Add user profiles with seeded list and global view
 * Major overhaul on Laravel 5.4
 * Update from Laravel 5.1 to 5.2
 * Added eloquent editable user profile

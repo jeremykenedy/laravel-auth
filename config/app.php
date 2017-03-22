@@ -183,6 +183,7 @@ return [
         Illuminate\Notifications\NotificationServiceProvider::class,
         App\Providers\MacroServiceProvider::class,
         jeremykenedy\LaravelRoles\RolesServiceProvider::class,
+        App\Providers\ComposerServiceProvider::class,
 
     ],
 

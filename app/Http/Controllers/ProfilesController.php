@@ -152,25 +152,7 @@ class ProfilesController extends Controller
 
         }
 
-// dd($input);
-// //$newTheme = Theme::find($request->input('theme'));
-
-
-
-// //$user->profile->removeTheme($currentTheme);
-// $user->profile->assignTheme($newTheme);
-
-
-// //dd($request->input('theme'));
-// // assignTheme
-// // removeTheme
-
-
-
-    $user->save();
-
-
-
+        $user->save();
 
         return redirect('profile/'.$user->name.'/edit')->with('success', trans('profile.updateSuccess'));
 
