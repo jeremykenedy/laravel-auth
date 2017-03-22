@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Input;
 use App\Models\Profile;
+use App\Models\Theme;
 use App\Models\User;
 use Validator;
-
+use View;
 
 class ProfilesController extends Controller
 {
@@ -34,6 +35,7 @@ class ProfilesController extends Controller
     public function profile_validator(array $data)
     {
         return Validator::make($data, [
+            'theme_id'          => '',
             'location'          => '',
             'bio'               => 'max:500',
             'twitter_username'  => 'max:50',
@@ -71,7 +73,14 @@ class ProfilesController extends Controller
 
         }
 
-        return view('profiles.show')->withUser($user);
+        $currentTheme = Theme::find($user->profile->theme_id);
+
+        $data = [
+            'user' => $user,
+            'currentTheme' => $currentTheme
+        ];
+
+        return view('profiles.show')->with($data);
 
     }
 
@@ -92,7 +101,19 @@ class ProfilesController extends Controller
                 ->with('error', trans('profile.notYourProfile'))
                 ->with('error_title', trans('profile.notYourProfileTitle'));
         }
-        return view('profiles.edit')->withUser($user);
+
+        $themes = Theme::all();
+        $currentTheme = Theme::find($user->profile->theme_id);
+
+        $data = [
+            'user'          => $user,
+            'themes'        => $themes,
+            'currentTheme'  => $currentTheme
+
+        ];
+
+        return view('profiles.edit')->with($data);
+
     }
 
     /**
@@ -105,7 +126,9 @@ class ProfilesController extends Controller
     public function update($username, Request $request)
     {
         $user = $this->getUserByUsername($username);
-        $input = Input::only('location', 'bio', 'twitter_username', 'github_username');
+
+        $input = Input::only('theme_id', 'location', 'bio', 'twitter_username', 'github_username');
+
         $profile_validator = $this->profile_validator($request->all());
 
         if ($profile_validator->fails()) {
@@ -124,9 +147,30 @@ class ProfilesController extends Controller
             $user->profile()->save($profile);
 
         } else {
+
             $user->profile->fill($input)->save();
 
         }
+
+// dd($input);
+// //$newTheme = Theme::find($request->input('theme'));
+
+
+
+// //$user->profile->removeTheme($currentTheme);
+// $user->profile->assignTheme($newTheme);
+
+
+// //dd($request->input('theme'));
+// // assignTheme
+// // removeTheme
+
+
+
+    $user->save();
+
+
+
 
         return redirect('profile/'.$user->name.'/edit')->with('success', trans('profile.updateSuccess'));
 

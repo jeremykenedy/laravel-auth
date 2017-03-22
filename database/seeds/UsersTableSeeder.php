@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Profile;
+use App\Models\Theme;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
@@ -19,6 +20,7 @@ class UsersTableSeeder extends Seeder
     {
 
         $faker = Faker\Factory::create();
+        $profile = new Profile;
         $adminRole = Role::whereName('Admin')->first();
         $userRole = Role::whereName('User')->first();
 
@@ -37,9 +39,10 @@ class UsersTableSeeder extends Seeder
                 'admin_ip_address'  => $faker->ipv4
             ));
 
-            $user->profile()->save(new Profile);
+            $user->profile()->save($profile);
             $user->attachRole($adminRole);
             $user->save();
+
         }
 
         // Seed test user
@@ -63,7 +66,7 @@ class UsersTableSeeder extends Seeder
         }
 
         // Seed test users
-        $user = factory(App\Models\Profile::class, 100)->create();
+        $user = factory(App\Models\Profile::class, 5)->create();
         $users = User::All();
         foreach ($users as $user) {
             if (!($user->isAdmin()) && !($user->isUnverified())) {

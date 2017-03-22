@@ -59,6 +59,16 @@
 							</dd>
 
 							@if ($user->profile)
+
+								@if ($user->profile->theme_id)
+									<dt>
+										{{ Lang::get('profile.showProfileTheme') }}
+									</dt>
+									<dd>
+										{{ $currentTheme->name }}
+									</dd>
+								@endif
+
 								@if ($user->profile->location)
 									<dt>
 										{{ Lang::get('profile.showProfileLocation') }}

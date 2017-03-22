@@ -28,11 +28,16 @@ class Profile extends Model {
 	 * @var array
 	 */
 	protected $fillable = [
-		'location',
+		'theme_id',
+        'location',
 		'bio',
 		'twitter_username',
 		'github_username'
 	];
+
+    protected $casts = [
+        'theme_id' => 'integer',
+    ];
 
 	/**
 	 * A profile belongs to a user
@@ -43,5 +48,16 @@ class Profile extends Model {
 	{
 		return $this->belongsTo('App\Models\User');
 	}
+
+    /**
+     * Profile Theme Relationships
+     *
+     * @var array
+     */
+    public function theme()
+    {
+        return $this->hasOne('App\Models\Theme');
+    }
+
 
 }
