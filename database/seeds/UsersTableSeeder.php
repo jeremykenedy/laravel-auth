@@ -66,13 +66,13 @@ class UsersTableSeeder extends Seeder
         }
 
         // Seed test users
-        $user = factory(App\Models\Profile::class, 5)->create();
-        $users = User::All();
-        foreach ($users as $user) {
-            if (!($user->isAdmin()) && !($user->isUnverified())) {
-                $user->attachRole($userRole);
-            }
-        }
+        // $user = factory(App\Models\Profile::class, 5)->create();
+        // $users = User::All();
+        // foreach ($users as $user) {
+        //     if (!($user->isAdmin()) && !($user->isUnverified())) {
+        //         $user->attachRole($userRole);
+        //     }
+        // }
 
     }
 }
