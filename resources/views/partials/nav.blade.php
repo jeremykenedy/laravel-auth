@@ -27,6 +27,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li>{!! HTML::link(url('/users'), Lang::get('titles.adminUserList')) !!}</li>
                             <li>{!! HTML::link(url('/users/create'), Lang::get('titles.adminNewUser')) !!}</li>
+                            <li>{!! HTML::link(url('/themes'), Lang::get('titles.adminThemesList')) !!}</li>
                         </ul>
                     </li>
                 @endrole

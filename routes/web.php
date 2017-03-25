@@ -80,4 +80,11 @@ Route::group(['middleware'=> ['auth', 'activated', 'role:admin']], function () {
         ]
     ]);
 
+    Route::resource('themes', 'ThemesManagementController', [
+        'names' => [
+            'index' => 'themes',
+            'destroy' => 'themes.destroy'
+        ]
+    ]);
+
 });

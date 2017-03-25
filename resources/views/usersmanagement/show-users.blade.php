@@ -45,17 +45,17 @@
                             <table class="table table-striped table-condensed data-table">
                                 <thead>
                                     <tr>
-                                        <td>ID</td>
-                                        <td>Username</td>
-                                        <td class="hidden-xs">Email</td>
-                                        <td class="hidden-xs">First Name</td>
-                                        <td class="hidden-xs">Last Name</td>
-                                        <td>Role</td>
-                                        <td class="hidden-sm hidden-xs hidden-md">Created</td>
-                                        <td class="hidden-sm hidden-xs hidden-md">Updated</td>
-                                        <td>Actions</td>
-                                        <td></td>
-                                        <td></td>
+                                        <th>ID</th>
+                                        <th>Username</th>
+                                        <th class="hidden-xs">Email</th>
+                                        <th class="hidden-xs">First Name</th>
+                                        <th class="hidden-xs">Last Name</th>
+                                        <th>Role</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">Created</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">Updated</th>
+                                        <th>Actions</th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>

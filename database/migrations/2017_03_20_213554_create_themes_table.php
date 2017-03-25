@@ -14,9 +14,11 @@ class CreateThemesTable extends Migration
     public function up()
     {
         Schema::create('themes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name')->unique();
+            $table->increments('id')->index();
+            $table->string('name')->index()->unique();
             $table->string('link')->unique();
+            $table->string('notes')->nullable();
+            $table->boolean('status')->default(1);
             $table->morphs('taggable');
             $table->timestamps();
             $table->softDeletes();

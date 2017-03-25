@@ -37,6 +37,7 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 |Laravel Scaffolding **User** and **Administrator Authentication**.|
 |User Socialite Logins ready to go - See API list used below|
 |Google Maps API v3 for User Location lookup and Geocoding|
+|CRUD (Create, Read, Update, Delete) Themes Management|
 |CRUD (Create, Read, Update, Delete) User Management|
 |Google Captcha Protection with Google API|
 |User Registration with email verification|
@@ -108,7 +109,6 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 4. Themes Seed List
   * [ThemesTableSeeder](https://github.com/jeremykenedy/laravel-auth/blob/master/database/seeds/ThemesTableSeeder.php)
 
-
 ### Routes
 
 #### Authentication Routes
@@ -130,6 +130,12 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 * ```/users/create```
 * ```/users{user_id}```
 * ```/users{user_id}/edit```
+
+#### Admin Theme Routes
+* ```/themes```
+* ```/themes/create```
+* ```/themes{theme_id}```
+* ```/themes{theme_id}/edit```
 
 ### Socialite
 
@@ -307,6 +313,7 @@ INSTAGRAM_REDIRECT_URI=http://laravel-auth.local/social/handle/instagram
 * https://laravel.com/docs/5.4/eloquent-relationships
 
 ###### Updates:
+* Added Themes Management.
 * Add user profiles with seeded list and global view
 * Major overhaul on Laravel 5.4
 * Update from Laravel 5.1 to 5.2

@@ -10,6 +10,7 @@
   "devDependencies": {
     "axios": "^0.15.3",
     "bootstrap-sass": "^3.3.7",
+    "bootstrap-social": "^5.1.1",
     "cross-env": "^3.2.3",
     "font-awesome": "^4.7.0",
     "jquery": "^3.1.1",

@@ -23,4 +23,7 @@ return [
 	'adminEditUsers'=> 'Edit Users',
 	'adminNewUser'	=> 'Create New User',
 
+	'adminThemesList' => 'Themes',
+	'adminThemesAdd'  => 'Add New Theme',
+
 ];

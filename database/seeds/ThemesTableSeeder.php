@@ -15,8 +15,8 @@ class ThemesTableSeeder extends Seeder
 
 		$themes = [
 			[
-				'name'	=> 'None',
-				'link' 	=> '',
+				'name'	=> 'Default',
+				'link' 	=> 'null',
 			],
 			[
 				'name'	=> 'Darkly',
@@ -106,6 +106,22 @@ class ThemesTableSeeder extends Seeder
 				'name'	=> 'Bootstrap Material Design 4.0.2',
 				'link' 	=> 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.min.css',
 			],
+			[
+				'name' 	=> 'mdbootstrap',
+				'link'  => 'https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.1/css/mdb.min.css',
+			],
+			[
+				'name' 	=> 'bootflat',
+				'link'  => 'https://cdnjs.cloudflare.com/ajax/libs/bootflat/2.0.4/css/bootflat.min.css',
+			],
+			[
+				'name' 	=> 'flat-ui',
+				'link'  => 'https://cdnjs.cloudflare.com/ajax/libs/flat-ui/2.3.0/css/flat-ui.min.css',
+			],
+			[
+				'name' 	=> 'm8tro-bootstrap',
+				'link'  => 'https://cdnjs.cloudflare.com/ajax/libs/m8tro-bootstrap/3.3.7/m8tro.min.css',
+			]
 
 		];
 

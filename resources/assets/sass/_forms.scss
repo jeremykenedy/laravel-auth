@@ -8,3 +8,43 @@
     padding-right: 1.5em;
     @include vendor(border-radius, 4px 0 0 4px !important);
 }
+
+.active {
+    color: green;
+}
+.switch {
+    cursor: pointer;
+	.fa {
+	    vertical-align: -5px;
+	    margin-right: .25em;
+	}
+	.active {
+	    display: none;
+	}
+	input[type="radio"] {
+	    position: relative;
+	    z-index: -1;
+	}
+	&.checked {
+		.active {
+		    display: inline-block;
+		}
+		.inactive {
+		    display: none;
+		}
+
+	}
+
+}
+.disabled {
+    color: #dcdbdb;
+    pointer-events: none;
+    cursor: not-allowed;
+
+	.switch span.active {
+	    color: #dcdbdb;
+	    pointer-events: none;
+	    cursor: not-allowed;
+	}
+
+}

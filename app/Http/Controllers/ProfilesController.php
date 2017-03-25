@@ -102,7 +102,10 @@ class ProfilesController extends Controller
                 ->with('error_title', trans('profile.notYourProfileTitle'));
         }
 
-        $themes = Theme::all();
+        $themes = Theme::where('status', 1)
+                       ->orderBy('name', 'asc')
+                       ->get();
+
         $currentTheme = Theme::find($user->profile->theme_id);
 
         $data = [
