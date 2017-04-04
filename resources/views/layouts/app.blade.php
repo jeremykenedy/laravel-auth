@@ -30,6 +30,13 @@
         <style type="text/css">
             @yield('template_fastload_css')
 
+            @if (Auth::User() && (Auth::User()->profile->avatar_status == 0))
+                .user-avatar-nav {
+                    background: url({{ Gravatar::get(Auth::user()->email) }}) 50% 50% no-repeat;
+                    background-size: auto 100%;
+                }
+            @endif
+
         </style>
 
         {{-- Scripts --}}
@@ -39,7 +46,7 @@
             ]) !!};
         </script>
 
-        @if ($theme != null)
+        @if (Auth::User() && $theme->link != null && $theme->link != 'null')
             <link rel="stylesheet" type="text/css" href="{{ $theme->link }}">
         @endif
 

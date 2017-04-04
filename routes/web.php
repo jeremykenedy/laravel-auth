@@ -68,6 +68,14 @@ Route::group(['middleware'=> ['auth', 'activated', 'currentUser']], function () 
         ]
     );
 
+    // Route to show user avatar
+    Route::get('images/profile/{id}/avatar/{image}', [
+        'uses'      => 'ProfilesController@userProfileAvatar'
+    ]);
+
+    // Route to upload user avatar.
+    Route::post('avatar/upload', ['as' => 'avatar.upload', 'uses' => 'ProfilesController@upload']);
+
 });
 
 // Registered, activated, and is admin routes.

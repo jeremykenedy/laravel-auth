@@ -34,9 +34,11 @@ class CaptureIpTrait {
         }
         else
         {
-            $ipAddress = 'UNKNOWN';
+            $ipAddress = config('settings.nullIpAddess');
         }
         return $ipAddress;
     }
 
 }
+
+

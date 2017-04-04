@@ -184,6 +184,8 @@ return [
         App\Providers\MacroServiceProvider::class,
         jeremykenedy\LaravelRoles\RolesServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
+        Creativeorange\Gravatar\GravatarServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -237,6 +239,8 @@ return [
         'HTML'      => \Collective\Html\HtmlFacade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Input' => Illuminate\Support\Facades\Input::class,
+        'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

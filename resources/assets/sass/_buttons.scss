@@ -13,3 +13,26 @@
 .btn-basecamp {
 	@include btn-social(#3cb371);
 }
+
+[data-toggle="buttons"] >div .btn input[type="radio"] {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    pointer-events: none;
+}
+
+@media(min-width: $mq-tiny) {
+	.col-xs-6 {
+		&.left-btn-container {
+			padding-left: 0;
+			.btn {
+				@include vendor(border-radius, 0 $standard-radius $standard-radius 0);
+			}
+		}
+		&.right-btn-container {
+			padding-right: 0;
+			.btn {
+				@include vendor(border-radius, $standard-radius 0 0 $standard-radius);
+			}
+		}
+	}
+}

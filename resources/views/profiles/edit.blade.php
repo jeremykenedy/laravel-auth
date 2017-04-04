@@ -4,10 +4,8 @@
 	Edit your profile
 @endsection
 
-@section('template_fastload_css')
-@endsection
-
 @section('content')
+
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
@@ -20,9 +18,52 @@
 						@if ($user->profile)
 							@if (Auth::user()->id == $user->id)
 
-								{!! Form::model($user->profile, ['method' => 'PATCH', 'route' => ['profile.update', $user->name],  'class' => 'form-horizontal', 'role' => 'form' ]) !!}
+								<div class="row">
+									<div class="col-sm-12">
+										<div id="avatar_container">
+											<div class="collapseOne panel-collapse collapse @if($user->profile->avatar_status == 0) in @endif">
+												<div class="panel-body">
+													<img src="{{  Gravatar::get($user->email) }}" alt="{{ $user->name }}" class="user-avatar">
+												</div>
+											</div>
+											<div class="collapseTwo panel-collapse collapse @if($user->profile->avatar_status == 1) in @endif">
+												<div class="panel-body">
+
+													<div class="dz-preview"></div>
+
+													{!! Form::open(array('route' => 'avatar.upload', 'method' => 'POST', 'name' => 'avatarDropzone','id' => 'avatarDropzone', 'class' => 'form single-dropzone dropzone single', 'files' => true)) !!}
+
+														<img id="user_selected_avatar" class="user-avatar" src="@if ($user->profile->avatar != NULL) {{ $user->profile->avatar }} @endif" alt="{{ $user->name }}">
+
+													{!! Form::close() !!}
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								{!! Form::model($user->profile, ['method' => 'PATCH', 'route' => ['profile.update', $user->name],  'class' => 'form-horizontal', 'role' => 'form', 'enctype' => 'multipart/form-data'  ]) !!}
 
 									{{ csrf_field() }}
+
+									<div class="row">
+										<div class="col-sm-5 col-sm-offset-4 margin-bottom-1">
+											<div class="row" data-toggle="buttons">
+												<div class="col-xs-6 right-btn-container">
+													<label class="btn btn-primary @if($user->profile->avatar_status == 0) active @endif btn-block btn-sm" data-toggle="collapse" data-target=".collapseOne:not(.in), .collapseTwo.in">
+														<input type="radio" name="avatar_status" id="option1" autocomplete="off" value="0" @if($user->profile->avatar_status == 0) checked @endif> Use Gravatar
+													</label>
+												</div>
+												<div class="col-xs-6 left-btn-container">
+													<label class="btn btn-primary @if($user->profile->avatar_status == 1) active @endif btn-block btn-sm" data-toggle="collapse" data-target=".collapseOne.in, .collapseTwo:not(.in)">
+														<input type="radio" name="avatar_status" id="option2" autocomplete="off" value="1" @if($user->profile->avatar_status == 1) checked @endif> Use My Image
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+
 
 									<div class="form-group has-feedback {{ $errors->has('theme') ? ' has-error ' : '' }}">
 										{!! Form::label('theme', trans('profile.label-theme') , array('class' => 'col-sm-4 control-label')); !!}
@@ -112,20 +153,18 @@
 
 							<p>{{ trans('profile.noProfileYet') }}</p>
 
-							{{--
-								{!! HTML::link(url('/profile/create'), trans('titles.createProfile')) !!}
-							--}}
-
 						@endif
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 @endsection
 
 @section('footer_scripts')
 
 	@include('scripts.gmaps-address-lookup-api3')
+	@include('scripts.user-avatar-dz')
 
 @endsection

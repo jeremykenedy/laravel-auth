@@ -12,6 +12,11 @@ use App\Models\Theme;
 use App\Models\User;
 use Validator;
 use View;
+use Helper;
+
+
+use Image;
+use File;
 
 class ProfilesController extends Controller
 {
@@ -39,7 +44,9 @@ class ProfilesController extends Controller
             'location'          => '',
             'bio'               => 'max:500',
             'twitter_username'  => 'max:50',
-            'github_username'   => 'max:50'
+            'github_username'   => 'max:50',
+            'avatar'            => '',
+            'avatar_status'     => '',
         ]);
     }
 
@@ -130,7 +137,7 @@ class ProfilesController extends Controller
     {
         $user = $this->getUserByUsername($username);
 
-        $input = Input::only('theme_id', 'location', 'bio', 'twitter_username', 'github_username');
+        $input = Input::only('theme_id', 'location', 'bio', 'twitter_username', 'github_username', 'avatar_status');
 
         $profile_validator = $this->profile_validator($request->all());
 
@@ -159,6 +166,47 @@ class ProfilesController extends Controller
 
         return redirect('profile/'.$user->name.'/edit')->with('success', trans('profile.updateSuccess'));
 
+    }
+
+    /**
+     * Upload and Update user avatar
+     *
+     * @param $file
+     * @return mixed
+     */
+    public function upload() {
+        if(Input::hasFile('file')) {
+
+          $avatar       = Input::file('file');
+          $filename     = 'avatar.' . $avatar->getClientOriginalExtension();
+          $save_path    = storage_path() . '/users/id/' . \Auth::user()->id . '/uploads/images/avatar/';
+          $path         = $save_path . $filename;
+
+          // Make the user a folder and set permissions
+          File::makeDirectory($save_path, $mode = 0755, true, true);
+
+          // Save the file to the server
+          Image::make($avatar)->resize(300, 300)->save($save_path . $filename);
+
+          return response()->json(array('path'=> $path), 200);
+
+        } else {
+
+          return response()->json(false, 200);
+
+        }
+    }
+
+    /**
+     * Show user avatar
+     *
+     * @param $id
+     * @param $image
+     * @return string
+     */
+    public function userProfileAvatar($id, $image)
+    {
+        return Image::make(storage_path() . '/users/id/' . $id . '/uploads/images/avatar/' . $image)->response();
     }
 
 }

@@ -42,9 +42,13 @@
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            @if (Auth::user()->profile->avatar_status == 1)
+                                <img src="{{ Auth::user()->profile->avatar }}" alt="{{ Auth::user()->name }}" class="user-avatar-nav">
+                            @else
+                                <div class="user-avatar-nav"></div>
+                            @endif
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
-
                         <ul class="dropdown-menu" role="menu">
                             <li>{!! HTML::link(url('/profile/'.Auth::user()->name), trans('titles.profile')) !!}</li>
                             <li>

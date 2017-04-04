@@ -1,0 +1,42 @@
+.user-avatar {
+    width: 80px;
+    height: 80px;
+    margin: 2em auto;
+    display: block;
+    @include vendor(border-radius, 50%);
+    @include draggless();
+}
+.user-avatar-nav {
+    margin-top: -3px;
+    margin-right: 1em;
+    float: left;
+    width: 30px;
+    height: 30px;
+    @include vendor(border-radius, 50%);
+    @include draggless();
+}
+
+#avatar_container {
+
+    height: 202px;
+
+    .dz-preview{
+        display: none;
+    }
+    .dropzone {
+        border: 1px dashed rgba(0,0,0,0.3);
+        background: rgba($white, .05);
+        height: 180px;
+        padding: 0;
+        @include vendor(border-radius, $standard-radius);
+    }
+    .dz-message {
+        margin-top: -20px 1em 0;
+        padding: 0;
+        text-align: center;
+
+        &.dz-default {
+            margin: 0 2em;
+        }
+    }
+}

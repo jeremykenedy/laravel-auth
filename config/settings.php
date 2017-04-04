@@ -17,5 +17,9 @@ return [
      */
     'maxAttempts' => env('ACTIVATION_LIMIT_MAX_ATTEMPTS', 3),
 
+   /*
+     * NULL Ip to enter to match database schema
+     */
+    'nullIpAddess' => env('NULL_IP_ADDRESS', '0.0.0.0'),
 
 ];

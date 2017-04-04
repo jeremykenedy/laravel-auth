@@ -26,6 +26,8 @@
 					</div>
 					<div class="panel-body">
 
+    					<img src="@if ($user->profile->avatar_status == 1) {{ $user->profile->avatar }} @else {{ Gravatar::get($user->email) }} @endif" alt="{{ $user->name }}" class="user-avatar">
+
 						<dl class="user-info">
 
 							<dt>
