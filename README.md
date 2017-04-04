@@ -317,6 +317,9 @@ INSTAGRAM_REDIRECT_URI=http://laravel-auth.local/social/handle/instagram
 * https://laravel.com/docs/5.4/eloquent-relationships
 
 ###### Updates:
+* Updated Capture IP not found IP address
+* Added User Avatar Image AJAX Upload with [Dropzone.js](http://www.dropzonejs.com/#configuration)
+* Added User Gravatar using Gravatar API
 * Added Themes Management.
 * Add user profiles with seeded list and global view
 * Major overhaul on Laravel 5.4
