@@ -45,6 +45,7 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 |Makes use of Language Localization Files|
 |Restrict User Email Activation Attemts|
 |Capture IP to users table upon signup|
+|Uses [Laravel Debugger](https://github.com/barryvdh/laravel-debugbar) for development|
 |User Avatar Image AJAX Upload with [Dropzone.js](http://www.dropzonejs.com/#configuration)|
 |User Gravatar using Gravatar API|
 |User Password Reset via Email Token|
@@ -317,6 +318,7 @@ INSTAGRAM_REDIRECT_URI=http://laravel-auth.local/social/handle/instagram
 * https://laravel.com/docs/5.4/eloquent-relationships
 
 ###### Updates:
+* Added [Laravel Debugger](https://github.com/barryvdh/laravel-debugbar) with Service Provider to manage status in `.env` file.
 * Updated Capture IP not found IP address
 * Added User Avatar Image AJAX Upload with [Dropzone.js](http://www.dropzonejs.com/#configuration)
 * Added User Gravatar using Gravatar API

@@ -186,6 +186,7 @@ return [
         App\Providers\ComposerServiceProvider::class,
         Creativeorange\Gravatar\GravatarServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        App\Providers\LocalEnvironmentServiceProvider::class,
 
     ],
 
