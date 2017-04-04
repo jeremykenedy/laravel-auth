@@ -45,6 +45,8 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 |Makes use of Language Localization Files|
 |Restrict User Email Activation Attemts|
 |Capture IP to users table upon signup|
+|User Avatar Image AJAX Upload with [Dropzone.js](http://www.dropzonejs.com/#configuration)|
+|User Gravatar using Gravatar API|
 |User Password Reset via Email Token|
 |User Login with remember password|
 |User roles implementation|
@@ -52,8 +54,6 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 |User Themes|
 |404 Page|
 |403 Page|
-
-
 
 ### Installation Instructions
 1. Run `sudo git clone https://github.com/jeremykenedy/laravel-auth.git laravel-auth`
@@ -73,6 +73,10 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 12. From the projects root folder run `composer dump-autoload`
 13. From the projects root folder run `php artisan db:seed`
 
+** Note ** In order for [Dropzone.js](http://www.dropzonejs.com/#configuration) to work you will need to run
+```
+npm install
+```
 
 #### Rebuild Front End Assets with Mix
 
