@@ -25,9 +25,10 @@
                             Admin <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>{!! HTML::link(url('/users'), Lang::get('titles.adminUserList')) !!}</li>
-                            <li>{!! HTML::link(url('/users/create'), Lang::get('titles.adminNewUser')) !!}</li>
-                            <li>{!! HTML::link(url('/themes'), Lang::get('titles.adminThemesList')) !!}</li>
+                            <li {{ Request::is('users', 'users/' . Auth::user()->id, 'users/' . Auth::user()->id . '/edit') ? 'class=active' : null }}>{!! HTML::link(url('/users'), Lang::get('titles.adminUserList')) !!}</li>
+                            <li {{ Request::is('users/create') ? 'class=active' : null }}>{!! HTML::link(url('/users/create'), Lang::get('titles.adminNewUser')) !!}</li>
+                            <li {{ Request::is('themes','themes/create') ? 'class=active' : null }}>{!! HTML::link(url('/themes'), Lang::get('titles.adminThemesList')) !!}</li>
+                            <li {{ Request::is('logs') ? 'class=active' : null }}>{!! HTML::link(url('/logs'), Lang::get('titles.adminLogs')) !!}</li>
                         </ul>
                     </li>
                 @endrole
@@ -50,7 +51,9 @@
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>{!! HTML::link(url('/profile/'.Auth::user()->name), trans('titles.profile')) !!}</li>
+                            <li {{ Request::is('profile/'.Auth::user()->name) ? 'class=active' : null }}>
+                                {!! HTML::link(url('/profile/'.Auth::user()->name), trans('titles.profile')) !!}
+                            </li>
                             <li>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();

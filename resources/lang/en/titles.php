@@ -26,4 +26,6 @@ return [
 	'adminThemesList' => 'Themes',
 	'adminThemesAdd'  => 'Add New Theme',
 
+	'adminLogs'		=> 'Log Files',
+
 ];

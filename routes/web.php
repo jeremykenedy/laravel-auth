@@ -95,4 +95,6 @@ Route::group(['middleware'=> ['auth', 'activated', 'role:admin']], function () {
         ]
     ]);
 
+    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
 });
