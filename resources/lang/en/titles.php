@@ -27,5 +27,7 @@ return [
 	'adminThemesAdd'  => 'Add New Theme',
 
 	'adminLogs'		=> 'Log Files',
+	'adminPHP'		=> 'PHP Information',
+	'adminRoutes'	=> 'Routing Details',
 
 ];

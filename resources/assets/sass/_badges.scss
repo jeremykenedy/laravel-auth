@@ -1,0 +1,14 @@
+.badge {
+	&.badge-primary {
+		background-color: $brand-primary;
+	}
+}
+
+// A Good time for an @extend
+.panel-default > .panel-heading {
+	.badge {
+		&.badge-primary {
+			background-color: $brand-primary;
+		}
+	}
+}

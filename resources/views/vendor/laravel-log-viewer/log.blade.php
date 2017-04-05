@@ -7,38 +7,30 @@
 @section('template_linked_css')
 
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
-  <style type="text/css">
-    .stack {
-      font-size: 0.85em;
-    }
-    .date {
-      min-width: 75px;
-    }
-    .text {
-      word-break: break-all;
-    }
-    a.llv-active {
-      z-index: 2;
-      background-color: #f5f5f5;
-      border-color: #777;
-    }
-  </style>
+
 @endsection
 
 @section('content')
 
-  <div class="container-fluid">
+  <div class="container-fluid logs-container">
     <div class="row">
+
       <div class="col-sm-3 col-md-2 sidebar">
-        <h4><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Log Files</h4>
+        <h4><span class="fa fa-fw fa-file-code-o" aria-hidden="true"></span> Log Files</h4>
         <div class="list-group">
           @foreach($files as $file)
             <a href="?l={{ base64_encode($file) }}" class="list-group-item @if ($current_file == $file) llv-active @endif">
               {{$file}}
+              @if ($current_file == $file)
+                <span class="badge pull-right">
+                  {{ count($logs) }}
+                </span>
+              @endif
             </a>
           @endforeach
         </div>
       </div>
+
       <div class="col-sm-9 col-md-10 table-container">
         @if ($logs === null)
           <div>
@@ -55,7 +47,6 @@
             </tr>
           </thead>
           <tbody>
-
             @foreach($logs as $key => $log)
             <tr>
               <td class="text-{{{$log['level_class']}}}"><span class="glyphicon glyphicon-{{{$log['level_img']}}}-sign" aria-hidden="true"></span> &nbsp;{{$log['level']}}</td>
@@ -86,6 +77,7 @@
           @endif
         </div>
       </div>
+
     </div>
   </div>
 

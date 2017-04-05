@@ -53,6 +53,8 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 |User Password Reset via Email Token|
 |User Login with remember password|
 |User roles implementation|
+|Admin Routing Details UI|
+|Admin PHP Information UI|
 |Eloquent user profiles|
 |User Themes|
 |404 Page|
@@ -146,6 +148,9 @@ npm install
 
 #### Admin Tools Routes
 * ```/logs```
+* ```/php```
+* ```/routes```
+
 
 ### Socialite
 
@@ -325,6 +330,8 @@ INSTAGRAM_REDIRECT_URI=http://laravel-auth.local/social/handle/instagram
 * https://laravel.com/docs/5.4/errors
 
 ###### Updates:
+* Added Admin Routing Details
+* Admin PHP Information
 * Added Robust [Laravel Logging](https://laravel.com/docs/5.4/errors#logging) with admin UI using MonoLog
 * Added Active Nav states using [Laravel Requests](https://laravel.com/docs/5.4/requests)
 * Added [Laravel Debugger](https://github.com/barryvdh/laravel-debugbar) with Service Provider to manage status in `.env` file.

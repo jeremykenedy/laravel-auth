@@ -12,15 +12,19 @@
 .active {
     color: green;
 }
+
 .switch {
     cursor: pointer;
+
 	.fa {
 	    vertical-align: -5px;
 	    margin-right: .25em;
 	}
+
 	.active {
 	    display: none;
 	}
+
 	input[type="radio"] {
 	    position: relative;
 	    z-index: -1;
@@ -32,10 +36,9 @@
 		.inactive {
 		    display: none;
 		}
-
 	}
-
 }
+
 .disabled {
     color: #dcdbdb;
     pointer-events: none;
@@ -46,5 +49,4 @@
 	    pointer-events: none;
 	    cursor: not-allowed;
 	}
-
 }
