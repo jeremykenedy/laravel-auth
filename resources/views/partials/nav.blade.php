@@ -51,7 +51,7 @@
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li {{ Request::is('profile/'.Auth::user()->name) ? 'class=active' : null }}>
+                            <li {{ Request::is('profile/'.Auth::user()->name, 'profile/'.Auth::user()->name . '/edit') ? 'class=active' : null }}>
                                 {!! HTML::link(url('/profile/'.Auth::user()->name), trans('titles.profile')) !!}
                             </li>
                             <li>
