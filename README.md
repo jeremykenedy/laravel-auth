@@ -39,10 +39,12 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 |Google Maps API v3 for User Location lookup and Geocoding|
 |CRUD (Create, Read, Update, Delete) Themes Management|
 |CRUD (Create, Read, Update, Delete) User Management|
+|Robust [Laravel Logging](https://laravel.com/docs/5.4/errors#logging) with admin UI using MonoLog|
 |Google Captcha Protection with Google API|
 |User Registration with email verification|
 |Makes us of Laravel [Mix](https://laravel.com/docs/5.4/mix) to compile assets|
 |Makes use of Language Localization Files|
+|Active Nav states using [Laravel Requests](https://laravel.com/docs/5.4/requests)|
 |Restrict User Email Activation Attemts|
 |Capture IP to users table upon signup|
 |Uses [Laravel Debugger](https://github.com/barryvdh/laravel-debugbar) for development|
@@ -130,7 +132,7 @@ npm install
 * ```/profile/{username}```
 * ```/profile/{username}/edit``` <- Editing in this view is limited to current user only.
 
-#### Admin Routes
+#### Admin User Management Routes
 * ```/users```
 * ```/users/create```
 * ```/users{user_id}```
@@ -141,6 +143,9 @@ npm install
 * ```/themes/create```
 * ```/themes{theme_id}```
 * ```/themes{theme_id}/edit```
+
+#### Admin Tools Routes
+* ```/logs```
 
 ### Socialite
 
@@ -316,8 +321,12 @@ INSTAGRAM_REDIRECT_URI=http://laravel-auth.local/social/handle/instagram
 * https://laravel.com/docs/5.4/views
 * https://laravel.com/docs/5.4/eloquent
 * https://laravel.com/docs/5.4/eloquent-relationships
+* https://laravel.com/docs/5.4/requests
+* https://laravel.com/docs/5.4/errors
 
 ###### Updates:
+* Added Robust [Laravel Logging](https://laravel.com/docs/5.4/errors#logging) with admin UI using MonoLog
+* Added Active Nav states using [Laravel Requests](https://laravel.com/docs/5.4/requests)
 * Added [Laravel Debugger](https://github.com/barryvdh/laravel-debugbar) with Service Provider to manage status in `.env` file.
 * Updated Capture IP not found IP address
 * Added User Avatar Image AJAX Upload with [Dropzone.js](http://www.dropzonejs.com/#configuration)
