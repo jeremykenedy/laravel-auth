@@ -34,7 +34,7 @@ class CaptureIpTrait {
         }
         else
         {
-            $ipAddress = config('settings.nullIpAddess');
+            $ipAddress = config('settings.nullIpAddress');
         }
         return $ipAddress;
     }
