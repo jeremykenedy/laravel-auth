@@ -67,7 +67,7 @@ class ActivateController extends Controller
             Log::info('Activated user attempted to visit ' . $currentRoute . '. ', [$user]);
 
             if ($user->isAdmin()) {
-                return redirect()->route(self::$getAdminHomeRoute())
+                return redirect()->route(self::getAdminHomeRoute())
                 ->with('status', 'info')
                 ->with('message', trans('auth.alreadyActivated'));
             }
