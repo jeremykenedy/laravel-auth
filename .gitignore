@@ -32,3 +32,6 @@ composer.lock
 /vendor
 Homestead.yaml
 Homestead.json
+/storage/debugbar
+/storage/framework
+/storage/logs
