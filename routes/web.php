@@ -56,6 +56,7 @@ Route::group(['middleware' => ['auth', 'activated']], function() {
 // Registered, activated, and is current user routes.
 Route::group(['middleware'=> ['auth', 'activated', 'currentUser']], function () {
 
+    // User Profile and Account Routes
     Route::resource(
         'profile',
         'ProfilesController', [
@@ -67,6 +68,18 @@ Route::group(['middleware'=> ['auth', 'activated', 'currentUser']], function () 
             ]
         ]
     );
+    Route::put('profile/{username}/updateUserAccount', [
+        'as'        => '{username}',
+        'uses'      => 'ProfilesController@updateUserAccount'
+    ]);
+    Route::put('profile/{username}/updateUserPassword', [
+        'as'        => '{username}',
+        'uses'      => 'ProfilesController@updateUserPassword'
+    ]);
+    Route::delete('profile/{username}/deleteUserAccount', [
+        'as'        => '{username}',
+        'uses'      => 'ProfilesController@deleteUserAccount'
+    ]);
 
     // Route to show user avatar
     Route::get('images/profile/{id}/avatar/{image}', [

@@ -6,6 +6,7 @@
 	  maxFilesize: 1,
 	  addRemoveLinks: false,
 	  dictMaxFilesExceeded: '',
+	  acceptedFiles: '.jpeg, .jpg',
 	  renameFilename: 'avatar.jpg',
 	  headers: {
 	    "Pragma": "no-cache"

@@ -12,6 +12,8 @@ return [
     |
     */
 
+    'templateTitle'				=> 'Edit your profile',
+
 	// profile erros
 	'notYourProfile'			=> 'This isn\'t the profile you\'re looking for.',
 	'notYourProfileTitle'		=> 'Hmmm, something went wrong...',
@@ -32,11 +34,11 @@ return [
 	'showProfileTitle'			=> ':username\'s Profile',
 
 	// USER EDIT profile page
-	'editProfileTitle'			=> 'Edit User Profile',
+	'editProfileTitle'			=> 'Profile Settings',
 
 	// User edit profile form
-	'label-theme'			=> 'Your theme:',
-	'ph-theme'				=> 'Select your theme',
+	'label-theme'				=> 'Your theme:',
+	'ph-theme'					=> 'Select your theme',
 
 	'label-location'			=> 'Your location:',
 	'ph-location'				=> 'Enter your location',
@@ -50,9 +52,25 @@ return [
 	'label-twitter_username'	=> 'Your Twitter username:',
 	'ph-twitter_username'		=> 'Enter your Twitter username',
 
-	// Messages
-	'updateSuccess'				=> 'Profile updated! ',
+	// User Account Settings Tab
+	'editTriggerAlt'			=> 'Toggle User Menu',
+	'editAccountTitle'			=> 'Account Settings',
+	'editAccountAdminTitle'		=> 'Account Administration',
+	'updateAccountSuccess'      => 'Your account has been successfully updated',
+	'submitProfileButton'		=> 'Save Changes',
 
-	'submitButton'				=> 'Save',
+	// User Account Admin Tab
+	'submitPWButton'			=> 'Update Password',
+	'changePwTitle'				=> 'Change Password',
+	'changePwPill'				=> 'Change Password',
+	'deleteAccountPill'			=> 'Delete Account',
+	'updatePWSuccess'			=> 'Your password has been successfully updated',
+
+	// Delete Account Tab
+	'deleteAccountTitle'		=> 'Delete Account',
+
+	// Messages
+	'updateSuccess'				=> 'Your profile has been successfully updated',
+	'submitButton'				=> 'Save Changes',
 
 ];

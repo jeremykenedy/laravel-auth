@@ -9,8 +9,10 @@
     @include vendor(border-radius, 4px 0 0 4px !important);
 }
 
-.active {
-    color: green;
+form {
+	.active {
+    	color: green;
+	}
 }
 
 .switch {

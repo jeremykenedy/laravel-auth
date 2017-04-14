@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
+use App\Models\Theme;
+use App\Models\User;
+use File;
+use Helper;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Input;
-use App\Models\Profile;
-use App\Models\Theme;
-use App\Models\User;
+use Image;
 use Validator;
 use View;
-use Helper;
-
-
-use Image;
-use File;
 
 class ProfilesController extends Controller
 {
@@ -169,6 +167,155 @@ class ProfilesController extends Controller
     }
 
     /**
+     * Get a validator for an incoming update user request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    public function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name'              => 'required|max:255',
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateUserAccount(Request $request, $id)
+    {
+
+        $currentUser = \Auth::user();
+        $user        = User::findOrFail($id);
+        $emailCheck  = ($request->input('email') != '') && ($request->input('email') != $user->email);
+
+        $validator = Validator::make($request->all(), [
+            'name'      => 'required|max:255',
+        ]);
+
+        $rules = [];
+
+        if ($emailCheck) {
+            $rules = [
+                'email'     => 'email|max:255|unique:users'
+            ];
+        }
+
+        $validator = $this->validator($request->all(), $rules);
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        $user->name = $request->input('name');
+        $user->first_name = $request->input('first_name');
+        $user->last_name = $request->input('last_name');
+
+        if ($emailCheck) {
+            $user->email = $request->input('email');
+        }
+
+        $user->save();
+
+        return redirect('profile/'.$user->name.'/edit')->with('success', trans('profile.updateAccountSuccess'));
+
+    }
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateUserPassword(Request $request, $id)
+    {
+
+        $currentUser = \Auth::user();
+        $user        = User::findOrFail($id);
+
+        $validator = Validator::make($request->all(),
+            [
+                'password'              => 'required|min:6|max:20|confirmed',
+                'password_confirmation' => 'required|same:password',
+            ],
+            [
+                'password.required'     => trans('auth.passwordRequired'),
+                'password.min'          => trans('auth.PasswordMin'),
+                'password.max'          => trans('auth.PasswordMax'),
+            ]
+        );
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        if ($request->input('password') != null) {
+            $user->password = bcrypt($request->input('password'));
+        }
+
+        $user->save();
+
+        return redirect('profile/'.$user->name.'/edit')->with('success', trans('profile.updatePWSuccess'));
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteUserAccount(Request $request, $id)
+    {
+
+        $currentUser = \Auth::user();
+        $user        = User::findOrFail($id);
+
+        if ($user->id != $currentUser->id) {
+
+            return redirect('users')->with('success', '');
+            return redirect('profile/'.$user->name.'/edit')->with('error', 'You can only delete your own profile.');
+
+        }
+
+        $user->delete();
+
+        return redirect('/');
+
+        /*
+        --- Finishing Todo ----
+        1. Update localization file.
+        1. Figure out where to redirect to.
+        2. Send goodbye email.
+        3. Log Instance.
+
+        ---- Desired Other todo ----
+        1. Add checkbox to delete form.
+        2. Check softdelets.
+        3. Later add ability to see and restor soft deleted.
+        4. Later add job and method to delete soft deletes.
+
+        ---- Would like to later do ----
+        1. Add password changed check on pw form.
+        2. Add PW strength meter.
+        3. Add cloudfour show/hide password.
+
+        */
+
+    }
+
+    /**
      * Upload and Update user avatar
      *
      * @param $file
@@ -177,16 +324,22 @@ class ProfilesController extends Controller
     public function upload() {
         if(Input::hasFile('file')) {
 
+          $currentUser  = \Auth::user();
           $avatar       = Input::file('file');
           $filename     = 'avatar.' . $avatar->getClientOriginalExtension();
-          $save_path    = storage_path() . '/users/id/' . \Auth::user()->id . '/uploads/images/avatar/';
+          $save_path    = storage_path() . '/users/id/' . $currentUser->id . '/uploads/images/avatar/';
           $path         = $save_path . $filename;
+          $public_path  = '/images/profile/' . $currentUser->id . '/avatar/' . $filename;
 
           // Make the user a folder and set permissions
           File::makeDirectory($save_path, $mode = 0755, true, true);
 
           // Save the file to the server
           Image::make($avatar)->resize(300, 300)->save($save_path . $filename);
+
+            // Save the public image path
+            $currentUser->profile->avatar = $public_path;
+            $currentUser->profile->save();
 
           return response()->json(array('path'=> $path), 200);
 

@@ -12,3 +12,40 @@
 .margin-half {
 	margin: .5em;
 }
+
+.margin-bottom-half {
+	margin-bottom: 1em;
+}
+
+@media(max-width: $phone) {
+
+	.margin-half-phone {
+		margin: .5em;
+	}
+
+	.margin-bottom-half-phone {
+		margin-bottom: 1em;
+	}
+
+	.margin-top-half-phone {
+		margin-top: 1em;
+	}
+
+}
+
+@media(max-width: $tablet) {
+
+	.margin-half-tablet {
+		margin: .5em;
+	}
+
+	.margin-bottom-half-tablet {
+		margin-bottom: 1em;
+	}
+
+	.margin-top-half-tablet {
+		margin-top: 1em;
+	}
+
+}
+

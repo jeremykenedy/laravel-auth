@@ -24,6 +24,10 @@ return [
     'edit_user__modal_text_confirm_title'       => 'Confirm Save',
     'edit_user__modal_text_confirm_message'     => 'Please confirm your changes.',
 
-
+    // Form Modal
+    'form_modal_default_title'                  => 'Confirm',
+    'form_modal_default_message'                => 'Please Confirm',
+    'form_modal_default_btn_cancel'             => 'Cancel',
+    'form_modal_default_btn_submit'             => 'Confirm Submit',
 
 ];

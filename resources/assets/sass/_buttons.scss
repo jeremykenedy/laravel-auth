@@ -36,3 +36,38 @@
 		}
 	}
 }
+
+.nav-pills > li.active.bg-primary > a,
+.nav-pills > li.active.bg-primary > a:hover,
+.nav-pills > li.active.bg-primary > a:focus {
+    color: $white;
+    background-color: $brand-primary;
+}
+
+.nav-pills > li.active.bg-info > a,
+.nav-pills > li.active.bg-info > a:hover,
+.nav-pills > li.active.bg-info > a:focus {
+    color: $white;
+    background-color: $brand-info;
+}
+
+.nav-pills > li.active.bg-success > a,
+.nav-pills > li.active.bg-success > a:hover,
+.nav-pills > li.active.bg-success > a:focus {
+    color: $white;
+    background-color: $brand-success;
+}
+
+.nav-pills > li.active.bg-warning > a,
+.nav-pills > li.active.bg-warning > a:hover,
+.nav-pills > li.active.bg-warning > a:focus {
+    color: $white;
+    background-color: $brand-warning;
+}
+
+.nav-pills > li.active.bg-danger > a,
+.nav-pills > li.active.bg-danger > a:hover,
+.nav-pills > li.active.bg-danger > a:focus {
+    color: $white;
+    background-color: $brand-danger;
+}

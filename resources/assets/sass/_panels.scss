@@ -1,0 +1,44 @@
+.panel-primary {
+    border-color: $brand-primary;
+	> .panel-heading {
+	    color: $white;
+	    background-color: $brand-primary;
+	    border-color: $brand-primary;
+	}
+}
+
+.panel-info {
+    border-color: $brand-info;
+	> .panel-heading {
+	    color: $white;
+	    background-color: $brand-info;
+	    border-color: $brand-info;
+	}
+}
+
+.panel-success {
+    border-color: $brand-success;
+	> .panel-heading {
+	    color: $white;
+	    background-color: $brand-success;
+	    border-color: $brand-success;
+	}
+}
+
+.panel-warning {
+    border-color: $brand-warning;
+	> .panel-heading {
+	    color: $white;
+	    background-color: $brand-warning;
+	    border-color: $brand-warning;
+	}
+}
+
+.panel-danger {
+    border-color: $brand-danger;
+	> .panel-heading {
+	    color: $white;
+	    background-color: $brand-danger;
+	    border-color: $brand-danger;
+	}
+}
