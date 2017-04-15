@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Log;
 use Image;
 use Validator;
 use View;
@@ -282,9 +283,23 @@ class ProfilesController extends Controller
         $currentUser = \Auth::user();
         $user        = User::findOrFail($id);
 
+        $validator = Validator::make($request->all(),
+            [
+                'checkConfirmDelete'            => 'required',
+            ],
+            [
+                'checkConfirmDelete.required'   => trans('profile.confirmDeleteRequired'),
+            ]
+        );
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
         if ($user->id != $currentUser->id) {
 
-            return redirect('users')->with('success', '');
             return redirect('profile/'.$user->name.'/edit')->with('error', 'You can only delete your own profile.');
 
         }
@@ -296,19 +311,18 @@ class ProfilesController extends Controller
         /*
         --- Finishing Todo ----
         1. Update localization file.
-        1. Figure out where to redirect to.
-        2. Send goodbye email.
-        3. Log Instance.
+        2. Figure out where to redirect to.
+        3. Send goodbye email.
 
         ---- Desired Other todo ----
-        1. Add checkbox to delete form.
+        X1. Add checkbox to delete form.
         2. Check softdelets.
         3. Later add ability to see and restor soft deleted.
         4. Later add job and method to delete soft deletes.
 
         ---- Would like to later do ----
-        1. Add password changed check on pw form.
-        2. Add PW strength meter.
+        X1. Add password changed check on pw form.
+        X2. Add PW strength meter.
         3. Add cloudfour show/hide password.
 
         */

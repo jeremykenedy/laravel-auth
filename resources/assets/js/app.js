@@ -9,6 +9,8 @@ require('./bootstrap');
 
 Dropzone = require('dropzone');
 
+password = require('password-strength-meter');
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

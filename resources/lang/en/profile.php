@@ -68,6 +68,11 @@ return [
 
 	// Delete Account Tab
 	'deleteAccountTitle'		=> 'Delete Account',
+	'deleteAccountBtn'			=> 'Delete My Account',
+	'deleteAccountBtnConfirm'	=> 'Delete My Account',
+	'deleteAccountConfirmTitle' => 'Confirm Account Deletion',
+	'deleteAccountConfirmMsg'	=> 'Are you sure you want to delete your account?',
+	'confirmDeleteRequired'		=> 'Confirm Account Deletion is required',
 
 	// Messages
 	'updateSuccess'				=> 'Your profile has been successfully updated',

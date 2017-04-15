@@ -52,3 +52,65 @@ form {
 	    cursor: not-allowed;
 	}
 }
+
+label {
+
+	input[type="radio"] ~ i.fa.fa-circle-o{
+	    color: #c8c8c8;    display: inline;
+	}
+	input[type="radio"] ~ i.fa.fa-dot-circle-o{
+	    display: none;
+	}
+	input[type="radio"]:checked ~ i.fa.fa-circle-o{
+	    display: none;
+	}
+	input[type="radio"]:checked ~ i.fa.fa-dot-circle-o{
+	    color: #7AA3CC;    display: inline;
+	}
+
+	input[type="checkbox"] ~ i.fa.fa-square-o{
+	    color: #c8c8c8;    display: inline;
+	}
+	input[type="checkbox"] ~ i.fa.fa-check-square-o{
+	    display: none;
+	}
+	input[type="checkbox"]:checked ~ i.fa.fa-square-o{
+	    display: none;
+	}
+	input[type="checkbox"]:checked ~ i.fa.fa-check-square-o{
+	    color: #7AA3CC;    display: inline;
+	}
+
+	input[type="checkbox"]:checked ~ i.fa.fa-check-square-o {
+	    color: $brand-danger !important;
+	    display: inline;
+		left: 2px;
+	}
+
+	&:hover {
+		input[type="radio"] ~ i.fa {
+			color: #7AA3CC;
+		}
+
+		input[type="checkbox"] ~ i.fa {
+			color: #7AA3CC;
+		}
+	}
+
+}
+
+div[data-toggle="buttons"] {
+	label {
+		&:active,
+		&.active {
+			@include vendor(box-shadow, none);
+		}
+	}
+}
+
+.btn.no-shadow .fa {
+	float: left;
+	left: 0;
+	position: absolute;
+	width: 40px;
+}

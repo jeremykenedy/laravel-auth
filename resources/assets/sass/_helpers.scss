@@ -5,3 +5,9 @@
 .start-hidden {
 	display: none;
 }
+
+.no-shadow {
+	@include vendor(box-shadow, none !important);
+	@include vendor(outline, none !important);
+	-webkit-appearance: none !important;
+}

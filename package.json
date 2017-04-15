@@ -19,6 +19,7 @@
     "vue": "^2.1.10"
   },
   "dependencies": {
-    "dropzone": "^4.3.0"
+    "dropzone": "^4.3.0",
+    "password-strength-meter": "^1.1.2"
   }
 }

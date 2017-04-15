@@ -207,7 +207,7 @@
 
 									<div class="tab-pane fade edit_settings">
 
-										{!! Form::model($user, array('action' => array('ProfilesController@updateUserAccount', $user->id), 'method' => 'PUT')) !!}
+										{!! Form::model($user, array('action' => array('ProfilesController@updateUserAccount', $user->id), 'method' => 'PUT', 'id' => 'user_basics_form')) !!}
 
 											{!! csrf_field() !!}
 
@@ -261,19 +261,23 @@
 								                </div>
 								            </div>
 
-								            <div class="form-group">
-												{!! Form::button(
-													'<i class="fa fa-fw fa-save" aria-hidden="true"></i> ' . trans('profile.submitProfileButton'),
-													 array(
-														'class' 		 	=> 'btn btn-success disableddd',
-														'type' 			 	=> 'button',
-														'data-submit'       => trans('profile.submitProfileButton'),
-														'data-target' 		=> '#confirmForm',
-														'data-modalClass' 	=> 'modal-success',
-														'data-toggle' 		=> 'modal',
-														'data-title' 		=> trans('modals.edit_user__modal_text_confirm_title'),
-														'data-message' 		=> trans('modals.edit_user__modal_text_confirm_message')
-												)) !!}
+										    <div class="form-group row">
+											    <div class="col-md-9 col-md-offset-3">
+													{!! Form::button(
+														'<i class="fa fa-fw fa-save" aria-hidden="true"></i> ' . trans('profile.submitProfileButton'),
+														 array(
+															'class' 		 	=> 'btn btn-success',
+															'id' 				=> 'account_save_trigger',
+															'disabled'			=> true,
+															'type' 			 	=> 'button',
+															'data-submit'       => trans('profile.submitProfileButton'),
+															'data-target' 		=> '#confirmForm',
+															'data-modalClass' 	=> 'modal-success',
+															'data-toggle' 		=> 'modal',
+															'data-title' 		=> trans('modals.edit_user__modal_text_confirm_title'),
+															'data-message' 		=> trans('modals.edit_user__modal_text_confirm_message')
+													)) !!}
+												</div>
 											</div>
 
 										{!! Form::close() !!}
@@ -289,7 +293,7 @@
 												</a>
 											</li>
 											<li class="bg-info delete-account">
-												<a data-toggle="pill" href="#menu1" class="danger-pill-trigger">
+												<a data-toggle="pill" href="#deleteAccount" class="danger-pill-trigger">
 													{{ trans('profile.deleteAccountPill') }}
 												</a>
 											</li>
@@ -303,50 +307,62 @@
 													{{ trans('profile.changePwTitle') }}
 												</h3>
 
-												{!! Form::model($user, array('action' => array('ProfilesController@updateUserPassword', $user->id), 'method' => 'PUT')) !!}
+												{!! Form::model($user, array('action' => array('ProfilesController@updateUserPassword', $user->id), 'method' => 'PUT', 'autocomplete' => 'new-password')) !!}
 
 												    <div class="pw-change-container margin-bottom-2">
-												        <div class="form-group has-feedback row">
-												          	{!! Form::label('password', trans('forms.create_user_label_password'), array('class' => 'col-md-3 control-label')); !!}
-												          	<div class="col-md-9">
-													            <div class="input-group">
-													              	{!! Form::password('password', array('id' => 'password', 'class' => 'form-control ', 'placeholder' => trans('forms.create_user_ph_password'))) !!}
-													              	<label class="input-group-addon" for="password"><i class="fa fa-fw {{ trans('forms.create_user_icon_password') }}" aria-hidden="true"></i></label>
-													            </div>
-												          	</div>
-												        </div>
 
-												        <div class="form-group has-feedback row">
+														<div class="form-group has-feedback row {{ $errors->has('password') ? ' has-error ' : '' }}">
+														  	{!! Form::label('password', trans('forms.create_user_label_password'), array('class' => 'col-md-3 control-label')); !!}
+														  	<div class="col-md-9">
+
+																{!! Form::password('password', array('id' => 'password', 'class' => 'form-control ', 'placeholder' => trans('forms.create_user_ph_password'), 'autocomplete' => 'new-password')) !!}
+																<span class="glyphicon glyphicon-lock form-control-feedback" aria-hidden="true" style="right: 1em;"></span>
+														        @if ($errors->has('password'))
+														            <span class="help-block">
+														                <strong>{{ $errors->first('password') }}</strong>
+														            </span>
+														        @endif
+														  	</div>
+														</div>
+
+												        <div class="form-group has-feedback row {{ $errors->has('password_confirmation') ? ' has-error ' : '' }}">
 												          	{!! Form::label('password_confirmation', trans('forms.create_user_label_pw_confirmation'), array('class' => 'col-md-3 control-label')); !!}
 												          	<div class="col-md-9">
-													            <div class="input-group">
-													              	{!! Form::password('password_confirmation', array('id' => 'password_confirmation', 'class' => 'form-control', 'placeholder' => trans('forms.create_user_ph_pw_confirmation'))) !!}
-													              	<label class="input-group-addon" for="password_confirmation"><i class="fa fa-fw {{ trans('forms.create_user_icon_pw_confirmation') }}" aria-hidden="true"></i></label>
-													            </div>
+												              	{!! Form::password('password_confirmation', array('id' => 'password_confirmation', 'class' => 'form-control', 'placeholder' => trans('forms.create_user_ph_pw_confirmation'))) !!}
+																<span class="glyphicon glyphicon-lock form-control-feedback" aria-hidden="true" style="right: 1em;"></span>
+																<span id="pw_status"></span>
+																@if ($errors->has('password_confirmation'))
+																    <span class="help-block">
+																        <strong>{{ $errors->first('password_confirmation') }}</strong>
+																    </span>
+																@endif
 												          	</div>
 												        </div>
 												    </div>
 
-												    <div class="form-group">
-														{!! Form::button(
-															'<i class="fa fa-fw fa-save" aria-hidden="true"></i> ' . trans('profile.submitPWButton'),
-															 array(
-																'class' 		 	=> 'btn btn-warning disableddd',
-																'type' 			 	=> 'button',
-																'data-submit'       => trans('profile.submitButton'),
-																'data-target' 		=> '#confirmForm',
-																'data-modalClass' 	=> 'modal-warning',
-																'data-toggle' 		=> 'modal',
-																'data-title' 		=> trans('modals.edit_user__modal_text_confirm_title'),
-																'data-message' 		=> trans('modals.edit_user__modal_text_confirm_message')
-														)) !!}
+												    <div class="form-group row">
+													    <div class="col-md-9 col-md-offset-3">
+															{!! Form::button(
+																'<i class="fa fa-fw fa-save" aria-hidden="true"></i> ' . trans('profile.submitPWButton'),
+																 array(
+																	'class' 		 	=> 'btn btn-warning',
+																	'id' 				=> 'pw_save_trigger',
+																	'disabled'			=> true,
+																	'type' 			 	=> 'button',
+																	'data-submit'       => trans('profile.submitButton'),
+																	'data-target' 		=> '#confirmForm',
+																	'data-modalClass' 	=> 'modal-warning',
+																	'data-toggle' 		=> 'modal',
+																	'data-title' 		=> trans('modals.edit_user__modal_text_confirm_title'),
+																	'data-message' 		=> trans('modals.edit_user__modal_text_confirm_message')
+															)) !!}
+														</div>
 													</div>
-
 												{!! Form::close() !!}
 
 	    									</div>
 
-										    <div id="menu1" class="tab-pane fade">
+										    <div id="deleteAccount" class="tab-pane fade">
 
 										      	<h3 class="margin-bottom-1 text-center text-danger">
 										      		{{ trans('profile.deleteAccountTitle') }}
@@ -357,22 +373,35 @@
 													<i class="fa fa-exclamation-triangle fa-fw" aria-hidden="true"></i>
 										      	</p>
 
+												<hr>
+
 												<div class="row">
-													<div class="col-sm-6 col-sm-offset-3 margin-bottom-3">
+													<div class="col-sm-6 col-sm-offset-3 margin-bottom-3 text-center">
 
 														{!! Form::model($user, array('action' => array('ProfilesController@deleteUserAccount', $user->id), 'method' => 'DELETE')) !!}
 
+															<div class="btn-group btn-group-vertical margin-bottom-2" data-toggle="buttons">
+																<label class="btn no-shadow" for="checkConfirmDelete" >
+																	<input type="checkbox" name='checkConfirmDelete' id="checkConfirmDelete">
+																	<i class="fa fa-square-o fa-fw fa-2x"></i>
+																	<i class="fa fa-check-square-o fa-fw fa-2x"></i>
+																	<span class="margin-left-2"> Confirm Account Deletion</span>
+																</label>
+															</div>
+
 														    {!! Form::button(
-														    	'<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> Delete My Account',
+														    	'<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> ' . trans('profile.deleteAccountBtn'),
 																array(
 																	'class' 			=> 'btn btn-block btn-danger',
+																	'id' 				=> 'delete_account_trigger',
+																	'disabled'			=> true,
 																	'type' 				=> 'button',
 																	'data-toggle' 		=> 'modal',
-																	'data-submit'       => 'Delete My Account',
+																	'data-submit'       => trans('profile.deleteAccountBtnConfirm'),
 																	'data-target' 		=> '#confirmForm',
 																	'data-modalClass' 	=> 'modal-danger',
-																	'data-title' 		=> 'Confirm Account Deletion',
-																	'data-message' 		=> 'Are you sure you want to delete your account?'
+																	'data-title' 		=> trans('profile.deleteAccountConfirmTitle'),
+																	'data-message' 		=> trans('profile.deleteAccountConfirmMsg')
 																)
 														    ) !!}
 
@@ -442,6 +471,69 @@
 		$('.danger-pill-trigger').click(function() {
 			$('.panel').alterClass('panel-*', 'panel-danger');
 		});
+
+		$('#user_basics_form').on('keyup change', 'input, select, textarea', function(){
+		    $('#account_save_trigger').attr('disabled', false);
+		});
+
+		$('#checkConfirmDelete').change(function() {
+		    var submitDelete = $('#delete_account_trigger');
+		    var self = $(this);
+
+		    if (self.is(':checked')) {
+		        submitDelete.attr('disabled', false);
+		    }
+		    else {
+		    	submitDelete.attr('disabled', true);
+		    }
+		});
+
+		$("#password_confirmation").keyup(function() {
+			checkPasswordMatch();
+		});
+
+		$("#password, #password_confirmation").keyup(function() {
+			enableSubmitPWCheck();
+		});
+
+		$('#password').password({
+			shortPass: 'The password is too short',
+			badPass: 'Weak - Try combining letters & numbers',
+			goodPass: 'Medium - Try using special charecters',
+			strongPass: 'Strong password',
+			containsUsername: 'The password contains the username',
+			enterPass: false,
+			showPercent: false,
+			showText: true,
+			animate: true,
+			animateSpeed: 50,
+			username: false, // select the username field (selector or jQuery instance) for better password checks
+			usernamePartialMatch: true,
+			minimumLength: 6
+		});
+
+		function checkPasswordMatch() {
+		    var password = $("#password").val();
+		    var confirmPassword = $("#password_confirmation").val();
+		    if (password != confirmPassword) {
+		        $("#pw_status").html("Passwords do not match!");
+		    }
+		    else {
+		        $("#pw_status").html("Passwords match.");
+		    }
+		}
+
+		function enableSubmitPWCheck() {
+		    var password = $("#password").val();
+		    var confirmPassword = $("#password_confirmation").val();
+		    var submitChange = $('#pw_save_trigger');
+		    if (password != confirmPassword) {
+		       	submitChange.attr('disabled', true);
+		    }
+		    else {
+		        submitChange.attr('disabled', false);
+		    }
+		}
 
 	</script>
 
