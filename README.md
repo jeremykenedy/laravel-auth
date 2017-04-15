@@ -48,6 +48,8 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 |Restrict User Email Activation Attemts|
 |Capture IP to users table upon signup|
 |Uses [Laravel Debugger](https://github.com/barryvdh/laravel-debugbar) for development|
+|Makes us of [Password Strength Meter](https://github.com/elboletaire/password-strength-meter)|
+|Makes use of [hideShowPassword](https://github.com/cloudfour/hideShowPassword)|
 |User Avatar Image AJAX Upload with [Dropzone.js](http://www.dropzonejs.com/#configuration)|
 |User Gravatar using Gravatar API|
 |User Password Reset via Email Token|
@@ -181,11 +183,11 @@ npm install
      * Example:
 
      ```
-    'twitch' => [
-        'client_id'   => env('TWITCH_KEY'),
-        'client_secret' => env('TWITCH_SECRET'),
-        'redirect'    => env('TWITCH_REDIRECT_URI'),
-    ],
+        'twitch' => [
+            'client_id'   => env('TWITCH_KEY'),
+            'client_secret' => env('TWITCH_SECRET'),
+            'redirect'    => env('TWITCH_REDIRECT_URI'),
+        ],
      ```
 
   5. Add the API credentials to ``` /.env  ```
@@ -203,17 +205,13 @@ npm install
          * Conventional HTML:
 
       ```
-
          <a href="{{ route('social.redirect', ['provider' => 'twitch']) }}" class="btn btn-lg btn-primary btn-block twitch">Twitch</a>
-
       ```
 
-         * Use Laravel HTML Facade (recommended)
+         * Use Laravel HTML Facade with [Laravel Collective](https://laravelcollective.com/) (recommended)
 
       ```
-
          {!! HTML::link(route('social.redirect', ['provider' => 'twitch']), 'Twitch', array('class' => 'btn btn-lg btn-primary btn-block twitch')) !!}
-
       ```
 
 ### Other API keys
@@ -348,6 +346,11 @@ INSTAGRAM_REDIRECT_URI=http://laravel-auth.local/social/handle/instagram
 * Added Google Maps API v3 for User Location Input Geocoding
 * Added Google Maps API v3 for User Location Map with Options
 * Added CRUD(Create, Read, Update, Delete) User Management
+* Added User Account Settings to Profile Edit
+* Added User Change Password to Profile Edit
+* Added User Delete Account to Profile Edit
+* Added [Password Strength Meter](https://github.com/elboletaire/password-strength-meter)
+* Added [hideShowPassword](https://github.com/cloudfour/hideShowPassword)
 
 ### Screenshots
 ![Login](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/1laravel-auth2-login.jpg)
