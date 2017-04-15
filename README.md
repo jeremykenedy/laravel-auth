@@ -35,15 +35,15 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 |Uses [Artisan](http://laravel.com/docs/5.4/artisan) to manage database migration, schema creations, and create/publish page controller templates|
 |Dependencies are managed with [COMPOSER](https://getcomposer.org/)|
 |Laravel Scaffolding **User** and **Administrator Authentication**.|
-|User Socialite Logins ready to go - See API list used below|
-|Google Maps API v3 for User Location lookup and Geocoding|
+|User [Socialite Logins](https://github.com/laravel/socialite) ready to go - See API list used below|
+|[Google Maps API v3](https://developers.google.com/maps/documentation/javascript/) for User Location lookup and Geocoding|
 |CRUD (Create, Read, Update, Delete) Themes Management|
 |CRUD (Create, Read, Update, Delete) User Management|
 |Robust [Laravel Logging](https://laravel.com/docs/5.4/errors#logging) with admin UI using MonoLog|
-|Google Captcha Protection with Google API|
+|Google [reCaptcha Protection with Google API](https://developers.google.com/recaptcha/)|
 |User Registration with email verification|
 |Makes us of Laravel [Mix](https://laravel.com/docs/5.4/mix) to compile assets|
-|Makes use of Language Localization Files|
+|Makes use of [Language Localization Files](https://laravel.com/docs/5.4/localization)|
 |Active Nav states using [Laravel Requests](https://laravel.com/docs/5.4/requests)|
 |Restrict User Email Activation Attemts|
 |Capture IP to users table upon signup|
@@ -51,10 +51,10 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 |Makes us of [Password Strength Meter](https://github.com/elboletaire/password-strength-meter)|
 |Makes use of [hideShowPassword](https://github.com/cloudfour/hideShowPassword)|
 |User Avatar Image AJAX Upload with [Dropzone.js](http://www.dropzonejs.com/#configuration)|
-|User Gravatar using Gravatar API|
+|User Gravatar using [Gravatar API](https://github.com/creativeorange/gravatar)|
 |User Password Reset via Email Token|
 |User Login with remember password|
-|User roles implementation|
+|User [Roles/ACL Implementation](https://github.com/jeremykenedy/laravel-roles)|
 |Admin Routing Details UI|
 |Admin PHP Information UI|
 |Eloquent user profiles|
