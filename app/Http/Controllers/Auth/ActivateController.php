@@ -270,5 +270,3 @@ class ActivateController extends Controller
     }
 
 }
-
-

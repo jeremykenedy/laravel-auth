@@ -314,9 +314,7 @@
 														<div class="form-group has-feedback row {{ $errors->has('password') ? ' has-error ' : '' }}">
 														  	{!! Form::label('password', trans('forms.create_user_label_password'), array('class' => 'col-md-3 control-label')); !!}
 														  	<div class="col-md-9">
-
 																{!! Form::password('password', array('id' => 'password', 'class' => 'form-control ', 'placeholder' => trans('forms.create_user_ph_password'), 'autocomplete' => 'new-password')) !!}
-																<span class="glyphicon glyphicon-lock form-control-feedback" aria-hidden="true" style="right: 1em;"></span>
 														        @if ($errors->has('password'))
 														            <span class="help-block">
 														                <strong>{{ $errors->first('password') }}</strong>
@@ -329,7 +327,6 @@
 												          	{!! Form::label('password_confirmation', trans('forms.create_user_label_pw_confirmation'), array('class' => 'col-md-3 control-label')); !!}
 												          	<div class="col-md-9">
 												              	{!! Form::password('password_confirmation', array('id' => 'password_confirmation', 'class' => 'form-control', 'placeholder' => trans('forms.create_user_ph_pw_confirmation'))) !!}
-																<span class="glyphicon glyphicon-lock form-control-feedback" aria-hidden="true" style="right: 1em;"></span>
 																<span id="pw_status"></span>
 																@if ($errors->has('password_confirmation'))
 																    <span class="help-block">
@@ -495,6 +492,8 @@
 		$("#password, #password_confirmation").keyup(function() {
 			enableSubmitPWCheck();
 		});
+
+		$('#password, #password_confirmation').hidePassword(true);
 
 		$('#password').password({
 			shortPass: 'The password is too short',

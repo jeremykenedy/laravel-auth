@@ -309,22 +309,15 @@ class ProfilesController extends Controller
         return redirect('/');
 
         /*
-        --- Finishing Todo ----
-        1. Update localization file.
-        2. Figure out where to redirect to.
-        3. Send goodbye email.
+            --- Finishing Todos ----
+            1. Update localization file.
+            2. Figure out where to redirect to.
+            3. Send goodbye email.
 
-        ---- Desired Other todo ----
-        X1. Add checkbox to delete form.
-        2. Check softdelets.
-        3. Later add ability to see and restor soft deleted.
-        4. Later add job and method to delete soft deletes.
-
-        ---- Would like to later do ----
-        X1. Add password changed check on pw form.
-        X2. Add PW strength meter.
-        3. Add cloudfour show/hide password.
-
+            ---- Desired Other todo ----
+            1. Check softdelets.
+            2. Later add ability to see and restor soft deleted.
+            3. Later add job and method to delete soft deletes.
         */
 
     }
