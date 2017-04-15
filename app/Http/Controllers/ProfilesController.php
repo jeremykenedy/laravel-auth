@@ -314,9 +314,9 @@ class ProfilesController extends Controller
             2. Figure out where to redirect to.
             3. Send goodbye email.
 
-            ---- Desired Other todo ----
+            ---- Desired Other Todos ----
             1. Check softdelets.
-            2. Later add ability to see and restor soft deleted.
+            2. Later add ability to see and restore soft deleted.
             3. Later add job and method to delete soft deletes.
         */
 
