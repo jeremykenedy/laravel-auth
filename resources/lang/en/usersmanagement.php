@@ -6,6 +6,8 @@ return [
 	'updateSuccess'             => 'Successfully updated user! ',
 	'deleteSuccess'             => 'Successfully deleted user! ',
 	'deleteSelfError'           => 'You cannot delete yourself! ',
-	'viewProfile'				=> "View Users Profile",
+	'viewProfile'				=> "View Profile",
+	'editUser'					=> 'Edit User',
+	'deleteUser'				=> 'Delete User',
 
 ];

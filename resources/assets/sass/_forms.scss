@@ -13,6 +13,9 @@ form {
 	.active {
     	color: green;
 	}
+	&.form-inline {
+	    display: inline-block;
+	}
 }
 
 .switch {

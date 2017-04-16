@@ -51,7 +51,20 @@
 
                   @if ($user->profile)
                     <div class="text-center text-left-tablet margin-bottom-1">
-                      {!! HTML::link(url('/profile/'.$user->name), trans('usersmanagement.viewProfile'), ['class' => 'btn btn-info btn-sm']) !!}
+
+                      <a href="{{ url('/profile/'.$user->name) }}" class="btn btn-sm btn-info">
+                        <i class="fa fa-eye fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm hidden-md"> {{ trans('usersmanagement.viewProfile') }}</span>
+                      </a>
+
+                      <a href="/users/{{$user->id}}/edit" class="btn btn-sm btn-warning">
+                        <i class="fa fa-pencil fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm hidden-md"> {{ trans('usersmanagement.editUser') }} </span>
+                      </a>
+
+                      {!! Form::open(array('url' => 'users/' . $user->id, 'class' => 'form-inline')) !!}
+                        {!! Form::hidden('_method', 'DELETE') !!}
+                        {!! Form::button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm hidden-md">' . trans('usersmanagement.deleteUser') . '</span>' , array('class' => 'btn btn-danger btn-sm','type' => 'button', 'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => 'Delete User', 'data-message' => 'Are you sure you want to delete this user?')) !!}
+                      {!! Form::close() !!}
+
                     </div>
                   @endif
 
