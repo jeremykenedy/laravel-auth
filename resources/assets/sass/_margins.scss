@@ -1,14 +1,3 @@
-@mixin generate-margins {
-	@each $direction in $directions {
-		@for $i from 0 through $numOfMarginClasses - 1 {
-			.margin-#{$direction}-#{$i} {
-				margin-#{$direction}: (#{$i}em);
-			}
-		}
-	}
-}
-@include generate-margins();
-
 .margin-half {
 	margin: .5em;
 }
@@ -49,3 +38,26 @@
 
 }
 
+@mixin generate-margins {
+  	@each $type in $types {
+	  	@each $direction in $directions {
+	  		@for $i from 0 through ($num-of-classes) - 1 {
+	  			.#{$type}-#{$direction}-#{$i} {
+	  				#{$type}-#{$direction}: (#{$i}em);
+	  			}
+	  		}
+	  	}
+	    @each $query, $z in $queries {
+	      	@media(min-width: #{$query}) {
+		      	@each $direction in $directions {
+		      		@for $i from 0 through ($num-of-classes) - 1 {
+		      			.#{$type}-#{$direction}-#{$z}-#{$i} {
+		      				#{$type}-#{$direction}: (#{$i}em);
+		      			}
+		      		}
+		      	}
+	      	}
+	    }
+  	}
+}
+@include generate-margins();

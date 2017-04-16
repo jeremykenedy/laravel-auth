@@ -88,7 +88,7 @@
 
             <hr>
 
-            <h4>User has access to {{ $levelAmount }}:</h4>
+            <h4>You have permissions:</h4>
 
             <p>
 

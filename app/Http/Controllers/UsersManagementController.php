@@ -176,6 +176,7 @@ class UsersManagementController extends Controller
         $currentUser = Auth::user();
         $user        = User::find($id);
         $emailCheck  = ($request->input('email') != '') && ($request->input('email') != $user->email);
+        $ipAddress   = new CaptureIpTrait;
 
         if ($emailCheck) {
             $validator = Validator::make($request->all(), [
@@ -208,6 +209,8 @@ class UsersManagementController extends Controller
             $user->attachRole($request->input('role'));
             //$user->activated = 1;
 
+            $user->updated_ip_address = $ipAddress->getClientIp();
+
             $user->save();
             return back()->with('success', trans('usersmanagement.updateSuccess'));
         }
@@ -223,9 +226,13 @@ class UsersManagementController extends Controller
     {
 
         $currentUser = Auth::user();
-        $user = User::findOrFail($id);
+        $user        = User::findOrFail($id);
+        $ipAddress   = new CaptureIpTrait;
 
         if ($user->id != $currentUser->id) {
+
+            $user->deleted_ip_address = $ipAddress->getClientIp();
+            $user->save();
             $user->delete();
             return redirect('users')->with('success', trans('usersmanagement.deleteSuccess'));
         }

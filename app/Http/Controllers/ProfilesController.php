@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Profile;
 use App\Models\Theme;
 use App\Models\User;
+use App\Traits\CaptureIpTrait;
 use File;
 use Helper;
 use Illuminate\Http\Request;
@@ -138,6 +139,8 @@ class ProfilesController extends Controller
 
         $input = Input::only('theme_id', 'location', 'bio', 'twitter_username', 'github_username', 'avatar_status');
 
+        $ipAddress = new CaptureIpTrait;
+
         $profile_validator = $this->profile_validator($request->all());
 
         if ($profile_validator->fails()) {
@@ -160,6 +163,8 @@ class ProfilesController extends Controller
             $user->profile->fill($input)->save();
 
         }
+
+        $user->updated_ip_address = $ipAddress->getClientIp();
 
         $user->save();
 
@@ -193,6 +198,7 @@ class ProfilesController extends Controller
         $currentUser = \Auth::user();
         $user        = User::findOrFail($id);
         $emailCheck  = ($request->input('email') != '') && ($request->input('email') != $user->email);
+        $ipAddress   = new CaptureIpTrait;
 
         $validator = Validator::make($request->all(), [
             'name'      => 'required|max:255',
@@ -214,13 +220,15 @@ class ProfilesController extends Controller
             );
         }
 
-        $user->name = $request->input('name');
-        $user->first_name = $request->input('first_name');
-        $user->last_name = $request->input('last_name');
+        $user->name         = $request->input('name');
+        $user->first_name   = $request->input('first_name');
+        $user->last_name    = $request->input('last_name');
 
         if ($emailCheck) {
             $user->email = $request->input('email');
         }
+
+        $user->updated_ip_address = $ipAddress->getClientIp();
 
         $user->save();
 
@@ -241,6 +249,7 @@ class ProfilesController extends Controller
 
         $currentUser = \Auth::user();
         $user        = User::findOrFail($id);
+        $ipAddress   = new CaptureIpTrait;
 
         $validator = Validator::make($request->all(),
             [
@@ -264,6 +273,8 @@ class ProfilesController extends Controller
             $user->password = bcrypt($request->input('password'));
         }
 
+        $user->updated_ip_address = $ipAddress->getClientIp();
+
         $user->save();
 
         return redirect('profile/'.$user->name.'/edit')->with('success', trans('profile.updatePWSuccess'));
@@ -282,6 +293,7 @@ class ProfilesController extends Controller
 
         $currentUser = \Auth::user();
         $user        = User::findOrFail($id);
+        $ipAddress   = new CaptureIpTrait;
 
         $validator = Validator::make($request->all(),
             [
@@ -303,6 +315,10 @@ class ProfilesController extends Controller
             return redirect('profile/'.$user->name.'/edit')->with('error', 'You can only delete your own profile.');
 
         }
+
+        $user->deleted_ip_address = $ipAddress->getClientIp();
+
+        $user->save();
 
         $user->delete();
 

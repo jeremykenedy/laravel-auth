@@ -28,7 +28,10 @@ class CreateUsersTable extends Migration
             $table->ipAddress('signup_confirmation_ip_address')->nullable();
             $table->ipAddress('signup_sm_ip_address')->nullable();
             $table->ipAddress('admin_ip_address')->nullable();
+            $table->ipAddress('updated_ip_address')->nullable();
+            $table->ipAddress('deleted_ip_address')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
         });
     }

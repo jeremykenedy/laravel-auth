@@ -48,11 +48,24 @@ $twitter: #46c0fb;
 $google: #DD4B39;
 $github: #4183C4;
 
-// Margins
-$numOfMarginClasses: 5;
-$directions: ('top', 'bottom', 'left', 'right');
-
+// MQ's
 $mq-tiny: 320px;
-$phone:   480px;
-$tablet:  767px;
+$phone: 480px;
+$tablet: 767px;
+$desktop: 992px;
+$lg-desktop: 1200px;
+
+// Radius'
 $standard-radius: 3px;
+
+// Margins and Padding
+$num-of-classes: 5;
+$directions: ('top', 'bottom', 'left', 'right');
+$types: ('margin', 'padding');
+$queries: (
+  $mq-tiny: 'xxs',
+  $phone: 'xs',
+  $tablet: 'sm',
+  $desktop: 'md',
+  $lg-desktop: 'lg'
+);
