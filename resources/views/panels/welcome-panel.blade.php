@@ -49,7 +49,8 @@
 
         <hr>
 
-        <h4> You have
+        <h4>
+            You have
                 @role('admin')
                    Admin
                 @endrole
@@ -88,35 +89,33 @@
 
             <hr>
 
-            <h4>You have permissions:</h4>
-
-            <p>
-
+            <h4>
+                You have permissions:
                 @permission('view.users')
-                    <span class="label label-primary margin-half">
-                        Has view users permissions
+                    <span class="label label-primary margin-half margin-left-0"">
+                        {{ trans('permsandroles.permissionView') }}
                     </span>
                 @endpermission
 
                 @permission('create.users')
-                    <span class="label label-info margin-half">
-                        Has create users permissions
+                    <span class="label label-info margin-half margin-left-0"">
+                        {{ trans('permsandroles.permissionCreate') }}
                     </span>
                 @endpermission
 
                 @permission('edit.users')
-                    <span class="label label-warning margin-half">
-                        Has edit users permissions
+                    <span class="label label-warning margin-half margin-left-0"">
+                        {{ trans('permsandroles.permissionEdit') }}
                     </span>
                 @endpermission
 
                 @permission('delete.users')
-                    <span class="label label-danger margin-half">
-                        Has delete users permissions
+                    <span class="label label-danger margin-half margin-left-0"">
+                        {{ trans('permsandroles.permissionDelete') }}
                     </span>
                 @endpermission
 
-            </p>
+            </h4>
 
         @endrole
 

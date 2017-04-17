@@ -5,10 +5,10 @@
 @endsection
 
 @php
-  $levelAmount = 'Level';
+  $levelAmount = 'Level:';
 
   if ($user->level() >= 2) {
-      $levelAmount = 'Levels';
+      $levelAmount = 'Levels:';
 
   }
 @endphp
@@ -24,11 +24,10 @@
           <div class="panel-heading">
             <a href="/users/" class="btn btn-primary btn-xs pull-right">
               <i class="fa fa-fw fa-mail-reply" aria-hidden="true"></i>
-              <span class="hidden-xs">Back to Users</span>
+              <span class="hidden-xs">{{ trans('usersmanagement.usersBackBtn') }}</span>
             </a>
-            User Information
+            {{ trans('usersmanagement.usersPanelTitle') }}
           </div>
-
           <div class="panel-body">
 
             <div class="well">
@@ -79,7 +78,7 @@
 
               <div class="col-sm-5 col-xs-6 text-larger">
                 <strong>
-                  Username:
+                  {{ trans('usersmanagement.labelUserName') }}
                 </strong>
               </div>
 
@@ -96,7 +95,7 @@
 
             <div class="col-sm-5 col-xs-6 text-larger">
               <strong>
-                Email:
+                {{ trans('usersmanagement.labelEmail') }}
               </strong>
             </div>
 
@@ -113,7 +112,7 @@
 
               <div class="col-sm-5 col-xs-6 text-larger">
                 <strong>
-                  First Name:
+                  {{ trans('usersmanagement.labelFirstName') }}
                 </strong>
               </div>
 
@@ -130,7 +129,7 @@
 
               <div class="col-sm-5 col-xs-6 text-larger">
                 <strong>
-                  Last Name:
+                  {{ trans('usersmanagement.labelLastName') }}
                 </strong>
               </div>
 
@@ -145,7 +144,7 @@
 
             <div class="col-sm-5 col-xs-6 text-larger">
               <strong>
-                Role:
+                {{ trans('usersmanagement.labelRole') }}
               </strong>
             </div>
 
@@ -176,7 +175,7 @@
 
             <div class="col-sm-5 col-xs-6 text-larger">
               <strong>
-                Status:
+                {{ trans('usersmanagement.labelStatus') }}
               </strong>
             </div>
 
@@ -197,31 +196,31 @@
 
             <div class="col-sm-5 col-xs-6 text-larger">
               <strong>
-                Access {{ $levelAmount }}:
+                Access {{ trans('usersmanagement.labelAccessLevel')}} {{ $levelAmount }}:
               </strong>
             </div>
 
             <div class="col-sm-7">
 
-              @level(5)
-                  <span class="label label-primary margin-half margin-left-0">5</span>
-              @endlevel
+              @if($user->level() >= 5)
+                <span class="label label-primary margin-half margin-left-0">5</span>
+              @endif
 
-              @level(4)
-                  <span class="label label-info margin-half margin-left-0">4</span>
-              @endlevel
+              @if($user->level() >= 4)
+                 <span class="label label-info margin-half margin-left-0">4</span>
+              @endif
 
-              @level(3)
-                  <span class="label label-success margin-half margin-left-0">3</span>
-              @endlevel
+              @if($user->level() >= 3)
+                <span class="label label-success margin-half margin-left-0">3</span>
+              @endif
 
-              @level(2)
-                  <span class="label label-warning margin-half margin-left-0">2</span>
-              @endlevel
+              @if($user->level() >= 2)
+                <span class="label label-warning margin-half margin-left-0">2</span>
+              @endif
 
-              @level(1)
-                  <span class="label label-default margin-half margin-left-0">1</span>
-              @endlevel
+              @if($user->level() >= 1)
+                <span class="label label-default margin-half margin-left-0">1</span>
+              @endif
 
             </div>
 
@@ -230,34 +229,34 @@
 
             <div class="col-sm-5 col-xs-6 text-larger">
               <strong>
-                Permissions:
+                {{ trans('usersmanagement.labelPermissions') }}
               </strong>
             </div>
 
             <div class="col-sm-7">
-              @permission('view.users')
-                  <span class="label label-primary margin-half margin-left-0"">
-                      View
-                  </span>
-              @endpermission
+              @if($user->canViewUsers())
+                <span class="label label-primary margin-half margin-left-0"">
+                  {{ trans('permsandroles.permissionView') }}
+                </span>
+              @endif
 
-              @permission('create.users')
-                  <span class="label label-info margin-half margin-left-0"">
-                      Create
-                  </span>
-              @endpermission
+              @if($user->canCreateUsers())
+                <span class="label label-info margin-half margin-left-0"">
+                  {{ trans('permsandroles.permissionCreate') }}
+                </span>
+              @endif
 
-              @permission('edit.users')
-                  <span class="label label-warning margin-half margin-left-0"">
-                      Edit
-                  </span>
-              @endpermission
+              @if($user->canEditUsers())
+                <span class="label label-warning margin-half margin-left-0"">
+                  {{ trans('permsandroles.permissionEdit') }}
+                </span>
+              @endif
 
-              @permission('delete.users')
-                  <span class="label label-danger margin-half margin-left-0"">
-                      Delete
-                  </span>
-              @endpermission
+              @if($user->canDeleteUsers())
+                <span class="label label-danger margin-half margin-left-0"">
+                  {{ trans('permsandroles.permissionDelete') }}
+                </span>
+              @endif
             </div>
 
             <div class="clearfix"></div>
@@ -267,7 +266,7 @@
 
               <div class="col-sm-5 col-xs-6 text-larger">
                 <strong>
-                  Created At:
+                  {{ trans('usersmanagement.labelCreatedAt') }}
                 </strong>
               </div>
 
@@ -284,7 +283,7 @@
 
               <div class="col-sm-5 col-xs-6 text-larger">
                 <strong>
-                  Updated At:
+                  {{ trans('usersmanagement.labelUpdatedAt') }}
                 </strong>
               </div>
 
@@ -301,7 +300,7 @@
 
               <div class="col-sm-5 col-xs-6 text-larger">
                 <strong>
-                  Email Signup IP:
+                  {{ trans('usersmanagement.labelIpEmail') }}
                 </strong>
               </div>
 
@@ -318,7 +317,7 @@
 
               <div class="col-sm-5 col-xs-6 text-larger">
                 <strong>
-                  Confirmation IP:
+                  {{ trans('usersmanagement.labelIpConfirm') }}
                 </strong>
               </div>
 
@@ -335,7 +334,7 @@
 
               <div class="col-sm-5 col-xs-6 text-larger">
                 <strong>
-                  Socialite Signup IP:
+                  {{ trans('usersmanagement.labelIpSocial') }}
                 </strong>
               </div>
 
@@ -352,7 +351,7 @@
 
               <div class="col-sm-5 col-xs-6 text-larger">
                 <strong>
-                  Admin Signup IP:
+                  {{ trans('usersmanagement.labelIpAdmin') }}
                 </strong>
               </div>
 
@@ -369,7 +368,7 @@
 
               <div class="col-sm-5 col-xs-6 text-larger">
                 <strong>
-                  Last Update IP:
+                  {{ trans('usersmanagement.labelIpUpdate') }}
                 </strong>
               </div>
 

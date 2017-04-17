@@ -2,12 +2,33 @@
 
 return [
 
-	'createSuccess'             => 'Successfully created user! ',
-	'updateSuccess'             => 'Successfully updated user! ',
-	'deleteSuccess'             => 'Successfully deleted user! ',
-	'deleteSelfError'           => 'You cannot delete yourself! ',
-	'viewProfile'				=> "View Profile",
-	'editUser'					=> 'Edit User',
-	'deleteUser'				=> 'Delete User',
+	// Flash Messages
+	'createSuccess'     => 'Successfully created user! ',
+	'updateSuccess'     => 'Successfully updated user! ',
+	'deleteSuccess'     => 'Successfully deleted user! ',
+	'deleteSelfError'   => 'You cannot delete yourself! ',
+
+	// Show User Tab
+	'viewProfile'		=> "View Profile",
+	'editUser'			=> 'Edit User',
+	'deleteUser'		=> 'Delete User',
+	'usersBackBtn'      => 'Back to Users',
+	'usersPanelTitle'   => 'User Information',
+	'labelUserName'     => 'Username:',
+	'labelEmail'        => 'Email:',
+	'labelFirstName'    => 'First Name:',
+	'labelLastName'     => 'Last Name:',
+	'labelRole'         => 'Role:',
+	'labelStatus'       => 'Status:',
+	'labelAccessLevel'  => 'Access',
+	'labelPermissions'  => 'Permissions:',
+	'labelCreatedAt'    => 'Created At:',
+	'labelUpdatedAt'    => 'Updated At:',
+	'labelIpEmail'      => 'Email Signup IP:',
+	'labelIpEmail'      => 'Email Signup IP:',
+	'labelIpConfirm'    => 'Confirmation IP:',
+	'labelIpSocial'     => 'Socialite Signup IP:',
+	'labelIpAdmin'      => 'Admin Signup IP:',
+	'labelIpUpdate'     => 'Last Update IP:',
 
 ];
