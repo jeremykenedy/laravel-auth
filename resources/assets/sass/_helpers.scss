@@ -16,3 +16,19 @@
 	border-bottom:1px #f8f8f8 solid;
 	margin:5px 0  5px 0;
 }
+
+.border-radius {
+	@include vendor(border-radius, $standard-radius);
+}
+
+@media(max-width: $mq-tiny) {
+	.hidden-xxxs {
+		display: none;
+	}
+}
+
+@media(max-width: $phone) {
+	.hidden-xxs {
+		display: none;
+	}
+}

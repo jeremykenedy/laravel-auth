@@ -30,12 +30,35 @@
             <div class="col-sm-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
+
                         <div style="display: flex; justify-content: space-between; align-items: center;">
+
                             Showing All Users
-                            <a href="/users/create" class="btn btn-default btn-sm pull-right">
-                                <i class="fa fa-fw fa-user-plus" aria-hidden="true"></i>
-                                Create New User
-                            </a>
+
+                            <div class="btn-group pull-right btn-group-xs">
+
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-ellipsis-v fa-fw" aria-hidden="true"></i>
+                                    <span class="sr-only">
+                                        Show Users Management Menu
+                                    </span>
+                                </button>
+
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="/users/create">
+                                            <i class="fa fa-fw fa-user-plus" aria-hidden="true"></i>
+                                            Create New User
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/users/deleted">
+                                            <i class="fa fa-fw fa-group" aria-hidden="true"></i>
+                                            Show Deleted User
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 

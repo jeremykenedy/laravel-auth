@@ -55,6 +55,13 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 |User Password Reset via Email Token|
 |User Login with remember password|
 |User [Roles/ACL Implementation](https://github.com/jeremykenedy/laravel-roles)|
+|Makes of [Laravel's Soft Delete Structure](https://laravel.com/docs/5.4/eloquent#soft-deleting)|
+|Soft Deleted Users Management System|
+|Permanently Delete Sof Deleted Users|
+|Restore Soft Deleted Users|
+|View Soft Deleted Users|
+|Captures Soft Delete Date|
+|Captures Soft Delete IP|
 |Admin Routing Details UI|
 |Admin PHP Information UI|
 |Eloquent user profiles|
@@ -139,20 +146,23 @@ npm install
 #### Admin User Management Routes
 * ```/users```
 * ```/users/create```
-* ```/users{user_id}```
+* ```/users/{user_id}```
 * ```/users{user_id}/edit```
 
 #### Admin Theme Routes
 * ```/themes```
 * ```/themes/create```
-* ```/themes{theme_id}```
-* ```/themes{theme_id}/edit```
+* ```/themes/{theme_id}```
+* ```/themes/{theme_id}/edit```
 
 #### Admin Tools Routes
 * ```/logs```
 * ```/php```
 * ```/routes```
 
+#### Admin Soft Deleted Users Management Routes
+* ```/users/deleted```
+* ```/users/deleted/{user_id}```
 
 ### Socialite
 
@@ -256,13 +266,24 @@ MAIL_ENCRYPTION=null
 MAIL_FROM_ADDRESS=
 MAIL_FROM_NAME=''
 
-PUSHER_APP_ID=
-PUSHER_APP_KEY=
-PUSHER_APP_SECRET=
-
 ACTIVATION=true
 ACTIVATION_LIMIT_TIME_PERIOD=24
 ACTIVATION_LIMIT_MAX_ATTEMPTS=3
+
+NULL_IP_ADDRESS=0.0.0.0
+
+DEBUG_BAR_ENVIRONMENT=local
+
+DEFAULT_GRAVATAR_SIZE=80
+DEFAULT_GRAVATAR_FALLBACK=http://c1940652.r52.cf0.rackcdn.com/51ce28d0fb4f442061000000/Screen-Shot-2013-06-28-at-5.22.23-PM.png
+DEFAULT_GRAVATAR_SECURE=false
+DEFAULT_GRAVATAR_MAX_RATING=g
+DEFAULT_GRAVATAR_FORCE_DEFAULT=false
+DEFAULT_GRAVATAR_FORCE_EXTENSION=jpg
+
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
 
 // NOTE: YOU CAN REMOVE THE KEY CALL IN app.blade.php IF YOU GET A POP UP AND DO NOT WANT TO SETUP A KEY FOR DEV
 # Google Maps API v3 Key - https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key
@@ -328,6 +349,13 @@ INSTAGRAM_REDIRECT_URI=http://laravel-auth.local/social/handle/instagram
 * https://laravel.com/docs/5.4/errors
 
 ###### Updates:
+
+* Added [Soft Deletes](https://laravel.com/docs/5.4/eloquent#soft-deleting) and Soft Deletes Management panel
+* Added User Account Settings to Profile Edit
+* Added User Change Password to Profile Edit
+* Added User Delete Account to Profile Edit
+* Added [Password Strength Meter](https://github.com/elboletaire/password-strength-meter)
+* Added [hideShowPassword](https://github.com/cloudfour/hideShowPassword)
 * Added Admin Routing Details
 * Admin PHP Information
 * Added Robust [Laravel Logging](https://laravel.com/docs/5.4/errors#logging) with admin UI using MonoLog
@@ -346,11 +374,6 @@ INSTAGRAM_REDIRECT_URI=http://laravel-auth.local/social/handle/instagram
 * Added Google Maps API v3 for User Location Input Geocoding
 * Added Google Maps API v3 for User Location Map with Options
 * Added CRUD(Create, Read, Update, Delete) User Management
-* Added User Account Settings to Profile Edit
-* Added User Change Password to Profile Edit
-* Added User Delete Account to Profile Edit
-* Added [Password Strength Meter](https://github.com/elboletaire/password-strength-meter)
-* Added [hideShowPassword](https://github.com/cloudfour/hideShowPassword)
 
 ### Screenshots
 ![Login](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/1laravel-auth2-login.jpg)

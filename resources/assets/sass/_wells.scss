@@ -1,0 +1,51 @@
+// .well {
+//   min-height: 20px;
+//   padding: 19px;
+//   margin-bottom: 20px;
+//   background-color: $well-bg;
+//   border: 1px solid $well-border;
+//   border-radius: $border-radius-base;
+//   @include box-shadow(inset 0 1px 1px rgba(0,0,0,.05));
+//   blockquote {
+//     border-color: #ddd;
+//     border-color: rgba(0,0,0,.15);
+//   }
+
+.well {
+
+  &.well-white {
+    background-color: $white;
+  }
+
+  &.well-primary {
+    background-color: $brand-primary;
+    border-color: $brand-primary;
+    color: $white;
+  }
+
+  &.well-info {
+    background-color: $brand-info;
+    border-color: $brand-info;
+    color: $white;
+  }
+
+  &.well-success {
+    background-color: $brand-success;
+    border-color: $brand-success;
+    color: $white;
+  }
+
+
+  &.well-warning {
+    background-color: $brand-warning;
+    border-color: $brand-warning;
+    color: $white;
+  }
+
+  &.well-danger {
+    background-color: $brand-danger;
+    border-color: $brand-danger;
+    color: $white;
+  }
+
+}

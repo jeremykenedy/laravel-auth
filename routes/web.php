@@ -94,10 +94,19 @@ Route::group(['middleware'=> ['auth', 'activated', 'currentUser']], function () 
 // Registered, activated, and is admin routes.
 Route::group(['middleware'=> ['auth', 'activated', 'role:admin']], function () {
 
+    Route::resource('/users/deleted', 'SoftDeletesController', [
+        'only' => [
+            'index', 'show', 'update', 'destroy',
+        ]
+    ]);
+
     Route::resource('users', 'UsersManagementController', [
         'names' => [
             'index' => 'users',
             'destroy' => 'user.destroy'
+        ],
+        'except' => [
+            'deleted'
         ]
     ]);
 

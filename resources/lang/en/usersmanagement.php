@@ -30,5 +30,9 @@ return [
 	'labelIpSocial'     => 'Socialite Signup IP:',
 	'labelIpAdmin'      => 'Admin Signup IP:',
 	'labelIpUpdate'     => 'Last Update IP:',
+	'labelDeletedAt'	=> 'Deleted on',
+	'labelIpDeleted'	=> 'Deleted IP:',
+	'usersDeletedPanelTitle' => 'Deleted User Information',
+	'usersBackDelBtn'	=> 'Back to Deleted Users',
 
 ];
