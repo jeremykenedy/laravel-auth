@@ -24,4 +24,10 @@ return [
     'activationButton'   => 'Activate',
     'activationThanks'   => 'Thank you for using our application!',
 
+    /**
+     * Goobye email.
+     *
+     */
+    'goodbyeSubject'    => 'Sorry to see you...',
+
 ];

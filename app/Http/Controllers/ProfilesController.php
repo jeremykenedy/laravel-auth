@@ -326,14 +326,11 @@ class ProfilesController extends Controller
 
         /*
             --- Finishing Todos ----
-            1. Update localization file.
-            2. Figure out where to redirect to.
-            3. Send goodbye email.
+            1. Create HTML Goodbye View.
+            2. Send goodbye email.
 
             ---- Desired Other Todos ----
-            1. Check softdelets.
-            2. Later add ability to see and restore soft deleted.
-            3. Later add job and method to delete soft deletes.
+            1. Later add que job to delete the soft deletes.
         */
 
     }
