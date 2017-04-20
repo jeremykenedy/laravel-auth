@@ -18,8 +18,8 @@ return [
      *
      */
 
-    'activationSubject'  => 'Activation email',
-    'activationGreeting' => 'Hello!',
+    'activationSubject'  => 'Activation required',
+    'activationGreeting' => 'Welcome :username!',
     'activationMessage'  => 'You need to activate your email before you can start using all of our services.',
     'activationButton'   => 'Activate',
     'activationThanks'   => 'Thank you for using our application!',
@@ -29,8 +29,8 @@ return [
      *
      */
     'goodbyeSubject'    => 'Sorry to see you go...',
-    'goodbyeGreeting'   => 'Hello,',
-    'goodbyeMessage'    => 'We are very sorry to see you go. We wanted to let you know that your account has been deleted. Thank for the time we shared. You have ' . config('settings.restoreUserCutoff') . ' to restore your account.',
+    'goodbyeGreeting'   => 'Hello :username,',
+    'goodbyeMessage'    => 'We are very sorry to see you go. We wanted to let you know that your account has been deleted. Thank for the time we shared. You have ' . config('settings.restoreUserCutoff') . ' days to restore your account.',
     'goodbyeButton'     => 'Restore Account',
     'goodbyeThanks'     => 'We hope to see you again!',
 

@@ -35,4 +35,9 @@ return [
 	'usersDeletedPanelTitle' => 'Deleted User Information',
 	'usersBackDelBtn'	=> 'Back to Deleted Users',
 
+
+	'successRestore' 	=> 'User successfully restored.',
+	'successDestroy' 	=> 'User record successfully destroyed.',
+	'errorUserNotFound' => 'User not found.',
+
 ];

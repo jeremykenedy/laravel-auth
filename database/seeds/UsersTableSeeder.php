@@ -25,7 +25,7 @@ class UsersTableSeeder extends Seeder
         $userRole = Role::whereName('User')->first();
 
         // Seed test admin
-        $seededAdminEmail = 'jeremykenedy@gmail.com';
+        $seededAdminEmail = 'admin@admin.com';
         $user = User::where('email', '=', $seededAdminEmail)->first();
         if ($user === null) {
             $user = User::create(array(

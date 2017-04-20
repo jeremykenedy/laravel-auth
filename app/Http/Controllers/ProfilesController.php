@@ -365,7 +365,7 @@ class ProfilesController extends Controller
 
         if ($user->id != $currentUser->id) {
 
-            return redirect('profile/'.$user->name.'/edit')->with('error', 'You can only delete your own profile.');
+            return redirect('profile/'.$user->name.'/edit')->with('error', trans('profile.errorDeleteNotYour'));
 
         }
 
@@ -395,7 +395,7 @@ class ProfilesController extends Controller
         $request->session()->flush();
         $request->session()->regenerate();
 
-        return redirect('/login/')->with('success', 'Your account has been deleted.');
+        return redirect('/login/')->with('success', trans('profile.successUserAccountDeleted'));
 
     }
 

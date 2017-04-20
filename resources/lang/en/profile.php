@@ -74,8 +74,17 @@ return [
 	'deleteAccountConfirmMsg'	=> 'Are you sure you want to delete your account?',
 	'confirmDeleteRequired'		=> 'Confirm Account Deletion is required',
 
+	'errorDeleteNotYour'		=> 'You can only delete your own profile',
+	'successUserAccountDeleted' => 'Your account has been deleted',
+	'' => '',
+
 	// Messages
 	'updateSuccess'				=> 'Your profile has been successfully updated',
 	'submitButton'				=> 'Save Changes',
+
+	// Restore User Account
+	'errorRestoreUserTime'		=> 'Sorry, account cannot be restored',
+	'successUserRestore'		=> 'Welcome back :username! Account Successfully Restored'
+
 
 ];

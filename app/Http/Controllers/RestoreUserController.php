@@ -23,6 +23,13 @@ class RestoreUserController extends ProfilesController
         $this->middleware('web');
     }
 
+    /**
+     * User Account Restore
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string $token
+     * @return \Illuminate\Http\Response
+     */
     public function userReActivate(Request $request, $token)
     {
 
@@ -35,7 +42,7 @@ class RestoreUserController extends ProfilesController
 		$level4 	= openssl_decrypt($level5, $encrypter, $restoreKey);
 		$level3     = base64_decode($level4);
 		$level2     = urldecode($level3);
-		$level1[]  	=  explode($sepKey, $level2);
+		$level1[]  	= explode($sepKey, $level2);
 		$uuid 		= $level1[0][0];
 		$userId 	= $level1[0][1] / $userIdKey;
 		$user 		= SoftDeletesController::getDeletedUser($userId);
@@ -51,13 +58,13 @@ class RestoreUserController extends ProfilesController
 
 		if ($daysDeleted >= $cutoffDays) {
 
-			return redirect('/login')->with('error', 'Sorry, account cannot be restored');
+			return redirect('/login')->with('error', trans('profile.errorRestoreUserTime'));
 
 		}
 
 		$user->restore();
 
-		return redirect('/login')->with('success', 'Welcome back ' . $user->name . '! Account Successfully Restored');
+		return redirect('/login')->with('success', trans('profile.successUserRestore',['username' => $user->name]));
 
     }
 

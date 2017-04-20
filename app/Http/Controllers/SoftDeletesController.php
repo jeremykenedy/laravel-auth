@@ -33,7 +33,7 @@ class SoftDeletesController extends Controller
     {
         $user = User::onlyTrashed()->where('id', $id)->get();
         if (count($user) != 1) {
-            return redirect('/users/deleted/')->with('error', 'User not found.');
+            return redirect('/users/deleted/')->with('error', trans('usersmanagement.errorUserNotFound'));
         }
         return $user[0];
     }
@@ -73,7 +73,7 @@ class SoftDeletesController extends Controller
     {
         $user = self::getDeletedUser($id);
         $user->restore();
-        return redirect('/users/')->with('success', 'User successfully restored.');
+        return redirect('/users/')->with('success', trans('usersmanagement.successRestore'));
     }
 
     /**
@@ -86,7 +86,7 @@ class SoftDeletesController extends Controller
     {
         $user = self::getDeletedUser($id);
         $user->forceDelete();
-        return redirect('/users/deleted/')->with('success', 'User record successfully destroyed.');
+        return redirect('/users/deleted/')->with('success', trans('usersmanagement.successDestroy'));
     }
 
 }
