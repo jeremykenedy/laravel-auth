@@ -45,6 +45,8 @@ class User extends Authenticatable
         'signup_confirmation_ip_address',
         'signup_sm_ip_address',
         'admin_ip_address',
+        'updated_ip_address',
+        'deleted_ip_address',
     ];
 
     /**

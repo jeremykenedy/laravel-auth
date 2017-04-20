@@ -243,6 +243,7 @@ return [
         'Input' => Illuminate\Support\Facades\Input::class,
         'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Uuid' => Webpatser\Uuid\Uuid::class,
     ],
 
 ];

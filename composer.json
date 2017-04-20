@@ -21,7 +21,8 @@
         "creativeorange/gravatar": "~1.0",
         "intervention/image": "^2.3",
         "barryvdh/laravel-debugbar": "^2.3",
-        "rap2hpoutre/laravel-log-viewer": "^0.8.1"
+        "rap2hpoutre/laravel-log-viewer": "^0.8.1",
+        "webpatser/laravel-uuid": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

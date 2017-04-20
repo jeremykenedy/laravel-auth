@@ -33,6 +33,9 @@ Route::group(['middleware' => 'web'], function() {
     Route::get('/social/redirect/{provider}', ['as' => 'social.redirect', 'uses' => 'Auth\SocialController@getSocialRedirect']);
     Route::get('/social/handle/{provider}', ['as' => 'social.handle', 'uses' => 'Auth\SocialController@getSocialHandle']);
 
+    // Route to for user to reactivate their user deleted account.
+    Route::get('/re-activate/{token}', ['as' => 'user.reactivate', 'uses' => 'RestoreUserController@userReActivate']);
+
 });
 
 // Registered and Activated User Routes
@@ -43,7 +46,7 @@ Route::group(['middleware' => ['auth', 'activated']], function() {
     Route::get('/logout', ['uses' => 'Auth\LoginController@logout'])->name('logout');
 
     //  Homepage Route - Redirect based on user role is in controller.
-    Route::get('/home', ['as' => 'public.home',   'uses' => 'UserController@index']);
+    Route::get('/home', ['as' => 'public.home',   'uses' => 'UserController@index'])->name('home');
 
     // Show users profile - viewable by other users.
     Route::get('profile/{username}', [

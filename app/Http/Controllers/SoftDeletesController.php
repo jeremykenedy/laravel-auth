@@ -29,7 +29,7 @@ class SoftDeletesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    private static function getDeletedUser($id)
+    public static function getDeletedUser($id)
     {
         $user = User::onlyTrashed()->where('id', $id)->get();
         if (count($user) != 1) {

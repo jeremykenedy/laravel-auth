@@ -25,13 +25,14 @@ class UsersTableSeeder extends Seeder
         $userRole = Role::whereName('User')->first();
 
         // Seed test admin
-        $user = User::where('email', '=', 'admin@admin.com')->first();
+        $seededAdminEmail = 'jeremykenedy@gmail.com';
+        $user = User::where('email', '=', $seededAdminEmail)->first();
         if ($user === null) {
             $user = User::create(array(
                 'name'              => $faker->userName,
                 'first_name'        => $faker->firstName,
                 'last_name'         => $faker->lastName,
-                'email'             => 'admin@admin.com',
+                'email'             => $seededAdminEmail,
                 'password'          => Hash::make('password'),
                 'token'             => str_random(64),
                 'activated'         => true,

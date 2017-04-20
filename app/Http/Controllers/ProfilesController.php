@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Profile;
 use App\Models\Theme;
 use App\Models\User;
+use App\Notifications\SendGoodbyeEmail;
 use App\Traits\CaptureIpTrait;
 use File;
 use Helper;
@@ -14,12 +15,17 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 use Image;
+use Webpatser\Uuid\Uuid;
 use Validator;
 use View;
 
 class ProfilesController extends Controller
 {
+
+    protected $idMultiKey     = '618423'; //int
+    protected $seperationKey  = '****';
 
     /**
      * Create a new controller instance.
@@ -282,60 +288,6 @@ class ProfilesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function deleteUserAccount(Request $request, $id)
-    {
-
-        $currentUser = \Auth::user();
-        $user        = User::findOrFail($id);
-        $ipAddress   = new CaptureIpTrait;
-
-        $validator = Validator::make($request->all(),
-            [
-                'checkConfirmDelete'            => 'required',
-            ],
-            [
-                'checkConfirmDelete.required'   => trans('profile.confirmDeleteRequired'),
-            ]
-        );
-
-        if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
-        }
-
-        if ($user->id != $currentUser->id) {
-
-            return redirect('profile/'.$user->name.'/edit')->with('error', 'You can only delete your own profile.');
-
-        }
-
-        $user->deleted_ip_address = $ipAddress->getClientIp();
-
-        $user->save();
-
-        $user->delete();
-
-        return redirect('/');
-
-        /*
-            --- Finishing Todos ----
-            1. Create HTML Goodbye View.
-            2. Send goodbye email.
-
-            ---- Desired Other Todos ----
-            1. Later add que job to delete the soft deletes.
-        */
-
-    }
-
-    /**
      * Upload and Update user avatar
      *
      * @param $file
@@ -380,6 +332,100 @@ class ProfilesController extends Controller
     public function userProfileAvatar($id, $image)
     {
         return Image::make(storage_path() . '/users/id/' . $id . '/uploads/images/avatar/' . $image)->response();
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteUserAccount(Request $request, $id)
+    {
+
+        $currentUser = \Auth::user();
+        $user        = User::findOrFail($id);
+        $ipAddress   = new CaptureIpTrait;
+
+        $validator = Validator::make($request->all(),
+            [
+                'checkConfirmDelete'            => 'required',
+            ],
+            [
+                'checkConfirmDelete.required'   => trans('profile.confirmDeleteRequired'),
+            ]
+        );
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        if ($user->id != $currentUser->id) {
+
+            return redirect('profile/'.$user->name.'/edit')->with('error', 'You can only delete your own profile.');
+
+        }
+
+        // Create and encrypt user account restore token
+        $sepKey       = $this->getSeperationKey();
+        $userIdKey    = $this->getIdMultiKey();
+        $restoreKey   = config('settings.restoreKey');
+        $encrypter    = config('settings.restoreUserEncType');
+        $level1       = $user->id * $userIdKey;
+        $level2       = urlencode(Uuid::generate(4) . $sepKey . $level1);
+        $level3       = base64_encode($level2);
+        $level4       = openssl_encrypt($level3, $encrypter, $restoreKey);
+        $level5       = base64_encode($level4);
+
+        // Save Restore Token and Ip Address
+        $user->token  = $level5;
+        $user->deleted_ip_address = $ipAddress->getClientIp();
+        $user->save();
+
+        // Send Goodbye email notification
+        $this->sendGoodbyEmail($user, $user->token);
+
+        // Soft Delete User
+        $user->delete();
+
+        // Clear out the session
+        $request->session()->flush();
+        $request->session()->regenerate();
+
+        return redirect('/login/')->with('success', 'Your account has been deleted.');
+
+    }
+
+    /**
+     * Send GoodBye Email Function via Notify
+     *
+     * @param array $user
+     * @param string $token
+     * @return void
+     */
+    public static function sendGoodbyEmail(User $user, $token) {
+        $user->notify(new SendGoodbyeEmail($token));
+    }
+
+    /**
+     * Get User Restore ID Multiplication Key
+     *
+     * @return string
+     */
+    public function getIdMultiKey() {
+        return $this->idMultiKey;
+    }
+
+    /**
+     * Get User Restore Seperation Key
+     *
+     * @return string
+     */
+    public function getSeperationKey() {
+        return $this->seperationKey;
     }
 
 }

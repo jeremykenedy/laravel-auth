@@ -57,7 +57,9 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 |User [Roles/ACL Implementation](https://github.com/jeremykenedy/laravel-roles)|
 |Makes of [Laravel's Soft Delete Structure](https://laravel.com/docs/5.4/eloquent#soft-deleting)|
 |Soft Deleted Users Management System|
-|Permanently Delete Sof Deleted Users|
+|Permanently Delete Soft Deleted Users|
+|User Delete Account with Goodby email|
+|User Restore Deleted Account Token|
 |Restore Soft Deleted Users|
 |View Soft Deleted Users|
 |Captures Soft Delete Date|
@@ -68,6 +70,9 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 |User Themes|
 |404 Page|
 |403 Page|
+
+|User Delete with Goodby email|
+|User Restore Deleted Account|
 
 ### Installation Instructions
 1. Run `sudo git clone https://github.com/jeremykenedy/laravel-auth.git laravel-auth`
@@ -138,6 +143,7 @@ npm install
 * ```/activate```
 * ```/activate/{token}```
 * ```/activation-required```
+* ```/re-activate/{token}```
 
 #### Profile Routes
 * ```/profile/{username}```
@@ -274,6 +280,9 @@ NULL_IP_ADDRESS=0.0.0.0
 
 DEBUG_BAR_ENVIRONMENT=local
 
+USER_RESTORE_CUTOFF_DAYS=31
+USER_RESTORE_ENRYPTION_KEY=
+
 DEFAULT_GRAVATAR_SIZE=80
 DEFAULT_GRAVATAR_FALLBACK=http://c1940652.r52.cf0.rackcdn.com/51ce28d0fb4f442061000000/Screen-Shot-2013-06-28-at-5.22.23-PM.png
 DEFAULT_GRAVATAR_SECURE=false
@@ -349,7 +358,8 @@ INSTAGRAM_REDIRECT_URI=http://laravel-auth.local/social/handle/instagram
 * https://laravel.com/docs/5.4/errors
 
 ###### Updates:
-
+* Added User Delete with Goodby email
+* Added User Restore Deleted Account from email with secure token
 * Added [Soft Deletes](https://laravel.com/docs/5.4/eloquent#soft-deleting) and Soft Deletes Management panel
 * Added User Account Settings to Profile Edit
 * Added User Change Password to Profile Edit

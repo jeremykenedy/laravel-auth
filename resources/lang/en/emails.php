@@ -29,5 +29,9 @@ return [
      *
      */
     'goodbyeSubject'    => 'Sorry to see you...',
+    'goodbyeGreeting'   => 'Hello,',
+    'goodbyeMessage'    => 'We are very sorry to see you go. We wanted to let you know that your account has been deleted. Thank for the time we shared.',
+    'goodbyeButton'     => 'Come on back',
+    'goodbyeThanks'     => 'We hope to see you again!',
 
 ];
