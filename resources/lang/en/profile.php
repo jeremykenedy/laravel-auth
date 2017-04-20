@@ -76,7 +76,6 @@ return [
 
 	'errorDeleteNotYour'		=> 'You can only delete your own profile',
 	'successUserAccountDeleted' => 'Your account has been deleted',
-	'' => '',
 
 	// Messages
 	'updateSuccess'				=> 'Your profile has been successfully updated',
@@ -85,6 +84,5 @@ return [
 	// Restore User Account
 	'errorRestoreUserTime'		=> 'Sorry, account cannot be restored',
 	'successUserRestore'		=> 'Welcome back :username! Account Successfully Restored'
-
 
 ];
