@@ -117,6 +117,7 @@ class SocialController extends Controller
 
             auth()->login($socialUser, true);
 
+            return redirect('home')->with('success', trans('socials.registerSuccess'));
             return redirect()->route('public.home')
                 ->with('status', 'success')
                 ->with('message', trans('socials.registerSuccess'));
@@ -127,7 +128,9 @@ class SocialController extends Controller
 
         auth()->login($socialUser, true);
 
-        return redirect()->route('public.home');
+        return redirect('home');
+
+
 
     }
 }
