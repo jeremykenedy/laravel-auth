@@ -5,10 +5,10 @@
 @endsection
 
 @php
-  $levelAmount = 'Level:';
+  $levelAmount = 'Level';
 
   if ($user->level() >= 2) {
-      $levelAmount = 'Levels:';
+      $levelAmount = 'Levels';
 
   }
 @endphp
@@ -196,7 +196,7 @@
 
             <div class="col-sm-5 col-xs-6 text-larger">
               <strong>
-                Access {{ trans('usersmanagement.labelAccessLevel')}} {{ $levelAmount }}:
+                {{ trans('usersmanagement.labelAccessLevel')}} {{ $levelAmount }}:
               </strong>
             </div>
 
