@@ -5,11 +5,9 @@
 @endsection
 
 @php
-  $levelAmount = 'Level';
-
+  $levelAmount = trans('usersmanagement.labelUserLevel');
   if ($user->level() >= 2) {
-      $levelAmount = 'Levels';
-
+      $levelAmount = trans('usersmanagement.labelUserLevels');
   }
 @endphp
 

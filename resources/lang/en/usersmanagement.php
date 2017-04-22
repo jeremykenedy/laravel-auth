@@ -39,4 +39,7 @@ return [
 	'successDestroy' 	=> 'User record successfully destroyed.',
 	'errorUserNotFound' => 'User not found.',
 
+	'labelUserLevel'	=> 'Level',
+	'labelUserLevels'	=> 'Levels',
+
 ];
