@@ -19,7 +19,7 @@ return [
      */
 
     'activationSubject'  => 'Activation required',
-    'activationGreeting' => 'Welcome :username!',
+    'activationGreeting' => 'Welcome!',
     'activationMessage'  => 'You need to activate your email before you can start using all of our services.',
     'activationButton'   => 'Activate',
     'activationThanks'   => 'Thank you for using our application!',

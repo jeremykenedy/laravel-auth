@@ -77,8 +77,16 @@ class SocialController extends Controller
                 $role       = Role::where('name', '=', 'user')->first();
                 $fullname   = explode(' ', $socialUserObject->name);
 
+                $username = $socialUserObject->nickname;
+
+                if ($username == null) {
+                    foreach ($fullname as $name) {
+                        $username .= $name;
+                    }
+                }
+
                 $user =  User::create([
-                    'name'                  => $socialUserObject->nickname,//explode(' ', $user->name),
+                    'name'                  => $username,
                     'first_name'            => $fullname[0],
                     'last_name'             => $fullname[1],
                     'email'                 => $email,

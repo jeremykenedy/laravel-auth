@@ -47,7 +47,7 @@ class SendActivationEmail extends Notification implements ShouldQueue
 
         $message = new MailMessage;
         $message->subject(trans('emails.activationSubject'))
-            ->greeting(trans('emails.activationGreeting',['username' => \Auth::User()->name]))
+            ->greeting(trans('emails.activationGreeting'))
             ->line(trans('emails.activationMessage'))
             ->action(trans('emails.activationButton'), route('authenticated.activate', ['token' => $this->token]))
             ->line(trans('emails.activationThanks'));

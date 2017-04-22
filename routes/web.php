@@ -46,7 +46,7 @@ Route::group(['middleware' => ['auth', 'activated']], function() {
     Route::get('/logout', ['uses' => 'Auth\LoginController@logout'])->name('logout');
 
     //  Homepage Route - Redirect based on user role is in controller.
-    Route::get('/home', ['as' => 'public.home',   'uses' => 'UserController@index'])->name('home');
+    Route::get('/home', ['as' => 'public.home',   'uses' => 'UserController@index']);
 
     // Show users profile - viewable by other users.
     Route::get('profile/{username}', [
