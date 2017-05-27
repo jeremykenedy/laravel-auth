@@ -79,13 +79,13 @@
                                 {!! Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password-confirm', 'placeholder' => 'Confirm Password', 'required']) !!}
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-6 col-sm-offset-4">
-                                <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
+                        @if(config('settings.reCaptchStatus'))
+                            <div class="form-group">
+                                <div class="col-sm-6 col-sm-offset-4">
+                                    <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
+                                </div>
                             </div>
-                        </div>
-
+                        @endif
                         <div class="form-group margin-bottom-2">
                             <div class="col-sm-6 col-sm-offset-4">
                                 <button type="submit" class="btn btn-primary">

@@ -20,6 +20,8 @@ Thumbs.db
 ### PHPSTORM BOOGERS ###
 .idea/*
 /.idea/*
+.phpintel/*
+/.phpintel/*
 
 ### DIFFERENT TYPE OF MASTER CONFIGS ###
 .env
