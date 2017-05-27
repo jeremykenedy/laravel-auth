@@ -622,8 +622,8 @@ Code and documentation copyright 2011-2017 the [Bootstrap Authors](https://githu
 | `vagrant halt` | Stop Vagrant VM |
 
 ###### Access VAGRANT SSH and MySQL
-|Command        |Action      | |
-|------------- |:------------- |:-------------|
+|Command        |Action      |
+|------------- |:------------- |
 | ```sudo ssh vagrant@127.0.0.1 -p 222``` | Access Vagrant VM via SSH. Password is ``` vagrant  ``` |
 | ```mysql -u homestead -psecret``` | Access Vagrant VM MySQL. Password is ``` vagrant  ``` |
 
