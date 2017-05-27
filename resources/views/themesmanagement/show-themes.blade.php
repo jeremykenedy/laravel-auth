@@ -72,7 +72,7 @@
                                             $themeUsers = 0;
                                             $themeCountClass = 'primary';
                                             foreach($users as $user) {
-                                                if($user->profile->theme_id === $aTheme->id) {
+                                                if($user->profile && $user->profile->theme_id === $aTheme->id) {
                                                    $themeUsers += 1;
                                                 }
                                             }

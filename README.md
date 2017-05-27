@@ -70,7 +70,7 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 |User Themes|
 |404 Page|
 |403 Page|
-
+|Configurable Email Notification via [Laravel-Exception-Notifier](https://github.com/jeremykenedy/laravel-exception-notifier)|
 |User Delete with Goodby email|
 |User Restore Deleted Account|
 
@@ -272,6 +272,13 @@ MAIL_ENCRYPTION=null
 MAIL_FROM_ADDRESS=
 MAIL_FROM_NAME=''
 
+EMAIL_EXCEPTION_ENABLED=false
+EMAIL_EXCEPTION_FROM=email#email.com
+EMAIL_EXCEPTION_TO='email1@gmail.com, email2@rubicon.com'
+EMAIL_EXCEPTION_CC=''
+EMAIL_EXCEPTION_BCC=''
+EMAIL_EXCEPTION_SUBJECT=''
+
 ACTIVATION=true
 ACTIVATION_LIMIT_TIME_PERIOD=24
 ACTIVATION_LIMIT_MAX_ATTEMPTS=3
@@ -385,6 +392,7 @@ INSTAGRAM_REDIRECT_URI=http://laravel-auth.local/social/handle/instagram
 * Added Google Maps API v3 for User Location Input Geocoding
 * Added Google Maps API v3 for User Location Map with Options
 * Added CRUD(Create, Read, Update, Delete) User Management
+* Added Configurable Email Notification using [Laravel-Exception-Notifier](https://github.com/jeremykenedy/laravel-exception-notifier)
 
 ### Screenshots
 ![Login](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/1laravel-auth2-login.jpg)

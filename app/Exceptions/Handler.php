@@ -2,10 +2,16 @@
 
 namespace App\Exceptions;
 
+use App\Mail\ExceptionOccured;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
+use Mail;
+use Response;
+use Symfony\Component\Debug\ExceptionHandler as SymfonyExceptionHandler;
+use Symfony\Component\Debug\Exception\FlattenException;
 
 class Handler extends ExceptionHandler
 {
@@ -33,6 +39,17 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+
+        $enableEmailExceptions = config('exceptions.emailExceptionEnabled');
+
+        if ($enableEmailExceptions === "") {
+            $enableEmailExceptions = config('exceptions.emailExceptionEnabledDefault');
+        }
+
+        if ($enableEmailExceptions && $this->shouldReport($exception)) {
+            $this->sendEmail($exception);
+        }
+
         parent::report($exception);
     }
 
@@ -46,17 +63,26 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
 
-// Add LOG HERE
-        if ($exception instanceof \jeremykenedy\LaravelRoles\Exceptions\LevelDeniedException) {
+        $userLevelCheck = $exception instanceof \jeremykenedy\LaravelRoles\Exceptions\RoleDeniedException ||
+            $exception instanceof \jeremykenedy\LaravelRoles\Exceptions\RoleDeniedException ||
+            $exception instanceof \jeremykenedy\LaravelRoles\Exceptions\PermissionDeniedException ||
+            $exception instanceof \jeremykenedy\LaravelRoles\Exceptions\LevelDeniedException;
 
-// ADD FLASH AND REDIRECT HERE
+        if ($userLevelCheck) {
 
-            return redirect()->back();
+            if ($request->expectsJson()) {
+                return Response::json(array(
+                    'error'    =>  403,
+                    'message'   =>  'Unauthorized.'
+                ), 403);
+            }
 
+            abort(403);
         }
 
         return parent::render($request, $exception);
     }
+
 
     /**
      * Convert an authentication exception into an unauthenticated response.
@@ -73,4 +99,28 @@ class Handler extends ExceptionHandler
 
         return redirect()->guest(route('login'));
     }
+
+    /**
+     * Sends an email upon exception.
+     *
+     * @param  \Exception  $exception
+     * @return void
+     */
+    public function sendEmail(Exception $exception)
+    {
+        try {
+
+            $e = FlattenException::create($exception);
+            $handler = new SymfonyExceptionHandler();
+            $html = $handler->getHtml($e);
+
+            Mail::send(new ExceptionOccured($html));
+
+        } catch (Exception $exception) {
+
+            Log::error($exception);
+
+        }
+    }
+
 }

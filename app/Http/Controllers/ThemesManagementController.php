@@ -101,7 +101,7 @@ class ThemesManagementController extends Controller
         $themeUsers = [];
 
         foreach ($users as $user) {
-            if ($user->profile->theme_id === $theme->id) {
+            if ($user->profile && $user->profile->theme_id === $theme->id) {
                 $themeUsers[] = $user;
             }
         }
@@ -127,7 +127,7 @@ class ThemesManagementController extends Controller
         $themeUsers = [];
 
         foreach ($users as $user) {
-            if ($user->profile->theme_id === $theme->id) {
+            if ($user->profile && $user->profile->theme_id === $theme->id) {
                 $themeUsers[] = $user;
             }
         }
