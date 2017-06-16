@@ -13,9 +13,14 @@
 						PHP Information
 					</div>
 					<div class="panel-body">
-						<div class="table-responsive">
+						<div class="table-responsive php-info">
 							@php
+								ob_start();
 								phpinfo();
+								$pinfo = ob_get_contents();
+								ob_end_clean();
+								$pinfo = preg_replace( '%^.*<body>(.*)</body>.*$%ms','$1',$pinfo);
+								echo $pinfo;
 							@endphp
 						</div>
 					</div>
