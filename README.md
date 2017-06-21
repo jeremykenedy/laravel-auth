@@ -1,4 +1,4 @@
-#### Laravel-Auth is a Complete Build of Laravel 5.4 with Email Registration Verifivation, Social Authentication, User Roles and Permissions, User Profiles, and Admin restricted user managment system.
+#### Laravel-Auth is a Complete Build of Laravel 5.4 with Email Registration Verification, Social Authentication, User Roles and Permissions, User Profiles, and Admin restricted user management system.
 
 [![License](http://jeremykenedy.com/license-mit.svg)](https://raw.githubusercontent.com/jeremykenedy/laravel-auth/LICENSE) [![Build Status](https://travis-ci.org/jeremykenedy/laravel-auth.svg?branch=master)](https://travis-ci.org/jeremykenedy/laravel-auth)
 
@@ -45,7 +45,7 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 |Makes us of Laravel [Mix](https://laravel.com/docs/5.4/mix) to compile assets|
 |Makes use of [Language Localization Files](https://laravel.com/docs/5.4/localization)|
 |Active Nav states using [Laravel Requests](https://laravel.com/docs/5.4/requests)|
-|Restrict User Email Activation Attemts|
+|Restrict User Email Activation Attempts|
 |Capture IP to users table upon signup|
 |Uses [Laravel Debugger](https://github.com/barryvdh/laravel-debugbar) for development|
 |Makes us of [Password Strength Meter](https://github.com/elboletaire/password-strength-meter)|
@@ -58,7 +58,7 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 |Makes of [Laravel's Soft Delete Structure](https://laravel.com/docs/5.4/eloquent#soft-deleting)|
 |Soft Deleted Users Management System|
 |Permanently Delete Soft Deleted Users|
-|User Delete Account with Goodby email|
+|User Delete Account with Goodbye email|
 |User Restore Deleted Account Token|
 |Restore Soft Deleted Users|
 |View Soft Deleted Users|
@@ -99,7 +99,7 @@ npm install
 
 #### Rebuild Front End Assets with Mix
 
-###### Rebuilding the front end of that project is OPTIONAL and can be done using Laravel [Mix](https://laravel.com/docs/5.4/mix) which is Elixers replacment.
+###### Rebuilding the front end of that project is OPTIONAL and can be done using Laravel [Mix](https://laravel.com/docs/5.4/mix) which is Elixers replacement.
 
 1. From the projects root folder run `npm install`
 2. From the projects root folder run `npm run dev` or `npm run production`
@@ -108,7 +108,7 @@ npm install
 #### Optionally Build Cache
 1. From the projects root folder run `sudo php artisan config:cache`
 
-###### And thats it with the caveat of setting up and configuring your development environemnt. I recommend [Laravel Homestead](https://laravel.com/docs/5.4/homestead)
+###### And thats it with the caveat of setting up and configuring your development environment. I recommend [Laravel Homestead](https://laravel.com/docs/5.4/homestead)
 
 ### Seeds
 1. Seeded Roles
@@ -187,7 +187,7 @@ npm install
 * See full list of providers: [http://socialiteproviders.github.io](http://socialiteproviders.github.io/#providers)
 ###### **Steps**:
   1. Go to [http://socialiteproviders.github.io](http://socialiteproviders.github.io/providers/twitch/) and select the provider to be added.
-  2. From the projects root folder in terminal run compser command to get the needed package.
+  2. From the projects root folder in terminal run composer command to get the needed package.
      * Example:
 
       ```
@@ -366,7 +366,7 @@ INSTAGRAM_REDIRECT_URI=http://laravel-auth.local/social/handle/instagram
 * https://laravel.com/docs/5.4/errors
 
 ###### Updates:
-* Added User Delete with Goodby email
+* Added User Delete with Goodbye email
 * Added User Restore Deleted Account from email with secure token
 * Added [Soft Deletes](https://laravel.com/docs/5.4/eloquent#soft-deleting) and Soft Deletes Management panel
 * Added User Account Settings to Profile Edit
