@@ -98,7 +98,7 @@ class RegisterController extends Controller {
 	protected function create(array $data) {
 
 		$ipAddress = new CaptureIpTrait;
-		$role      = Role::where('name', '=', 'Unverified')->first();
+		$role      = Role::where('slug', '=', 'unverified')->first();
 
 		$user = User::create([
 				'name'              => $data['name'],

@@ -74,7 +74,7 @@ class SocialController extends Controller
                 $ipAddress  = new CaptureIpTrait;
                 $socialData = new Social;
                 $profile    = new Profile;
-                $role       = Role::where('name', '=', 'user')->first();
+                $role       = Role::where('slug', '=', 'user')->first();
                 $fullname   = explode(' ', $socialUserObject->name);
 
                 $username = $socialUserObject->nickname;
