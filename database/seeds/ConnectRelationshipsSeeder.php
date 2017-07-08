@@ -26,7 +26,7 @@ class ConnectRelationshipsSeeder extends Seeder
 	     * Attach Permissions to Roles
 	     *
 	     */
-		$roleAdmin = Role::where('name', '=', 'Admin')->first();
+		$roleAdmin = Role::where('slug', '=', 'admin')->first();
 		foreach ($permissions as $permission) {
 			$roleAdmin->attachPermission($permission);
 		}

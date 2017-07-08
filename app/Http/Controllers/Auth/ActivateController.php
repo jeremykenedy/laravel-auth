@@ -149,7 +149,7 @@ class ActivateController extends Controller
         $user           = Auth::user();
         $currentRoute   = Route::currentRouteName();
         $ipAddress      = new CaptureIpTrait;
-        $role           = Role::where('name', '=', 'user')->first();
+        $role           = Role::where('slug', '=', 'user')->first();
         $profile        = new Profile;
 
         $rCheck = $this->activeRedirect($user, $currentRoute);
