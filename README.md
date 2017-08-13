@@ -686,7 +686,7 @@ laravel-auth
 ```
 
 * Tree command can be installed using brew: `brew install tree`
-* File tree used command `tree -a -I '.git|node_modules|vendor|storage|tests`
+* File tree generated using command `tree -a -I '.git|node_modules|vendor|storage|tests`
 
 ### Laravel Auth License
 Laravel-auth is licensed under the MIT license. Enjoy!
