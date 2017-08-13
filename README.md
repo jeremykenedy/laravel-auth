@@ -20,6 +20,7 @@
 - [Environment File](#environment-file)
 - [Updates](#updates)
 - [Screenshots](#screenshots)
+- [File Tree](#file-tree)
 - [Laravel Auth License](#laravel-auth-license)
 
 ### About
@@ -413,575 +414,276 @@ INSTAGRAM_REDIRECT_URI=http://laravel-auth.local/social/handle/instagram
 ![Admin Panel Save Edits](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/16laravel-auth2-modal-save.jpg)
 ![Admin Panel Create User](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/17laravel-auth-create-user.jpg)
 
+### File Tree
+```
+laravel-auth
+├── .env.example
+├── .env.travis
+├── .gitattributes
+├── .gitignore
+├── .travis.yml
+├── CODE_OF_CONDUCT.md
+├── LICENSE
+├── README.md
+├── app
+│   ├── Console
+│   │   ├── Commands
+│   │   │   └── DeleteExpiredActivations.php
+│   │   └── Kernel.php
+│   ├── Exceptions
+│   │   └── Handler.php
+│   ├── Http
+│   │   ├── Controllers
+│   │   │   ├── AdminDetailsController.php
+│   │   │   ├── Auth
+│   │   │   │   ├── ActivateController.php
+│   │   │   │   ├── ForgotPasswordController.php
+│   │   │   │   ├── LoginController.php
+│   │   │   │   ├── RegisterController.php
+│   │   │   │   ├── ResetPasswordController.php
+│   │   │   │   └── SocialController.php
+│   │   │   ├── Controller.php
+│   │   │   ├── ProfilesController.php
+│   │   │   ├── RestoreUserController.php
+│   │   │   ├── SoftDeletesController.php
+│   │   │   ├── ThemesManagementController.php
+│   │   │   ├── UserController.php
+│   │   │   ├── UsersManagementController.php
+│   │   │   └── WelcomeController.php
+│   │   ├── Kernel.php
+│   │   ├── Middleware
+│   │   │   ├── Authenticate.php
+│   │   │   ├── CheckCurrentUser.php
+│   │   │   ├── CheckIsUserActivated.php
+│   │   │   ├── EncryptCookies.php
+│   │   │   ├── RedirectIfAuthenticated.php
+│   │   │   ├── TrimStrings.php
+│   │   │   └── VerifyCsrfToken.php
+│   │   └── ViewComposers
+│   │       └── ThemeComposer.php
+│   ├── Logic
+│   │   ├── Activation
+│   │   │   └── ActivationRepository.php
+│   │   └── Macros
+│   │       └── HtmlMacros.php
+│   ├── Mail
+│   │   └── ExceptionOccured.php
+│   ├── Models
+│   │   ├── Activation.php
+│   │   ├── Profile.php
+│   │   ├── Social.php
+│   │   ├── Theme.php
+│   │   └── User.php
+│   ├── Notifications
+│   │   ├── SendActivationEmail.php
+│   │   └── SendGoodbyeEmail.php
+│   ├── Providers
+│   │   ├── AppServiceProvider.php
+│   │   ├── AuthServiceProvider.php
+│   │   ├── BroadcastServiceProvider.php
+│   │   ├── ComposerServiceProvider.php
+│   │   ├── EventServiceProvider.php
+│   │   ├── LocalEnvironmentServiceProvider.php
+│   │   ├── MacroServiceProvider.php
+│   │   └── RouteServiceProvider.php
+│   └── Traits
+│       ├── ActivationTrait.php
+│       ├── CaptchaTrait.php
+│       └── CaptureIpTrait.php
+├── artisan
+├── bootstrap
+│   ├── app.php
+│   ├── autoload.php
+│   └── cache
+│       └── .gitignore
+├── composer.json
+├── config
+│   ├── app.php
+│   ├── auth.php
+│   ├── broadcasting.php
+│   ├── cache.php
+│   ├── database.php
+│   ├── debugbar.php
+│   ├── exceptions.php
+│   ├── filesystems.php
+│   ├── gravatar.php
+│   ├── mail.php
+│   ├── queue.php
+│   ├── roles.php
+│   ├── services.php
+│   ├── session.php
+│   ├── settings.php
+│   └── view.php
+├── database
+│   ├── .gitignore
+│   ├── factories
+│   │   └── ModelFactory.php
+│   ├── migrations
+│   │   ├── 2014_10_12_000000_create_users_table.php
+│   │   ├── 2014_10_12_100000_create_password_resets_table.php
+│   │   ├── 2016_01_15_105324_create_roles_table.php
+│   │   ├── 2016_01_15_114412_create_role_user_table.php
+│   │   ├── 2016_01_26_115212_create_permissions_table.php
+│   │   ├── 2016_01_26_115523_create_permission_role_table.php
+│   │   ├── 2016_02_09_132439_create_permission_user_table.php
+│   │   ├── 2017_03_09_082449_create_social_logins_table.php
+│   │   ├── 2017_03_09_082526_create_activations_table.php
+│   │   ├── 2017_03_20_213554_create_themes_table.php
+│   │   └── 2017_03_21_042918_create_profiles_table.php
+│   └── seeds
+│       ├── ConnectRelationshipsSeeder.php
+│       ├── DatabaseSeeder.php
+│       ├── PermissionsTableSeeder.php
+│       ├── RolesTableSeeder.php
+│       ├── ThemesTableSeeder.php
+│       └── UsersTableSeeder.php
+├── license.svg
+├── package.json
+├── phpunit.xml
+├── public
+│   ├── .htaccess
+│   ├── css
+│   │   └── app.5c1428c07e35994073c2.css
+│   ├── favicon.ico
+│   ├── fonts
+│   │   ├── fontawesome-webfont.eot
+│   │   ├── fontawesome-webfont.svg
+│   │   ├── fontawesome-webfont.ttf
+│   │   ├── fontawesome-webfont.woff
+│   │   ├── fontawesome-webfont.woff2
+│   │   ├── glyphicons-halflings-regular.eot
+│   │   ├── glyphicons-halflings-regular.svg
+│   │   ├── glyphicons-halflings-regular.ttf
+│   │   ├── glyphicons-halflings-regular.woff
+│   │   └── glyphicons-halflings-regular.woff2
+│   ├── images
+│   │   ├── wink.png
+│   │   └── wink.svg
+│   ├── index.php
+│   ├── js
+│   │   └── app.0a5140ae2ab7468f1f8d.js
+│   ├── mix-manifest.json
+│   ├── robots.txt
+│   └── web.config
+├── resources
+│   ├── assets
+│   │   ├── js
+│   │   │   ├── app.js
+│   │   │   ├── bootstrap.js
+│   │   │   └── components
+│   │   │       └── Example.vue
+│   │   └── sass
+│   │       ├── _avatar.scss
+│   │       ├── _badges.scss
+│   │       ├── _buttons.scss
+│   │       ├── _forms.scss
+│   │       ├── _helpers.scss
+│   │       ├── _hideShowPassword.scss
+│   │       ├── _lists.scss
+│   │       ├── _logs.scss
+│   │       ├── _margins.scss
+│   │       ├── _mixins.scss
+│   │       ├── _modals.scss
+│   │       ├── _panels.scss
+│   │       ├── _password.scss
+│   │       ├── _php-info.scss
+│   │       ├── _socials.scss
+│   │       ├── _typography.scss
+│   │       ├── _variables.scss
+│   │       ├── _wells.scss
+│   │       └── app.scss
+│   ├── lang
+│   │   └── en
+│   │       ├── auth.php
+│   │       ├── emails.php
+│   │       ├── forms.php
+│   │       ├── modals.php
+│   │       ├── pagination.php
+│   │       ├── passwords.php
+│   │       ├── permsandroles.php
+│   │       ├── profile.php
+│   │       ├── socials.php
+│   │       ├── themes.php
+│   │       ├── titles.php
+│   │       ├── usersmanagement.php
+│   │       └── validation.php
+│   └── views
+│       ├── auth
+│       │   ├── activation.blade.php
+│       │   ├── exceeded.blade.php
+│       │   ├── login.blade.php
+│       │   ├── passwords
+│       │   │   ├── email.blade.php
+│       │   │   └── reset.blade.php
+│       │   └── register.blade.php
+│       ├── emails
+│       │   └── exception.blade.php
+│       ├── errors
+│       │   ├── 403.blade.php
+│       │   ├── 404.blade.php
+│       │   ├── 500.blade.php
+│       │   └── 503.blade.php
+│       ├── home.blade.php
+│       ├── layouts
+│       │   └── app.blade.php
+│       ├── modals
+│       │   ├── modal-delete.blade.php
+│       │   ├── modal-form.blade.php
+│       │   └── modal-save.blade.php
+│       ├── pages
+│       │   ├── admin
+│       │   │   ├── home.blade.php
+│       │   │   ├── php-details.blade.php
+│       │   │   └── route-details.blade.php
+│       │   ├── status.blade.php
+│       │   └── user
+│       │       └── home.blade.php
+│       ├── panels
+│       │   └── welcome-panel.blade.php
+│       ├── partials
+│       │   ├── errors.blade.php
+│       │   ├── form-status.blade.php
+│       │   ├── nav.blade.php
+│       │   ├── socials-icons.blade.php
+│       │   ├── socials.blade.php
+│       │   ├── status-panel.blade.php
+│       │   └── status.blade.php
+│       ├── profiles
+│       │   ├── edit.blade.php
+│       │   └── show.blade.php
+│       ├── scripts
+│       │   ├── check-changed.blade.php
+│       │   ├── datatables.blade.php
+│       │   ├── delete-modal-script.blade.php
+│       │   ├── form-modal-script.blade.php
+│       │   ├── gmaps-address-lookup-api3.blade.php
+│       │   ├── google-maps-geocode-and-map.blade.php
+│       │   ├── save-modal-script.blade.php
+│       │   ├── toggleStatus.blade.php
+│       │   ├── tooltips.blade.php
+│       │   └── user-avatar-dz.blade.php
+│       ├── themesmanagement
+│       │   ├── add-theme.blade.php
+│       │   ├── edit-theme.blade.php
+│       │   ├── show-theme.blade.php
+│       │   └── show-themes.blade.php
+│       ├── usersmanagement
+│       │   ├── create-user.blade.php
+│       │   ├── edit-user.blade.php
+│       │   ├── show-deleted-user.blade.php
+│       │   ├── show-deleted-users.blade.php
+│       │   ├── show-user.blade.php
+│       │   └── show-users.blade.php
+│       └── welcome.blade.php
+├── routes
+│   ├── api.php
+│   ├── channels.php
+│   ├── console.php
+│   └── web.php
+├── server.php
+├── webpack.mix.js
+└── yarn.lock
+```
+
 ### Laravel Auth License
 Laravel-auth is licensed under the MIT license. Enjoy!
-
----
-
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
-
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
-
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
-
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
-
-
-# [Bootstrap](https://getbootstrap.com)
-
-[![Slack](https://bootstrap-slack.herokuapp.com/badge.svg)](https://bootstrap-slack.herokuapp.com)
-![Bower version](https://img.shields.io/bower/v/bootstrap.svg)
-[![npm version](https://img.shields.io/npm/v/bootstrap.svg)](https://www.npmjs.com/package/bootstrap)
-[![Gem version](https://img.shields.io/gem/v/bootstrap.svg)](https://rubygems.org/gems/bootstrap)
-[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap)
-[![devDependency Status](https://img.shields.io/david/dev/twbs/bootstrap.svg)](https://david-dm.org/twbs/bootstrap?type=dev)
-[![Meteor Atmosphere](https://img.shields.io/badge/meteor-twbs%3Abootstrap-blue.svg)](https://atmospherejs.com/twbs/bootstrap)
-[![Packagist Prerelease](https://img.shields.io/packagist/vpre/twbs/bootstrap.svg)](https://packagist.org/packages/twbs/bootstrap)
-[![NuGet](https://img.shields.io/nuget/vpre/bootstrap.svg)](https://www.nuget.org/packages/bootstrap/4.0.0-alpha5)
-
-[![Selenium Test Status](https://saucelabs.com/browser-matrix/bootstrap.svg)](https://saucelabs.com/u/bootstrap)
-
-Bootstrap is a sleek, intuitive, and powerful front-end framework for faster and easier web development, created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thornton](https://twitter.com/fat), and maintained by the [core team](https://github.com/orgs/twbs/people) with the massive support and involvement of the community.
-
-To get started, check out <https://getbootstrap.com>!
-
-## Table of contents
-
-- [Quick start](#quick-start)
-- [Bugs and feature requests](#bugs-and-feature-requests)
-- [Documentation](#documentation)
-- [Contributing](#contributing)
-- [Community](#community)
-- [Versioning](#versioning)
-- [Creators](#creators)
-- [Copyright and license](#copyright-and-license)
-
-## Quick start
-
-Several quick start options are available:
-
-- [Download the latest release.](https://github.com/twbs/bootstrap/archive/v4.0.0-alpha.6.zip)
-- Clone the repo: `git clone https://github.com/twbs/bootstrap.git`
-- Install with [npm](https://www.npmjs.com): `npm install bootstrap@4.0.0-alpha.6`
-- Install with [yarn](https://github.com/yarnpkg/yarn): `yarn add bootstrap@4.0.0-alpha.6`
-- Install with [Composer](https://getcomposer.org): `composer require twbs/bootstrap:4.0.0-alpha.6`
-- Install with [Bower](https://bower.io): `bower install bootstrap#v4.0.0-alpha.6`
-- Install with [NuGet](https://www.nuget.org): CSS: `Install-Package bootstrap -Pre` Sass: `Install-Package bootstrap.sass -Pre` (`-Pre` is only required until Bootstrap v4 has a stable release).
-
-Read the [Getting started page](https://getbootstrap.com/getting-started/) for information on the framework contents, templates and examples, and more.
-
-### What's included
-
-Within the download you'll find the following directories and files, logically grouping common assets and providing both compiled and minified variations. You'll see something like this:
-
-```
-bootstrap/
-├── css/
-│   ├── bootstrap.css
-│   ├── bootstrap.css.map
-│   ├── bootstrap.min.css
-│   └── bootstrap.min.css.map
-└── js/
-    ├── bootstrap.js
-    └── bootstrap.min.js
-```
-
-We provide compiled CSS and JS (`bootstrap.*`), as well as compiled and minified CSS and JS (`bootstrap.min.*`). CSS [source maps](https://developers.google.com/web/tools/chrome-devtools/debug/readability/source-maps) (`bootstrap.*.map`) are available for use with certain browsers' developer tools.
-
-
-## Bugs and feature requests
-
-Have a bug or a feature request? Please first read the [issue guidelines](https://github.com/twbs/bootstrap/blob/master/CONTRIBUTING.md#using-the-issue-tracker) and search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/twbs/bootstrap/issues/new).
-
-
-## Documentation
-
-Bootstrap's documentation, included in this repo in the root directory, is built with [Jekyll](https://jekyllrb.com) and publicly hosted on GitHub Pages at <https://getbootstrap.com>. The docs may also be run locally.
-
-### Running documentation locally
-
-1. Run through the [tooling setup](https://github.com/twbs/bootstrap/blob/v4-dev/docs/getting-started/build-tools.md#tooling-setup) to install Jekyll (the site builder) and other Ruby dependencies with `bundle install`.
-2. Run `grunt` (or a specific set of Grunt tasks) to rebuild distributed CSS and JavaScript files, as well as our docs assets.
-3. From the root `/bootstrap` directory, run `bundle exec jekyll serve` in the command line.
-4. Open <http://localhost:9001> in your browser, and voilà.
-
-Learn more about using Jekyll by reading its [documentation](https://jekyllrb.com/docs/home/).
-
-### Documentation for previous releases
-
-Documentation for v2.3.2 has been made available for the time being at <https://getbootstrap.com/2.3.2/> while folks transition to Bootstrap 3.
-
-[Previous releases](https://github.com/twbs/bootstrap/releases) and their documentation are also available for download.
-
-
-
-## Contributing
-
-Please read through our [contributing guidelines](https://github.com/twbs/bootstrap/blob/master/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
-
-Moreover, if your pull request contains JavaScript patches or features, you must include [relevant unit tests](https://github.com/twbs/bootstrap/tree/master/js/tests). All HTML and CSS should conform to the [Code Guide](https://github.com/mdo/code-guide), maintained by [Mark Otto](https://github.com/mdo).
-
-Editor preferences are available in the [editor config](https://github.com/twbs/bootstrap/blob/master/.editorconfig) for easy use in common text editors. Read more and download plugins at <http://editorconfig.org>.
-
-
-
-## Community
-
-Get updates on Bootstrap's development and chat with the project maintainers and community members.
-
-- Follow [@getbootstrap on Twitter](https://twitter.com/getbootstrap).
-- Read and subscribe to [The Official Bootstrap Blog](https://blog.getbootstrap.com).
-- Join [the official Slack room](https://bootstrap-slack.herokuapp.com).
-- Chat with fellow Bootstrappers in IRC. On the `irc.freenode.net` server, in the `##bootstrap` channel.
-- Implementation help may be found at Stack Overflow (tagged [`bootstrap-4`](https://stackoverflow.com/questions/tagged/bootstrap-4)).
-- Developers should use the keyword `bootstrap` on packages which modify or add to the functionality of Bootstrap when distributing through [npm](https://www.npmjs.com/browse/keyword/bootstrap) or similar delivery mechanisms for maximum discoverability.
-
-
-
-## Versioning
-
-For transparency into our release cycle and in striving to maintain backward compatibility, Bootstrap is maintained under [the Semantic Versioning guidelines](http://semver.org/). Sometimes we screw up, but we'll adhere to those rules whenever possible.
-
-See [the Releases section of our GitHub project](https://github.com/twbs/bootstrap/releases) for changelogs for each release version of Bootstrap. Release announcement posts on [the official Bootstrap blog](https://blog.getbootstrap.com) contain summaries of the most noteworthy changes made in each release.
-
-
-## Creators
-
-**Mark Otto**
-
-- <https://twitter.com/mdo>
-- <https://github.com/mdo>
-
-**Jacob Thornton**
-
-- <https://twitter.com/fat>
-- <https://github.com/fat>
-
-
-
-## Copyright and license
-
-Code and documentation copyright 2011-2017 the [Bootstrap Authors](https://github.com/twbs/bootstrap/graphs/contributors) and [Twitter, Inc.](https://twitter.com) Code released under the [MIT License](https://github.com/twbs/bootstrap/blob/master/LICENSE). Docs released under [Creative Commons](https://github.com/twbs/bootstrap/blob/master/docs/LICENSE).
-
----
-
-## Development Environement References and help
-
-#### VAGRANT Dev Environment References
-
-###### VAGRANT Virtual Machine Details
-|Item           |Value:        |
-|:------------- |:-------------|
-|Hostname|homestead|
-|IP Address|192.168.10.10|
-|Username|vagrant|
-|SU Password|vagrant|
-|Database Host|127.0.0.1|
-|Database Port|33060|
-|Database Username|homestead|
-|Database Password|secret|
-
-###### Start VAGRANT
-|Command        |Action        |
-|:------------- |:-------------|
-| `vagrant up` | Start Vagrant VM |
-| `vagrant up --provision` | Start Vagrant VM if vagrantfile updated |
-| `vagrant halt` | Stop Vagrant VM |
-
-###### Access VAGRANT SSH and MySQL
-|Command        |Action      |
-|------------- |:------------- |
-| ```sudo ssh vagrant@127.0.0.1 -p 222``` | Access Vagrant VM via SSH. Password is ``` vagrant  ``` |
-| ```mysql -u homestead -psecret``` | Access Vagrant VM MySQL. Password is ``` vagrant  ``` |
-
-If you do not have Bower, it can be installed using Node Package Manager (NPM).
-If you do not have NPM, it can be installed using NODE JS.
-
-### Install NODE JS
-#### Node JS can be installed muliple ways:
-Mac GUI Installer, easiest way (Simply [Download](https://nodejs.org/en/) and Install)
-
-#### Node JS can also be installed using Homebrew Package Manager with the following command:
-```
-brew install node
-```
-
-### Install Node Package Manager (NPM)
-#### NPM can be installed using the following command:
-```
-npm install -g bower
-```
-
-### Install Bower
-#### Bower can be installed with the following command:
-```
-sudo npm install -g bower
-```
-
-### Install GULP
-#### GULP can be installed using the following command:
-```
-npm install -g gulp
-```
-
-### Install COMPOSER
-
-#### COMPOSER can be installed using the following commands:
-```
-sudo curl -sS https://getcomposer.org/installer | php
-sudo mv composer.phar /usr/local/bin/composer
-```
-
-#### COMPOSER on MAC OS X can be installed using the following commands:
-```
-sudo brew update
-sudo brew tap homebrew/dupes
-sudo brew tap homebrew/php
-sudo brew install composer
-```
-
-#### Very Helpful Aliases
-You can edit/or create your systems (MAC OS X) alias file with the follwing command:
-```
-sudo vim ~/.bash_profile
-```
-
-To update TERMINAL CLI to be able to use the the added aliases run the following command:
-```
-. ~/.bash_profile
-```
-
-##### *You can choose all or some of the following aliases to add to your `.bash_profile`:*
-
-###### Vagrant/Homestead Aliases
-```
-alias machost='sudo vim /etc/hosts'
-alias edithost='sudo vim /etc/hosts'
-alias sshlara='sudo ssh vagrant@127.0.0.1 -p 2222'
-alias laraedit='vim ~/.homestead/Homestead.yaml '
-alias aliaslara='vim ~/.homestead/aliases'
-alias laraalias='vim ~/.homestead/aliases'
-alias sql='mysql -u homestead -psecret'
-alias larasql='mysql -u homestead -psecret'
-alias updatecomposer='sudo composer self-update'
-alias rollbackcomposer='sudo composer self-update --rollback'
-```
-
-A helpful bashfile alias function to **start VAGRANT** instance:
-```
-function laraup {
-  _pwd=$(pwd)
-  startVM(){
-    vagrant up --provision
-  }
-  echo "=============================================================================="
-  echo "****** STARTING LARAVEL VAGRANT INSTANCE "
-  echo "=============================================================================="
-  cd ~/Homestead/
-  if startVM ; then
-    echo "=============================================================================="
-    echo "****** SUCCESS - LARAVEL VAGRANT STARTED :)~"
-    echo "=============================================================================="
-  else
-    echo "=============================================================================="
-    echo "****** ERROR - LARAVEL VAGRANT DID NOT START :("
-    echo "=============================================================================="
-  fi
-  cd $_originalDir
-}
-```
-
-A helpful bashfile alias function to **shutdown/halt/stop VAGRANT** instance:
-```
-function laradown {
-  _pwd=$(pwd)
-  stopVM(){
-    vagrant halt
-  }
-  echo "=============================================================================="
-  echo "****** STOPPING LARAVEL VAGRANT INSTANCE "
-  echo "=============================================================================="
-  cd ~/Homestead/
-  if stopVM ; then
-    echo "=============================================================================="
-    echo "****** SUCCESS - LARAVEL VAGRANT SHUTDOWN :)~"
-    echo "=============================================================================="
-  else
-    echo "=============================================================================="
-    echo "****** ERROR - LARAVEL VAGRANT DID SHUTDOWN :("
-    echo "=============================================================================="
-  fi
-  cd $_originalDir
-}
-```
-
-A helpful bashfile alias function to **remove VAGRANT** instance:
-```
-function larakill {
-  _pwd=$(pwd)
-  killVM(){
-    vagrant destroy
-  }
-  echo "=============================================================================="
-  echo "****** DESTROYING LARAVEL VAGRANT INSTANCE "
-  echo "=============================================================================="
-  cd ~/Homestead/
-  if killVM ; then
-    echo "=============================================================================="
-    echo "****** SUCCESS - LARAVEL VAGRANT DESTROYING :)~"
-    echo "=============================================================================="
-  else
-    echo "=============================================================================="
-    echo "****** ERROR - LARAVEL VAGRANT WAS NOT DESTROYING :("
-    echo "=============================================================================="
-  fi
-  cd $_originalDir
-}
-```
-
-##### General Very Helpful Aliases
-###### Cleanup
-A nice alias to **list all** the MAC and OSX filesystem booger:
-```
-alias cleanprint='
-find . -name "*.DS_Store" -print;
-find . -name "*.DS_Store" -print;
-find . -name "*._DS_Store" -print;
-find . -name "._.DS_Store" -print;
-find . -name ".DS_Store" -print;
-find . -name "Thumbs.db" -print;
-find . -name "._.*" -print;
-find . -name "._*" -print ;
-'
-```
-
-A nice alias to **delete all** the MAC and OSX filesystem booger:
-```
-alias cleanrm='
-find . -name "*.DS_Store" -delete;
-find . -name "*.DS_Store" -delete;
-find . -name "*._DS_Store" -delete;
-find . -name "._.DS_Store" -delete;
-find . -name ".DS_Store" -delete;
-find . -name "Thumbs.db" -delete;
-find . -name "._.*" -delete;
-find . -name "._*" -delete ;
-'
-```
-
-A nice alias to **list and delete all** the MAC and OSX filesystem boogers:
-```
-alias cleanboth='
-find . -name "*.DS_Store" -print;
-find . -name "*.DS_Store" -print;
-find . -name "*._DS_Store" -print;
-find . -name "._.DS_Store" -print;
-find . -name ".DS_Store" -print;
-find . -name "Thumbs.db" -print;
-find . -name "._.*" -print;
-find . -name "._*" -print ;
-find . -name "*.DS_Store" -delete;
-find . -name "*.DS_Store" -delete;
-find . -name "*._DS_Store" -delete;
-find . -name "._.DS_Store" -delete;
-find . -name ".DS_Store" -delete;
-find . -name "Thumbs.db" -delete;
-find . -name "._.*" -delete;
-find . -name "._*" -delete ;
-'
-```
-###### Show MAC OS X files
-Alias to **show all hidden files** on MAC OS X filesystem:
-```
-alias showfiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
-```
-
-Alias to **hide all hidden files** on MAC OS X filesystem:
-```
-alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
-```
-
-##### GIT CLI Quick alias functions
-###### Quick GIT PUSH
-```
-function quickpush {
-    _currentBranch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
-    sudo git add -A
-    sudo git commit -m "quick push"
-    sudo git push $_currentBranch
-}
-```
-
-###### Another flavor of Quick GIT PUSH
-```
-function push {
-    _currentBranch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
-    sudo git add -A
-    sudo git commit -m "quick push"
-    sudo git push $_currentBranch
-}
-```
-
-###### Quick GIT PULL
-```
-function quickpull {
-    _currentBranch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
-    sudo git pull $_currentBranch
-}
-```
-
-###### Another flavor of Quick GIT PULL
-```
-function pull {
-    _currentBranch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
-    sudo git pull $_currentBranch
-}
-```
-
-##### My keyboard hates me GIT helper aliases:
-```
-alias gut='git'
-alias got='git'
-alias car='cat'
-alias commut='commit'
-alias commmit='commit'
-alias comit='commit'
-alias commot='commit'
-```
-
-##### Typing `clear` takes too many keystrokes alias helper:
-```
-alias cl='clear'
-```
-
-###### Helpful quick filesystem `ls` alias helpers:
-```
-alias la='ls -la'
-alias ll='ls -la'
-```
-
-##### **Alias** and **`.bash_profile management`** aliases:
-###### **Show** Aliases helpers:
-```
-alias listalias='cat ~/.bash_profile'
-alias aliaslist='cat ~/.bash_profile'
-alias list='cat ~/.bash_profile'
-alias text='cat ~/.bash_profile'
-alias aliasshow='cat ~/.bash_profile'
-```
-
-###### **Edit** Aliases helpers:
-```
-alias aliasedit='sudo vim ~/.bash_profile'
-alias editalias='sudo vim ~/.bash_profile'
-```
-
-#### **Restart/Enable** Aliases helpers:
-```
-alias aliasreset='. ~/.bash_profile'
-alias aliasr='. ~/.bash_profile'
-alias alr='. ~/.bash_profile'
-alias alsr='. ~/.bash_profile'
-alias aliasrestart='. ~/.bash_profile'
-```
-
-#### Things not working (Troubleshooting)?
-
-##### Issue: Cannot access project through web browser after running vagrant up / homestead up
-
-###### Error Message from Browser:
-```
-This webpage is not available
-ERR_NAME_NOT_RESOLVED
-```
-
-##### 1. Check Vagrant/Homestead configuration
-###### a. Open configuration with the following command:
-
-vim ~/.homestead/Homestead.yaml or laraedit
-
-###### b. Check to make sure your folders are mapped (See example A1.):
-Note:
-map: Is the path to the your files on your local machine
-to: Is the virtual file path to your projects that vagrant will create
-###### Example A1
-```
-folders:
-  - map: /Users/yourLocalUserName/Sites/project1
-    to: /home/vagrant/Sites/project1/public
-
-  - map: /Users/yourLocalUserName/Sites/project2
-    to: /home/vagrant/Sites/project2/public
-```
-##### c. Check to make sure your projects URI and SYMLINK is mapped (See example A2):
-map: Is the local URI of your project
-to: Is the virtual symlink to your projects virtual file path
-###### Example A2
-```
-sites:
-  - map: project1.local
-    to: /home/vagrant/Sites/project1/public
-
-  - map: project2.app
-  to: /home/vagrant/Sites/project2/public
-```
-#### 2. Check your local hosts file for local pointer redirect:
-##### a.  Open your hosts file (See example B1):
-Note: Instructions are for Mac OS X
-###### Example B1
-`sudo vim /etc/hosts` or `edithost`
-
-##### b.  Edit your hosts file (See example B2):
-Note: Replace examples URI used in Vargrant/Homestead configuration file and use the IP address of your local Vargrant/Homestead virtual machine instance
-
-###### Example B2 - The last line is the important part of the example
-```
-##
-# Host Database
-#
-# localhost is used to configure the loopback interface
-# when the system is booting.  Do not change this entry.
-##
-127.0.0.1        localhost
-255.255.255.255  broadcasthost
-192.168.10.10    laravel-auth.local
-```
-
----
-
-## Enjoy
-
-###### ~ **Jeremy**
