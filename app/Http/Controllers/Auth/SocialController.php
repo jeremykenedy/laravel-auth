@@ -76,7 +76,8 @@ class SocialController extends Controller
                 $profile    = new Profile;
                 $role       = Role::where('slug', '=', 'user')->first();
                 $fullname   = explode(' ', $socialUserObject->name);
-
+                if(count($fullname)==1)
+                    $fullname[1]='';
                 $username = $socialUserObject->nickname;
 
                 if ($username == null) {
