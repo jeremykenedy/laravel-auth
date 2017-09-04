@@ -83,7 +83,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel<br /><small>Auth 2.0</small>
+                    Laravel<br /><small>Auth 3.0</small>
                 </div>
 
                 <div class="links">

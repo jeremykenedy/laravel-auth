@@ -1,4 +1,4 @@
-#### Laravel-Auth is a Complete Build of Laravel 5.4 with Email Registration Verification, Social Authentication, User Roles and Permissions, User Profiles, and Admin restricted user management system.
+#### Laravel-Auth is a Complete Build of Laravel 5.5 with Email Registration Verification, Social Authentication, User Roles and Permissions, User Profiles, and Admin restricted user management system.
 
 [![License](http://jeremykenedy.com/license-mit.svg)](https://raw.githubusercontent.com/jeremykenedy/laravel-auth/LICENSE) [![Build Status](https://travis-ci.org/jeremykenedy/laravel-auth.svg?branch=master)](https://travis-ci.org/jeremykenedy/laravel-auth)
 
@@ -24,28 +24,28 @@
 - [Laravel Auth License](#laravel-auth-license)
 
 ### About
-Laravel 5.4 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
+Laravel 5.5 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
 
 ### Features
-#### A [Laravel](http://laravel.com/) 5.4.x with minimal [Bootstrap](http://getbootstrap.com) 3.7.x project.
+#### A [Laravel](http://laravel.com/) 5.5.x with minimal [Bootstrap](http://getbootstrap.com) 3.7.x project.
 
 | Laravel-Auth Features  |
 | :------------ |
-|Built on [Laravel](http://laravel.com/) 5.4|
+|Built on [Laravel](http://laravel.com/) 5.5|
 |Uses [MySQL](https://github.com/mysql) Database|
-|Uses [Artisan](http://laravel.com/docs/5.4/artisan) to manage database migration, schema creations, and create/publish page controller templates|
+|Uses [Artisan](http://laravel.com/docs/5.5/artisan) to manage database migration, schema creations, and create/publish page controller templates|
 |Dependencies are managed with [COMPOSER](https://getcomposer.org/)|
 |Laravel Scaffolding **User** and **Administrator Authentication**.|
 |User [Socialite Logins](https://github.com/laravel/socialite) ready to go - See API list used below|
 |[Google Maps API v3](https://developers.google.com/maps/documentation/javascript/) for User Location lookup and Geocoding|
 |CRUD (Create, Read, Update, Delete) Themes Management|
 |CRUD (Create, Read, Update, Delete) User Management|
-|Robust [Laravel Logging](https://laravel.com/docs/5.4/errors#logging) with admin UI using MonoLog|
+|Robust [Laravel Logging](https://laravel.com/docs/5.5/errors#logging) with admin UI using MonoLog|
 |Google [reCaptcha Protection with Google API](https://developers.google.com/recaptcha/)|
 |User Registration with email verification|
-|Makes us of Laravel [Mix](https://laravel.com/docs/5.4/mix) to compile assets|
-|Makes use of [Language Localization Files](https://laravel.com/docs/5.4/localization)|
-|Active Nav states using [Laravel Requests](https://laravel.com/docs/5.4/requests)|
+|Makes us of Laravel [Mix](https://laravel.com/docs/5.5/mix) to compile assets|
+|Makes use of [Language Localization Files](https://laravel.com/docs/5.5/localization)|
+|Active Nav states using [Laravel Requests](https://laravel.com/docs/5.5/requests)|
 |Restrict User Email Activation Attempts|
 |Capture IP to users table upon signup|
 |Uses [Laravel Debugger](https://github.com/barryvdh/laravel-debugbar) for development|
@@ -56,7 +56,7 @@ Laravel 5.4 with user authentication, registration with email confirmation, soci
 |User Password Reset via Email Token|
 |User Login with remember password|
 |User [Roles/ACL Implementation](https://github.com/jeremykenedy/laravel-roles)|
-|Makes of [Laravel's Soft Delete Structure](https://laravel.com/docs/5.4/eloquent#soft-deleting)|
+|Makes of [Laravel's Soft Delete Structure](https://laravel.com/docs/5.5/eloquent#soft-deleting)|
 |Soft Deleted Users Management System|
 |Permanently Delete Soft Deleted Users|
 |User Delete Account with Goodbye email|
@@ -100,7 +100,7 @@ npm install
 
 #### Rebuild Front End Assets with Mix
 
-###### Rebuilding the front end of that project is OPTIONAL and can be done using Laravel [Mix](https://laravel.com/docs/5.4/mix) which is Elixers replacement.
+###### Rebuilding the front end of that project is OPTIONAL and can be done using Laravel [Mix](https://laravel.com/docs/5.5/mix) which is Elixers replacement.
 
 1. From the projects root folder run `npm install`
 2. From the projects root folder run `npm run dev` or `npm run production`
@@ -109,7 +109,7 @@ npm install
 #### Optionally Build Cache
 1. From the projects root folder run `sudo php artisan config:cache`
 
-###### And thats it with the caveat of setting up and configuring your development environment. I recommend [Laravel Homestead](https://laravel.com/docs/5.4/homestead)
+###### And thats it with the caveat of setting up and configuring your development environment. I recommend [Laravel Homestead](https://laravel.com/docs/5.5/homestead)
 
 ### Seeds
 1. Seeded Roles
@@ -355,21 +355,22 @@ INSTAGRAM_REDIRECT_URI=http://laravel-auth.local/social/handle/instagram
 ```
 
 #### Laravel Developement Packages Used References
-* http://laravel.com/docs/5.4/authentication
-* http://laravel.com/docs/5.4/authorization
-* http://laravel.com/docs/5.4/routing
-* https://laravel.com/docs/5.4/migrations
-* https://laravel.com/docs/5.4/queries
-* https://laravel.com/docs/5.4/views
-* https://laravel.com/docs/5.4/eloquent
-* https://laravel.com/docs/5.4/eloquent-relationships
-* https://laravel.com/docs/5.4/requests
-* https://laravel.com/docs/5.4/errors
+* http://laravel.com/docs/5.5/authentication
+* http://laravel.com/docs/5.5/authorization
+* http://laravel.com/docs/5.5/routing
+* https://laravel.com/docs/5.5/migrations
+* https://laravel.com/docs/5.5/queries
+* https://laravel.com/docs/5.5/views
+* https://laravel.com/docs/5.5/eloquent
+* https://laravel.com/docs/5.5/eloquent-relationships
+* https://laravel.com/docs/5.5/requests
+* https://laravel.com/docs/5.5/errors
 
 ###### Updates:
+* Update to Laravel 5.5
 * Added User Delete with Goodbye email
 * Added User Restore Deleted Account from email with secure token
-* Added [Soft Deletes](https://laravel.com/docs/5.4/eloquent#soft-deleting) and Soft Deletes Management panel
+* Added [Soft Deletes](https://laravel.com/docs/5.5/eloquent#soft-deleting) and Soft Deletes Management panel
 * Added User Account Settings to Profile Edit
 * Added User Change Password to Profile Edit
 * Added User Delete Account to Profile Edit
@@ -377,8 +378,8 @@ INSTAGRAM_REDIRECT_URI=http://laravel-auth.local/social/handle/instagram
 * Added [hideShowPassword](https://github.com/cloudfour/hideShowPassword)
 * Added Admin Routing Details
 * Admin PHP Information
-* Added Robust [Laravel Logging](https://laravel.com/docs/5.4/errors#logging) with admin UI using MonoLog
-* Added Active Nav states using [Laravel Requests](https://laravel.com/docs/5.4/requests)
+* Added Robust [Laravel Logging](https://laravel.com/docs/5.5/errors#logging) with admin UI using MonoLog
+* Added Active Nav states using [Laravel Requests](https://laravel.com/docs/5.5/requests)
 * Added [Laravel Debugger](https://github.com/barryvdh/laravel-debugbar) with Service Provider to manage status in `.env` file.
 * Updated Capture IP not found IP address
 * Added User Avatar Image AJAX Upload with [Dropzone.js](http://www.dropzonejs.com/#configuration)
