@@ -108,8 +108,8 @@ class ProfilesController extends Controller
         }
 
         $themes = Theme::where('status', 1)
-                       ->orderBy('name', 'asc')
-                       ->get();
+                        ->orderBy('name', 'asc')
+                        ->get();
 
         $currentTheme = Theme::find($user->profile->theme_id);
 

@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
 
         $schedule->command('activations:clean')
-                 ->daily();
+                    ->daily();
     }
 
     /**
