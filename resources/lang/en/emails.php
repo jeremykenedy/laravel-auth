@@ -13,7 +13,7 @@ return [
     |
     */
 
-    /**
+    /*
      * Activate new user account email.
      *
      */
@@ -24,13 +24,13 @@ return [
     'activationButton'   => 'Activate',
     'activationThanks'   => 'Thank you for using our application!',
 
-    /**
+    /*
      * Goobye email.
      *
      */
     'goodbyeSubject'    => 'Sorry to see you go...',
     'goodbyeGreeting'   => 'Hello :username,',
-    'goodbyeMessage'    => 'We are very sorry to see you go. We wanted to let you know that your account has been deleted. Thank for the time we shared. You have ' . config('settings.restoreUserCutoff') . ' days to restore your account.',
+    'goodbyeMessage'    => 'We are very sorry to see you go. We wanted to let you know that your account has been deleted. Thank for the time we shared. You have '.config('settings.restoreUserCutoff').' days to restore your account.',
     'goodbyeButton'     => 'Restore Account',
     'goodbyeThanks'     => 'We hope to see you again!',
 

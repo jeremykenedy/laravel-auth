@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Activation extends Model
 {
-
     /**
      * The database table used by the model.
      *
@@ -20,18 +19,17 @@ class Activation extends Model
      * @var array
      */
     protected $guarded = [
-    	'id'
+        'id',
     ];
 
     protected $hidden = [
         'user_id',
         'token',
-        'ip_address'
+        'ip_address',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-
 }

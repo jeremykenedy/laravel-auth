@@ -40,7 +40,7 @@ return [
     */
 
     'models' => [
-        'role' => jeremykenedy\LaravelRoles\Models\Role::class,
+        'role'       => jeremykenedy\LaravelRoles\Models\Role::class,
         'permission' => jeremykenedy\LaravelRoles\Models\Permission::class,
     ],
 
@@ -60,9 +60,9 @@ return [
         'enabled' => false,
 
         'options' => [
-            'hasRole' => true,
+            'hasRole'       => true,
             'hasPermission' => true,
-            'allowed' => true,
+            'allowed'       => true,
         ],
 
     ],

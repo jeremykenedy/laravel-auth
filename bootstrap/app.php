@@ -1,11 +1,10 @@
 <?php
 
-use Monolog\Logger;
-use Illuminate\Log\Writer;
-use Monolog\Handler\StreamHandler;
-use Monolog\Formatter\LineFormatter;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\Log;
+use Monolog\Formatter\LineFormatter;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,44 +53,41 @@ $app->singleton(
 |--------------------------------------------------------------------------
 |
 */
-$app->configureMonologUsing(function($monolog) {
+$app->configureMonologUsing(function ($monolog) {
+    $logFormat = "[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n";
+    $logFormatInfo = "[%datetime%] %channel%.%level_name%: %message% \nLog Entry Details:\n%context%\n%extra%\n";
+    $formatter = new LineFormatter($logFormat, null, true);
+    $formatterInfo = new LineFormatter($logFormatInfo, null, true);
 
-  $logFormat = "[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n";
-  $logFormatInfo = "[%datetime%] %channel%.%level_name%: %message% \nLog Entry Details:\n%context%\n%extra%\n";
-  $formatter = new LineFormatter($logFormat, null, true);
-  $formatterInfo = new LineFormatter($logFormatInfo, null, true);
+    $bubble = false;
 
-  $bubble = false;
+    $debugStreamHandler = new StreamHandler(storage_path('/logs/debug.log'), Logger::DEBUG, $bubble);
+    $infoStreamHandler = new StreamHandler(storage_path('/logs/info.log'), Logger::INFO, $bubble);
+    $noticeStreamHandler = new StreamHandler(storage_path('/logs/notice.log'), Logger::NOTICE, $bubble);
+    $warningStreamHandler = new StreamHandler(storage_path('/logs/warning.log'), Logger::WARNING, $bubble);
+    $errorStreamHandler = new StreamHandler(storage_path('/logs/error.log'), Logger::ERROR, $bubble);
+    $criticalStreamHandler = new StreamHandler(storage_path('/logs/critical.log'), Logger::CRITICAL, $bubble);
+    $alertStreamHandler = new StreamHandler(storage_path('/logs/alert.log'), Logger::ALERT, $bubble);
+    $emergencyStreamHandler = new StreamHandler(storage_path('/logs/emergency.log'), Logger::EMERGENCY, $bubble);
 
-  $debugStreamHandler = new StreamHandler(storage_path("/logs/debug.log"), Logger::DEBUG, $bubble);
-  $infoStreamHandler = new StreamHandler(storage_path("/logs/info.log"), Logger::INFO, $bubble);
-  $noticeStreamHandler = new StreamHandler(storage_path("/logs/notice.log"), Logger::NOTICE, $bubble);
-  $warningStreamHandler = new StreamHandler(storage_path("/logs/warning.log"), Logger::WARNING, $bubble);
-  $errorStreamHandler = new StreamHandler(storage_path("/logs/error.log"), Logger::ERROR, $bubble);
-  $criticalStreamHandler = new StreamHandler(storage_path("/logs/critical.log"), Logger::CRITICAL, $bubble);
-  $alertStreamHandler = new StreamHandler(storage_path("/logs/alert.log"), Logger::ALERT, $bubble);
-  $emergencyStreamHandler = new StreamHandler(storage_path("/logs/emergency.log"), Logger::EMERGENCY, $bubble);
+    $monolog->pushHandler($debugStreamHandler);
+    $monolog->pushHandler($infoStreamHandler);
+    $monolog->pushHandler($noticeStreamHandler);
+    $monolog->pushHandler($warningStreamHandler);
+    $monolog->pushHandler($errorStreamHandler);
+    $monolog->pushHandler($criticalStreamHandler);
+    $monolog->pushHandler($alertStreamHandler);
+    $monolog->pushHandler($emergencyStreamHandler);
 
-  $monolog->pushHandler($debugStreamHandler);
-  $monolog->pushHandler($infoStreamHandler);
-  $monolog->pushHandler($noticeStreamHandler);
-  $monolog->pushHandler($warningStreamHandler);
-  $monolog->pushHandler($errorStreamHandler);
-  $monolog->pushHandler($criticalStreamHandler);
-  $monolog->pushHandler($alertStreamHandler);
-  $monolog->pushHandler($emergencyStreamHandler);
-
-  $debugStreamHandler->setFormatter($formatter);
-  $infoStreamHandler->setFormatter($formatterInfo);
-  $noticeStreamHandler->setFormatter($formatter);
-  $warningStreamHandler->setFormatter($formatter);
-  $errorStreamHandler->setFormatter($formatter);
-  $criticalStreamHandler->setFormatter($formatter);
-  $alertStreamHandler->setFormatter($formatter);
-  $emergencyStreamHandler->setFormatter($formatter);
-
+    $debugStreamHandler->setFormatter($formatter);
+    $infoStreamHandler->setFormatter($formatterInfo);
+    $noticeStreamHandler->setFormatter($formatter);
+    $warningStreamHandler->setFormatter($formatter);
+    $errorStreamHandler->setFormatter($formatter);
+    $criticalStreamHandler->setFormatter($formatter);
+    $alertStreamHandler->setFormatter($formatter);
+    $emergencyStreamHandler->setFormatter($formatter);
 });
-
 
 /*
 |--------------------------------------------------------------------------

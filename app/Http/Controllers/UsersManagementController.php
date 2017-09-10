@@ -2,23 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests;
 use App\Models\Profile;
 use App\Models\User;
-use App\Traits\ActivationTrait;
-use App\Traits\CaptchaTrait;
 use App\Traits\CaptureIpTrait;
 use Auth;
-use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
-use jeremykenedy\LaravelRoles\Models\Permission;
 use jeremykenedy\LaravelRoles\Models\Role;
 use Validator;
 
 class UsersManagementController extends Controller
 {
-
     /**
      * Create a new controller instance.
      *
@@ -52,7 +45,7 @@ class UsersManagementController extends Controller
         $roles = Role::all();
 
         $data = [
-            'roles' => $roles
+            'roles' => $roles,
         ];
 
         return view('usersmanagement.create-user')->with($data);
@@ -61,7 +54,8 @@ class UsersManagementController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -74,7 +68,7 @@ class UsersManagementController extends Controller
                 'email'                 => 'required|email|max:255|unique:users',
                 'password'              => 'required|min:6|max:20|confirmed',
                 'password_confirmation' => 'required|same:password',
-                'role'                  => 'required'
+                'role'                  => 'required',
             ],
             [
                 'name.unique'           => trans('auth.userNameTaken'),
@@ -86,7 +80,7 @@ class UsersManagementController extends Controller
                 'password.required'     => trans('auth.passwordRequired'),
                 'password.min'          => trans('auth.PasswordMin'),
                 'password.max'          => trans('auth.PasswordMax'),
-                'role.required'         => trans('auth.roleRequired')
+                'role.required'         => trans('auth.roleRequired'),
             ]
         );
 
@@ -94,10 +88,10 @@ class UsersManagementController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        $ipAddress  = new CaptureIpTrait;
-        $profile    = new Profile;
+        $ipAddress = new CaptureIpTrait();
+        $profile = new Profile();
 
-        $user =  User::create([
+        $user = User::create([
             'name'              => $request->input('name'),
             'first_name'        => $request->input('first_name'),
             'last_name'         => $request->input('last_name'),
@@ -105,7 +99,7 @@ class UsersManagementController extends Controller
             'password'          => bcrypt($request->input('password')),
             'token'             => str_random(64),
             'admin_ip_address'  => $ipAddress->getClientIp(),
-            'activated'         => 1
+            'activated'         => 1,
         ]);
 
         $user->profile()->save($profile);
@@ -118,7 +112,8 @@ class UsersManagementController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -131,7 +126,8 @@ class UsersManagementController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -146,7 +142,7 @@ class UsersManagementController extends Controller
         $data = [
             'user'          => $user,
             'roles'         => $roles,
-            'currentRole'   => $currentRole
+            'currentRole'   => $currentRole,
         ];
 
         return view('usersmanagement.edit-user')->with($data);
@@ -155,27 +151,28 @@ class UsersManagementController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $currentUser = Auth::user();
-        $user        = User::find($id);
-        $emailCheck  = ($request->input('email') != '') && ($request->input('email') != $user->email);
-        $ipAddress   = new CaptureIpTrait;
+        $user = User::find($id);
+        $emailCheck = ($request->input('email') != '') && ($request->input('email') != $user->email);
+        $ipAddress = new CaptureIpTrait();
 
         if ($emailCheck) {
             $validator = Validator::make($request->all(), [
                 'name'      => 'required|max:255',
                 'email'     => 'email|max:255|unique:users',
-                'password'  => 'present|confirmed|min:6'
+                'password'  => 'present|confirmed|min:6',
             ]);
         } else {
             $validator = Validator::make($request->all(), [
                 'name'      => 'required|max:255',
-                'password'  => 'nullable|confirmed|min:6'
+                'password'  => 'nullable|confirmed|min:6',
             ]);
         }
 
@@ -183,9 +180,9 @@ class UsersManagementController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        $user->name         = $request->input('name');
-        $user->first_name   = $request->input('first_name');
-        $user->last_name    = $request->input('last_name');
+        $user->name = $request->input('name');
+        $user->first_name = $request->input('first_name');
+        $user->last_name = $request->input('last_name');
 
         if ($emailCheck) {
             $user->email = $request->input('email');
@@ -206,20 +203,21 @@ class UsersManagementController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         $currentUser = Auth::user();
-        $user        = User::findOrFail($id);
-        $ipAddress   = new CaptureIpTrait;
+        $user = User::findOrFail($id);
+        $ipAddress = new CaptureIpTrait();
 
         if ($user->id != $currentUser->id) {
-
             $user->deleted_ip_address = $ipAddress->getClientIp();
             $user->save();
             $user->delete();
+
             return redirect('users')->with('success', trans('usersmanagement.deleteSuccess'));
         }
 

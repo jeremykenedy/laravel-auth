@@ -22,22 +22,22 @@ class Theme extends Model
      * @var array
      */
     protected $guarded = [
-    	'id'
+        'id',
     ];
 
-	/**
-	 * Fillable fields for a Profile
-	 *
-	 * @var array
-	 */
-	protected $fillable = [
-		'name',
-		'link',
+    /**
+     * Fillable fields for a Profile.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'link',
         'notes',
         'status',
-		'taggable_id',
-		'taggable_type'
-	];
+        'taggable_id',
+        'taggable_type',
+    ];
 
     /**
      * The attributes that should be mutated to dates.
@@ -45,29 +45,30 @@ class Theme extends Model
      * @var array
      */
     protected $dates = [
-        'deleted_at'
+        'deleted_at',
     ];
-
 
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return array
      */
-    public static function rules ($id=0, $merge=[]) {
+    public static function rules($id = 0, $merge = [])
+    {
         return array_merge(
             [
-                'name'   => 'required|min:3|max:50|unique:themes,name' . ($id ? ",$id" : ''),
-                'link'   => 'required|min:3|max:255|unique:themes,link' . ($id ? ",$id" : ''),
+                'name'   => 'required|min:3|max:50|unique:themes,name'.($id ? ",$id" : ''),
+                'link'   => 'required|min:3|max:255|unique:themes,link'.($id ? ",$id" : ''),
                 'notes'  => 'max:500',
-                'status' => 'required'
+                'status' => 'required',
             ],
             $merge);
     }
 
     /**
-     * Build Theme Relationships
+     * Build Theme Relationships.
      *
      * @var array
      */
@@ -75,5 +76,4 @@ class Theme extends Model
     {
         return $this->hasMany('App\Models\Profile');
     }
-
 }

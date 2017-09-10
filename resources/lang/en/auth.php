@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
+    'failed'   => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
     // Activation items
@@ -75,6 +75,6 @@ return [
     'PasswordMax'       => 'Password maximum length is 20 characters',
     'captchaRequire'    => 'Captcha is required',
     'CaptchaWrong'      => 'Wrong captcha, please try again.',
-    'roleRequired'      => 'User role is required.'
+    'roleRequired'      => 'User role is required.',
 
 ];

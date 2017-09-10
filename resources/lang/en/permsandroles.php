@@ -2,10 +2,10 @@
 
 return [
 
-	// Permissions
-	'permissionView'      => 'View',
-	'permissionCreate'    => 'Create',
-	'permissionEdit'      => 'Edit',
-	'permissionDelete'    => 'Delete',
+    // Permissions
+    'permissionView'      => 'View',
+    'permissionCreate'    => 'Create',
+    'permissionEdit'      => 'Edit',
+    'permissionDelete'    => 'Delete',
 
 ];

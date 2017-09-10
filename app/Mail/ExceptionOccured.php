@@ -5,7 +5,6 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class ExceptionOccured extends Mailable
 {
@@ -30,12 +29,11 @@ class ExceptionOccured extends Mailable
      */
     public function build()
     {
-
-        $emailsTo   = str_getcsv(config('exceptions.emailExceptionsTo'),',');
-        $ccEmails   = str_getcsv(config('exceptions.emailExceptionCCto'),',');
-        $bccEmails   = str_getcsv(config('exceptions.emailExceptionBCCto'),',');
+        $emailsTo = str_getcsv(config('exceptions.emailExceptionsTo'), ',');
+        $ccEmails = str_getcsv(config('exceptions.emailExceptionCCto'), ',');
+        $bccEmails = str_getcsv(config('exceptions.emailExceptionBCCto'), ',');
         $fromSender = config('exceptions.emailExceptionFrom');
-        $subject    = config('exceptions.emailExceptionSubject');
+        $subject = config('exceptions.emailExceptionSubject');
 
         if ($emailsTo[0] == null) {
             $emailsTo = config('exceptions.emailExceptionsToDefault');

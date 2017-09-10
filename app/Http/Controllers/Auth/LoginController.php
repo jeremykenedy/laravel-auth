@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -29,7 +28,6 @@ class LoginController extends Controller
      *
      * @var string
      */
-
     protected $redirectAfterLogout = '/';
 
     /**
@@ -42,7 +40,6 @@ class LoginController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
     }
 
-
     /**
      * Logout, Clear Session, and Return.
      *
@@ -54,7 +51,7 @@ class LoginController extends Controller
         Log::info('User Logged Out. ', [$user]);
         Auth::logout();
         Session::flush();
+
         return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
     }
-
 }

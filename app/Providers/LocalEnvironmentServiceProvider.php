@@ -7,9 +7,9 @@ use Illuminate\Support\ServiceProvider;
 
 class LocalEnvironmentServiceProvider extends ServiceProvider
 {
-
     /**
-     * List of Local Environment Providers
+     * List of Local Environment Providers.
+     *
      * @var array
      */
     protected $localProviders = [
@@ -17,7 +17,8 @@ class LocalEnvironmentServiceProvider extends ServiceProvider
     ];
 
     /**
-     * List of only Local Environment Facade Aliases
+     * List of only Local Environment Facade Aliases.
+     *
      * @var array
      */
     protected $facadeAliases = [
@@ -29,7 +30,8 @@ class LocalEnvironmentServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot() {
+    public function boot()
+    {
         if (\App::environment(config('debugbar.enabled_environment'))) {
             $this->registerServiceProviders();
             $this->registerFacadeAliases();
@@ -47,22 +49,23 @@ class LocalEnvironmentServiceProvider extends ServiceProvider
     }
 
     /**
-     * Load local service providers
+     * Load local service providers.
      */
-    protected function registerServiceProviders() {
+    protected function registerServiceProviders()
+    {
         foreach ($this->localProviders as $provider) {
             $this->app->register($provider);
         }
     }
 
     /**
-     * Load additional Aliases
+     * Load additional Aliases.
      */
-    public function registerFacadeAliases() {
+    public function registerFacadeAliases()
+    {
         $loader = AliasLoader::getInstance();
         foreach ($this->facadeAliases as $alias => $facade) {
             $loader->alias($alias, $facade);
         }
     }
-
 }
