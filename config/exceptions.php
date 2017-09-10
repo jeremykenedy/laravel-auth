@@ -11,7 +11,7 @@ return [
     |
     */
 
-    'emailExceptionEnabled' => env('EMAIL_EXCEPTION_ENABLED'),
+    'emailExceptionEnabled'        => env('EMAIL_EXCEPTION_ENABLED'),
     'emailExceptionEnabledDefault' => true,
 
     /*
@@ -23,7 +23,7 @@ return [
     |
     */
 
-    'emailExceptionFrom' => env('EMAIL_EXCEPTION_FROM'),
+    'emailExceptionFrom'        => env('EMAIL_EXCEPTION_FROM'),
     'emailExceptionFromDefault' => 'email@email.com',
 
     /*
@@ -35,7 +35,7 @@ return [
     |
     */
 
-    'emailExceptionsTo' => env('EMAIL_EXCEPTION_TO'),
+    'emailExceptionsTo'        => env('EMAIL_EXCEPTION_TO'),
     'emailExceptionsToDefault' => 'email@email.com',
 
     /*
@@ -47,7 +47,7 @@ return [
     |
     */
 
-    'emailExceptionCCto' => env('EMAIL_EXCEPTION_CC'),
+    'emailExceptionCCto'        => env('EMAIL_EXCEPTION_CC'),
     'emailExceptionCCtoDefault' => [],
 
     /*
@@ -59,7 +59,7 @@ return [
     |
     */
 
-    'emailExceptionBCCto' => env('EMAIL_EXCEPTION_BCC'),
+    'emailExceptionBCCto'        => env('EMAIL_EXCEPTION_BCC'),
     'emailExceptionBCCtoDefault' => [],
 
     /*
@@ -71,8 +71,8 @@ return [
     |
     */
 
-    'emailExceptionSubject' => env('EMAIL_EXCEPTION_SUBJECT'),
-    'emailExceptionSubjectDefault' => 'Error on ' . config('app.env'),
+    'emailExceptionSubject'        => env('EMAIL_EXCEPTION_SUBJECT'),
+    'emailExceptionSubjectDefault' => 'Error on '.config('app.env'),
 
     /*
     |--------------------------------------------------------------------------
@@ -86,7 +86,3 @@ return [
     'emailExceptionView' => 'emails.exception',
 
 ];
-
-
-
-

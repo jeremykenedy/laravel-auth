@@ -62,11 +62,11 @@ class User extends Authenticatable
     ];
 
     protected $dates = [
-        'deleted_at'
+        'deleted_at',
     ];
 
     /**
-     * Build Social Relationships
+     * Build Social Relationships.
      *
      * @var array
      */
@@ -76,7 +76,7 @@ class User extends Authenticatable
     }
 
     /**
-     * User Profile Relationships
+     * User Profile Relationships.
      *
      * @var array
      */
@@ -84,7 +84,6 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\Profile');
     }
-
 
     // User Profile Setup - SHould move these to a trait or interface...
 
@@ -95,9 +94,10 @@ class User extends Authenticatable
 
     public function hasProfile($name)
     {
-        foreach($this->profiles as $profile)
-        {
-            if($profile->name == $name) return true;
+        foreach ($this->profiles as $profile) {
+            if ($profile->name == $name) {
+                return true;
+            }
         }
 
         return false;
@@ -112,5 +112,4 @@ class User extends Authenticatable
     {
         return $this->profiles()->detach($profile);
     }
-
 }

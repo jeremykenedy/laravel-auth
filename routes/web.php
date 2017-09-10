@@ -20,7 +20,7 @@ Route::get('/', 'WelcomeController@welcome')->name('welcome');
 Auth::routes();
 
 // Public Routes
-Route::group(['middleware' => 'web'], function() {
+Route::group(['middleware' => 'web'], function () {
 
     // Activation Routes
     Route::get('/activate', ['as' => 'activate', 'uses' => 'Auth\ActivateController@initial']);
@@ -35,11 +35,10 @@ Route::group(['middleware' => 'web'], function() {
 
     // Route to for user to reactivate their user deleted account.
     Route::get('/re-activate/{token}', ['as' => 'user.reactivate', 'uses' => 'RestoreUserController@userReActivate']);
-
 });
 
 // Registered and Activated User Routes
-Route::group(['middleware' => ['auth', 'activated']], function() {
+Route::group(['middleware' => ['auth', 'activated']], function () {
 
     // Activation Routes
     Route::get('/activation-required', ['uses' => 'Auth\ActivateController@activationRequired'])->name('activation-required');
@@ -51,9 +50,8 @@ Route::group(['middleware' => ['auth', 'activated']], function() {
     // Show users profile - viewable by other users.
     Route::get('profile/{username}', [
         'as'        => '{username}',
-        'uses'      => 'ProfilesController@show'
+        'uses'      => 'ProfilesController@show',
     ]);
-
 });
 
 // Registered, activated, and is current user routes.
@@ -67,61 +65,58 @@ Route::group(['middleware'=> ['auth', 'activated', 'currentUser']], function () 
                 'show',
                 'edit',
                 'update',
-                'create'
-            ]
+                'create',
+            ],
         ]
     );
     Route::put('profile/{username}/updateUserAccount', [
         'as'        => '{username}',
-        'uses'      => 'ProfilesController@updateUserAccount'
+        'uses'      => 'ProfilesController@updateUserAccount',
     ]);
     Route::put('profile/{username}/updateUserPassword', [
         'as'        => '{username}',
-        'uses'      => 'ProfilesController@updateUserPassword'
+        'uses'      => 'ProfilesController@updateUserPassword',
     ]);
     Route::delete('profile/{username}/deleteUserAccount', [
         'as'        => '{username}',
-        'uses'      => 'ProfilesController@deleteUserAccount'
+        'uses'      => 'ProfilesController@deleteUserAccount',
     ]);
 
     // Route to show user avatar
     Route::get('images/profile/{id}/avatar/{image}', [
-        'uses'      => 'ProfilesController@userProfileAvatar'
+        'uses'      => 'ProfilesController@userProfileAvatar',
     ]);
 
     // Route to upload user avatar.
     Route::post('avatar/upload', ['as' => 'avatar.upload', 'uses' => 'ProfilesController@upload']);
-
 });
 
 // Registered, activated, and is admin routes.
 Route::group(['middleware'=> ['auth', 'activated', 'role:admin']], function () {
-
     Route::resource('/users/deleted', 'SoftDeletesController', [
         'only' => [
             'index', 'show', 'update', 'destroy',
-        ]
+        ],
     ]);
 
     Route::resource('users', 'UsersManagementController', [
         'names' => [
-            'index' => 'users',
-            'destroy' => 'user.destroy'
+            'index'   => 'users',
+            'destroy' => 'user.destroy',
         ],
         'except' => [
-            'deleted'
-        ]
+            'deleted',
+        ],
     ]);
 
     Route::resource('themes', 'ThemesManagementController', [
         'names' => [
-            'index' => 'themes',
-            'destroy' => 'themes.destroy'
-        ]
+            'index'   => 'themes',
+            'destroy' => 'themes.destroy',
+        ],
     ]);
 
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
     Route::get('php', 'AdminDetailsController@listPHPInfo');
     Route::get('routes', 'AdminDetailsController@listRoutes');
-
 });
