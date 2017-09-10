@@ -64,12 +64,7 @@ class ThemesManagementController extends Controller
         $validator = Validator::make($input, Theme::rules());
 
         if ($validator->fails()) {
-
-            $this->throwValidationException(
-                $request, $validator
-            );
-
-            return redirect('themes/create')->withErrors($validator)->withInput();
+            return back()->withErrors($validator)->withInput();
         }
 
         $theme = Theme::create([
@@ -156,12 +151,7 @@ class ThemesManagementController extends Controller
         $validator = Validator::make($input, Theme::rules($id));
 
         if ($validator->fails()) {
-
-            $this->throwValidationException(
-                $request, $validator
-            );
-
-            return redirect('themes/'.$theme->id.'/edit')->withErrors($validator)->withInput();
+            return back()->withErrors($validator)->withInput();
         }
 
         $theme->fill($input)->save();

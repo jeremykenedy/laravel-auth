@@ -40,7 +40,6 @@ class UsersManagementController extends Controller
         $roles = Role::all();
 
         return View('usersmanagement.show-users', compact('users', 'roles'));
-
     }
 
     /**
@@ -50,7 +49,6 @@ class UsersManagementController extends Controller
      */
     public function create()
     {
-
         $roles = Role::all();
 
         $data = [
@@ -68,7 +66,6 @@ class UsersManagementController extends Controller
      */
     public function store(Request $request)
     {
-
         $validator = Validator::make($request->all(),
             [
                 'name'                  => 'required|max:255|unique:users',
@@ -94,34 +91,28 @@ class UsersManagementController extends Controller
         );
 
         if ($validator->fails()) {
-
-            $this->throwValidationException(
-                $request, $validator
-            );
-
-        } else {
-
-            $ipAddress  = new CaptureIpTrait;
-            $profile    = new Profile;
-
-            $user =  User::create([
-                'name'              => $request->input('name'),
-                'first_name'        => $request->input('first_name'),
-                'last_name'         => $request->input('last_name'),
-                'email'             => $request->input('email'),
-                'password'          => bcrypt($request->input('password')),
-                'token'             => str_random(64),
-                'admin_ip_address'  => $ipAddress->getClientIp(),
-                'activated'         => 1
-            ]);
-
-            $user->profile()->save($profile);
-            $user->attachRole($request->input('role'));
-            $user->save();
-
-            return redirect('users')->with('success', trans('usersmanagement.createSuccess'));
-
+            return back()->withErrors($validator)->withInput();
         }
+
+        $ipAddress  = new CaptureIpTrait;
+        $profile    = new Profile;
+
+        $user =  User::create([
+            'name'              => $request->input('name'),
+            'first_name'        => $request->input('first_name'),
+            'last_name'         => $request->input('last_name'),
+            'email'             => $request->input('email'),
+            'password'          => bcrypt($request->input('password')),
+            'token'             => str_random(64),
+            'admin_ip_address'  => $ipAddress->getClientIp(),
+            'activated'         => 1
+        ]);
+
+        $user->profile()->save($profile);
+        $user->attachRole($request->input('role'));
+        $user->save();
+
+        return redirect('users')->with('success', trans('usersmanagement.createSuccess'));
     }
 
     /**
@@ -132,7 +123,6 @@ class UsersManagementController extends Controller
      */
     public function show($id)
     {
-
         $user = User::find($id);
 
         return view('usersmanagement.show-user')->withUser($user);
@@ -146,7 +136,6 @@ class UsersManagementController extends Controller
      */
     public function edit($id)
     {
-
         $user = User::findOrFail($id);
         $roles = Role::all();
 
@@ -172,7 +161,6 @@ class UsersManagementController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $currentUser = Auth::user();
         $user        = User::find($id);
         $emailCheck  = ($request->input('email') != '') && ($request->input('email') != $user->email);
@@ -190,33 +178,29 @@ class UsersManagementController extends Controller
                 'password'  => 'nullable|confirmed|min:6'
             ]);
         }
+
         if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
-        } else {
-            $user->name = $request->input('name');
-
-            $user->first_name = $request->input('first_name');
-            $user->last_name = $request->input('last_name');
-
-            if ($emailCheck) {
-                $user->email = $request->input('email');
-            }
-
-            if ($request->input('password') != null) {
-                $user->password = bcrypt($request->input('password'));
-            }
-
-            $user->detachAllRoles();
-            $user->attachRole($request->input('role'));
-            //$user->activated = 1;
-
-            $user->updated_ip_address = $ipAddress->getClientIp();
-
-            $user->save();
-            return back()->with('success', trans('usersmanagement.updateSuccess'));
+            return back()->withErrors($validator)->withInput();
         }
+
+        $user->name         = $request->input('name');
+        $user->first_name   = $request->input('first_name');
+        $user->last_name    = $request->input('last_name');
+
+        if ($emailCheck) {
+            $user->email = $request->input('email');
+        }
+
+        if ($request->input('password') != null) {
+            $user->password = bcrypt($request->input('password'));
+        }
+
+        $user->detachAllRoles();
+        $user->attachRole($request->input('role'));
+        $user->updated_ip_address = $ipAddress->getClientIp();
+        $user->save();
+
+        return back()->with('success', trans('usersmanagement.updateSuccess'));
     }
 
     /**
@@ -227,7 +211,6 @@ class UsersManagementController extends Controller
      */
     public function destroy($id)
     {
-
         $currentUser = Auth::user();
         $user        = User::findOrFail($id);
         $ipAddress   = new CaptureIpTrait;
@@ -239,7 +222,7 @@ class UsersManagementController extends Controller
             $user->delete();
             return redirect('users')->with('success', trans('usersmanagement.deleteSuccess'));
         }
-        return back()->with('error', trans('usersmanagement.deleteSelfError'));
 
+        return back()->with('error', trans('usersmanagement.deleteSelfError'));
     }
 }

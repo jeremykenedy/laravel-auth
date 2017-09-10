@@ -150,12 +150,7 @@ class ProfilesController extends Controller
         $profile_validator = $this->profile_validator($request->all());
 
         if ($profile_validator->fails()) {
-
-            $this->throwValidationException(
-                $request, $profile_validator
-            );
-
-            return redirect('profile/'.$user->name.'/edit')->withErrors($validator)->withInput();
+            return back()->withErrors($profile_validator)->withInput();
         }
 
         if ($user->profile == null) {
@@ -200,7 +195,6 @@ class ProfilesController extends Controller
      */
     public function updateUserAccount(Request $request, $id)
     {
-
         $currentUser = \Auth::user();
         $user        = User::findOrFail($id);
         $emailCheck  = ($request->input('email') != '') && ($request->input('email') != $user->email);
@@ -221,9 +215,7 @@ class ProfilesController extends Controller
         $validator = $this->validator($request->all(), $rules);
 
         if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
+            return back()->withErrors($validator)->withInput();
         }
 
         $user->name         = $request->input('name');
@@ -252,7 +244,6 @@ class ProfilesController extends Controller
      */
     public function updateUserPassword(Request $request, $id)
     {
-
         $currentUser = \Auth::user();
         $user        = User::findOrFail($id);
         $ipAddress   = new CaptureIpTrait;
@@ -270,9 +261,7 @@ class ProfilesController extends Controller
         );
 
         if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
+            return back()->withErrors($validator)->withInput();
         }
 
         if ($request->input('password') != null) {
@@ -284,7 +273,6 @@ class ProfilesController extends Controller
         $user->save();
 
         return redirect('profile/'.$user->name.'/edit')->with('success', trans('profile.updatePWSuccess'));
-
     }
 
     /**
@@ -357,16 +345,12 @@ class ProfilesController extends Controller
             ]
         );
 
-        if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
+        if ($user->id != $currentUser->id) {
+            return redirect('profile/'.$user->name.'/edit')->with('error', trans('profile.errorDeleteNotYour'));
         }
 
-        if ($user->id != $currentUser->id) {
-
-            return redirect('profile/'.$user->name.'/edit')->with('error', trans('profile.errorDeleteNotYour'));
-
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
         }
 
         // Create and encrypt user account restore token

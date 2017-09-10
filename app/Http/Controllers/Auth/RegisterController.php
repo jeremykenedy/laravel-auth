@@ -10,7 +10,6 @@ use App\Traits\CaptchaTrait;
 use App\Traits\CaptureIpTrait;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
-
 use jeremykenedy\LaravelRoles\Models\Role;
 
 class RegisterController extends Controller {
@@ -43,8 +42,8 @@ class RegisterController extends Controller {
 	 */
 	public function __construct() {
 		$this->middleware('guest', [
-				'except' => 'logout'
-			]);
+			'except' => 'logout'
+		]);
 	}
 
 	/**
