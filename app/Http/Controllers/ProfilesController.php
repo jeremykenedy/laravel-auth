@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Image;
+use jeremykenedy\Uuid\Uuid;
 use Validator;
 use View;
-use Webpatser\Uuid\Uuid;
 
 class ProfilesController extends Controller
 {
