@@ -25,9 +25,7 @@
           </div>
           <div class="panel-body">
 
-            {!! Form::open(array('action' => 'UsersManagementController@store', 'method' => 'POST', 'role' => 'form')) !!}
-
-              {!! csrf_field() !!}
+            {!! Form::open(array('action' => 'UsersManagementController@store')) !!}
 
               <div class="form-group has-feedback row {{ $errors->has('name') ? ' has-error ' : '' }}">
                 {!! Form::label('name', trans('forms.create_user_label_username'), array('class' => 'col-md-3 control-label')); !!}
