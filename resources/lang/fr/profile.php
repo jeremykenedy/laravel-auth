@@ -83,6 +83,6 @@ return [
 
     // Restore User Account
     'errorRestoreUserTime'       => 'Désolé, le compte ne peut plus être récupéré !',
-    'successUserRestore'         => 'Heureux de vous revoir :username. Votre compte a été restauré.'
+    'successUserRestore'         => 'Heureux de vous revoir :username. Votre compte a été restauré.',
 
 ];

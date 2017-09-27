@@ -75,6 +75,6 @@ return [
     'PasswordMax'       => 'Le mot de passe doit comporter moins de 20 caractères',
     'captchaRequire'    => 'Merci d\utiliser le Captcha',
     'CaptchaWrong'      => 'Captcha incorrect, essayez à nouveau.',
-    'roleRequired'      => 'Rôle utilisateur nécesaire.'
+    'roleRequired'      => 'Rôle utilisateur nécesaire.',
 
 ];
