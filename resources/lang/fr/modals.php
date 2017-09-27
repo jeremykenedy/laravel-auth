@@ -11,7 +11,6 @@ return [
     |
     */
 
-
     // Default Save Modal;
     'confirm_modal_title_text'              => 'Confirmer l\'enregistrement',
     'confirm_modal_title_std_msg'           => 'Confirmer la demande.',
