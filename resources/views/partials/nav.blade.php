@@ -12,7 +12,7 @@
 
             {{-- Branding Image --}}
             <a class="navbar-brand" href="{{ url('/') }}">
-                {!! trans('titles.app') !!}
+                {!! config('app.name', Lang::get('titles.app')) !!}
             </a>
         </div>
 
