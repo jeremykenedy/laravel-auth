@@ -12,8 +12,8 @@ return [
     */
 
     // Default Save Modal;
-    'confirm_modal_title_text'              => 'Confirmer l\'enregistrement',
-    'confirm_modal_title_std_msg'           => 'Confirmer la demande.',
+    'confirm_modal_title_text'    => 'Confirmer l\'enregistrement',
+    'confirm_modal_title_std_msg' => 'Confirmer la demande.',
 
     // Confirm Save Modal;
     'confirm_modal_button_save_text'        => 'Enregistrer',
@@ -24,9 +24,9 @@ return [
     'edit_user__modal_text_confirm_message' => 'Veuillez confirmer les modifications.',
 
     // Form Modal
-    'form_modal_default_title'              => 'Confirmer',
-    'form_modal_default_message'            => 'Confirmer SVP',
-    'form_modal_default_btn_cancel'         => 'Annuler',
-    'form_modal_default_btn_submit'         => 'Confirmer l\'enregistrement',
+    'form_modal_default_title'      => 'Confirmer',
+    'form_modal_default_message'    => 'Confirmer SVP',
+    'form_modal_default_btn_cancel' => 'Annuler',
+    'form_modal_default_btn_submit' => 'Confirmer l\'enregistrement',
 
 ];
