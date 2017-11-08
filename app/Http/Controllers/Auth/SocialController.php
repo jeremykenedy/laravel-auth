@@ -73,14 +73,14 @@ class SocialController extends Controller
                 }
 
                 $user = User::create([
-                    'name'                  => $username,
-                    'first_name'            => $fullname[0],
-                    'last_name'             => $fullname[1],
-                    'email'                 => $email,
-                    'password'              => bcrypt(str_random(40)),
-                    'token'                 => str_random(64),
-                    'activated'             => true,
-                    'signup_sm_ip_address'  => $ipAddress->getClientIp(),
+                    'name'                 => $username,
+                    'first_name'           => $fullname[0],
+                    'last_name'            => $fullname[1],
+                    'email'                => $email,
+                    'password'             => bcrypt(str_random(40)),
+                    'token'                => str_random(64),
+                    'activated'            => true,
+                    'signup_sm_ip_address' => $ipAddress->getClientIp(),
 
                 ]);
 

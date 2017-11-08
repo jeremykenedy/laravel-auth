@@ -28,13 +28,13 @@ return [
      * Goobye email.
      *
      */
-    'goodbyeSubject'    => 'Désolé de vous voir partir...',
-    'goodbyeGreeting'   => 'Bonjour :username,',
-    'goodbyeMessage'    => 'Nous vous confirmons la suppression de votre compte.'.
+    'goodbyeSubject'  => 'Désolé de vous voir partir...',
+    'goodbyeGreeting' => 'Bonjour :username,',
+    'goodbyeMessage'  => 'Nous vous confirmons la suppression de votre compte.'.
                            'Nous sommes désolés de vous voir partir.'.
                            'Merci pour le temps que nous avons passé ensemble.'.
                            'Vous pouvez récupérer votre compte dans les '.config('settings.restoreUserCutoff').' jours à venir.',
-    'goodbyeButton'     => 'Récupérer votre compte',
-    'goodbyeThanks'     => 'Nous espérons vous revoir bientôt.',
+    'goodbyeButton' => 'Récupérer votre compte',
+    'goodbyeThanks' => 'Nous espérons vous revoir bientôt.',
 
 ];

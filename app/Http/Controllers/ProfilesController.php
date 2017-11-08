@@ -42,13 +42,13 @@ class ProfilesController extends Controller
     public function profile_validator(array $data)
     {
         return Validator::make($data, [
-            'theme_id'          => '',
-            'location'          => '',
-            'bio'               => 'max:500',
-            'twitter_username'  => 'max:50',
-            'github_username'   => 'max:50',
-            'avatar'            => '',
-            'avatar_status'     => '',
+            'theme_id'         => '',
+            'location'         => '',
+            'bio'              => 'max:500',
+            'twitter_username' => 'max:50',
+            'github_username'  => 'max:50',
+            'avatar'           => '',
+            'avatar_status'    => '',
         ]);
     }
 
@@ -114,9 +114,9 @@ class ProfilesController extends Controller
         $currentTheme = Theme::find($user->profile->theme_id);
 
         $data = [
-            'user'          => $user,
-            'themes'        => $themes,
-            'currentTheme'  => $currentTheme,
+            'user'         => $user,
+            'themes'       => $themes,
+            'currentTheme' => $currentTheme,
 
         ];
 
@@ -171,7 +171,7 @@ class ProfilesController extends Controller
     public function validator(array $data)
     {
         return Validator::make($data, [
-            'name'              => 'required|max:255',
+            'name' => 'required|max:255',
         ]);
     }
 
@@ -191,14 +191,14 @@ class ProfilesController extends Controller
         $ipAddress = new CaptureIpTrait();
 
         $validator = Validator::make($request->all(), [
-            'name'      => 'required|max:255',
+            'name' => 'required|max:255',
         ]);
 
         $rules = [];
 
         if ($emailCheck) {
             $rules = [
-                'email'     => 'email|max:255|unique:users',
+                'email' => 'email|max:255|unique:users',
             ];
         }
 
@@ -243,9 +243,9 @@ class ProfilesController extends Controller
                 'password_confirmation' => 'required|same:password',
             ],
             [
-                'password.required'     => trans('auth.passwordRequired'),
-                'password.min'          => trans('auth.PasswordMin'),
-                'password.max'          => trans('auth.PasswordMax'),
+                'password.required' => trans('auth.passwordRequired'),
+                'password.min'      => trans('auth.PasswordMin'),
+                'password.max'      => trans('auth.PasswordMax'),
             ]
         );
 
@@ -291,7 +291,7 @@ class ProfilesController extends Controller
             $currentUser->profile->avatar = $public_path;
             $currentUser->profile->save();
 
-            return response()->json(['path'=> $path], 200);
+            return response()->json(['path' => $path], 200);
         } else {
             return response()->json(false, 200);
         }
@@ -326,10 +326,10 @@ class ProfilesController extends Controller
 
         $validator = Validator::make($request->all(),
             [
-                'checkConfirmDelete'            => 'required',
+                'checkConfirmDelete' => 'required',
             ],
             [
-                'checkConfirmDelete.required'   => trans('profile.confirmDeleteRequired'),
+                'checkConfirmDelete.required' => trans('profile.confirmDeleteRequired'),
             ]
         );
 
