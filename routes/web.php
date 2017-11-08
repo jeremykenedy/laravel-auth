@@ -13,10 +13,8 @@
 |
 */
 
-Route::group(['middleware' => ['web', 'activity']], function () {
-    // Homepage Route
-    Route::get('/', 'WelcomeController@welcome')->name('welcome');
-});
+// Homepage Route
+Route::get('/', 'WelcomeController@welcome')->name('welcome');
 
 // Authentication Routes
 Auth::routes();
