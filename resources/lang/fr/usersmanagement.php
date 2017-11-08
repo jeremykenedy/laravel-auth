@@ -3,10 +3,10 @@
 return [
 
     // Messages Flash
-    'createSuccess'         => 'Membre créé ! ',
-    'updateSuccess'         => 'Membre modifié ! ',
-    'deleteSuccess'         => 'Membre supprimé ! ',
-    'deleteSelfError'       => 'Vous ne pouvez pas vous supprimer ! ',
+    'createSuccess'   => 'Membre créé ! ',
+    'updateSuccess'   => 'Membre modifié ! ',
+    'deleteSuccess'   => 'Membre supprimé ! ',
+    'deleteSelfError' => 'Vous ne pouvez pas vous supprimer ! ',
 
     // Onglet utilisateur
     'viewProfile'            => 'Voir le profil',
@@ -34,11 +34,11 @@ return [
     'usersDeletedPanelTitle' => 'Supprimer les infos du membre',
     'usersBackDelBtn'        => 'Retour aux membres supprimés',
 
-    'successRestore'         => 'Membre récupéré.',
-    'successDestroy'         => 'Enregistrement du membre supprimé.',
-    'errorUserNotFound'      => 'Membre introuvable.',
+    'successRestore'    => 'Membre récupéré.',
+    'successDestroy'    => 'Enregistrement du membre supprimé.',
+    'errorUserNotFound' => 'Membre introuvable.',
 
-    'labelUserLevel'         => 'Niveau',
-    'labelUserLevels'        => 'Niveaux',
+    'labelUserLevel'  => 'Niveau',
+    'labelUserLevels' => 'Niveaux',
 
 ];

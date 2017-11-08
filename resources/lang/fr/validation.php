@@ -13,52 +13,52 @@ return [
     |
     */
 
-    'accepted'             => 'Le champ :attribute doit être accepté.',
-    'active_url'           => "Le champ :attribute n'est pas une URL valide.",
-    'after'                => 'Le champ :attribute doit être une date postérieure au :date.',
-    'after_or_equal'       => 'Le champ :attribute doit être une date postérieure ou égale au :date.',
-    'alpha'                => 'Le champ :attribute doit seulement contenir des lettres.',
-    'alpha_dash'           => 'Le champ :attribute doit seulement contenir des lettres, des chiffres et des tirets.',
-    'alpha_num'            => 'Le champ :attribute doit seulement contenir des chiffres et des lettres.',
-    'array'                => 'Le champ :attribute doit être un tableau.',
-    'before'               => 'Le champ :attribute doit être une date antérieure au :date.',
-    'before_or_equal'      => 'Le champ :attribute doit être une date antérieure ou égale au :date.',
-    'between'              => [
+    'accepted'        => 'Le champ :attribute doit être accepté.',
+    'active_url'      => "Le champ :attribute n'est pas une URL valide.",
+    'after'           => 'Le champ :attribute doit être une date postérieure au :date.',
+    'after_or_equal'  => 'Le champ :attribute doit être une date postérieure ou égale au :date.',
+    'alpha'           => 'Le champ :attribute doit seulement contenir des lettres.',
+    'alpha_dash'      => 'Le champ :attribute doit seulement contenir des lettres, des chiffres et des tirets.',
+    'alpha_num'       => 'Le champ :attribute doit seulement contenir des chiffres et des lettres.',
+    'array'           => 'Le champ :attribute doit être un tableau.',
+    'before'          => 'Le champ :attribute doit être une date antérieure au :date.',
+    'before_or_equal' => 'Le champ :attribute doit être une date antérieure ou égale au :date.',
+    'between'         => [
         'numeric' => 'La valeur de :attribute doit être comprise entre :min et :max.',
         'file'    => 'La taille du fichier de :attribute doit être comprise entre :min et :max kilo-octets.',
         'string'  => 'Le texte :attribute doit contenir entre :min et :max caractères.',
         'array'   => 'Le tableau :attribute doit contenir entre :min et :max éléments.',
     ],
-    'boolean'              => 'Le champ :attribute doit être vrai ou faux.',
-    'confirmed'            => 'Le champ de confirmation :attribute ne correspond pas.',
-    'date'                 => "Le champ :attribute n'est pas une date valide.",
-    'date_format'          => 'Le champ :attribute ne correspond pas au format :format.',
-    'different'            => 'Les champs :attribute et :other doivent être différents.',
-    'digits'               => 'Le champ :attribute doit contenir :digits chiffres.',
-    'digits_between'       => 'Le champ :attribute doit contenir entre :min et :max chiffres.',
-    'dimensions'           => "La taille de l'image :attribute n'est pas conforme.",
-    'distinct'             => 'Le champ :attribute a une valeur en double.',
-    'email'                => 'Le champ :attribute doit être une adresse courriel valide.',
-    'exists'               => 'Le champ :attribute sélectionné est invalide.',
-    'file'                 => 'Le champ :attribute doit être un fichier.',
-    'filled'               => 'Le champ :attribute est obligatoire.',
-    'image'                => 'Le champ :attribute doit être une image.',
-    'in'                   => 'Le champ :attribute est invalide.',
-    'in_array'             => 'Le champ :attribute n\'existe pas dans :other.',
-    'integer'              => 'Le champ :attribute doit être un entier.',
-    'ip'                   => 'Le champ :attribute doit être une adresse IP valide.',
-    'ipv4'                 => 'Le champ :attribute doit être une adresse IPv4 valide.',
-    'ipv6'                 => 'Le champ :attribute doit être une adresse IPv6 valide.',
-    'json'                 => 'Le champ :attribute doit être un document JSON valide.',
-    'max'                  => [
+    'boolean'        => 'Le champ :attribute doit être vrai ou faux.',
+    'confirmed'      => 'Le champ de confirmation :attribute ne correspond pas.',
+    'date'           => "Le champ :attribute n'est pas une date valide.",
+    'date_format'    => 'Le champ :attribute ne correspond pas au format :format.',
+    'different'      => 'Les champs :attribute et :other doivent être différents.',
+    'digits'         => 'Le champ :attribute doit contenir :digits chiffres.',
+    'digits_between' => 'Le champ :attribute doit contenir entre :min et :max chiffres.',
+    'dimensions'     => "La taille de l'image :attribute n'est pas conforme.",
+    'distinct'       => 'Le champ :attribute a une valeur en double.',
+    'email'          => 'Le champ :attribute doit être une adresse courriel valide.',
+    'exists'         => 'Le champ :attribute sélectionné est invalide.',
+    'file'           => 'Le champ :attribute doit être un fichier.',
+    'filled'         => 'Le champ :attribute est obligatoire.',
+    'image'          => 'Le champ :attribute doit être une image.',
+    'in'             => 'Le champ :attribute est invalide.',
+    'in_array'       => 'Le champ :attribute n\'existe pas dans :other.',
+    'integer'        => 'Le champ :attribute doit être un entier.',
+    'ip'             => 'Le champ :attribute doit être une adresse IP valide.',
+    'ipv4'           => 'Le champ :attribute doit être une adresse IPv4 valide.',
+    'ipv6'           => 'Le champ :attribute doit être une adresse IPv6 valide.',
+    'json'           => 'Le champ :attribute doit être un document JSON valide.',
+    'max'            => [
         'numeric' => 'La valeur de :attribute ne peut être supérieure à :max.',
         'file'    => 'La taille du fichier de :attribute ne peut pas dépasser :max kilo-octets.',
         'string'  => 'Le texte de :attribute ne peut contenir plus de :max caractères.',
         'array'   => 'Le tableau :attribute ne peut contenir plus de :max éléments.',
     ],
-    'mimes'                => 'Le champ :attribute doit être un fichier de type : :values.',
-    'mimetypes'            => 'Le champ :attribute doit être un fichier de type : :values.',
-    'min'                  => [
+    'mimes'     => 'Le champ :attribute doit être un fichier de type : :values.',
+    'mimetypes' => 'Le champ :attribute doit être un fichier de type : :values.',
+    'min'       => [
         'numeric' => 'La valeur de :attribute doit être supérieure ou égale à :min.',
         'file'    => 'La taille du fichier de :attribute doit être supérieure à :min kilo-octets.',
         'string'  => 'Le texte :attribute doit contenir au moins :min caractères.',
@@ -82,11 +82,11 @@ return [
         'string'  => 'Le texte de :attribute doit contenir :size caractères.',
         'array'   => 'Le tableau :attribute doit contenir :size éléments.',
     ],
-    'string'               => 'Le champ :attribute doit être une chaîne de caractères.',
-    'timezone'             => 'Le champ :attribute doit être un fuseau horaire valide.',
-    'unique'               => 'La valeur du champ :attribute est déjà utilisée.',
-    'uploaded'             => "Le fichier du champ :attribute n'a pu être téléversé.",
-    'url'                  => "Le format de l'URL de :attribute n'est pas valide.",
+    'string'   => 'Le champ :attribute doit être une chaîne de caractères.',
+    'timezone' => 'Le champ :attribute doit être un fuseau horaire valide.',
+    'unique'   => 'La valeur du champ :attribute est déjà utilisée.',
+    'uploaded' => "Le fichier du champ :attribute n'a pu être téléversé.",
+    'url'      => "Le format de l'URL de :attribute n'est pas valide.",
 
     /*
     |--------------------------------------------------------------------------
@@ -99,7 +99,7 @@ return [
     |
     */
 
-    'custom'         => [
+    'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
@@ -116,7 +116,7 @@ return [
     |
     */
 
-    'attributes'           => [
+    'attributes' => [
         'name'                  => 'nom',
         'username'              => 'nom d\'utilisateur',
         'email'                 => 'adresse courriel',
