@@ -13,14 +13,16 @@
 |
 */
 
-// Homepage Route
-Route::get('/', 'WelcomeController@welcome')->name('welcome');
+Route::group(['middleware' => 'activity'], function () {
+    // Homepage Route
+    Route::get('/', 'WelcomeController@welcome')->name('welcome');
+});
 
 // Authentication Routes
 Auth::routes();
 
 // Public Routes
-Route::group(['middleware' => 'web'], function () {
+Route::group(['middleware' => ['web', 'activity']], function () {
 
     // Activation Routes
     Route::get('/activate', ['as' => 'activate', 'uses' => 'Auth\ActivateController@initial']);
@@ -38,7 +40,7 @@ Route::group(['middleware' => 'web'], function () {
 });
 
 // Registered and Activated User Routes
-Route::group(['middleware' => ['auth', 'activated']], function () {
+Route::group(['middleware' => ['auth', 'activated', 'activity']], function () {
 
     // Activation Routes
     Route::get('/activation-required', ['uses' => 'Auth\ActivateController@activationRequired'])->name('activation-required');
@@ -55,7 +57,7 @@ Route::group(['middleware' => ['auth', 'activated']], function () {
 });
 
 // Registered, activated, and is current user routes.
-Route::group(['middleware'=> ['auth', 'activated', 'currentUser']], function () {
+Route::group(['middleware'=> ['auth', 'activated', 'currentUser', 'activity']], function () {
 
     // User Profile and Account Routes
     Route::resource(
@@ -92,7 +94,7 @@ Route::group(['middleware'=> ['auth', 'activated', 'currentUser']], function () 
 });
 
 // Registered, activated, and is admin routes.
-Route::group(['middleware'=> ['auth', 'activated', 'role:admin']], function () {
+Route::group(['middleware'=> ['auth', 'activated', 'role:admin', 'activity']], function () {
     Route::resource('/users/deleted', 'SoftDeletesController', [
         'only' => [
             'index', 'show', 'update', 'destroy',

@@ -24,7 +24,9 @@
         "socialiteproviders/generators": "^2.0",
         "socialiteproviders/instagram": "^3.0",
         "socialiteproviders/twitch": "^3.0",
-        "socialiteproviders/youtube": "^3.0"
+        "socialiteproviders/youtube": "^3.0",
+        "jaybizzle/laravel-crawler-detect": "1.*",
+        "jeremykenedy/laravel-logger": "^0.0.2"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
