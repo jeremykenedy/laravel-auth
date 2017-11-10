@@ -77,6 +77,7 @@ Laravel 5.5 with user authentication, registration with email confirmation, soci
 |Configurable Email Notification via [Laravel-Exception-Notifier](https://github.com/jeremykenedy/laravel-exception-notifier)|
 |User Delete with Goodby email|
 |User Restore Deleted Account|
+|Activity Logging using [Laravel-logger](https://github.com/jeremykenedy/laravel-logger)|
 
 ### Installation Instructions
 1. Run `sudo git clone https://github.com/jeremykenedy/laravel-auth.git laravel-auth`
@@ -173,6 +174,12 @@ npm install
 #### Admin Soft Deleted Users Management Routes
 * ```/users/deleted```
 * ```/users/deleted/{user_id}```
+
+#### Activity Log Routes
+* ```/activity```
+* ```/activity/cleared```
+* ```/activity/log/{id}```
+* ```/activity/cleared/log/{id}```
 
 ### Socialite
 
@@ -370,6 +377,8 @@ INSTAGRAM_REDIRECT_URI=http://laravel-auth.local/social/handle/instagram
 * https://laravel.com/docs/5.5/errors
 
 ###### Updates:
+* Added activity logging using [Laravel-logger](https://github.com/jeremykenedy/laravel-logger)
+* Added Configurable Email Notification using [Laravel-Exception-Notifier](https://github.com/jeremykenedy/laravel-exception-notifier)
 * Update to Laravel 5.5
 * Added User Delete with Goodbye email
 * Added User Restore Deleted Account from email with secure token
@@ -397,7 +406,6 @@ INSTAGRAM_REDIRECT_URI=http://laravel-auth.local/social/handle/instagram
 * Added Google Maps API v3 for User Location Input Geocoding
 * Added Google Maps API v3 for User Location Map with Options
 * Added CRUD(Create, Read, Update, Delete) User Management
-* Added Configurable Email Notification using [Laravel-Exception-Notifier](https://github.com/jeremykenedy/laravel-exception-notifier)
 
 ### Screenshots
 ![Login](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/1laravel-auth2-login.jpg)
