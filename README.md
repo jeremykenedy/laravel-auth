@@ -249,13 +249,14 @@ npm install
 
 Example `.env` file:
 
-```
+```bash
 
 APP_ENV=local
 APP_KEY=
 APP_DEBUG=true
 APP_LOG_LEVEL=debug
 APP_URL=http://localhost
+APP_NAME=Laravel
 
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -284,11 +285,15 @@ MAIL_FROM_ADDRESS=
 MAIL_FROM_NAME=''
 
 EMAIL_EXCEPTION_ENABLED=false
-EMAIL_EXCEPTION_FROM=email#email.com
-EMAIL_EXCEPTION_TO='email1@gmail.com, email2@rubicon.com'
+EMAIL_EXCEPTION_FROM=email@email.com
+EMAIL_EXCEPTION_TO='email1@gmail.com, email2@gmail.com'
 EMAIL_EXCEPTION_CC=''
 EMAIL_EXCEPTION_BCC=''
 EMAIL_EXCEPTION_SUBJECT=''
+
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
 
 ACTIVATION=true
 ACTIVATION_LIMIT_TIME_PERIOD=24
@@ -308,9 +313,29 @@ DEFAULT_GRAVATAR_MAX_RATING=g
 DEFAULT_GRAVATAR_FORCE_DEFAULT=false
 DEFAULT_GRAVATAR_FORCE_EXTENSION=jpg
 
-PUSHER_APP_ID=
-PUSHER_APP_KEY=
-PUSHER_APP_SECRET=
+LARAVEL_LOGGER_DATABASE_CONNECTION=mysql
+LARAVEL_LOGGER_DATABASE_TABLE=laravel_logger_activity
+LARAVEL_LOGGER_ROLES_ENABLED=true
+LARAVEL_LOGGER_ROLES_MIDDLWARE=role:admin
+LARAVEL_LOGGER_MIDDLEWARE_ENABLED=true
+LARAVEL_LOGGER_USER_MODEL=App\Models\User
+LARAVEL_LOGGER_PAGINATION_ENABLED=true
+LARAVEL_LOGGER_PAGINATION_PER_PAGE=25
+LARAVEL_LOGGER_DATATABLES_ENABLED=false
+LARAVEL_LOGGER_DASHBOARD_MENU_ENABLED=true
+LARAVEL_LOGGER_DASHBOARD_DRILLABLE=true
+LARAVEL_LOGGER_LOG_RECORD_FAILURES_TO_FILE=true
+LARAVEL_LOGGER_FLASH_MESSAGE_BLADE_ENABLED=false
+LARAVEL_LOGGER_JQUERY_CDN_ENABLED=false
+LARAVEL_LOGGER_JQUERY_CDN_URL=https://code.jquery.com/jquery-2.2.4.min.js
+LARAVEL_LOGGER_BLADE_CSS_PLACEMENT_ENABLED=true
+LARAVEL_LOGGER_BLADE_JS_PLACEMENT_ENABLED=true
+LARAVEL_LOGGER_BOOTSTRAP_JS_CDN_ENABLED=false
+LARAVEL_LOGGER_BOOTSTRAP_JS_CDN_URL=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js
+LARAVEL_LOGGER_FONT_AWESOME_CDN_ENABLED=false
+LARAVEL_LOGGER_FONT_AWESOME_CDN_URL=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
+LARAVEL_LOGGER_BOOTSTRAP_CSS_CDN_ENABLED=false
+LARAVEL_LOGGER_BOOTSTRAP_CSS_CDN_URL=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css
 
 // NOTE: YOU CAN REMOVE THE KEY CALL IN app.blade.php IF YOU GET A POP UP AND DO NOT WANT TO SETUP A KEY FOR DEV
 # Google Maps API v3 Key - https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key
@@ -322,7 +347,7 @@ GOOGLE_SECRET=YOURGOOGLEPLUSsecretHERE
 GOOGLE_REDIRECT=http://yourwebsiteURLhere.com/social/handle/google
 
 # https://www.google.com/recaptcha/admin#list
-ENABLE_RECAPTCHA=false
+ENABLE_RECAPTCHA=true
 RE_CAP_SITE=YOURGOOGLECAPTCHAsitekeyHERE
 RE_CAP_SECRET=YOURGOOGLECAPTCHAsecretHERE
 
@@ -349,18 +374,19 @@ YOUTUBE_REDIRECT_URI=https://larablog.io/social/handle/youtube
 # http://www.twitch.tv/kraken/oauth2/clients/new
 TWITCH_KEY=YOURKEYHERE
 TWITCH_SECRET=YOURSECRETHERE
-TWITCH_REDIRECT_URI=http://laravel-auth.local/social/handle/twitch
+TWITCH_REDIRECT_URI=http://laravel-authentication.local/social/handle/twitch
 
 # https://instagram.com/developer/register/
 INSTAGRAM_KEY=YOURKEYHERE
 INSTAGRAM_SECRET=YOURSECRETHERE
-INSTAGRAM_REDIRECT_URI=http://laravel-auth.local/social/handle/instagram
+INSTAGRAM_REDIRECT_URI=http://laravel-authentication.local/social/handle/instagram
 
 # https://basecamp.com/
 # https://github.com/basecamp/basecamp-classic-api
 37SIGNALS_KEY=YOURKEYHERE
 37SIGNALS_SECRET=YOURSECRETHERE
-37SIGNALS_REDIRECT_URI=http://laravel-auth.local/social/handle/37signals
+37SIGNALS_REDIRECT_URI=http://laravel-authentication.local/social/handle/37signals
+
 
 ```
 
