@@ -29,7 +29,7 @@ class UsersManagementController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(env('USER_LIST_PAGINATION_SIZE'));
         $roles = Role::all();
 
         return View('usersmanagement.show-users', compact('users', 'roles'));

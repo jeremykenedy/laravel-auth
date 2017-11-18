@@ -33,7 +33,7 @@
 
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
-                            Showing All Users
+                            Showing users
 
                             <div class="btn-group pull-right btn-group-xs">
 
@@ -132,6 +132,8 @@
                                     @endforeach
                                 </tbody>
                             </table>
+
+                            {{ $users->links() }}
                         </div>
                     </div>
                 </div>
@@ -145,9 +147,6 @@
 
 @section('footer_scripts')
 
-    @if (count($users) > 10)
-        @include('scripts.datatables')
-    @endif
     @include('scripts.delete-modal-script')
     @include('scripts.save-modal-script')
     {{--
