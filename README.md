@@ -24,7 +24,7 @@
 - [Updates](#updates)
 - [Screenshots](#screenshots)
 - [File Tree](#file-tree)
-- [Opening an Issue](opening-an-issue)
+- [Opening an Issue](#opening-an-issue)
 - [Laravel Auth License](#laravel-auth-license)
 
 
