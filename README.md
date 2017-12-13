@@ -24,7 +24,9 @@
 - [Updates](#updates)
 - [Screenshots](#screenshots)
 - [File Tree](#file-tree)
+- [Opening an Issue](#opening-an-issue)
 - [Laravel Auth License](#laravel-auth-license)
+
 
 ### About
 Laravel 5.5 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
@@ -725,6 +727,17 @@ laravel-auth
 
 * Tree command can be installed using brew: `brew install tree`
 * File tree generated using command `tree -a -I '.git|node_modules|vendor|storage|tests`
+
+### Opening an Issue
+Before opening an issue there are a couple of considerations:
+* Read the instructions and make sure all steps were followed correctly.
+* Check that the issue is not specific to your development environment setup.
+* Provide duplication steps.
+* Attempt to look into the issue, and if you have a solution, make a pull request.
+* Show that you have made an attempt to look into the issue.
+* Check to see if the issue you are reporting is a duplicate of a previous reported issue.
+
+Open source projects are a the community’s responsibility to use, contribute, and debug.
 
 ### Laravel Auth License
 Laravel-auth is licensed under the MIT license. Enjoy!
