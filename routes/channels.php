@@ -17,6 +17,6 @@
 
 Broadcast::channel('chart', function ($user) {
     return [
-        'name' => $user->name
+        'name' => $user->name,
     ];
 });
