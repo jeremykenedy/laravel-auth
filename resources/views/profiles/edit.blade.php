@@ -435,7 +435,11 @@
 @section('footer_scripts')
 
 	@include('scripts.form-modal-script')
-	@include('scripts.gmaps-address-lookup-api3')
+
+	@if(config('settings.googleMapsAPIStatus'))
+		@include('scripts.gmaps-address-lookup-api3')
+	@endif
+
 	@include('scripts.user-avatar-dz')
 
 	<script type="text/javascript">

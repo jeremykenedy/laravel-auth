@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 class AdminDetailsController extends Controller
@@ -31,8 +32,26 @@ class AdminDetailsController extends Controller
         return view('pages.admin.route-details', $data);
     }
 
+    /**
+     * Display php info page.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function listPHPInfo()
     {
         return view('pages.admin.php-details');
     }
+
+    /**
+     * Display active users page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function activeUsers()
+    {
+        $users = User::count();
+
+        return view('pages.admin.active-users', ['users' => $users]);
+    }
+
 }

@@ -30,4 +30,6 @@ return [
     'adminPHP'    => 'PHP Information',
     'adminRoutes' => 'Routing Details',
 
+    'activeUsers' => 'Active Users'
+
 ];

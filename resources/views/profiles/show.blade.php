@@ -77,10 +77,12 @@
 									</dt>
 									<dd>
 										{{ $user->profile->location }} <br />
-										Latitude: <span id="latitude"></span> / Longitude: <span id="longitude"></span> <br />
 
-										<div id="map-canvas"></div>
+										@if(config('settings.googleMapsAPIStatus'))
+											Latitude: <span id="latitude"></span> / Longitude: <span id="longitude"></span> <br />
 
+											<div id="map-canvas"></div>
+										@endif
 									</dd>
 								@endif
 
@@ -136,6 +138,8 @@
 
 @section('footer_scripts')
 
-	@include('scripts.google-maps-geocode-and-map')
+	@if(config('settings.googleMapsAPIStatus'))
+		@include('scripts.google-maps-geocode-and-map')
+	@endif
 
 @endsection
