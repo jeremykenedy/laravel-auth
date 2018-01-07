@@ -120,5 +120,4 @@ Route::group(['middleware' => ['auth', 'activated', 'role:admin', 'activity']], 
     Route::get('php', 'AdminDetailsController@listPHPInfo');
     Route::get('routes', 'AdminDetailsController@listRoutes');
     Route::get('active-users', 'AdminDetailsController@activeUsers');
-
 });
