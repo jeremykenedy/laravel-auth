@@ -233,25 +233,25 @@
 
             <div class="col-sm-7">
               @if($user->canViewUsers())
-                <span class="label label-primary margin-half margin-left-0"">
+                <span class="label label-primary margin-half margin-left-0">
                   {{ trans('permsandroles.permissionView') }}
                 </span>
               @endif
 
               @if($user->canCreateUsers())
-                <span class="label label-info margin-half margin-left-0"">
+                <span class="label label-info margin-half margin-left-0">
                   {{ trans('permsandroles.permissionCreate') }}
                 </span>
               @endif
 
               @if($user->canEditUsers())
-                <span class="label label-warning margin-half margin-left-0"">
+                <span class="label label-warning margin-half margin-left-0">
                   {{ trans('permsandroles.permissionEdit') }}
                 </span>
               @endif
 
               @if($user->canDeleteUsers())
-                <span class="label label-danger margin-half margin-left-0"">
+                <span class="label label-danger margin-half margin-left-0">
                   {{ trans('permsandroles.permissionDelete') }}
                 </span>
               @endif
