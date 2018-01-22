@@ -44,6 +44,11 @@ Route::group(['middleware' => ['auth', 'activated', 'activity']], function () {
     Route::get('/activation-required', ['uses' => 'Auth\ActivateController@activationRequired'])->name('activation-required');
     Route::get('/logout', ['uses' => 'Auth\LoginController@logout'])->name('logout');
 
+});
+
+// Registered and Activated User Routes
+Route::group(['middleware' => ['auth', 'activated', 'activity', 'twostep']], function () {
+
     //  Homepage Route - Redirect based on user role is in controller.
     Route::get('/home', ['as' => 'public.home',   'uses' => 'UserController@index']);
 
@@ -55,7 +60,7 @@ Route::group(['middleware' => ['auth', 'activated', 'activity']], function () {
 });
 
 // Registered, activated, and is current user routes.
-Route::group(['middleware' => ['auth', 'activated', 'currentUser', 'activity']], function () {
+Route::group(['middleware' => ['auth', 'activated', 'currentUser', 'activity', 'twostep']], function () {
 
     // User Profile and Account Routes
     Route::resource(
@@ -92,7 +97,7 @@ Route::group(['middleware' => ['auth', 'activated', 'currentUser', 'activity']],
 });
 
 // Registered, activated, and is admin routes.
-Route::group(['middleware' => ['auth', 'activated', 'role:admin', 'activity']], function () {
+Route::group(['middleware' => ['auth', 'activated', 'role:admin', 'activity', 'twostep']], function () {
     Route::resource('/users/deleted', 'SoftDeletesController', [
         'only' => [
             'index', 'show', 'update', 'destroy',

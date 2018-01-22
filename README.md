@@ -9,7 +9,7 @@
 - [About](#about)
 - [Features](#features)
 - [Installation Instructions](#installation-instructions)
-    - [Rebuild Front End Assets with Mix (optional)](#rebuild-front-end-assets-with-mix)
+    - [Build the Front End Assets with Mix(#rebuild-front-end-assets-with-mix)
     - [Optionally Build Cache](#optionally-build-cache)
 - [Seeds](#seeds)
 - [Routes](#routes)
@@ -80,6 +80,7 @@ Laravel 5.5 with user authentication, registration with email confirmation, soci
 |User Delete with Goodby email|
 |User Restore Deleted Account|
 |Activity Logging using [Laravel-logger](https://github.com/jeremykenedy/laravel-logger)|
+|Optional 2-step account login verfication with [Laravel 2-Step Verification](https://github.com/jeremykenedy/laravel2step)|
 
 ### Installation Instructions
 1. Run `sudo git clone https://github.com/jeremykenedy/laravel-auth.git laravel-auth`
@@ -93,24 +94,24 @@ Laravel 5.5 with user authentication, registration with email confirmation, soci
 6. Run `php artisan vendor:publish --provider="jeremykenedy\LaravelRoles\RolesServiceProvider" --tag=config`
 7. Run `php artisan vendor:publish --provider="jeremykenedy\LaravelRoles\RolesServiceProvider" --tag=migrations`
 8. Run `php artisan vendor:publish --provider="jeremykenedy\LaravelRoles\RolesServiceProvider" --tag=seeds`
-9. From the projects root folder run `sudo chmod -R 755 ../laravel-auth`
-10. From the projects root folder run `php artisan key:generate`
-11. From the projects root folder run `php artisan migrate`
-12. From the projects root folder run `composer dump-autoload`
-13. From the projects root folder run `php artisan db:seed`
+9. Run `php artisan vendor:publish --tag=laravel2step`
+10. From the projects root folder run `sudo chmod -R 755 ../laravel-auth`
+11. From the projects root folder run `php artisan key:generate`
+12. From the projects root folder run `php artisan migrate`
+13. From the projects root folder run `composer dump-autoload`
+14. From the projects root folder run `php artisan db:seed`
+15. Compile the front end assets with [NPM](#using-npm) or [yarn](#using-yarn).
 
-** Note ** In order for [Dropzone.js](http://www.dropzonejs.com/#configuration) to work you will need to run
-```
-npm install
-```
-
-#### Rebuild Front End Assets with Mix
-
-###### Rebuilding the front end of that project is OPTIONAL and can be done using Laravel [Mix](https://laravel.com/docs/5.5/mix) which is Elixers replacement.
-
+#### Build the Front End Assets with Mix
+##### Using NPM:
 1. From the projects root folder run `npm install`
 2. From the projects root folder run `npm run dev` or `npm run production`
   * You can watch assets with `npm run watch`
+
+##### Using Yarn:
+1. From the projects root folder run `yarn install`
+2. From the projects root folder run `yarn run dev` or `yarn run production`
+  * You can watch assets with `yarn run watch`
 
 #### Optionally Build Cache
 1. From the projects root folder run `sudo php artisan config:cache`
@@ -182,6 +183,11 @@ npm install
 * ```/activity/cleared```
 * ```/activity/log/{id}```
 * ```/activity/cleared/log/{id}```
+
+#### 2-Step Verfication Routes (disabled by default in .env.example file)
+* ```/verification/needed```
+* ```/verification/verify```
+* ```/verification/resend```
 
 ### Socialite
 
@@ -267,7 +273,7 @@ DB_DATABASE=laravelAuth
 DB_USERNAME=homestead
 DB_PASSWORD=secret
 
-BROADCAST_DRIVER=log
+BROADCAST_DRIVER=pusher
 CACHE_DRIVER=file
 SESSION_DRIVER=file
 QUEUE_DRIVER=sync
@@ -293,20 +299,39 @@ EMAIL_EXCEPTION_CC=''
 EMAIL_EXCEPTION_BCC=''
 EMAIL_EXCEPTION_SUBJECT=''
 
+# You will also need to update the pusher credentials in /resources/assets/js/bootstrap.js - lines 64 - 66
 PUSHER_APP_ID=
 PUSHER_APP_KEY=
 PUSHER_APP_SECRET=
+PUSHER_APP_CLUSTER=
 
 ACTIVATION=true
 ACTIVATION_LIMIT_TIME_PERIOD=24
 ACTIVATION_LIMIT_MAX_ATTEMPTS=3
-
 NULL_IP_ADDRESS=0.0.0.0
 
 DEBUG_BAR_ENVIRONMENT=local
 
 USER_RESTORE_CUTOFF_DAYS=31
 USER_RESTORE_ENCRYPTION_KEY=
+USER_LIST_PAGINATION_SIZE=50
+
+LARAVEL_2STEP_ENABLED=false
+LARAVEL_2STEP_DATABASE_CONNECTION=mysql
+LARAVEL_2STEP_DATABASE_TABLE=laravel2step
+LARAVEL_2STEP_USER_MODEL=App\User
+LARAVEL_2STEP_EMAIL_FROM="jeremykenedy@gmail.com"
+LARAVEL_2STEP_EMAIL_FROM_NAME="Laravel 2 Step Verification"
+LARAVEL_2STEP_EMAIL_SUBJECT='Laravel 2 Step Verification'
+LARAVEL_2STEP_EXCEEDED_COUNT=3
+LARAVEL_2STEP_EXCEEDED_COUNTDOWN_MINUTES=1440
+LARAVEL_2STEP_VERIFIED_LIFETIME_MINUTES=360
+LARAVEL_2STEP_RESET_BUFFER_IN_SECONDS=300
+LARAVEL_2STEP_CSS_FILE="css/laravel2step/app.css"
+LARAVEL_2STEP_APP_CSS_ENABLED=false
+LARAVEL_2STEP_APP_CSS="css/app.css"
+LARAVEL_2STEP_BOOTSTRAP_CSS_CDN_ENABLED=true
+LARAVEL_2STEP_BOOTSTRAP_CSS_CDN="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 
 DEFAULT_GRAVATAR_SIZE=80
 DEFAULT_GRAVATAR_FALLBACK=http://c1940652.r52.cf0.rackcdn.com/51ce28d0fb4f442061000000/Screen-Shot-2013-06-28-at-5.22.23-PM.png
@@ -341,6 +366,7 @@ LARAVEL_LOGGER_BOOTSTRAP_CSS_CDN_URL=https://maxcdn.bootstrapcdn.com/bootstrap/3
 
 // NOTE: YOU CAN REMOVE THE KEY CALL IN app.blade.php IF YOU GET A POP UP AND DO NOT WANT TO SETUP A KEY FOR DEV
 # Google Maps API v3 Key - https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key
+GOOGLEMAPS_API_STATUS=true
 GOOGLEMAPS_API_KEY=YOURGOOGLEMAPSkeyHERE
 
 # https://console.developers.google.com/ - NEED OAUTH CREDS
@@ -389,7 +415,6 @@ INSTAGRAM_REDIRECT_URI=http://laravel-authentication.local/social/handle/instagr
 37SIGNALS_SECRET=YOURSECRETHERE
 37SIGNALS_REDIRECT_URI=http://laravel-authentication.local/social/handle/37signals
 
-
 ```
 
 #### Laravel Developement Packages Used References
@@ -405,6 +430,7 @@ INSTAGRAM_REDIRECT_URI=http://laravel-authentication.local/social/handle/instagr
 * https://laravel.com/docs/5.5/errors
 
 ###### Updates:
+* Added optional 2-step account login verfication with [Laravel 2-Step Verification](https://github.com/jeremykenedy/laravel2step)
 * Added activity logging using [Laravel-logger](https://github.com/jeremykenedy/laravel-logger)
 * Added Configurable Email Notification using [Laravel-Exception-Notifier](https://github.com/jeremykenedy/laravel-exception-notifier)
 * Update to Laravel 5.5
@@ -453,10 +479,17 @@ INSTAGRAM_REDIRECT_URI=http://laravel-authentication.local/social/handle/instagr
 ![Admin Panel Edit User](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/15laravel-auth2-edit-user.jpg)
 ![Admin Panel Save Edits](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/16laravel-auth2-modal-save.jpg)
 ![Admin Panel Create User](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/17laravel-auth-create-user.jpg)
+![Verification Page](https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/1-verification-page.jpeg)
+![Resent Email Modal](https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/2-verification-email-resent.jpeg)
+![Lock Warning Modal](https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/3-lock-warning.jpeg)
+![Locked Page](https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/4-lock-screen.jpeg)
+![Verification Email](https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/5-verification-email.jpeg)
 
 ### File Tree
 ```
 laravel-auth
+├── .circleci
+│   └── config.yml
 ├── .env.example
 ├── .env.travis
 ├── .gitattributes
@@ -535,8 +568,11 @@ laravel-auth
 │   ├── app.php
 │   ├── autoload.php
 │   └── cache
-│       └── .gitignore
+│       ├── .gitignore
+│       ├── packages.php
+│       └── services.php
 ├── composer.json
+├── composer.lock
 ├── config
 │   ├── app.php
 │   ├── auth.php
@@ -547,6 +583,7 @@ laravel-auth
 │   ├── exceptions.php
 │   ├── filesystems.php
 │   ├── gravatar.php
+│   ├── laravel2step.php
 │   ├── mail.php
 │   ├── queue.php
 │   ├── roles.php
@@ -569,7 +606,8 @@ laravel-auth
 │   │   ├── 2017_03_09_082449_create_social_logins_table.php
 │   │   ├── 2017_03_09_082526_create_activations_table.php
 │   │   ├── 2017_03_20_213554_create_themes_table.php
-│   │   └── 2017_03_21_042918_create_profiles_table.php
+│   │   ├── 2017_03_21_042918_create_profiles_table.php
+│   │   └── 2017_12_09_070937_create_two_step_auth_table.php
 │   └── seeds
 │       ├── ConnectRelationshipsSeeder.php
 │       ├── DatabaseSeeder.php
@@ -583,7 +621,10 @@ laravel-auth
 ├── public
 │   ├── .htaccess
 │   ├── css
-│   │   └── app.5c1428c07e35994073c2.css
+│   │   ├── app.css
+│   │   └── laravel2step
+│   │       ├── app.css
+│   │       └── app.min.css
 │   ├── favicon.ico
 │   ├── fonts
 │   │   ├── fontawesome-webfont.eot
@@ -601,7 +642,8 @@ laravel-auth
 │   │   └── wink.svg
 │   ├── index.php
 │   ├── js
-│   │   └── app.0a5140ae2ab7468f1f8d.js
+│   │   ├── app.99230f42ad184f498ce6.js
+│   │   └── app.js
 │   ├── mix-manifest.json
 │   ├── robots.txt
 │   └── web.config
@@ -611,29 +653,52 @@ laravel-auth
 │   │   │   ├── app.js
 │   │   │   ├── bootstrap.js
 │   │   │   └── components
-│   │   │       └── Example.vue
-│   │   └── sass
-│   │       ├── _avatar.scss
-│   │       ├── _badges.scss
-│   │       ├── _buttons.scss
-│   │       ├── _forms.scss
-│   │       ├── _helpers.scss
-│   │       ├── _hideShowPassword.scss
-│   │       ├── _lists.scss
-│   │       ├── _logs.scss
-│   │       ├── _margins.scss
-│   │       ├── _mixins.scss
-│   │       ├── _modals.scss
-│   │       ├── _panels.scss
-│   │       ├── _password.scss
-│   │       ├── _php-info.scss
-│   │       ├── _socials.scss
-│   │       ├── _typography.scss
-│   │       ├── _variables.scss
-│   │       ├── _wells.scss
-│   │       └── app.scss
+│   │   │       ├── Example.vue
+│   │   │       └── UsersCount.vue
+│   │   ├── sass
+│   │   │   ├── _avatar.scss
+│   │   │   ├── _badges.scss
+│   │   │   ├── _buttons.scss
+│   │   │   ├── _forms.scss
+│   │   │   ├── _helpers.scss
+│   │   │   ├── _hideShowPassword.scss
+│   │   │   ├── _lists.scss
+│   │   │   ├── _logs.scss
+│   │   │   ├── _margins.scss
+│   │   │   ├── _mixins.scss
+│   │   │   ├── _modals.scss
+│   │   │   ├── _panels.scss
+│   │   │   ├── _password.scss
+│   │   │   ├── _php-info.scss
+│   │   │   ├── _socials.scss
+│   │   │   ├── _typography.scss
+│   │   │   ├── _variables.scss
+│   │   │   ├── _wells.scss
+│   │   │   └── app.scss
+│   │   └── scss
+│   │       └── laravel2step
+│   │           ├── _animations.scss
+│   │           ├── _mixins.scss
+│   │           ├── _modals.scss
+│   │           ├── _variables.scss
+│   │           ├── _verification.scss
+│   │           └── app.scss
 │   ├── lang
-│   │   └── en
+│   │   ├── en
+│   │   │   ├── auth.php
+│   │   │   ├── emails.php
+│   │   │   ├── forms.php
+│   │   │   ├── modals.php
+│   │   │   ├── pagination.php
+│   │   │   ├── passwords.php
+│   │   │   ├── permsandroles.php
+│   │   │   ├── profile.php
+│   │   │   ├── socials.php
+│   │   │   ├── themes.php
+│   │   │   ├── titles.php
+│   │   │   ├── usersmanagement.php
+│   │   │   └── validation.php
+│   │   └── fr
 │   │       ├── auth.php
 │   │       ├── emails.php
 │   │       ├── forms.php
@@ -643,7 +708,6 @@ laravel-auth
 │   │       ├── permsandroles.php
 │   │       ├── profile.php
 │   │       ├── socials.php
-│   │       ├── themes.php
 │   │       ├── titles.php
 │   │       ├── usersmanagement.php
 │   │       └── validation.php
@@ -672,6 +736,7 @@ laravel-auth
 │       │   └── modal-save.blade.php
 │       ├── pages
 │       │   ├── admin
+│       │   │   ├── active-users.blade.php
 │       │   │   ├── home.blade.php
 │       │   │   ├── php-details.blade.php
 │       │   │   └── route-details.blade.php
