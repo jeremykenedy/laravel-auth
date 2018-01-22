@@ -43,7 +43,6 @@ Route::group(['middleware' => ['auth', 'activated', 'activity']], function () {
     // Activation Routes
     Route::get('/activation-required', ['uses' => 'Auth\ActivateController@activationRequired'])->name('activation-required');
     Route::get('/logout', ['uses' => 'Auth\LoginController@logout'])->name('logout');
-
 });
 
 // Registered and Activated User Routes

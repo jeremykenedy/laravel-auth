@@ -19,7 +19,6 @@ return [
     'laravel2stepDatabaseConnection'  => env('LARAVEL_2STEP_DATABASE_CONNECTION', 'mysql'),
     'laravel2stepDatabaseTable'       => env('LARAVEL_2STEP_DATABASE_TABLE', 'twoStepAuth'),
 
-
     /*
     |--------------------------------------------------------------------------
     | Laravel Default User Model
@@ -35,7 +34,7 @@ return [
     */
 
     'verificationEmailFrom'     => env('LARAVEL_2STEP_EMAIL_FROM', env('MAIL_USERNAME')),
-    'verificationEmailFromName' => env('LARAVEL_2STEP_EMAIL_FROM_NAME', config('app.name') . ' 2-Step Verification'),
+    'verificationEmailFromName' => env('LARAVEL_2STEP_EMAIL_FROM_NAME', config('app.name').' 2-Step Verification'),
 
     /*
     |--------------------------------------------------------------------------
