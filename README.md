@@ -9,7 +9,7 @@
 - [About](#about)
 - [Features](#features)
 - [Installation Instructions](#installation-instructions)
-    - [Build the Front End Assets with Mix(#rebuild-front-end-assets-with-mix)
+    - [Build the Front End Assets with Mix](#rebuild-front-end-assets-with-mix)
     - [Optionally Build Cache](#optionally-build-cache)
 - [Seeds](#seeds)
 - [Routes](#routes)
