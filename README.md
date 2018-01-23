@@ -83,13 +83,13 @@ Laravel 5.5 with user authentication, registration with email confirmation, soci
 |Optional 2-step account login verfication with [Laravel 2-Step Verification](https://github.com/jeremykenedy/laravel2step)|
 
 ### Installation Instructions
-1. Run `sudo git clone https://github.com/jeremykenedy/laravel-auth.git laravel-auth`
+1. Run `git clone https://github.com/jeremykenedy/laravel-auth.git laravel-auth`
 2. Create a MySQL database for the project
     * ```mysql -u root -p```, if using Vagrant: ```mysql -u homestead -psecret```
     * ```create database laravelAuth;```
     * ```\q```
 3. From the projects root run `cp .env.example .env`
-4. Configure your `.env` file // NOTE: Google API Key will prevent maps error
+4. Configure your `.env` file
 5. Run `sudo composer update` from the projects root folder
 6. From the projects root folder run:
 ```
@@ -117,7 +117,7 @@ php artisan vendor:publish --tag=laravel2step
   * You can watch assets with `yarn run watch`
 
 #### Optionally Build Cache
-1. From the projects root folder run `sudo php artisan config:cache`
+1. From the projects root folder run `php artisan config:cache`
 
 ###### And thats it with the caveat of setting up and configuring your development environment. I recommend [Laravel Homestead](https://laravel.com/docs/5.5/homestead)
 
