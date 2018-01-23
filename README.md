@@ -12,13 +12,17 @@
     - [Build the Front End Assets with Mix](#rebuild-front-end-assets-with-mix)
     - [Optionally Build Cache](#optionally-build-cache)
 - [Seeds](#seeds)
+    - [Seeded Roles](#seeded-roles)
+    - [Seeded Permissions](#seeded-permissions)
+    - [Seeded Users](#seeded-users)
+    - [Themes Seed List](#themes-seed-list)
 - [Routes](#routes)
-  - [Authentication Routes](#authentication-routes)
-  - [Profile Routes](#profile-routes)
-  - [Admin Routes](#admin-routes)
+    - [Authentication Routes](#authentication-routes)
+    - [Profile Routes](#profile-routes)
+    - [Admin Routes](#admin-routes)
 - [Socialite](#socialite)
-  - [Get Socialite Login API Keys](#get-socialite-login-api-keys)
-  - [Add More Socialite Logins](#add-more-socialite-logins)
+    - [Get Socialite Login API Keys](#get-socialite-login-api-keys)
+    - [Add More Socialite Logins](#add-more-socialite-logins)
 - [Other API keys](#other-api-keys)
 - [Environment File](#environment-file)
 - [Updates](#updates)
@@ -26,7 +30,6 @@
 - [File Tree](#file-tree)
 - [Opening an Issue](#opening-an-issue)
 - [Laravel Auth License](#laravel-auth-license)
-
 
 ### About
 Laravel 5.5 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
@@ -122,25 +125,25 @@ php artisan vendor:publish --tag=laravel2step
 ###### And thats it with the caveat of setting up and configuring your development environment. I recommend [Laravel Homestead](https://laravel.com/docs/5.5/homestead)
 
 ### Seeds
-1. Seeded Roles
+##### Seeded Roles
   * Unverified - Level 0
   * User  - Level 1
   * Administrator - Level 5
 
-2. Seeded Permissions
+##### Seeded Permissions
   * view.users
   * create.users
   * edit.users
   * delete.users
 
-3. Seeded Users
+##### Seeded Users
 
 |Email|Password|Access|
 |:------------|:------------|:------------|
 |user@user.com|password|User Access|
 |admin@admin.com|password|Admin Access|
 
-4. Themes Seed List
+##### Themes Seed List
   * [ThemesTableSeeder](https://github.com/jeremykenedy/laravel-auth/blob/master/database/seeds/ThemesTableSeeder.php)
 
 ### Routes
