@@ -91,16 +91,19 @@ Laravel 5.5 with user authentication, registration with email confirmation, soci
 3. From the projects root run `cp .env.example .env`
 4. Configure your `.env` file // NOTE: Google API Key will prevent maps error
 5. Run `sudo composer update` from the projects root folder
-6. Run `php artisan vendor:publish --provider="jeremykenedy\LaravelRoles\RolesServiceProvider" --tag=config`
-7. Run `php artisan vendor:publish --provider="jeremykenedy\LaravelRoles\RolesServiceProvider" --tag=migrations`
-8. Run `php artisan vendor:publish --provider="jeremykenedy\LaravelRoles\RolesServiceProvider" --tag=seeds`
-9. Run `php artisan vendor:publish --tag=laravel2step`
-10. From the projects root folder run `sudo chmod -R 755 ../laravel-auth`
-11. From the projects root folder run `php artisan key:generate`
-12. From the projects root folder run `php artisan migrate`
-13. From the projects root folder run `composer dump-autoload`
-14. From the projects root folder run `php artisan db:seed`
-15. Compile the front end assets with [NPM](#using-npm) or [yarn](#using-yarn).
+6. From the projects root folder run:
+```
+php artisan vendor:publish --provider="jeremykenedy\LaravelRoles\RolesServiceProvider" --tag=config &&
+php artisan vendor:publish --provider="jeremykenedy\LaravelRoles\RolesServiceProvider" --tag=migrations &&
+php artisan vendor:publish --provider="jeremykenedy\LaravelRoles\RolesServiceProvider" --tag=seeds &&
+php artisan vendor:publish --tag=laravel2step
+```
+7. From the projects root folder run `sudo chmod -R 755 ../laravel-auth`
+8. From the projects root folder run `php artisan key:generate`
+9. From the projects root folder run `php artisan migrate`
+10. From the projects root folder run `composer dump-autoload`
+11. From the projects root folder run `php artisan db:seed`
+12. Compile the front end assets with [npm steps](#using-npm) or [yarn steps](#using-yarn).
 
 #### Build the Front End Assets with Mix
 ##### Using NPM:
