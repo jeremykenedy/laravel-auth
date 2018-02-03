@@ -84,6 +84,7 @@ Laravel 5.5 with user authentication, registration with email confirmation, soci
 |User Restore Deleted Account|
 |Activity Logging using [Laravel-logger](https://github.com/jeremykenedy/laravel-logger)|
 |Optional 2-step account login verfication with [Laravel 2-Step Verification](https://github.com/jeremykenedy/laravel2step)|
+|Uses [Laravel PHP Info](https://github.com/jeremykenedy/laravel-phpinfo) package|
 
 ### Installation Instructions
 1. Run `git clone https://github.com/jeremykenedy/laravel-auth.git laravel-auth`
@@ -177,7 +178,7 @@ php artisan vendor:publish --tag=laravel2step
 
 #### Admin Tools Routes
 * ```/logs```
-* ```/php```
+* ```/phpinfo```
 * ```/routes```
 
 #### Admin Soft Deleted Users Management Routes
@@ -509,6 +510,7 @@ INSTAGRAM_REDIRECT_URI=http://laravel-authentication.local/social/handle/instagr
 laravel-auth
 ├── .circleci
 │   └── config.yml
+├── .env
 ├── .env.example
 ├── .env.travis
 ├── .gitattributes
@@ -603,6 +605,7 @@ laravel-auth
 │   ├── filesystems.php
 │   ├── gravatar.php
 │   ├── laravel2step.php
+│   ├── laravelPhpInfo.php
 │   ├── mail.php
 │   ├── queue.php
 │   ├── roles.php
@@ -636,6 +639,99 @@ laravel-auth
 │       └── UsersTableSeeder.php
 ├── license.svg
 ├── package.json
+├── packages
+│   └── jeremykenedy
+│       ├── laravel-https
+│       │   ├── .gitignore
+│       │   ├── LICENSE
+│       │   ├── README.md
+│       │   ├── composer.json
+│       │   └── src
+│       │       ├── LaravelHttpsServiceProvider.php
+│       │       ├── app
+│       │       │   └── Http
+│       │       │       └── Middleware
+│       │       │           ├── CheckHTTPS.php
+│       │       │           └── ForceHTTPS.php
+│       │       ├── config
+│       │       │   └── laravel-https.php
+│       │       └── resources
+│       │           ├── lang
+│       │           │   └── en
+│       │           │       └── laravel-https.php
+│       │           └── views
+│       │               └── errors
+│       │                   └── 403.blade.php
+│       ├── laravel-logger
+│       │   ├── .gitignore
+│       │   ├── CODE_OF_CONDUCT.md
+│       │   ├── LICENSE
+│       │   ├── README.md
+│       │   ├── composer.json
+│       │   └── src
+│       │       ├── .env.example
+│       │       ├── LaravelLoggerServiceProvider.php
+│       │       ├── app
+│       │       │   ├── Http
+│       │       │   │   ├── Controllers
+│       │       │   │   │   └── LaravelLoggerController.php
+│       │       │   │   ├── Middleware
+│       │       │   │   │   └── LogActivity.php
+│       │       │   │   └── Traits
+│       │       │   │       ├── ActivityLogger.php
+│       │       │   │       ├── IpAddressDetails.php
+│       │       │   │       └── UserAgentDetails.php
+│       │       │   ├── Listeners
+│       │       │   │   ├── LogAuthenticated.php
+│       │       │   │   ├── LogAuthenticationAttempt.php
+│       │       │   │   ├── LogFailedLogin.php
+│       │       │   │   ├── LogLockout.php
+│       │       │   │   ├── LogPasswordReset.php
+│       │       │   │   ├── LogSuccessfulLogin.php
+│       │       │   │   └── LogSuccessfulLogout.php
+│       │       │   ├── Logic
+│       │       │   │   └── helpers.php
+│       │       │   └── Models
+│       │       │       └── Activity.php
+│       │       ├── config
+│       │       │   └── laravel-logger.php
+│       │       ├── database
+│       │       │   └── migrations
+│       │       │       └── 2017_11_04_103444_create_laravel_logger_activity_table.php
+│       │       ├── resources
+│       │       │   ├── lang
+│       │       │   │   └── en
+│       │       │   │       └── laravel-logger.php
+│       │       │   └── views
+│       │       │       ├── forms
+│       │       │       │   ├── clear-activity-log.blade.php
+│       │       │       │   ├── delete-activity-log.blade.php
+│       │       │       │   └── restore-activity-log.blade.php
+│       │       │       ├── logger
+│       │       │       │   ├── activity-log-cleared.blade.php
+│       │       │       │   ├── activity-log-item.blade.php
+│       │       │       │   ├── activity-log.blade.php
+│       │       │       │   └── partials
+│       │       │       │       └── activity-table.blade.php
+│       │       │       ├── modals
+│       │       │       │   └── confirm-modal.blade.php
+│       │       │       ├── partials
+│       │       │       │   ├── form-status.blade.php
+│       │       │       │   └── styles.blade.php
+│       │       │       └── scripts
+│       │       │           ├── clickable-row.blade.php
+│       │       │           ├── confirm-modal.blade.php
+│       │       │           ├── datatables.blade.php
+│       │       │           └── tooltip.blade.php
+│       │       └── routes
+│       │           └── web.php
+│       └── laravel-pages
+│           ├── .gitignore
+│           ├── LICENSE.LICENSE
+│           ├── README.md
+│           ├── composer.json
+│           └── src
+│               └── LaravelPagesServiceProvider.php
 ├── phpunit.xml
 ├── public
 │   ├── .htaccess
@@ -757,7 +853,6 @@ laravel-auth
 │       │   ├── admin
 │       │   │   ├── active-users.blade.php
 │       │   │   ├── home.blade.php
-│       │   │   ├── php-details.blade.php
 │       │   │   └── route-details.blade.php
 │       │   ├── status.blade.php
 │       │   └── user
@@ -824,4 +919,4 @@ Before opening an issue there are a couple of considerations:
 Open source projects are a the community’s responsibility to use, contribute, and debug.
 
 ### Laravel Auth License
-Laravel-auth is licensed under the MIT license. Enjoy!
+Laravel-auth is licensed under the [MIT license](https://opensource.org/licenses/MIT). Enjoy!

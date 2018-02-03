@@ -33,16 +33,6 @@ class AdminDetailsController extends Controller
     }
 
     /**
-     * Display php info page.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function listPHPInfo()
-    {
-        return view('pages.admin.php-details');
-    }
-
-    /**
      * Display active users page.
      *
      * @return \Illuminate\Http\Response
