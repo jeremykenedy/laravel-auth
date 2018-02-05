@@ -3,9 +3,9 @@
 namespace Tests\Feature;
 
 use App\Models\Theme;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Tests\TestCase;
 
 class ThemesTest extends TestCase
 {
@@ -25,7 +25,7 @@ class ThemesTest extends TestCase
     {
         $this->_faker = (object) \Faker\Factory::create();
         $this->_themeName = $this->_faker->domainWord;
-        $this->_themeUrl  = $this->_faker->url;
+        $this->_themeUrl = $this->_faker->url;
 
         $theme = Theme::create([
             'name'          => $this->_themeName,
@@ -42,5 +42,4 @@ class ThemesTest extends TestCase
         $this->assertEquals($this->_themeUrl, $theme->link);
         $this->assertEquals($theme->id, $theme->taggable_id);
     }
-
 }
