@@ -915,6 +915,7 @@ Before opening an issue there are a couple of considerations:
 * Attempt to look into the issue, and if you have a solution, make a pull request.
 * Show that you have made an attempt to look into the issue.
 * Check to see if the issue you are reporting is a duplicate of a previous reported issue.
+* If you did not star this repo I will close your issue immediatly without consideration. My time is valuable.
 
 Open source projects are a the community’s responsibility to use, contribute, and debug.
 
