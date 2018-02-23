@@ -192,9 +192,24 @@ class UsersManagementController extends Controller
             $user->password = bcrypt($request->input('password'));
         }
 
-        $user->detachAllRoles();
-        $user->attachRole($request->input('role'));
+        $userRole = $request->input('role');
+        if ($userRole != null) {
+            $user->detachAllRoles();
+            $user->attachRole($userRole);
+        }
+
         $user->updated_ip_address = $ipAddress->getClientIp();
+
+        switch ($userRole) {
+            case 3:
+                $user->activated = 0;
+                break;
+
+            default:
+                $user->activated = 1;
+                break;
+        }
+
         $user->save();
 
         return back()->with('success', trans('usersmanagement.updateSuccess'));

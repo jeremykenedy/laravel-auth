@@ -47,7 +47,7 @@ class SocialController extends Controller
         $email = $socialUserObject->email;
 
         if (!$socialUserObject->email) {
-            $email = 'missing'.str_random(10);
+            $email = 'missing'.str_random(10).'@'.str_random(10).'.example.org';
         }
 
         if (empty($userCheck)) {
