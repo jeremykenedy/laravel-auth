@@ -12,9 +12,8 @@ before_script:
   - mysql -u root -e 'create database laravelAuth;'
   - composer self-update
   - composer install --dev --prefer-source --no-interaction
-  - php artisan vendor:publish --provider="jeremykenedy\LaravelRoles\RolesServiceProvider" --tag=config
-  - php artisan vendor:publish --provider="jeremykenedy\LaravelRoles\RolesServiceProvider" --tag=migrations
-  - php artisan vendor:publish --provider="jeremykenedy\LaravelRoles\RolesServiceProvider" --tag=seeds
+  - php artisan vendor:publish --tag=laravelroles
+  - php artisan vendor:publish --tag=laravel2step
   - php artisan key:generate
   - php artisan migrate:install --env=testing --no-interaction
   - composer dump-autoload
