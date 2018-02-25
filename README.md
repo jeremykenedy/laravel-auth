@@ -97,9 +97,7 @@ Laravel 5.5 with user authentication, registration with email confirmation, soci
 5. Run `composer update` from the projects root folder
 6. From the projects root folder run:
 ```
-php artisan vendor:publish --provider="jeremykenedy\LaravelRoles\RolesServiceProvider" --tag=config &&
-php artisan vendor:publish --provider="jeremykenedy\LaravelRoles\RolesServiceProvider" --tag=migrations &&
-php artisan vendor:publish --provider="jeremykenedy\LaravelRoles\RolesServiceProvider" --tag=seeds &&
+php artisan vendor:publish --tag=laravelroles &&
 php artisan vendor:publish --tag=laravel2step
 ```
 7. From the projects root folder run `sudo chmod -R 755 ../laravel-auth`
