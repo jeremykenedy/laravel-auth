@@ -6,11 +6,8 @@
  */
 
 require('./bootstrap');
-
 require('hideshowpassword');
-
 Dropzone = require('dropzone');
-
 password = require('password-strength-meter');
 
 /**

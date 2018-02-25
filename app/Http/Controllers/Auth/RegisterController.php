@@ -7,9 +7,10 @@ use App\Models\User;
 use App\Traits\ActivationTrait;
 use App\Traits\CaptchaTrait;
 use App\Traits\CaptureIpTrait;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Validator;
 use jeremykenedy\LaravelRoles\Models\Role;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -68,7 +69,7 @@ class RegisterController extends Controller
                 'first_name'            => '',
                 'last_name'             => '',
                 'email'                 => 'required|email|max:255|unique:users',
-                'password'              => 'required|min:6|max:20|confirmed',
+                'password'              => 'required|min:6|max:30|confirmed',
                 'password_confirmation' => 'required|same:password',
                 'g-recaptcha-response'  => '',
                 'captcha'               => 'required|min:1',
@@ -106,7 +107,7 @@ class RegisterController extends Controller
                 'first_name'        => $data['first_name'],
                 'last_name'         => $data['last_name'],
                 'email'             => $data['email'],
-                'password'          => bcrypt($data['password']),
+                'password'          => Hash::make($data['password']),
                 'token'             => str_random(64),
                 'signup_ip_address' => $ipAddress->getClientIp(),
                 'activated'         => !config('settings.activation'),
