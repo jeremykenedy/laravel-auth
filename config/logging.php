@@ -31,39 +31,39 @@ return [
 
     'channels' => [
         'stack' => [
-            'driver' => 'stack',
-            'channels' => ['single','daily'],
+            'driver'   => 'stack',
+            'channels' => ['single', 'daily'],
         ],
 
         'single' => [
             'driver' => 'single',
-            'path' => storage_path('logs/laravel.log'),
-            'level' => 'debug',
+            'path'   => storage_path('logs/laravel.log'),
+            'level'  => 'debug',
         ],
 
         'daily' => [
             'driver' => 'daily',
-            'path' => storage_path('logs/laravel.log'),
-            'level' => 'debug',
-            'days' => 7,
+            'path'   => storage_path('logs/laravel.log'),
+            'level'  => 'debug',
+            'days'   => 7,
         ],
 
         'slack' => [
-            'driver' => 'slack',
-            'url' => env('LOG_SLACK_WEBHOOK_URL'),
+            'driver'   => 'slack',
+            'url'      => env('LOG_SLACK_WEBHOOK_URL'),
             'username' => 'Laravel Log',
-            'emoji' => ':boom:',
-            'level' => 'critical',
+            'emoji'    => ':boom:',
+            'level'    => 'critical',
         ],
 
         'syslog' => [
             'driver' => 'syslog',
-            'level' => 'debug',
+            'level'  => 'debug',
         ],
 
         'errorlog' => [
             'driver' => 'errorlog',
-            'level' => 'debug',
+            'level'  => 'debug',
         ],
     ],
 
