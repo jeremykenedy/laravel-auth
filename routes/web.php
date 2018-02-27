@@ -112,6 +112,7 @@ Route::group(['middleware' => ['auth', 'activated', 'role:admin', 'activity', 't
             'deleted',
         ],
     ]);
+    Route::post('search-users', 'UsersManagementController@search')->name('search-users');
 
     Route::resource('themes', 'ThemesManagementController', [
         'names' => [

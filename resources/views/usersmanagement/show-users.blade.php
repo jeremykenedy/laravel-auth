@@ -33,7 +33,9 @@
 
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
-                            Showing users
+                            <span id="card_title">
+                                @lang('usersmanagement.showing-all-users')
+                            </span>
 
                             <div class="btn-group pull-right btn-group-xs">
 
@@ -64,9 +66,11 @@
 
                     <div class="panel-body">
 
+                        @include('partials.search-users-form')
+
                         <div class="table-responsive users-table">
                             <table class="table table-striped table-condensed data-table">
-                                <thead>
+                                <thead class="thead">
                                     <tr>
                                         <th>ID</th>
                                         <th>Username</th>
@@ -81,7 +85,7 @@
                                         <th></th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="users_table">
                                     @foreach($users as $user)
                                         <tr>
                                             <td>{{$user->id}}</td>
@@ -131,9 +135,16 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
+                                <tbody id="search_results"></tbody>
                             </table>
 
-                            {{ $users->links() }}
+                            <span id="user_count"></span>
+                            <span id="user_pagination">
+                                {{ $users->links() }}
+                            </span>
+
+
+
                         </div>
                     </div>
                 </div>
@@ -152,4 +163,9 @@
     {{--
         @include('scripts.tooltips')
     --}}
+
+    {{-- @if(config('laravelusers.enableSearchUsers')) --}}
+        @include('scripts.search-users')
+    {{-- @endif --}}
+
 @endsection
