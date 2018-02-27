@@ -6,8 +6,8 @@ use App\Models\Profile;
 use App\Models\User;
 use App\Traits\CaptureIpTrait;
 use Auth;
-use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use jeremykenedy\LaravelRoles\Models\Role;
 use Validator;
 
