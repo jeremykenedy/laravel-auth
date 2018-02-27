@@ -3,7 +3,7 @@
 return [
 
     'app'               => 'Laravel',
-    'app2'              => 'Laravel Auth 3.0',
+    'app2'              => 'Auth 4.0',
     'home'              => 'Home',
     'login'             => 'Login',
     'logout'            => 'Logout',
