@@ -1,15 +1,12 @@
-// Colors
-$white: #ffffff;
-
 // Body
+$white: #ffffff;
 $body-bg: #f5f8fa;
 
-// Borders
-$laravel-border-color: darken($body-bg, 10%);
-$list-group-border: $laravel-border-color;
-$navbar-default-border: $laravel-border-color;
-$panel-default-border: $laravel-border-color;
-$panel-inner-border: $laravel-border-color;
+// Social Media
+$facebook: #4863ae;
+$twitter: #46c0fb;
+$google: #DD4B39;
+$github: #4183C4;
 
 // Brands
 $brand-primary: #3097D1;
@@ -17,36 +14,18 @@ $brand-info: #8eb4cb;
 $brand-success: #2ab27b;
 $brand-warning: #cbb956;
 $brand-danger: #bf5329;
-
-// Typography
-$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-$font-family-sans-serif: "Raleway", sans-serif;
-$font-size-base: 14px;
-$line-height-base: 1.6;
 $text-color: #636b6f;
 
-// Navbar
-$navbar-default-bg: $white;
-
-// Buttons
-$btn-default-color: $text-color;
-
-// Inputs
-$input-border: lighten($text-color, 40%);
-$input-border-focus: lighten($brand-primary, 25%);
-$input-color-placeholder: lighten($text-color, 30%);
-
-// Panels
-$panel-default-heading-bg: $white;
+// Typography
+$font-family-sans-serif: "Raleway", sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
 
 // Transitions
 $transitionSpeed: 0.35s;
 
-// Social Media
-$facebook: #4863ae;
-$twitter: #46c0fb;
-$google: #DD4B39;
-$github: #4183C4;
+// Radius'
+$standard-radius: 3px;
 
 // MQ's
 $mq-tiny: 320px;
@@ -55,17 +34,25 @@ $tablet: 767px;
 $desktop: 992px;
 $lg-desktop: 1200px;
 
-// Radius'
-$standard-radius: 3px;
-
 // Margins and Padding
 $num-of-classes: 5;
 $directions: ('top', 'bottom', 'left', 'right');
 $types: ('margin', 'padding');
 $queries: (
-  $mq-tiny: 'xxs',
-  $phone: 'xs',
-  $tablet: 'sm',
-  $desktop: 'md',
-  $lg-desktop: 'lg'
+    $mq-tiny: 'xxs',
+    $phone: 'xs',
+    $tablet: 'sm',
+    $desktop: 'md',
+    $lg-desktop: 'lg'
 );
+
+// // Buttons
+$btn-default-color: $text-color;
+
+// Inputs
+$input-border: lighten($text-color, 40%);
+$input-border-focus: lighten($brand-primary, 25%);
+$input-color-placeholder: lighten($text-color, 30%);
+
+// Panels / Cards
+$panel-default-heading-bg: $white;

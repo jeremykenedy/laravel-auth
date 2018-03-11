@@ -59,12 +59,12 @@
             @include('partials.nav')
 
             <div class="container">
-
                 @include('partials.form-status')
-
             </div>
 
-            @yield('content')
+            <main class="py-4">
+                @yield('content')
+            </main>
 
         </div>
 

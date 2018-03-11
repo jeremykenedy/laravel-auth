@@ -9,24 +9,23 @@
 
 @endphp
 
-
-<div class="panel panel-primary @role('admin', true) panel-info  @endrole">
-    <div class="panel-heading">
+<div class="card card-primary @role('admin', true) card-info  @endrole">
+    <div class="card-header">
 
         Welcome {{ Auth::user()->name }}
 
         @role('admin', true)
-            <span class="pull-right label label-primary" style="margin-top:4px">
-            Admin Access
+            <span class="pull-right badge badge-primary" style="margin-top:4px">
+                Admin Access
             </span>
         @else
-            <span class="pull-right label label-warning" style="margin-top:4px">
-            User Access
+            <span class="pull-right badge badge-warning" style="margin-top:4px">
+                User Access
             </span>
         @endrole
 
     </div>
-    <div class="panel-body">
+    <div class="card-body">
         <h2 class="lead">
             {{ trans('auth.loggedIn') }}
         </h2>
@@ -65,23 +64,23 @@
         <h4>
             You have access to {{ $levelAmount }}:
             @level(5)
-                <span class="label label-primary margin-half">5</span>
+                <span class="badge badge-primary margin-half">5</span>
             @endlevel
 
             @level(4)
-                <span class="label label-info margin-half">4</span>
+                <span class="badge badge-info margin-half">4</span>
             @endlevel
 
             @level(3)
-                <span class="label label-success margin-half">3</span>
+                <span class="badge badge-success margin-half">3</span>
             @endlevel
 
             @level(2)
-                <span class="label label-warning margin-half">2</span>
+                <span class="badge badge-warning margin-half">2</span>
             @endlevel
 
             @level(1)
-                <span class="label label-default margin-half">1</span>
+                <span class="badge badge-default margin-half">1</span>
             @endlevel
         </h4>
 
@@ -92,25 +91,25 @@
             <h4>
                 You have permissions:
                 @permission('view.users')
-                    <span class="label label-primary margin-half margin-left-0">
+                    <span class="badge badge-primary margin-half margin-left-0">
                         {{ trans('permsandroles.permissionView') }}
                     </span>
                 @endpermission
 
                 @permission('create.users')
-                    <span class="label label-info margin-half margin-left-0">
+                    <span class="badge badge-info margin-half margin-left-0">
                         {{ trans('permsandroles.permissionCreate') }}
                     </span>
                 @endpermission
 
                 @permission('edit.users')
-                    <span class="label label-warning margin-half margin-left-0">
+                    <span class="badge badge-warning margin-half margin-left-0">
                         {{ trans('permsandroles.permissionEdit') }}
                     </span>
                 @endpermission
 
                 @permission('delete.users')
-                    <span class="label label-danger margin-half margin-left-0">
+                    <span class="badge badge-danger margin-half margin-left-0">
                         {{ trans('permsandroles.permissionDelete') }}
                     </span>
                 @endpermission

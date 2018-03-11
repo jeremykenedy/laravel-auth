@@ -11,9 +11,9 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div class="panel panel-default">
-          <div class="panel-heading">
+      <div class="col-md-10 offset-md-1">
+        <div class="card card-default">
+          <div class="card-header">
 
             Create New User
 
@@ -23,7 +23,7 @@
             </a>
 
           </div>
-          <div class="panel-body">
+          <div class="card-body">
 
             {!! Form::open(array('action' => 'UsersManagementController@store')) !!}
 

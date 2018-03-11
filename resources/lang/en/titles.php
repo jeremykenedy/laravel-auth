@@ -13,6 +13,7 @@ return [
     'profile'           => 'Profile',
     'editProfile'       => 'Edit Profile',
     'createProfile'     => 'Create Profile',
+    'adminDropdownNav'  => 'Admin',
 
     'activation'        => 'Registration Started  | Activation Required',
     'exceeded'          => 'Activation Error',
