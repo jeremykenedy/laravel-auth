@@ -1,12 +1,12 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header">
                         Current Users Online
                     </div>
-                    <div class="panel-body">
+                    <div class="card-body">
                         <canvas id="myChart" height="100"></canvas>
                     </div>
                 </div>

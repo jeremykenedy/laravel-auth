@@ -9,8 +9,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10 offset-md-1">
-				<div class="panel panel-default">
-					<div class="panel-heading">
+				<div class="card card">
+					<div class="card-header">
 
 						<div class="btn-group pull-right btn-group-xs">
 

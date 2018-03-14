@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Paginator::useBootstrapThree();
+        //Paginator::useBootstrapThree();
         Schema::defaultStringLength(191);
     }
 

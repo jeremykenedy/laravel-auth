@@ -1,28 +1,28 @@
 @extends('layouts.app')
 
 @section('template_title')
-  	{{ trans('themes.showHeadTitle') . ' ' . $theme->name }}
+    {{ trans('themes.showHeadTitle') . ' ' . $theme->name }}
 @endsection
 
 @section('template_fastload_css')
 
-	.list-group-responsive span:not(.label) {
-		display: block;
-		overflow-y: auto;
-	}
-	.list-group-responsive span.label {
-		margin-left: 7.25em;
-	}
+    .list-group-responsive span:not(.badge) {
+        display: block;
+        overflow-y: auto;
+    }
+    .list-group-responsive span.badge {
+        margin-left: 7.25em;
+    }
 
-	.theme-details-list strong {
-		width: 5.5em;
-		display: inline-block;
-		position: absolute;
-	}
+    .theme-details-list strong {
+        width: 5.5em;
+        display: inline-block;
+        position: absolute;
+    }
 
-	.theme-details-list span {
-	  	margin-left: 5.5em;
-	}
+    .theme-details-list span {
+        margin-left: 5.5em;
+    }
 
 @endsection
 
@@ -42,78 +42,78 @@
 @section('content')
 
 <div class="container">
-	<div class="row">
-		<div class="col-md-10 offset-md-1">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					{{ trans('themes.showTitle') }}
-					<a href="/themes/" class="btn btn-primary btn-xs pull-right">
-					  <i class="fa fa-fw fa-mail-reply" aria-hidden="true"></i>
-					  {{ trans('themes.showBackBtn') }}
-					</a>
-				</div>
-				<div class="panel-body">
-					<div class="well well-sm">
-					    <h1 class="text-center">
-					        {{ $theme->name }}
-					    </h1>
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="card">
+                <div class="card-header">
+                    {{ trans('themes.showTitle') }}
+                    <a href="/themes/" class="btn btn-primary btn-sm pull-right">
+                      <i class="fa fa-fw fa-mail-reply" aria-hidden="true"></i>
+                      {{ trans('themes.showBackBtn') }}
+                    </a>
+                </div>
+                <div class="card-body">
 
-					    <h4 class="text-center margin-bottom-2">
-					        <span class="badge">{{ count($themeUsers) }}</span> {{ trans('themes.showUsers') }}
-					    </h4>
+                    <h1 class="text-center">
+                        {{ $theme->name }}
+                    </h1>
 
-						<ul class="list-group list-group-responsive theme-details-list margin-bottom-3">
+                    <h4 class="text-center margin-bottom-2">
+                        <span class="badge">{{ count($themeUsers) }}</span> {{ trans('themes.showUsers') }}
+                    </h4>
 
-							<li class="list-group-item">
-								<strong>{{ trans('themes.showStatus') }}</strong>
-							    <span class="label label-{{ $themeStatus['class'] }}">
-							        {{ $themeStatus['name'] }}
-							    </span>
-							</li>
+                    <ul class="list-group list-group-responsive theme-details-list margin-bottom-3">
 
-							<li class="list-group-item"><strong>Id</strong> <span>{{ $theme->id }}</span></li>
+                        <li class="list-group-item">
+                            <strong>{{ trans('themes.showStatus') }}</strong>
+                            <span class="badge badge-{{ $themeStatus['class'] }}">
+                                {{ $themeStatus['name'] }}
+                            </span>
+                        </li>
 
-							@if($theme->link != null)
-								<li class="list-group-item"><strong>{{ trans('themes.showLink') }}</strong> <span> <a href="{{$theme->link}}" target="_blank" data-toggle="tooltip" title="Go to Link">{{$theme->link}}</a></span></li>
-							@endif
+                        <li class="list-group-item"><strong>Id</strong> <span>{{ $theme->id }}</span></li>
 
-							@if($theme->notes != null)
-								<li class="list-group-item"><strong>{{ trans('themes.showNotes') }}</strong> <span>{{ $theme->notes }}</span></li>
-							@endif
+                        @if($theme->link != null)
+                            <li class="list-group-item"><strong>{{ trans('themes.showLink') }}</strong> <span> <a href="{{$theme->link}}" target="_blank" data-toggle="tooltip" title="Go to Link">{{$theme->link}}</a></span></li>
+                        @endif
 
-							<li class="list-group-item"><strong>{{ trans('themes.showAdded') }}</strong> <span>{{ $theme->created_at }}</span></li>
-							<li class="list-group-item"><strong>{{ trans('themes.showUpdated') }}</strong> <span>{{ $theme->updated_at }}</span></li>
-						</ul>
+                        @if($theme->notes != null)
+                            <li class="list-group-item"><strong>{{ trans('themes.showNotes') }}</strong> <span>{{ $theme->notes }}</span></li>
+                        @endif
 
-						@if(count($themeUsers) > 0)
-							<h4 class="text-center margin-bottom-2">
-							   	<i class="fa fa-users fa-fw" aria-hidden="true"></i> Theme Users
-							</h4>
+                        <li class="list-group-item"><strong>{{ trans('themes.showAdded') }}</strong> <span>{{ $theme->created_at }}</span></li>
+                        <li class="list-group-item"><strong>{{ trans('themes.showUpdated') }}</strong> <span>{{ $theme->updated_at }}</span></li>
+                    </ul>
 
-							<ul class="list-group">
-								@foreach ($themeUsers as $themeUser)
-								    <li class="list-group-item"><i class="fa fa-user fa-fw margin-right-1" aria-hidden="true"></i> {{ $themeUser->name }}</li>
-								@endforeach
-							</ul>
-						@endif
-					</div>
-				</div>
-				<div class="panel-footer">
-					<div class="row">
-						<div class="col-xs-6">
-							<a href="/themes/{{$theme->id}}/edit" class="btn btn-small btn-info btn-block">
-								<i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Edit<span class="hidden-xs hidden-sm"> this</span><span class="hidden-xs"> Theme</span>
-							</a>
-						</div>
-						{!! Form::open(array('url' => 'themes/' . $theme->id, 'class' => 'col-xs-6')) !!}
-							{!! Form::hidden('_method', 'DELETE') !!}
-							{!! Form::button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> Delete<span class="hidden-xs hidden-sm"> this</span><span class="hidden-xs"> Theme</span>', array('class' => 'btn btn-danger btn-block btn-flat','type' => 'button', 'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => trans('themes.confirmDeleteHdr'), 'data-message' => trans('themes.confirmDelete'))) !!}
-						{!! Form::close() !!}
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                    @if(count($themeUsers) > 0)
+                        <h4 class="text-center margin-bottom-2">
+                            <i class="fa fa-users fa-fw" aria-hidden="true"></i> Theme Users
+                        </h4>
+
+                        <ul class="list-group">
+                            @foreach ($themeUsers as $themeUser)
+                                <li class="list-group-item"><i class="fa fa-user fa-fw margin-right-1" aria-hidden="true"></i> {{ $themeUser->name }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+
+                </div>
+                <div class="card-footer">
+                    <div class="row pt-2">
+                        <div class="col-sm-6 mb-2">
+                            <a href="/themes/{{$theme->id}}/edit" class="btn btn-small btn-info btn-block">
+                                <i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Edit<span class="hidden-sm"> this</span><span class="hidden-sm"> Theme</span>
+                            </a>
+                        </div>
+                        {!! Form::open(array('url' => 'themes/' . $theme->id, 'class' => 'col-sm-6 mb-2')) !!}
+                            {!! Form::hidden('_method', 'DELETE') !!}
+                            {!! Form::button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> Delete<span class="hidden-sm"> this</span><span class="hidden-sm"> Theme</span>', array('class' => 'btn btn-danger btn-block btn-flat','type' => 'button', 'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => trans('themes.confirmDeleteHdr'), 'data-message' => trans('themes.confirmDelete'))) !!}
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @include('modals.modal-delete')
@@ -122,7 +122,7 @@
 
 @section('footer_scripts')
 
-	@include('scripts.delete-modal-script')
-	@include('scripts.tooltips')
+    @include('scripts.delete-modal-script')
+    @include('scripts.tooltips')
 
 @endsection

@@ -58,12 +58,18 @@
 
             @include('partials.nav')
 
-            <div class="container">
-                @include('partials.form-status')
-            </div>
-
             <main class="py-4">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            @include('partials.form-status')
+                        </div>
+                    </div>
+                </div>
+
                 @yield('content')
+
             </main>
 
         </div>

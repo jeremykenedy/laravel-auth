@@ -17,14 +17,14 @@
 @section('content')
 	<div class="container">
 		<div class="row">
-			<div class="col-md-10 offset-md-1">
-				<div class="panel panel-default">
-					<div class="panel-heading">
+			<div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+				<div class="card">
+					<div class="card-header">
 
 						{{ trans('profile.showProfileTitle',['username' => $user->name]) }}
 
 					</div>
-					<div class="panel-body">
+					<div class="card-body">
 
     					<img src="@if ($user->profile->avatar_status == 1) {{ $user->profile->avatar }} @else {{ Gravatar::get($user->email) }} @endif" alt="{{ $user->name }}" class="user-avatar">
 
