@@ -54,7 +54,9 @@ return [
     'users-table' => [
         'caption'   => '{1} :userscount user total|[2,*] :userscount total users',
         'id'        => 'ID',
-        'name'      => 'Name',
+        'name'      => 'Username',
+        'fname'     => 'First Name',
+        'lname'     => 'Last Name',
         'email'     => 'Email',
         'role'      => 'Role',
         'created'   => 'Created',
@@ -64,7 +66,7 @@ return [
     ],
 
     'buttons' => [
-        'create-new'    => '<span class="hidden-xs hidden-sm">New User</span>',
+        'create-new'    => 'New User',
         'delete'        => '<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i>  <span class="hidden-xs hidden-sm">Delete</span><span class="hidden-xs hidden-sm hidden-md"> User</span>',
         'show'          => '<i class="fa fa-eye fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm">Show</span><span class="hidden-xs hidden-sm hidden-md"> User</span>',
         'edit'          => '<i class="fa fa-pencil fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm">Edit</span><span class="hidden-xs hidden-sm hidden-md"> User</span>',

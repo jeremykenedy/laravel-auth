@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
 @section('template_title')
-  Showing Users
+    @lang('usersmanagement.showing-all-users')
 @endsection
 
 @section('template_linked_css')
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+    @if(config('laravelusers.enabledDatatablesJs'))
+        <link rel="stylesheet" type="text/css" href="{{ config('laravelusers.datatablesCssCDN') }}">
+    @endif
     <style type="text/css" media="screen">
         .users-table {
             border: 0;
@@ -20,16 +22,15 @@
         .users-table.table-responsive table {
             margin-bottom: 0;
         }
-
     </style>
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                <div class="card">
+                    <div class="card-header">
 
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
@@ -38,51 +39,50 @@
                             </span>
 
                             <div class="btn-group pull-right btn-group-xs">
-
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fa fa-ellipsis-v fa-fw" aria-hidden="true"></i>
                                     <span class="sr-only">
-                                        Show Users Management Menu
+                                        @lang('usersmanagement.users-menu-alt')
                                     </span>
                                 </button>
-
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="/users/create">
-                                            <i class="fa fa-fw fa-user-plus" aria-hidden="true"></i>
-                                            Create New User
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/users/deleted">
-                                            <i class="fa fa-fw fa-group" aria-hidden="true"></i>
-                                            Show Deleted User
-                                        </a>
-                                    </li>
-                                </ul>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="/users/create">
+                                        <i class="fa fa-fw fa-user-plus" aria-hidden="true"></i>
+                                        @lang('usersmanagement.buttons.create-new')
+                                    </a>
+                                    <a class="dropdown-item" href="/users/deleted">
+                                        <i class="fa fa-fw fa-group" aria-hidden="true"></i>
+                                        @lang('usersmanagement.show-deleted-users')
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="panel-body">
+                    <div class="card-body">
 
-                        @include('partials.search-users-form')
+                        @if(config('usersmanagement.enableSearchUsers'))
+                            @include('partials.search-users-form')
+                        @endif
 
                         <div class="table-responsive users-table">
-                            <table class="table table-striped table-condensed data-table">
+                            <table class="table table-striped table-sm data-table">
+                                <caption id="user_count">
+                                    {{ trans_choice('usersmanagement.users-table.caption', 1, ['userscount' => $users->count()]) }}
+                                </caption>
                                 <thead class="thead">
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Username</th>
-                                        <th class="hidden-xs">Email</th>
-                                        <th class="hidden-xs">First Name</th>
-                                        <th class="hidden-xs">Last Name</th>
-                                        <th>Role</th>
-                                        <th class="hidden-sm hidden-xs hidden-md">Created</th>
-                                        <th class="hidden-sm hidden-xs hidden-md">Updated</th>
-                                        <th>Actions</th>
-                                        <th></th>
-                                        <th></th>
+                                        <th>@lang('usersmanagement.users-table.id')</th>
+                                        <th>@lang('usersmanagement.users-table.name')</th>
+                                        <th class="hidden-xs">@lang('usersmanagement.users-table.email')</th>
+                                        <th class="hidden-xs">@lang('usersmanagement.users-table.fname')</th>
+                                        <th class="hidden-xs">@lang('usersmanagement.users-table.lname')</th>
+                                        <th>@lang('usersmanagement.users-table.role')</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">@lang('usersmanagement.users-table.created')</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">@lang('usersmanagement.users-table.updated')</th>
+                                        <th>@lang('usersmanagement.users-table.actions')</th>
+                                        <th class="no-search no-sort"></th>
+                                        <th class="no-search no-sort"></th>
                                     </tr>
                                 </thead>
                                 <tbody id="users_table">
@@ -95,23 +95,16 @@
                                             <td class="hidden-xs">{{$user->last_name}}</td>
                                             <td>
                                                 @foreach ($user->roles as $user_role)
-
                                                     @if ($user_role->name == 'User')
-                                                        @php $labelClass = 'primary' @endphp
-
+                                                        @php $badgeClass = 'primary' @endphp
                                                     @elseif ($user_role->name == 'Admin')
-                                                        @php $labelClass = 'warning' @endphp
-
+                                                        @php $badgeClass = 'warning' @endphp
                                                     @elseif ($user_role->name == 'Unverified')
-                                                        @php $labelClass = 'danger' @endphp
-
+                                                        @php $badgeClass = 'danger' @endphp
                                                     @else
-                                                        @php $labelClass = 'default' @endphp
-
+                                                        @php $badgeClass = 'default' @endphp
                                                     @endif
-
-                                                    <span class="label label-{{$labelClass}}">{{ $user_role->name }}</span>
-
+                                                    <span class="badge badge-{{$badgeClass}}">{{ $user_role->name }}</span>
                                                 @endforeach
                                             </td>
                                             <td class="hidden-sm hidden-xs hidden-md">{{$user->created_at}}</td>
@@ -119,31 +112,32 @@
                                             <td>
                                                 {!! Form::open(array('url' => 'users/' . $user->id, 'class' => '', 'data-toggle' => 'tooltip', 'title' => 'Delete')) !!}
                                                     {!! Form::hidden('_method', 'DELETE') !!}
-                                                    {!! Form::button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm">Delete</span><span class="hidden-xs hidden-sm hidden-md"> User</span>', array('class' => 'btn btn-danger btn-sm','type' => 'button', 'style' =>'width: 100%;' ,'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => 'Delete User', 'data-message' => 'Are you sure you want to delete this user ?')) !!}
+                                                    {!! Form::button(trans('usersmanagement.buttons.delete'), array('class' => 'btn btn-danger btn-sm','type' => 'button', 'style' =>'width: 100%;' ,'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => 'Delete User', 'data-message' => 'Are you sure you want to delete this user ?')) !!}
                                                 {!! Form::close() !!}
                                             </td>
                                             <td>
                                                 <a class="btn btn-sm btn-success btn-block" href="{{ URL::to('users/' . $user->id) }}" data-toggle="tooltip" title="Show">
-                                                    <i class="fa fa-eye fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm">Show</span><span class="hidden-xs hidden-sm hidden-md"> User</span>
+                                                    @lang('usersmanagement.buttons.show')
                                                 </a>
                                             </td>
                                             <td>
                                                 <a class="btn btn-sm btn-info btn-block" href="{{ URL::to('users/' . $user->id . '/edit') }}" data-toggle="tooltip" title="Edit">
-                                                    <i class="fa fa-pencil fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm">Edit</span><span class="hidden-xs hidden-sm hidden-md"> User</span>
+                                                    @lang('usersmanagement.buttons.edit')
                                                 </a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                                 <tbody id="search_results"></tbody>
+                                @if(config('usersmanagement.enableSearchUsers'))
+                                    <tbody id="search_results"></tbody>
+                                @endif
+
                             </table>
 
-                            <span id="user_count"></span>
-                            <span id="user_pagination">
+                            @if(config('usersmanagement.enablePagination'))
                                 {{ $users->links() }}
-                            </span>
-
-
+                            @endif
 
                         </div>
                     </div>
@@ -157,15 +151,15 @@
 @endsection
 
 @section('footer_scripts')
-
+    @if ((count($users) > config('usersmanagement.datatablesJsStartCount')) && config('usersmanagement.enabledDatatablesJs'))
+        @include('scripts.datatables')
+    @endif
     @include('scripts.delete-modal-script')
     @include('scripts.save-modal-script')
-    {{--
+    @if(config('usersmanagement.tooltipsEnabled'))
         @include('scripts.tooltips')
-    --}}
-
-    {{-- @if(config('laravelusers.enableSearchUsers')) --}}
+    @endif
+    @if(config('usersmanagement.enableSearchUsers'))
         @include('scripts.search-users')
-    {{-- @endif --}}
-
+    @endif
 @endsection

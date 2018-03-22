@@ -30,7 +30,12 @@ class UsersManagementController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(env('USER_LIST_PAGINATION_SIZE'));
+        $pagintaionEnabled = config('usersmanagement.enablePagination');
+        if ($pagintaionEnabled) {
+            $users = User::paginate(config('usersmanagement.paginateListSize'));
+        } else {
+            $users = User::all();
+        }
         $roles = Role::all();
 
         return View('usersmanagement.show-users', compact('users', 'roles'));

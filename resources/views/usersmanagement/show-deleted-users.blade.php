@@ -54,7 +54,7 @@
                         @else
 
                             <div class="table-responsive users-table">
-                                <table class="table table-striped table-condensed data-table">
+                                <table class="table table-striped table-sm data-table">
                                     <thead>
                                         <tr>
                                             <th class="hidden-xxs">ID</th>

@@ -9,8 +9,8 @@
 
 @endphp
 
-<div class="card card-primary @role('admin', true) card-info  @endrole">
-    <div class="card-header">
+<div class="card">
+    <div class="card-header @role('admin', true) bg-secondary text-white @endrole">
 
         Welcome {{ Auth::user()->name }}
 
@@ -46,20 +46,22 @@
 
         <hr>
 
-        <h4>
+        <p>
             You have
-                @role('admin')
-                   Admin
-                @endrole
-                @role('user')
-                   User
-                @endrole
+                <strong>
+                    @role('admin')
+                       Admin
+                    @endrole
+                    @role('user')
+                       User
+                    @endrole
+                </strong>
             Access
-        </h4>
+        </p>
 
         <hr>
 
-        <h4>
+        <p>
             You have access to {{ $levelAmount }}:
             @level(5)
                 <span class="badge badge-primary margin-half">5</span>
@@ -80,13 +82,13 @@
             @level(1)
                 <span class="badge badge-default margin-half">1</span>
             @endlevel
-        </h4>
+        </p>
 
         @role('admin')
 
             <hr>
 
-            <h4>
+            <p>
                 You have permissions:
                 @permission('view.users')
                     <span class="badge badge-primary margin-half margin-left-0">
@@ -112,7 +114,7 @@
                     </span>
                 @endpermission
 
-            </h4>
+            </p>
 
         @endrole
 
