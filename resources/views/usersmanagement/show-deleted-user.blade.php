@@ -1,12 +1,11 @@
 @extends('layouts.app')
 
 @section('template_title')
-  Showing User {{ $user->name }}
+  Showing Deleted User {{ $user->name }}
 @endsection
 
 @php
   $levelAmount = 'Level:';
-
   if ($user->level() >= 2) {
       $levelAmount = 'Levels:';
 

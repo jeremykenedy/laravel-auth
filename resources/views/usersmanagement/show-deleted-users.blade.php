@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-  Showing Users
+    Showing Deleted Users
 @endsection
 
 @section('template_linked_css')
@@ -25,23 +25,25 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                <div class="panel panel-danger">
-                    <div class="panel-heading">
+                <div class="card">
+                    <div class="card-header bg-danger text-white">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-
-                            Showing Deleted Users
-
-                            <a href="/users/" class="btn btn-primary btn-xs pull-right">
-                                <i class="fa fa-fw fa-reply" aria-hidden="true"></i>
-                                <span class="hidden-xs">Back to Users</span>
-                            </a>
+                            <span id="card_title">
+                                Showing Deleted Users
+                            </span>
+                            <div class="float-right">
+                                <a href="{{ route('users') }}" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="left" title="@lang('usersmanagement.tooltips.back-users')">
+                                    <i class="fa fa-fw fa-mail-reply" aria-hidden="true"></i>
+                                    @lang('usersmanagement.buttons.back-to-users')
+                                </a>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="panel-body">
+                    <div class="card-body">
 
                         @if(count($users) === 0)
 
@@ -55,6 +57,9 @@
 
                             <div class="table-responsive users-table">
                                 <table class="table table-striped table-sm data-table">
+                                    <caption id="user_count">
+                                        {{ trans_choice('usersmanagement.users-table.caption', 1, ['userscount' => $users->count()]) }}
+                                    </caption>
                                     <thead>
                                         <tr>
                                             <th class="hidden-xxs">ID</th>

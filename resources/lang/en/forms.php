@@ -62,7 +62,7 @@ return [
 
     'create_user_label_role' => 'User Role',
     'create_user_ph_role'    => 'Select User Role',
-    'create_user_icon_role'  => 'fa-shield',
+    'create_user_icon_role'  => 'fa fa-fw fa-shield',
 
     'create_user_button_text' => 'Create New User',
 
@@ -85,5 +85,12 @@ return [
     'submit-btn-icon' => 'fa-save',
     'username-icon'   => 'fa-user',
     'useremail-icon'  => 'fa-envelope-o',
+
+    'change-pw'      => 'Change Password',
+    'cancel'         => 'Cancel',
+    'save-changes'   => '<i class="fa fa-fw fa-save" aria-hidden="true"></i> Save Changes',
+
+    // Search Users Form
+    'search-users-ph' => 'Search Users',
 
 ];
