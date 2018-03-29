@@ -6,7 +6,7 @@
 
 @section('template_linked_css')
 
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
 
 @endsection
 
@@ -37,7 +37,7 @@
             Log file >50M, please download it.
           </div>
         @else
-        <table id="table-log" class="table table-striped">
+        <table id="table-log" class="table table-sm table-striped">
           <thead>
             <tr>
               <th>Level</th>
@@ -65,13 +65,22 @@
         @endif
         <div>
           @if($current_file)
-            <a href="?dl={{ base64_encode($current_file) }}"><span class="glyphicon glyphicon-download-alt"></span> Download file</a>
+            <a href="?dl={{ base64_encode($current_file) }}" class="btn btn-link">
+              <i class="fa fa-download" aria-hidden="true"></i>
+              Download file
+            </a>
             -
-            <a id="delete-log" data-toggle="modal" data-target="#confirmDelete" data-href="?del={{ base64_encode($current_file) }}" data-title="Delete Log File" data-message="Are you sure you want to delete log file?"><span class="glyphicon glyphicon-trash"></span> Delete file</a>
+            <a id="delete-log" data-toggle="modal" data-target="#confirmDelete" data-href="?del={{ base64_encode($current_file) }}" data-title="Delete Log File" data-message="Are you sure you want to delete log file?" class="btn btn-link">
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+              Delete file
+            </a>
             @if(count($files) > 1)
               -
 
-              <a id="delete-all-log" data-toggle="modal" data-target="#confirmDelete" data-href="?delall=true" data-title="Delete All Log Files" data-message="Are you sure you want to delete all log files?"><span class="glyphicon glyphicon-trash"></span> Delete all files</a>
+              <a id="delete-all-log" data-toggle="modal" data-target="#confirmDelete" data-href="?delall=true" data-title="Delete All Log Files" data-message="Are you sure you want to delete all log files?" class="btn btn-link">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+                Delete all files
+              </a>
 
             @endif
           @endif

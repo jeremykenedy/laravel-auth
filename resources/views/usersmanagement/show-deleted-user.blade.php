@@ -7,8 +7,7 @@
 @php
   $levelAmount = 'Level:';
   if ($user->level() >= 2) {
-      $levelAmount = 'Levels:';
-
+    $levelAmount = 'Levels:';
   }
 @endphp
 
@@ -16,53 +15,60 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-lg-10 offset-lg-1">
 
-        <div class="panel panel-danger">
+        <div class="card">
 
-          <div class="panel-heading">
-            <a href="/users/deleted/" class="btn btn-primary btn-xs pull-right">
-              <i class="fa fa-fw fa-mail-reply" aria-hidden="true"></i>
-              <span class="hidden-xs">{{ trans('usersmanagement.usersBackDelBtn') }}</span>
-            </a>
-            {{ trans('usersmanagement.usersDeletedPanelTitle') }}
+          <div class="card-header bg-danger text-white">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+
+              @lang('usersmanagement.usersDeletedPanelTitle')
+
+              <div class="float-right">
+                <a href="/users/deleted/" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="left" title="@lang('usersmanagement.usersBackDelBtn')">
+                  <i class="fa fa-fw fa-mail-reply" aria-hidden="true"></i>
+                  <span class="sr-only">
+                    @lang('usersmanagement.usersBackDelBtn')
+                  </span>
+                </a>
+              </div>
+            </div>
           </div>
-          <div class="panel-body">
 
-            <div class="well">
-              <div class="row">
-                <div class="col-sm-6">
-                  <img src="@if ($user->profile->avatar_status == 1) {{ $user->profile->avatar }} @else {{ Gravatar::get($user->email) }} @endif" alt="{{ $user->name }}" id="" class="img-circle center-block margin-bottom-2 margin-top-1 user-image">
-                </div>
+          <div class="card-body">
 
-                <div class="col-sm-6">
-                  <h4 class="text-muted margin-top-sm-1 text-center text-left-tablet">
-                    {{ $user->name }}
-                  </h4>
-                  <p class="text-center text-left-tablet">
-                    <strong>
-                      {{ $user->first_name }} {{ $user->last_name }}
-                    </strong>
-                    <br />
-                    {{ HTML::mailto($user->email, $user->email) }}
-                  </p>
+            <div class="row">
+              <div class="col-sm-4 offset-sm-2 col-md-2 offset-md-3">
+                <img src="@if ($user->profile->avatar_status == 1) {{ $user->profile->avatar }} @else {{ Gravatar::get($user->email) }} @endif" alt="{{ $user->name }}" id="" class="rounded-circle center-block mb-3 mt-4 user-image">
+              </div>
 
-                  @if ($user->profile)
-                    <div class="text-center text-left-tablet margin-bottom-1">
+              <div class="col-sm-4 col-md-6">
+                <h4 class="text-muted margin-top-sm-1 text-center text-left-tablet">
+                  {{ $user->name }}
+                </h4>
+                <p class="text-center text-left-tablet">
+                  <strong>
+                    {{ $user->first_name }} {{ $user->last_name }}
+                  </strong>
+                  <br />
+                  {{ HTML::mailto($user->email, $user->email) }}
+                </p>
 
-                      {!! Form::model($user, array('action' => array('SoftDeletesController@update', $user->id), 'method' => 'PUT', 'class' => 'form-inline')) !!}
-                          {!! Form::button('<i class="fa fa-refresh fa-fw" aria-hidden="true"></i> Restore User', array('class' => 'btn btn-success btn-block btn-sm', 'type' => 'submit', 'data-toggle' => 'tooltip', 'title' => 'Restore User')) !!}
-                      {!! Form::close() !!}
+                @if ($user->profile)
+                  <div class="text-center text-left-tablet mb-4">
 
-                      {!! Form::model($user, array('action' => array('SoftDeletesController@destroy', $user->id), 'method' => 'DELETE', 'class' => 'form-inline', 'data-toggle' => 'tooltip', 'title' => 'Permanently Delete User')) !!}
-                          {!! Form::hidden('_method', 'DELETE') !!}
-                          {!! Form::button('<i class="fa fa-user-times fa-fw" aria-hidden="true"></i> Delete User', array('class' => 'btn btn-danger btn-sm','type' => 'button', 'style' =>'width: 100%;' ,'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => 'Permanently Delete User', 'data-message' => 'Are you sure you want to permanently delete this user?')) !!}
-                      {!! Form::close() !!}
+                    {!! Form::model($user, array('action' => array('SoftDeletesController@update', $user->id), 'method' => 'PUT', 'class' => 'form-inline')) !!}
+                        {!! Form::button('<i class="fa fa-refresh fa-fw" aria-hidden="true"></i> Restore User', array('class' => 'btn btn-success btn-block btn-sm mt-1 mb-1', 'type' => 'submit', 'data-toggle' => 'tooltip', 'title' => 'Restore User')) !!}
+                    {!! Form::close() !!}
 
-                    </div>
-                  @endif
+                    {!! Form::model($user, array('action' => array('SoftDeletesController@destroy', $user->id), 'method' => 'DELETE', 'class' => 'form-inline', 'data-toggle' => 'tooltip', 'title' => 'Permanently Delete User')) !!}
+                        {!! Form::hidden('_method', 'DELETE') !!}
+                        {!! Form::button('<i class="fa fa-user-times fa-fw" aria-hidden="true"></i> Delete User', array('class' => 'btn btn-danger btn-sm ','type' => 'button', 'style' =>'width: 100%;' ,'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => 'Permanently Delete User', 'data-message' => 'Are you sure you want to permanently delete this user?')) !!}
+                    {!! Form::close() !!}
 
-                </div>
+                  </div>
+                @endif
+
               </div>
             </div>
 
@@ -71,7 +77,7 @@
 
             @if ($user->deleted_at)
 
-              <div class="col-sm-5 col-xs-6 text-larger text-warning">
+              <div class="col-sm-5 col-xs-6 text-larger">
                 <strong>
                   {{ trans('usersmanagement.labelDeletedAt') }}
                 </strong>
@@ -88,7 +94,7 @@
 
             @if ($user->deleted_ip_address)
 
-              <div class="col-sm-5 col-xs-6 text-larger text-warning">
+              <div class="col-sm-5 col-xs-6 text-larger">
                 <strong>
                   {{ trans('usersmanagement.labelIpDeleted') }}
                 </strong>
@@ -182,20 +188,20 @@
               @foreach ($user->roles as $user_role)
 
                 @if ($user_role->name == 'User')
-                  @php $labelClass = 'primary' @endphp
+                  @php $badgeClass = 'primary' @endphp
 
                 @elseif ($user_role->name == 'Admin')
-                  @php $labelClass = 'warning' @endphp
+                  @php $badgeClass = 'warning' @endphp
 
                 @elseif ($user_role->name == 'Unverified')
-                  @php $labelClass = 'danger' @endphp
+                  @php $badgeClass = 'danger' @endphp
 
                 @else
-                  @php $labelClass = 'default' @endphp
+                  @php $badgeClass = 'default' @endphp
 
                 @endif
 
-                <span class="label label-{{$labelClass}}">{{ $user_role->name }}</span>
+                <span class="badge badge-{{$badgeClass}}">{{ $user_role->name }}</span>
 
               @endforeach
             </div>
@@ -211,11 +217,11 @@
 
             <div class="col-sm-7">
               @if ($user->activated == 1)
-                <span class="label label-success">
+                <span class="badge badge-success">
                   Activated
                 </span>
               @else
-                <span class="label label-danger">
+                <span class="badge badge-danger">
                   Not-Activated
                 </span>
               @endif
@@ -226,30 +232,30 @@
 
             <div class="col-sm-5 col-xs-6 text-larger">
               <strong>
-                Access {{ trans('usersmanagement.labelAccessLevel')}} {{ $levelAmount }}:
+                {{ trans('usersmanagement.labelAccessLevel')}} {{ $levelAmount }}
               </strong>
             </div>
 
             <div class="col-sm-7">
 
               @if($user->level() >= 5)
-                <span class="label label-primary margin-half margin-left-0">5</span>
+                <span class="badge badge-primary margin-half ml-0">5</span>
               @endif
 
               @if($user->level() >= 4)
-                 <span class="label label-info margin-half margin-left-0">4</span>
+                 <span class="badge badge-info margin-half ml-0">4</span>
               @endif
 
               @if($user->level() >= 3)
-                <span class="label label-success margin-half margin-left-0">3</span>
+                <span class="badge badge-success margin-half ml-0">3</span>
               @endif
 
               @if($user->level() >= 2)
-                <span class="label label-warning margin-half margin-left-0">2</span>
+                <span class="badge badge-warning margin-half ml-0">2</span>
               @endif
 
               @if($user->level() >= 1)
-                <span class="label label-default margin-half margin-left-0">1</span>
+                <span class="badge badge-default margin-half ml-0">1</span>
               @endif
 
             </div>
@@ -265,25 +271,25 @@
 
             <div class="col-sm-7">
               @if($user->canViewUsers())
-                <span class="label label-primary margin-half margin-left-0">
+                <span class="badge badge-primary margin-half margin-left-0">
                   {{ trans('permsandroles.permissionView') }}
                 </span>
               @endif
 
               @if($user->canCreateUsers())
-                <span class="label label-info margin-half margin-left-0">
+                <span class="badge badge-info margin-half margin-left-0">
                   {{ trans('permsandroles.permissionCreate') }}
                 </span>
               @endif
 
               @if($user->canEditUsers())
-                <span class="label label-warning margin-half margin-left-0">
+                <span class="badge badge-warning margin-half margin-left-0">
                   {{ trans('permsandroles.permissionEdit') }}
                 </span>
               @endif
 
               @if($user->canDeleteUsers())
-                <span class="label label-danger margin-half margin-left-0">
+                <span class="badge badge-danger margin-half margin-left-0">
                   {{ trans('permsandroles.permissionDelete') }}
                 </span>
               @endif
@@ -335,7 +341,9 @@
               </div>
 
               <div class="col-sm-7">
-                {{ $user->signup_ip_address }}
+                <code>
+                  {{ $user->signup_ip_address }}
+                </code>
               </div>
 
               <div class="clearfix"></div>
@@ -352,7 +360,9 @@
               </div>
 
               <div class="col-sm-7">
-                {{ $user->signup_confirmation_ip_address }}
+                <code>
+                  {{ $user->signup_confirmation_ip_address }}
+                </code>
               </div>
 
               <div class="clearfix"></div>
@@ -369,7 +379,9 @@
               </div>
 
               <div class="col-sm-7">
-                {{ $user->signup_sm_ip_address }}
+                <code>
+                  {{ $user->signup_sm_ip_address }}
+                </code>
               </div>
 
               <div class="clearfix"></div>
@@ -386,7 +398,9 @@
               </div>
 
               <div class="col-sm-7">
-                {{ $user->admin_ip_address }}
+                <code>
+                  {{ $user->admin_ip_address }}
+                </code>
               </div>
 
               <div class="clearfix"></div>
@@ -403,7 +417,9 @@
               </div>
 
               <div class="col-sm-7">
-                {{ $user->updated_ip_address }}
+                <code>
+                  {{ $user->updated_ip_address }}
+                </code>
               </div>
 
               <div class="clearfix"></div>

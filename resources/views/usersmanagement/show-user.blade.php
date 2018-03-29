@@ -7,7 +7,7 @@
 @php
   $levelAmount = trans('usersmanagement.labelUserLevel');
   if ($user->level() >= 2) {
-      $levelAmount = trans('usersmanagement.labelUserLevels');
+    $levelAmount = trans('usersmanagement.labelUserLevels');
   }
 @endphp
 
@@ -19,7 +19,7 @@
 
         <div class="card">
 
-          <div class="card-header @if ($user->activated == 1) bg-success @else bg-danger @endif">
+          <div class="card-header text-white @if ($user->activated == 1) bg-success @else bg-danger @endif">
             <div style="display: flex; justify-content: space-between; align-items: center;">
               @lang('usersmanagement.showing-user-title', ['name' => $user->name])
               <div class="float-right">
@@ -32,41 +32,40 @@
           </div>
 
           <div class="card-body">
-            <div class="well">
-              <div class="row">
-                <div class="col-sm-4 offset-sm-2 col-md-2 offset-md-3">
-                  <img src="@if ($user->profile && $user->profile->avatar_status == 1) {{ $user->profile->avatar }} @else {{ Gravatar::get($user->email) }} @endif" alt="{{ $user->name }}" class="rounded-circle center-block mb-3 mt-4 user-image">
-                </div>
-                <div class="col-sm-4 col-md-6">
-                  <h4 class="text-muted margin-top-sm-1 text-center text-left-tablet">
-                    {{ $user->name }}
-                  </h4>
-                  <p class="text-center text-left-tablet">
-                    <strong>
-                      {{ $user->first_name }} {{ $user->last_name }}
-                    </strong>
-                    @if($user->email)
-                      <br />
-                      <span class="text-center" data-toggle="tooltip" data-placement="top" title="@lang('usersmanagement.tooltips.email-user', ['user' => $user->email])">
-                        {{ Html::mailto($user->email, $user->email) }}
-                      </span>
-                    @endif
-                  </p>
-                  @if ($user->profile)
-                    <div class="text-center text-left-tablet mb-4">
-                      <a href="{{ url('/profile/'.$user->name) }}" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="left" title="{{ trans('usersmanagement.viewProfile') }}">
-                        <i class="fa fa-eye fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm hidden-md"> {{ trans('usersmanagement.viewProfile') }}</span>
-                      </a>
-                      <a href="/users/{{$user->id}}/edit" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="{{ trans('usersmanagement.editUser') }}">
-                        <i class="fa fa-pencil fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm hidden-md"> {{ trans('usersmanagement.editUser') }} </span>
-                      </a>
-                      {!! Form::open(array('url' => 'users/' . $user->id, 'class' => 'form-inline', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => trans('usersmanagement.deleteUser'))) !!}
-                        {!! Form::hidden('_method', 'DELETE') !!}
-                        {!! Form::button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm hidden-md">' . trans('usersmanagement.deleteUser') . '</span>' , array('class' => 'btn btn-danger btn-sm','type' => 'button', 'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => 'Delete User', 'data-message' => 'Are you sure you want to delete this user?')) !!}
-                      {!! Form::close() !!}
-                    </div>
+
+            <div class="row">
+              <div class="col-sm-4 offset-sm-2 col-md-2 offset-md-3">
+                <img src="@if ($user->profile && $user->profile->avatar_status == 1) {{ $user->profile->avatar }} @else {{ Gravatar::get($user->email) }} @endif" alt="{{ $user->name }}" class="rounded-circle center-block mb-3 mt-4 user-image">
+              </div>
+              <div class="col-sm-4 col-md-6">
+                <h4 class="text-muted margin-top-sm-1 text-center text-left-tablet">
+                  {{ $user->name }}
+                </h4>
+                <p class="text-center text-left-tablet">
+                  <strong>
+                    {{ $user->first_name }} {{ $user->last_name }}
+                  </strong>
+                  @if($user->email)
+                    <br />
+                    <span class="text-center" data-toggle="tooltip" data-placement="top" title="@lang('usersmanagement.tooltips.email-user', ['user' => $user->email])">
+                      {{ Html::mailto($user->email, $user->email) }}
+                    </span>
                   @endif
-                </div>
+                </p>
+                @if ($user->profile)
+                  <div class="text-center text-left-tablet mb-4">
+                    <a href="{{ url('/profile/'.$user->name) }}" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="left" title="{{ trans('usersmanagement.viewProfile') }}">
+                      <i class="fa fa-eye fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm hidden-md"> {{ trans('usersmanagement.viewProfile') }}</span>
+                    </a>
+                    <a href="/users/{{$user->id}}/edit" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="{{ trans('usersmanagement.editUser') }}">
+                      <i class="fa fa-pencil fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm hidden-md"> {{ trans('usersmanagement.editUser') }} </span>
+                    </a>
+                    {!! Form::open(array('url' => 'users/' . $user->id, 'class' => 'form-inline', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => trans('usersmanagement.deleteUser'))) !!}
+                      {!! Form::hidden('_method', 'DELETE') !!}
+                      {!! Form::button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm hidden-md">' . trans('usersmanagement.deleteUser') . '</span>' , array('class' => 'btn btn-danger btn-sm','type' => 'button', 'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => 'Delete User', 'data-message' => 'Are you sure you want to delete this user?')) !!}
+                    {!! Form::close() !!}
+                  </div>
+                @endif
               </div>
             </div>
 
