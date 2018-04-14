@@ -927,7 +927,7 @@ Before opening an issue there are a couple of considerations:
 * **Attempt to look into the issue**, and if you *have a solution, make a pull request*.
 * **Show that you have made an attempt** to *look into the issue*.
 * **Check** to see if the issue you are *reporting is a duplicate* of a previous reported issue.
-* **Following the these show me that you have tried.**
+* **Following these instructions show me that you have tried.**
 * If you have a questions send me an email to jeremykenedy@gmail.com
 * Please be considerate that this is an open source project that I provide to the community for FREE when openeing an issue. 
 
