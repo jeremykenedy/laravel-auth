@@ -920,13 +920,14 @@ laravel-auth
 
 ### Opening an Issue
 Before opening an issue there are a couple of considerations:
+* If you did not **star this repo** *I will close your issue immediatly without consideration.* **My time is valuable**.
 * Read the instructions and make sure all steps were followed correctly.
 * Check that the issue is not specific to your development environment setup.
 * Provide duplication steps.
 * Attempt to look into the issue, and if you have a solution, make a pull request.
 * Show that you have made an attempt to look into the issue.
 * Check to see if the issue you are reporting is a duplicate of a previous reported issue.
-* If you did not star this repo I will close your issue immediatly without consideration. My time is valuable.
+* Following the these show me that you have tried.
 
 Open source projects are a the community’s responsibility to use, contribute, and debug.
 
