@@ -61,7 +61,7 @@ class RegisterController extends Controller
             $data['captcha'] = $this->captchaCheck();
         } else {
             $data['captcha'] = true;
-		}
+        }
 
         return Validator::make($data,
             [
