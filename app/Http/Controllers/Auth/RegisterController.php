@@ -57,9 +57,9 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $data['captcha'] = $this->captchaCheck();
-
-        if (!config('settings.reCaptchStatus')) {
+        if (config('settings.reCaptchStatus')) {
+            $data['captcha'] = $this->captchaCheck();
+        } else {
             $data['captcha'] = true;
         }
 
