@@ -11,7 +11,7 @@ trait CaptchaTrait
     {
         $response = Input::get('g-recaptcha-response');
         $remoteip = $_SERVER['REMOTE_ADDR'];
-        $secret = env('RE_CAP_SECRET');
+        $secret = config('settings.reCaptchSecret');
 
         $recaptcha = new ReCaptcha($secret);
         $resp = $recaptcha->verify($response, $remoteip);
