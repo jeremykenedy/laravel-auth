@@ -50,7 +50,7 @@ return [
     /*
      * ReCaptcha Site Key
      */
-    'reCaptchSite'   => env('RE_CAP_SITE',   'YOURGOOGLECAPTCHAsitekeyHERE'),
+    'reCaptchSite'   => env('RE_CAP_SITE', 'YOURGOOGLECAPTCHAsitekeyHERE'),
 
     /*
      * ReCaptcha Secret
@@ -65,6 +65,6 @@ return [
     /*
      * Google Maps API Key
      */
-    'googleMapsAPIKey'    => env('GOOGLEMAPS_API_KEY',    'YOURGOOGLEMAPSkeyHERE'),
+    'googleMapsAPIKey'    => env('GOOGLEMAPS_API_KEY', 'YOURGOOGLEMAPSkeyHERE'),
 
 ];
