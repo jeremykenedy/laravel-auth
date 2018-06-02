@@ -7,10 +7,11 @@
 
 require('./bootstrap');
 require('hideshowpassword');
-var Dropzone = require('dropzone');
+// var Dropzone = require('dropzone');
 var password = require('password-strength-meter');
 
 window.Vue = require('vue');
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
