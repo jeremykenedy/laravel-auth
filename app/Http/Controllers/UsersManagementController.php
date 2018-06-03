@@ -171,13 +171,13 @@ class UsersManagementController extends Controller
 
         if ($emailCheck) {
             $validator = Validator::make($request->all(), [
-                'name'     => 'required|max:255',
+                'name'     => 'required|max:255|unique:users',
                 'email'    => 'email|max:255|unique:users',
                 'password' => 'present|confirmed|min:6',
             ]);
         } else {
             $validator = Validator::make($request->all(), [
-                'name'     => 'required|max:255',
+                'name'     => 'required|max:255|unique:users',
                 'password' => 'nullable|confirmed|min:6',
             ]);
         }

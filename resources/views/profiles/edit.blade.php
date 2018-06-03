@@ -10,30 +10,25 @@
             <div class="col-12">
                 <div class="card border-0">
                     <div class="card-body p-0">
-
                         @if ($user->profile)
-
                             @if (Auth::user()->id == $user->id)
-
+                            <div class="container">
                                 <div class="row">
-
-                                    <div class="col-12 col-sm-4 col-md-3 bg-secondary text-white pt-3 pb-3 pl-3 rounded-left mb-2 mb-md-0">
+                                    <div class="col-12 col-sm-4 col-md-3 profile-sidebar text-white rounded-left-sm-up">
                                         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                            <a class="nav-link text-white active" data-toggle="pill" href=".edit-profile-tab" role="tab" aria-controls="edit-profile-tab" aria-selected="true">
+                                            <a class="nav-link active" data-toggle="pill" href=".edit-profile-tab" role="tab" aria-controls="edit-profile-tab" aria-selected="true">
                                                 {{ trans('profile.editProfileTitle') }}
                                             </a>
-                                            <a class="nav-link text-white" data-toggle="pill" href=".edit-settings-tab" role="tab" aria-controls="edit-settings-tab" aria-selected="false">
+                                            <a class="nav-link" data-toggle="pill" href=".edit-settings-tab" role="tab" aria-controls="edit-settings-tab" aria-selected="false">
                                                 {{ trans('profile.editAccountTitle') }}
                                             </a>
-                                            <a class="nav-link text-white" data-toggle="pill" href=".edit-account-tab" role="tab" aria-controls="edit-settings-tab" aria-selected="false">
+                                            <a class="nav-link" data-toggle="pill" href=".edit-account-tab" role="tab" aria-controls="edit-settings-tab" aria-selected="false">
                                                 {{ trans('profile.editAccountAdminTitle') }}
                                             </a>
                                         </div>
                                     </div>
-
                                     <div class="col-12 col-sm-8 col-md-9">
                                         <div class="tab-content" id="v-pills-tabContent">
-
                                             <div class="tab-pane fade show active edit-profile-tab" role="tabpanel" aria-labelledby="edit-profile-tab">
                                                 <div class="row mb-1">
                                                     <div class="col-sm-12">
@@ -73,7 +68,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group has-feedback {{ $errors->has('theme') ? ' has-error ' : '' }}">
-                                                        {!! Form::label('theme', trans('profile.label-theme') , array('class' => 'col-12 control-label')); !!}
+                                                        {!! Form::label('theme_id', trans('profile.label-theme') , array('class' => 'col-12 control-label')); !!}
                                                         <div class="col-12">
                                                             <select class="form-control" name="theme_id" id="theme_id">
                                                                 @if ($themes->count())
@@ -139,11 +134,11 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <div class="col-12 col-sm-offset-4">
+                                                        <div class="col-12 offset-sm-4">
                                                             {!! Form::button(
                                                                 '<i class="fa fa-fw fa-save" aria-hidden="true"></i> ' . trans('profile.submitButton'),
                                                                  array(
-                                                                    'class'             => 'btn btn-success disabledd',
+                                                                    'class'             => 'btn btn-success disabled',
                                                                     'type'              => 'button',
                                                                     'data-target'       => '#confirmForm',
                                                                     'data-modalClass'   => 'modal-success',
@@ -243,7 +238,7 @@
                                                             {!! Form::button(
                                                                 '<i class="fa fa-fw fa-save" aria-hidden="true"></i> ' . trans('profile.submitProfileButton'),
                                                                  array(
-                                                                    'class'             => 'btn btn-success',
+                                                                    'class'             => 'btn btn-success start-hidden',
                                                                     'id'                => 'account_save_trigger',
                                                                     'disabled'          => true,
                                                                     'type'              => 'button',
@@ -260,24 +255,23 @@
                                             </div>
 
                                             <div class="tab-pane fade edit-account-tab" role="tabpanel" aria-labelledby="edit-account-tab">
-                                                <ul class="nav nav-pills nav-justified margin-bottom-3">
-                                                    <li class="bg-info change-pw active" aria-selected="true">
-                                                        <a data-toggle="pill" href="#changepw" class="warning-pill-trigger">
+                                                <ul class="account-admin-subnav nav nav-pills nav-justified margin-bottom-3 margin-top-1">
+                                                    <li class="nav-item bg-info">
+                                                        <a data-toggle="pill" href="#changepw" class="nav-link warning-pill-trigger text-white active" aria-selected="true">
                                                             {{ trans('profile.changePwPill') }}
                                                         </a>
                                                     </li>
-                                                    <li class="bg-info delete-account">
-                                                        <a data-toggle="pill" href="#deleteAccount" class="danger-pill-trigger">
+                                                    <li class="nav-item bg-info">
+                                                        <a data-toggle="pill" href="#deleteAccount" class="nav-link danger-pill-trigger text-white">
                                                             {{ trans('profile.deleteAccountPill') }}
                                                         </a>
                                                     </li>
                                                 </ul>
-
                                                 <div class="tab-content">
 
                                                     <div id="changepw" class="tab-pane fade show active">
 
-                                                        <h3 class="margin-bottom-1">
+                                                        <h3 class="margin-bottom-1 text-center text-warning">
                                                             {{ trans('profile.changePwTitle') }}
                                                         </h3>
 
@@ -310,9 +304,8 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                             <div class="form-group row">
-                                                                <div class="col-md-9 col-md-offset-3">
+                                                                <div class="col-md-9 offset-md-3">
                                                                     {!! Form::button(
                                                                         '<i class="fa fa-fw fa-save" aria-hidden="true"></i> ' . trans('profile.submitPWButton'),
                                                                          array(
@@ -334,7 +327,6 @@
                                                     </div>
 
                                                     <div id="deleteAccount" class="tab-pane fade">
-
                                                         <h3 class="margin-bottom-1 text-center text-danger">
                                                             {{ trans('profile.deleteAccountTitle') }}
                                                         </h3>
@@ -343,11 +335,9 @@
                                                                 <strong>Deleting</strong> your account is <u><strong>permanent</strong></u> and <u><strong>cannot</strong></u> be undone.
                                                             <i class="fa fa-exclamation-triangle fa-fw" aria-hidden="true"></i>
                                                         </p>
-
                                                         <hr>
-
                                                         <div class="row">
-                                                            <div class="col-sm-6 col-sm-offset-3 margin-bottom-3 text-center">
+                                                            <div class="col-sm-6 offset-sm-3 margin-bottom-3 text-center">
 
                                                                 {!! Form::model($user, array('action' => array('ProfilesController@deleteUserAccount', $user->id), 'method' => 'DELETE')) !!}
 
@@ -383,21 +373,15 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
-
                                 </div>
-
+                            </div>
                             @else
-
                                 <p>{{ trans('profile.notYourProfile') }}</p>
-
                             @endif
                         @else
-
                             <p>{{ trans('profile.noProfileYet') }}</p>
-
                         @endif
 
                     </div>
@@ -452,7 +436,7 @@
         });
 
         $('#user_basics_form').on('keyup change', 'input, select, textarea', function(){
-            $('#account_save_trigger').attr('disabled', false);
+            $('#account_save_trigger').attr('disabled', false).show();
         });
 
         $('#checkConfirmDelete').change(function() {

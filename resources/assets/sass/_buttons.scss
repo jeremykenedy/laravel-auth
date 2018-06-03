@@ -67,3 +67,15 @@
     color: $white;
     background-color: $brand-danger;
 }
+
+.warning-pill-trigger {
+    &.active {
+        background: $warning !important;
+    }
+}
+.danger-pill-trigger {
+    &.active {
+        background: $danger !important;
+    }
+}
+

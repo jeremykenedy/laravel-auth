@@ -1,4 +1,4 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
+<script src="{{{ config('settings.dropZoneJsCDN') }}}"></script>
 <script type="text/javascript">
 
 Dropzone.autoDiscover = false;

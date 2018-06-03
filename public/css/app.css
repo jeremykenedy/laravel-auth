@@ -14715,6 +14715,20 @@ a.text-dark:focus {
   margin-left: auto;
 }
 
+@media (min-width: 576px) {
+  .rounded-left-sm-up {
+    border-top-left-radius: 0.25rem !important;
+    border-bottom-left-radius: 0.25rem !important;
+  }
+}
+
+@media (min-width: 767px) {
+  .rounded-left-md-up {
+    border-top-left-radius: 0.25rem !important;
+    border-bottom-left-radius: 0.25rem !important;
+  }
+}
+
 .text-danger {
   color: #bf5329;
 }
@@ -14799,6 +14813,14 @@ a.text-dark:focus {
 .nav-pills > li.active.bg-danger > a:focus {
   color: #ffffff;
   background-color: #bf5329;
+}
+
+.warning-pill-trigger.active {
+  background: #ffc107 !important;
+}
+
+.danger-pill-trigger.active {
+  background: #dc3545 !important;
 }
 
 .badge.badge-primary {
@@ -15046,6 +15068,10 @@ form.form-inline {
   color: #dcdbdb;
   pointer-events: none;
   cursor: not-allowed;
+}
+
+input[type="checkbox"] {
+  opacity: 0;
 }
 
 label input[type="radio"] ~ i.fa.fa-circle-o {
@@ -15555,5 +15581,37 @@ div[data-toggle="buttons"] label.active {
   .hidden-print {
     display: none !important;
   }
+}
+
+.profile-sidebar {
+  border-right: 2px solid #f5f8fa;
+  padding: 0 !important;
+}
+
+.profile-sidebar .nav-pills a {
+  border-radius: 0 !important;
+  border-bottom: 2px solid #f5f8fa;
+}
+
+.profile-sidebar .nav-pills a:first-child {
+  border-radius: 0.25rem 0.25rem 0 0 !important;
+}
+
+@media (min-width: 576px) {
+  .profile-sidebar .nav-pills a:first-child {
+    border-radius: 0.25rem 0 0 0 !important;
+  }
+}
+
+.profile-sidebar .nav-pills a.active {
+  background: #6c757d;
+}
+
+.account-admin-subnav li:first-child {
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.account-admin-subnav li:last-child {
+  border-radius: 0 0.25rem 0.25rem 0;
 }
 

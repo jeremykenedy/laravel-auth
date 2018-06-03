@@ -56,6 +56,10 @@ form {
 	}
 }
 
+input[type="checkbox"]  {
+	opacity: 0;
+}
+
 label {
 
 	input[type="radio"] ~ i.fa.fa-circle-o{

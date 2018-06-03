@@ -1,0 +1,30 @@
+.profile-sidebar {
+    border-right: 2px solid $body-bg;
+    padding: 0 !important;
+    .nav-pills {
+        a {
+            border-radius: 0 !important;
+            border-bottom: 2px solid $body-bg;
+            &:first-child{
+                border-radius: $border-radius $border-radius 0 0 !important;
+                @media(min-width: $bs4-phone) {
+                    border-radius: $border-radius 0 0 0 !important;
+                }
+            }
+            &.active {
+                background: $secondary;
+            }
+        }
+    }
+}
+
+.account-admin-subnav {
+    li {
+        &:first-child {
+            border-radius: $border-radius 0 0 $border-radius;
+        }
+        &:last-child {
+            border-radius: 0 $border-radius $border-radius 0;
+        }
+    }
+}
