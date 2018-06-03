@@ -83,7 +83,9 @@
             <div class="content">
                 <div class="title m-b-md">
                     @lang('titles.app')<br />
-                    <small>@lang('titles.app2')</small>
+                    <small>
+                        {{ trans('titles.app2', ['version' => config('settings.app_project_version')]) }}
+                    </small>
                 </div>
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>

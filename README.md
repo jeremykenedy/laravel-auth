@@ -36,12 +36,13 @@
 Laravel 5.6 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
 
 ### Features
-#### A [Laravel](http://laravel.com/) 5.6.x with minimal [Bootstrap](http://getbootstrap.com) 3.7.x project.
+#### A [Laravel](http://laravel.com/) 5.6.x with minimal [Bootstrap](http://getbootstrap.com) 4.0.x project.
 
 | Laravel-Auth Features  |
 | :------------ |
 |Built on [Laravel](http://laravel.com/) 5.6|
-|Uses [MySQL](https://github.com/mysql) Database|
+|Built on [Bootstrap](https://getbootstrap.com/) 4|
+|Uses [MySQL](https://github.com/mysql) Database (can be changed)|
 |Uses [Artisan](http://laravel.com/docs/5.6/artisan) to manage database migration, schema creations, and create/publish page controller templates|
 |Dependencies are managed with [COMPOSER](https://getcomposer.org/)|
 |Laravel Scaffolding **User** and **Administrator Authentication**.|
@@ -145,55 +146,86 @@ php artisan vendor:publish --tag=laravel2step
 
 ##### Themes Seed List
   * [ThemesTableSeeder](https://github.com/jeremykenedy/laravel-auth/blob/master/database/seeds/ThemesTableSeeder.php)
+  * NOTE: A lot of themes do not render the greated on Bootstrap 4 since their core was built to override Bootstrap 4. These will be updated soon and ones that do not render well will be removed from the seed. In the mean time you can remove them from the seed or manaully from the UI or database.
 
 ### Routes
 
-#### Authentication Routes
-* ```/login```
-* ```/logout```
-* ```/register```
-* ```/password/email```
-* ```/password/reset```
-* ```/activate```
-* ```/activate/{token}```
-* ```/activation-required```
-* ```/re-activate/{token}```
-
-#### Profile Routes
-* ```/profile/{username}```
-* ```/profile/{username}/edit``` <- Editing in this view is limited to current user only.
-
-#### Admin User Management Routes
-* ```/users```
-* ```/users/create```
-* ```/users/{user_id}```
-* ```/users{user_id}/edit```
-
-#### Admin Theme Routes
-* ```/themes```
-* ```/themes/create```
-* ```/themes/{theme_id}```
-* ```/themes/{theme_id}/edit```
-
-#### Admin Tools Routes
-* ```/logs```
-* ```/phpinfo```
-* ```/routes```
-
-#### Admin Soft Deleted Users Management Routes
-* ```/users/deleted```
-* ```/users/deleted/{user_id}```
-
-#### Activity Log Routes
-* ```/activity```
-* ```/activity/cleared```
-* ```/activity/log/{id}```
-* ```/activity/cleared/log/{id}```
-
-#### 2-Step Verfication Routes (disabled by default in .env.example file)
-* ```/verification/needed```
-* ```/verification/verify```
-* ```/verification/resend```
+```
++--------+----------------------------------------+---------------------------------------+----------------------------------+---------------------------------------------------------------------------------------------------+-------------------------------------------------+
+| Domain | Method                                 | URI                                   | Name                             | Action                                                                                            | Middleware                                      |
++--------+----------------------------------------+---------------------------------------+----------------------------------+---------------------------------------------------------------------------------------------------+-------------------------------------------------+
+|        | GET|HEAD                               | /                                     | welcome                          | App\Http\Controllers\WelcomeController@welcome                                                    | web                                             |
+|        | GET|HEAD                               | _debugbar/assets/javascript           | debugbar.assets.js               | Barryvdh\Debugbar\Controllers\AssetController@js                                                  | Barryvdh\Debugbar\Middleware\DebugbarEnabled    |
+|        | GET|HEAD                               | _debugbar/assets/stylesheets          | debugbar.assets.css              | Barryvdh\Debugbar\Controllers\AssetController@css                                                 | Barryvdh\Debugbar\Middleware\DebugbarEnabled    |
+|        | DELETE                                 | _debugbar/cache/{key}/{tags?}         | debugbar.cache.delete            | Barryvdh\Debugbar\Controllers\CacheController@delete                                              | Barryvdh\Debugbar\Middleware\DebugbarEnabled    |
+|        | GET|HEAD                               | _debugbar/clockwork/{id}              | debugbar.clockwork               | Barryvdh\Debugbar\Controllers\OpenHandlerController@clockwork                                     | Barryvdh\Debugbar\Middleware\DebugbarEnabled    |
+|        | GET|HEAD                               | _debugbar/open                        | debugbar.openhandler             | Barryvdh\Debugbar\Controllers\OpenHandlerController@handle                                        | Barryvdh\Debugbar\Middleware\DebugbarEnabled    |
+|        | GET|HEAD                               | activate                              | activate                         | App\Http\Controllers\Auth\ActivateController@initial                                              | web,activity,auth                               |
+|        | GET|HEAD                               | activate/{token}                      | authenticated.activate           | App\Http\Controllers\Auth\ActivateController@activate                                             | web,activity,auth                               |
+|        | GET|HEAD                               | activation                            | authenticated.activation-resend  | App\Http\Controllers\Auth\ActivateController@resend                                               | web,activity,auth                               |
+|        | GET|HEAD                               | activation-required                   | activation-required              | App\Http\Controllers\Auth\ActivateController@activationRequired                                   | web,auth,activated,activity                     |
+|        | GET|HEAD                               | active-users                          |                                  | App\Http\Controllers\AdminDetailsController@activeUsers                                           | web,auth,activated,role:admin,activity,twostep  |
+|        | GET|HEAD                               | activity                              | activity                         | jeremykenedy\LaravelLogger\App\Http\Controllers\LaravelLoggerController@showAccessLog             | web,auth,activity,role:admin                    |
+|        | DELETE                                 | activity/clear-activity               | clear-activity                   | jeremykenedy\LaravelLogger\App\Http\Controllers\LaravelLoggerController@clearActivityLog          | web,auth,activity,role:admin                    |
+|        | GET|HEAD                               | activity/cleared                      | cleared                          | jeremykenedy\LaravelLogger\App\Http\Controllers\LaravelLoggerController@showClearedActivityLog    | web,auth,activity,role:admin                    |
+|        | GET|HEAD                               | activity/cleared/log/{id}             |                                  | jeremykenedy\LaravelLogger\App\Http\Controllers\LaravelLoggerController@showClearedAccessLogEntry | web,auth,activity,role:admin                    |
+|        | DELETE                                 | activity/destroy-activity             | destroy-activity                 | jeremykenedy\LaravelLogger\App\Http\Controllers\LaravelLoggerController@destroyActivityLog        | web,auth,activity,role:admin                    |
+|        | GET|HEAD                               | activity/log/{id}                     |                                  | jeremykenedy\LaravelLogger\App\Http\Controllers\LaravelLoggerController@showAccessLogEntry        | web,auth,activity,role:admin                    |
+|        | POST                                   | activity/restore-log                  | restore-activity                 | jeremykenedy\LaravelLogger\App\Http\Controllers\LaravelLoggerController@restoreClearedActivityLog | web,auth,activity,role:admin                    |
+|        | POST                                   | avatar/upload                         | avatar.upload                    | App\Http\Controllers\ProfilesController@upload                                                    | web,auth,activated,currentUser,activity,twostep |
+|        | POST                                   | broadcasting/auth                     |                                  | Illuminate\Broadcasting\BroadcastController@authenticate                                          | web                                             |
+|        | GET|HEAD                               | exceeded                              | exceeded                         | App\Http\Controllers\Auth\ActivateController@exceeded                                             | web,activity,auth                               |
+|        | GET|HEAD                               | home                                  | public.home                      | App\Http\Controllers\UserController@index                                                         | web,auth,activated,activity,twostep             |
+|        | GET|HEAD                               | images/profile/{id}/avatar/{image}    |                                  | App\Http\Controllers\ProfilesController@userProfileAvatar                                         | web,auth,activated,currentUser,activity,twostep |
+|        | POST                                   | login                                 |                                  | App\Http\Controllers\Auth\LoginController@login                                                   | web,guest                                       |
+|        | GET|HEAD                               | login                                 | login                            | App\Http\Controllers\Auth\LoginController@showLoginForm                                           | web,guest                                       |
+|        | GET|HEAD                               | logout                                | logout                           | App\Http\Controllers\Auth\LoginController@logout                                                  | web,auth,activated,activity                     |
+|        | POST                                   | logout                                | logout                           | App\Http\Controllers\Auth\LoginController@logout                                                  | web                                             |
+|        | GET|HEAD                               | logs                                  |                                  | Rap2hpoutre\LaravelLogViewer\LogViewerController@index                                            | web,auth,activated,role:admin,activity,twostep  |
+|        | POST                                   | password/email                        | password.email                   | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail                             | web,guest                                       |
+|        | POST                                   | password/reset                        |                                  | App\Http\Controllers\Auth\ResetPasswordController@reset                                           | web,guest                                       |
+|        | GET|HEAD                               | password/reset                        | password.request                 | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm                            | web,guest                                       |
+|        | GET|HEAD                               | password/reset/{token}                | password.reset                   | App\Http\Controllers\Auth\ResetPasswordController@showResetForm                                   | web,guest                                       |
+|        | GET|HEAD|POST|PUT|PATCH|DELETE|OPTIONS | php                                   |                                  | Illuminate\Routing\RedirectController                                                             | web                                             |
+|        | GET|HEAD                               | phpinfo                               | laravelPhpInfo::phpinfo          | jeremykenedy\LaravelPhpInfo\App\Http\Controllers\LaravelPhpInfoController@phpinfo                 | web,auth,activated,role:admin,activity,twostep  |
+|        | GET|HEAD                               | profile/create                        | profile.create                   | App\Http\Controllers\ProfilesController@create                                                    | web,auth,activated,currentUser,activity,twostep |
+|        | GET|HEAD                               | profile/{profile}                     | profile.show                     | App\Http\Controllers\ProfilesController@show                                                      | web,auth,activated,currentUser,activity,twostep |
+|        | PUT|PATCH                              | profile/{profile}                     | profile.update                   | App\Http\Controllers\ProfilesController@update                                                    | web,auth,activated,currentUser,activity,twostep |
+|        | GET|HEAD                               | profile/{profile}/edit                | profile.edit                     | App\Http\Controllers\ProfilesController@edit                                                      | web,auth,activated,currentUser,activity,twostep |
+|        | GET|HEAD                               | profile/{username}                    | {username}                       | App\Http\Controllers\ProfilesController@show                                                      | web,auth,activated,activity,twostep             |
+|        | DELETE                                 | profile/{username}/deleteUserAccount  | {username}                       | App\Http\Controllers\ProfilesController@deleteUserAccount                                         | web,auth,activated,currentUser,activity,twostep |
+|        | PUT                                    | profile/{username}/updateUserAccount  | {username}                       | App\Http\Controllers\ProfilesController@updateUserAccount                                         | web,auth,activated,currentUser,activity,twostep |
+|        | PUT                                    | profile/{username}/updateUserPassword | {username}                       | App\Http\Controllers\ProfilesController@updateUserPassword                                        | web,auth,activated,currentUser,activity,twostep |
+|        | GET|HEAD                               | re-activate/{token}                   | user.reactivate                  | App\Http\Controllers\RestoreUserController@userReActivate                                         | web,activity                                    |
+|        | GET|HEAD                               | register                              | register                         | App\Http\Controllers\Auth\RegisterController@showRegistrationForm                                 | web,guest                                       |
+|        | POST                                   | register                              |                                  | App\Http\Controllers\Auth\RegisterController@register                                             | web,guest                                       |
+|        | GET|HEAD                               | routes                                |                                  | App\Http\Controllers\AdminDetailsController@listRoutes                                            | web,auth,activated,role:admin,activity,twostep  |
+|        | POST                                   | search-users                          | search-users                     | App\Http\Controllers\UsersManagementController@search                                             | web,auth,activated,role:admin,activity,twostep  |
+|        | GET|HEAD                               | social/handle/{provider}              | social.handle                    | App\Http\Controllers\Auth\SocialController@getSocialHandle                                        | web,activity                                    |
+|        | GET|HEAD                               | social/redirect/{provider}            | social.redirect                  | App\Http\Controllers\Auth\SocialController@getSocialRedirect                                      | web,activity                                    |
+|        | POST                                   | themes                                | themes.store                     | App\Http\Controllers\ThemesManagementController@store                                             | web,auth,activated,role:admin,activity,twostep  |
+|        | GET|HEAD                               | themes                                | themes                           | App\Http\Controllers\ThemesManagementController@index                                             | web,auth,activated,role:admin,activity,twostep  |
+|        | GET|HEAD                               | themes/create                         | themes.create                    | App\Http\Controllers\ThemesManagementController@create                                            | web,auth,activated,role:admin,activity,twostep  |
+|        | DELETE                                 | themes/{theme}                        | themes.destroy                   | App\Http\Controllers\ThemesManagementController@destroy                                           | web,auth,activated,role:admin,activity,twostep  |
+|        | PUT|PATCH                              | themes/{theme}                        | themes.update                    | App\Http\Controllers\ThemesManagementController@update                                            | web,auth,activated,role:admin,activity,twostep  |
+|        | GET|HEAD                               | themes/{theme}                        | themes.show                      | App\Http\Controllers\ThemesManagementController@show                                              | web,auth,activated,role:admin,activity,twostep  |
+|        | GET|HEAD                               | themes/{theme}/edit                   | themes.edit                      | App\Http\Controllers\ThemesManagementController@edit                                              | web,auth,activated,role:admin,activity,twostep  |
+|        | GET|HEAD                               | users                                 | users                            | App\Http\Controllers\UsersManagementController@index                                              | web,auth,activated,role:admin,activity,twostep  |
+|        | POST                                   | users                                 | users.store                      | App\Http\Controllers\UsersManagementController@store                                              | web,auth,activated,role:admin,activity,twostep  |
+|        | GET|HEAD                               | users/create                          | users.create                     | App\Http\Controllers\UsersManagementController@create                                             | web,auth,activated,role:admin,activity,twostep  |
+|        | GET|HEAD                               | users/deleted                         | deleted.index                    | App\Http\Controllers\SoftDeletesController@index                                                  | web,auth,activated,role:admin,activity,twostep  |
+|        | DELETE                                 | users/deleted/{deleted}               | deleted.destroy                  | App\Http\Controllers\SoftDeletesController@destroy                                                | web,auth,activated,role:admin,activity,twostep  |
+|        | PUT|PATCH                              | users/deleted/{deleted}               | deleted.update                   | App\Http\Controllers\SoftDeletesController@update                                                 | web,auth,activated,role:admin,activity,twostep  |
+|        | GET|HEAD                               | users/deleted/{deleted}               | deleted.show                     | App\Http\Controllers\SoftDeletesController@show                                                   | web,auth,activated,role:admin,activity,twostep  |
+|        | DELETE                                 | users/{user}                          | user.destroy                     | App\Http\Controllers\UsersManagementController@destroy                                            | web,auth,activated,role:admin,activity,twostep  |
+|        | PUT|PATCH                              | users/{user}                          | users.update                     | App\Http\Controllers\UsersManagementController@update                                             | web,auth,activated,role:admin,activity,twostep  |
+|        | GET|HEAD                               | users/{user}                          | users.show                       | App\Http\Controllers\UsersManagementController@show                                               | web,auth,activated,role:admin,activity,twostep  |
+|        | GET|HEAD                               | users/{user}/edit                     | users.edit                       | App\Http\Controllers\UsersManagementController@edit                                               | web,auth,activated,role:admin,activity,twostep  |
+|        | GET|HEAD                               | verification/needed                   | laravel2step::verificationNeeded | jeremykenedy\laravel2step\App\Http\Controllers\TwoStepController@showVerification                 | web,auth,Closure                                |
+|        | POST                                   | verification/resend                   | laravel2step::resend             | jeremykenedy\laravel2step\App\Http\Controllers\TwoStepController@resend                           | web,auth,Closure                                |
+|        | POST                                   | verification/verify                   | laravel2step::verify             | jeremykenedy\laravel2step\App\Http\Controllers\TwoStepController@verify                           | web,auth,Closure                                |
++--------+----------------------------------------+---------------------------------------+----------------------------------+---------------------------------------------------------------------------------------------------+-------------------------------------------------+
+```
 
 ### Socialite
 
@@ -258,7 +290,6 @@ php artisan vendor:publish --tag=laravel2step
 
 
 ### Environment File
-
 Example `.env` file:
 
 ```bash
@@ -348,6 +379,8 @@ DEFAULT_GRAVATAR_SECURE=false
 DEFAULT_GRAVATAR_MAX_RATING=g
 DEFAULT_GRAVATAR_FORCE_DEFAULT=false
 DEFAULT_GRAVATAR_FORCE_EXTENSION=jpg
+
+DROPZONE_JS_CDN=https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js
 
 LARAVEL_LOGGER_DATABASE_CONNECTION=mysql
 LARAVEL_LOGGER_DATABASE_TABLE=laravel_logger_activity
@@ -439,6 +472,7 @@ INSTAGRAM_REDIRECT_URI=http://laravel-authentication.local/social/handle/instagr
 * https://laravel.com/docs/5.6/errors
 
 ###### Updates:
+* Update to Bootstrap 4
 * Update to Laravel 5.6
 * Added optional 2-step account login verfication with [Laravel 2-Step Verification](https://github.com/jeremykenedy/laravel2step)
 * Added activity logging using [Laravel-logger](https://github.com/jeremykenedy/laravel-logger)
@@ -472,6 +506,7 @@ INSTAGRAM_REDIRECT_URI=http://laravel-authentication.local/social/handle/instagr
 * Added CRUD(Create, Read, Update, Delete) User Management
 
 ### Screenshots
+* (To be updated...)
 ![Login](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/1laravel-auth2-login.jpg)
 ![Register](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/2laravel-auth2-register.jpg)
 ![Registration Confirmation](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/3laravel-auth2-account-req-activation.jpg)
@@ -511,9 +546,6 @@ INSTAGRAM_REDIRECT_URI=http://laravel-authentication.local/social/handle/instagr
 ### File Tree
 ```
 laravel-auth
-├── .circleci
-│   └── config.yml
-├── .env
 ├── .env.example
 ├── .env.travis
 ├── .gitattributes
@@ -555,6 +587,7 @@ laravel-auth
 │   │   │   ├── EncryptCookies.php
 │   │   │   ├── RedirectIfAuthenticated.php
 │   │   │   ├── TrimStrings.php
+│   │   │   ├── TrustProxies.php
 │   │   │   └── VerifyCsrfToken.php
 │   │   └── ViewComposers
 │   │       └── ThemeComposer.php
@@ -607,14 +640,17 @@ laravel-auth
 │   ├── exceptions.php
 │   ├── filesystems.php
 │   ├── gravatar.php
+│   ├── hashing.php
 │   ├── laravel2step.php
 │   ├── laravelPhpInfo.php
+│   ├── logging.php
 │   ├── mail.php
 │   ├── queue.php
 │   ├── roles.php
 │   ├── services.php
 │   ├── session.php
 │   ├── settings.php
+│   ├── usersmanagement.php
 │   └── view.php
 ├── database
 │   ├── .gitignore
@@ -641,100 +677,8 @@ laravel-auth
 │       ├── ThemesTableSeeder.php
 │       └── UsersTableSeeder.php
 ├── license.svg
+├── package-lock.json
 ├── package.json
-├── packages
-│   └── jeremykenedy
-│       ├── laravel-https
-│       │   ├── .gitignore
-│       │   ├── LICENSE
-│       │   ├── README.md
-│       │   ├── composer.json
-│       │   └── src
-│       │       ├── LaravelHttpsServiceProvider.php
-│       │       ├── app
-│       │       │   └── Http
-│       │       │       └── Middleware
-│       │       │           ├── CheckHTTPS.php
-│       │       │           └── ForceHTTPS.php
-│       │       ├── config
-│       │       │   └── laravel-https.php
-│       │       └── resources
-│       │           ├── lang
-│       │           │   └── en
-│       │           │       └── laravel-https.php
-│       │           └── views
-│       │               └── errors
-│       │                   └── 403.blade.php
-│       ├── laravel-logger
-│       │   ├── .gitignore
-│       │   ├── CODE_OF_CONDUCT.md
-│       │   ├── LICENSE
-│       │   ├── README.md
-│       │   ├── composer.json
-│       │   └── src
-│       │       ├── .env.example
-│       │       ├── LaravelLoggerServiceProvider.php
-│       │       ├── app
-│       │       │   ├── Http
-│       │       │   │   ├── Controllers
-│       │       │   │   │   └── LaravelLoggerController.php
-│       │       │   │   ├── Middleware
-│       │       │   │   │   └── LogActivity.php
-│       │       │   │   └── Traits
-│       │       │   │       ├── ActivityLogger.php
-│       │       │   │       ├── IpAddressDetails.php
-│       │       │   │       └── UserAgentDetails.php
-│       │       │   ├── Listeners
-│       │       │   │   ├── LogAuthenticated.php
-│       │       │   │   ├── LogAuthenticationAttempt.php
-│       │       │   │   ├── LogFailedLogin.php
-│       │       │   │   ├── LogLockout.php
-│       │       │   │   ├── LogPasswordReset.php
-│       │       │   │   ├── LogSuccessfulLogin.php
-│       │       │   │   └── LogSuccessfulLogout.php
-│       │       │   ├── Logic
-│       │       │   │   └── helpers.php
-│       │       │   └── Models
-│       │       │       └── Activity.php
-│       │       ├── config
-│       │       │   └── laravel-logger.php
-│       │       ├── database
-│       │       │   └── migrations
-│       │       │       └── 2017_11_04_103444_create_laravel_logger_activity_table.php
-│       │       ├── resources
-│       │       │   ├── lang
-│       │       │   │   └── en
-│       │       │   │       └── laravel-logger.php
-│       │       │   └── views
-│       │       │       ├── forms
-│       │       │       │   ├── clear-activity-log.blade.php
-│       │       │       │   ├── delete-activity-log.blade.php
-│       │       │       │   └── restore-activity-log.blade.php
-│       │       │       ├── logger
-│       │       │       │   ├── activity-log-cleared.blade.php
-│       │       │       │   ├── activity-log-item.blade.php
-│       │       │       │   ├── activity-log.blade.php
-│       │       │       │   └── partials
-│       │       │       │       └── activity-table.blade.php
-│       │       │       ├── modals
-│       │       │       │   └── confirm-modal.blade.php
-│       │       │       ├── partials
-│       │       │       │   ├── form-status.blade.php
-│       │       │       │   └── styles.blade.php
-│       │       │       └── scripts
-│       │       │           ├── clickable-row.blade.php
-│       │       │           ├── confirm-modal.blade.php
-│       │       │           ├── datatables.blade.php
-│       │       │           └── tooltip.blade.php
-│       │       └── routes
-│       │           └── web.php
-│       └── laravel-pages
-│           ├── .gitignore
-│           ├── LICENSE.LICENSE
-│           ├── README.md
-│           ├── composer.json
-│           └── src
-│               └── LaravelPagesServiceProvider.php
 ├── phpunit.xml
 ├── public
 │   ├── .htaccess
@@ -771,36 +715,29 @@ laravel-auth
 │   │   │   ├── app.js
 │   │   │   ├── bootstrap.js
 │   │   │   └── components
-│   │   │       ├── Example.vue
+│   │   │       ├── ExampleComponent.vue
 │   │   │       └── UsersCount.vue
-│   │   ├── sass
-│   │   │   ├── _avatar.scss
-│   │   │   ├── _badges.scss
-│   │   │   ├── _buttons.scss
-│   │   │   ├── _forms.scss
-│   │   │   ├── _helpers.scss
-│   │   │   ├── _hideShowPassword.scss
-│   │   │   ├── _lists.scss
-│   │   │   ├── _logs.scss
-│   │   │   ├── _margins.scss
-│   │   │   ├── _mixins.scss
-│   │   │   ├── _modals.scss
-│   │   │   ├── _panels.scss
-│   │   │   ├── _password.scss
-│   │   │   ├── _php-info.scss
-│   │   │   ├── _socials.scss
-│   │   │   ├── _typography.scss
-│   │   │   ├── _variables.scss
-│   │   │   ├── _wells.scss
-│   │   │   └── app.scss
-│   │   └── scss
-│   │       └── laravel2step
-│   │           ├── _animations.scss
-│   │           ├── _mixins.scss
-│   │           ├── _modals.scss
-│   │           ├── _variables.scss
-│   │           ├── _verification.scss
-│   │           └── app.scss
+│   │   └── sass
+│   │       ├── _avatar.scss
+│   │       ├── _badges.scss
+│   │       ├── _buttons.scss
+│   │       ├── _forms.scss
+│   │       ├── _helpers.scss
+│   │       ├── _hideShowPassword.scss
+│   │       ├── _lists.scss
+│   │       ├── _logs.scss
+│   │       ├── _margins.scss
+│   │       ├── _mixins.scss
+│   │       ├── _modals.scss
+│   │       ├── _panels.scss
+│   │       ├── _password.scss
+│   │       ├── _socials.scss
+│   │       ├── _typography.scss
+│   │       ├── _user-profile.scss
+│   │       ├── _variables.scss
+│   │       ├── _visibility.scss
+│   │       ├── _wells.scss
+│   │       └── app.scss
 │   ├── lang
 │   │   ├── en
 │   │   │   ├── auth.php
@@ -866,6 +803,7 @@ laravel-auth
 │       │   ├── errors.blade.php
 │       │   ├── form-status.blade.php
 │       │   ├── nav.blade.php
+│       │   ├── search-users-form.blade.php
 │       │   ├── socials-icons.blade.php
 │       │   ├── socials.blade.php
 │       │   ├── status-panel.blade.php
@@ -881,6 +819,7 @@ laravel-auth
 │       │   ├── gmaps-address-lookup-api3.blade.php
 │       │   ├── google-maps-geocode-and-map.blade.php
 │       │   ├── save-modal-script.blade.php
+│       │   ├── search-users.blade.php
 │       │   ├── toggleStatus.blade.php
 │       │   ├── tooltips.blade.php
 │       │   └── user-avatar-dz.blade.php
@@ -908,7 +847,7 @@ laravel-auth
 ```
 
 * Tree command can be installed using brew: `brew install tree`
-* File tree generated using command `tree -a -I '.git|node_modules|vendor|storage|tests`
+* File tree generated using command `tree -a -I '.git|node_modules|vendor|storage|tests'`
 
 ### Opening an Issue
 Before opening an issue there are a couple of considerations:

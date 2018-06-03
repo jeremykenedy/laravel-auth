@@ -5,6 +5,11 @@ return [
     /*
      * Is email activation required
      */
+    'app_project_version' => env('APP_PROJECT_VERSION'),
+
+    /*
+     * Is email activation required
+     */
     'activation' => env('ACTIVATION', false),
 
     /*
