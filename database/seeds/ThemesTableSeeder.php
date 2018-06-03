@@ -130,7 +130,6 @@ class ThemesTableSeeder extends Seeder
                 'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/solar/bootstrap.min.css',
             ],
 
-
         ];
 
         foreach ($themes as $theme) {

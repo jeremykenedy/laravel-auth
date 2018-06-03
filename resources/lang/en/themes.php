@@ -39,7 +39,6 @@ return [
     'editSave'          => 'Save Theme Changes',
     'themeTitle'        => 'Theme :name',
 
-
     // Show Theme
     'showHeadTitle'     => 'Theme',
     'showTitle'         => 'Theme Information',
@@ -68,7 +67,6 @@ return [
     // Tooltips
     'backToThemeTt'     => 'Back to Theme',
     'backToThemesTt'    => 'Back to Themes',
-
 
     // Buttons
     'backToThemeBtn'    => 'Back  <span class="hidden-xs">to Theme</span>',

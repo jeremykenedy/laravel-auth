@@ -165,17 +165,17 @@ class ProfilesController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param int                      $id
      *
      * @return \Illuminate\Http\Response
      */
     public function updateUserAccount(Request $request, $id)
     {
-        $currentUser    = \Auth::user();
-        $user           = User::findOrFail($id);
-        $emailCheck     = ($request->input('email') != '') && ($request->input('email') != $user->email);
-        $ipAddress      = new CaptureIpTrait();
-        $rules          = [];
+        $currentUser = \Auth::user();
+        $user = User::findOrFail($id);
+        $emailCheck = ($request->input('email') != '') && ($request->input('email') != $user->email);
+        $ipAddress = new CaptureIpTrait();
+        $rules = [];
 
         if ($user->name != $request->input('name')) {
             $usernameRules = [
@@ -197,11 +197,11 @@ class ProfilesController extends Controller
         }
         $additionalRules = [
             'first_name' => 'nullable|string|max:255',
-            'last_name' => 'nullable|string|max:255',
+            'last_name'  => 'nullable|string|max:255',
         ];
 
-        $rules      = array_merge($usernameRules, $emailRules, $additionalRules);
-        $validator  = Validator::make($request->all(), $rules);
+        $rules = array_merge($usernameRules, $emailRules, $additionalRules);
+        $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
