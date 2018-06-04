@@ -18,9 +18,10 @@
 <script>
     import Chart from 'chart.js'
     export default {
+        props: ['registered'],
         data() {
             return {
-                count: 0,
+                count: this.registered,
                 labels: ['Online']
             }
         },
