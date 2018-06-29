@@ -13,10 +13,19 @@ use Illuminate\Support\Facades\Input;
 use jeremykenedy\LaravelRoles\Models\Role;
 use Laravel\Socialite\Facades\Socialite;
 
+use Illuminate\Support\Facades\Log;
+
 class SocialController extends Controller
 {
     use ActivationTrait;
 
+    /**
+     * Gets the social redirect.
+     *
+     * @param string  $provider  The provider
+     *
+     * @return Redirect
+     */
     public function getSocialRedirect($provider)
     {
         $providerKey = Config::get('services.'.$provider);
@@ -29,6 +38,13 @@ class SocialController extends Controller
         return Socialite::driver($provider)->redirect();
     }
 
+    /**
+     * Gets the social handle.
+     *
+     * @param string  $provider  The provider
+     *
+     * @return Redirect
+     */
     public function getSocialHandle($provider)
     {
         if (Input::get('denied') != '') {
@@ -71,6 +87,9 @@ class SocialController extends Controller
                         $username .= $name;
                     }
                 }
+
+                // Check to make sure username does not already exist in DB before recording
+                $username = $this->checkUserName($username, $email);
 
                 $user = User::create([
                     'name'                 => $username,
@@ -119,4 +138,50 @@ class SocialController extends Controller
 
         return redirect('home');
     }
+
+    /**
+     * Check if username against database and return valid username.
+     * If username is not in the DB return the username
+     * else generate, check, and return the username.
+     *
+     * @param string $username
+     * @param string $email
+     *
+     * @return string || re-run method
+     */
+    public function checkUserName($username, $email)
+    {
+        $userNameCheck = User::where('name', '=', $username)->first();
+
+        if ($userNameCheck) {
+            $i = 1;
+            do {
+                $username = $this->generateUserName($username, $email);
+                $newCheck = User::where('name', '=', $username)->first();
+
+                if ($newCheck == null) {
+                    $newCheck = 0;
+                } else {
+                    $newCheck = count($newCheck);
+                }
+
+            } while ($newCheck != 0);
+        }
+
+        return $username;
+    }
+
+    /**
+     * Generate Username
+     *
+     * @param string $username
+     * @param string $email
+     *
+     * @return string
+     */
+    public function generateUserName($username, $email)
+    {
+        return $username . '_' . str_random(10);
+    }
+
 }
