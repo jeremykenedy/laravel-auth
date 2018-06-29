@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Input;
 use jeremykenedy\LaravelRoles\Models\Role;
 use Laravel\Socialite\Facades\Socialite;
 
-use Illuminate\Support\Facades\Log;
-
 class SocialController extends Controller
 {
     use ActivationTrait;
