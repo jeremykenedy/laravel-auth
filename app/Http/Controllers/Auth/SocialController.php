@@ -154,7 +154,7 @@ class SocialController extends Controller
         if ($userNameCheck) {
             $i = 1;
             do {
-                $username = $this->generateUserName($username, $email);
+                $username = $this->generateUserName($username);
                 $newCheck = User::where('name', '=', $username)->first();
 
                 if ($newCheck == null) {
@@ -173,11 +173,10 @@ class SocialController extends Controller
      * Generate Username
      *
      * @param string $username
-     * @param string $email
      *
      * @return string
      */
-    public function generateUserName($username, $email)
+    public function generateUserName($username)
     {
         return $username . '_' . str_random(10);
     }
