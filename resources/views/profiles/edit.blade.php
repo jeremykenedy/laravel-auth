@@ -341,7 +341,7 @@
 
                                                                 {!! Form::model($user, array('action' => array('ProfilesController@deleteUserAccount', $user->id), 'method' => 'DELETE')) !!}
 
-                                                                    <div class="btn-group btn-group-vertical margin-bottom-2" data-toggle="buttons">
+                                                                    <div class="btn-group btn-group-vertical margin-bottom-2 custom-checkbox-fa" data-toggle="buttons">
                                                                         <label class="btn no-shadow" for="checkConfirmDelete" >
                                                                             <input type="checkbox" name='checkConfirmDelete' id="checkConfirmDelete">
                                                                             <i class="fa fa-square-o fa-fw fa-2x"></i>
