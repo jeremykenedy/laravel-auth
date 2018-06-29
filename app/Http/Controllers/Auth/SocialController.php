@@ -145,7 +145,7 @@ class SocialController extends Controller
      * @param string $username
      * @param string $email
      *
-     * @return string || re-run method
+     * @return string
      */
     public function checkUserName($username, $email)
     {
