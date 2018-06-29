@@ -20,7 +20,7 @@ class SocialController extends Controller
     /**
      * Gets the social redirect.
      *
-     * @param string  $provider  The provider
+     * @param string $provider The provider
      *
      * @return Redirect
      */
@@ -39,7 +39,7 @@ class SocialController extends Controller
     /**
      * Gets the social handle.
      *
-     * @param string  $provider  The provider
+     * @param string $provider The provider
      *
      * @return Redirect
      */
@@ -162,7 +162,6 @@ class SocialController extends Controller
                 } else {
                     $newCheck = count($newCheck);
                 }
-
             } while ($newCheck != 0);
         }
 
@@ -170,7 +169,7 @@ class SocialController extends Controller
     }
 
     /**
-     * Generate Username
+     * Generate Username.
      *
      * @param string $username
      *
@@ -178,7 +177,6 @@ class SocialController extends Controller
      */
     public function generateUserName($username)
     {
-        return $username . '_' . str_random(10);
+        return $username.'_'.str_random(10);
     }
-
 }
