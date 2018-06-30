@@ -14,6 +14,10 @@
    </tr>
 </table>
 
+<a href="https://www.patreon.com/bePatron?u=10119959">
+  <img src="https://s3.amazonaws.com/sponsers/patron-button-1.png" style="height: 30px">
+</a>
+
 #### Table of contents
 - [About](#about)
 - [Features](#features)
@@ -856,9 +860,9 @@ laravel-auth
 
 ### Opening an Issue
 Before opening an issue there are a couple of considerations:
-* If you did not **star this repo** *I will close your issue immediatly without consideration.* **My time is valuable**.
+* If you did not **star this repo** *I will close the issue immediatly without consideration.*
 * **Read the instructions** and make sure all steps were *followed correctly*.
-* **Check** that the issue is not *specific to your development environment* setup.
+* **Check** that the issue is not *specific to the development environment* setup.
 * **Provide** *duplication steps*.
 * **Attempt to look into the issue**, and if you *have a solution, make a pull request*.
 * **Show that you have made an attempt** to *look into the issue*.
