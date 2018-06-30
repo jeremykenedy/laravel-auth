@@ -14,6 +14,10 @@
    </tr>
 </table>
 
+<a href="https://www.patreon.com/bePatron?u=10119959">
+  <img src="https://s3.amazonaws.com/sponsers/patron-button-1-30px.png">
+</a>
+
 #### Table of contents
 - [About](#about)
 - [Features](#features)
