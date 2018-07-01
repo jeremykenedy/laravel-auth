@@ -8,14 +8,28 @@
 
 ### Sponsor
 <table>
-   <tr>
-      <td><img src="https://s3.amazonaws.com/sponsers/sponsor-logo.png"></td>
-      <td>If you want to quickly add secure token-based authentication to Laravel apps, feel free to check Auth0's Laravel SDK and free plan at <a href="https://auth0.com/overview?utm_source=GHsponsor&utm_medium=GHsponsor&utm_campaign=laravel-auth&utm_content=auth" target="_blank">https://auth0.com/overview</a>.</td>
-   </tr>
+    <tr>
+        <td>
+            <img src="https://s3.amazonaws.com/sponsers/sponsor-logo.png">
+        </td>
+        <td>
+            If you want to quickly add secure token-based authentication to Laravel apps, feel free to check Auth0's Laravel SDK and free plan at <a href="https://auth0.com/overview?utm_source=GHsponsor&utm_medium=GHsponsor&utm_campaign=laravel-auth&utm_content=auth" target="_blank">https://auth0.com/overview</a>.
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>
+            <a href="https://www.vultr.com/?ref=7388143">
+                <img src="https://www.vultr.com/media/banner_2.png" width="468" height="60">
+            </a>
+        </td>
+    </tr>
 </table>
 
 <a href="https://www.patreon.com/bePatron?u=10119959">
-  <img src="https://s3.amazonaws.com/sponsers/patron-button-1-30px.png">
+    <img src="https://s3.amazonaws.com/sponsers/patron-button-1-30px.png">
 </a>
 
 #### Table of contents
