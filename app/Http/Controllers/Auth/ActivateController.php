@@ -33,26 +33,54 @@ class ActivateController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Gets the user home route.
+     *
+     * @return string
+     */
     public static function getUserHomeRoute()
     {
         return self::$userHomeRoute;
     }
 
+    /**
+     * Gets the admin home route.
+     *
+     * @return string
+     */
     public static function getAdminHomeRoute()
     {
         return self::$adminHomeRoute;
     }
 
+    /**
+     * Gets the activation view.
+     *
+     * @return string
+     */
     public static function getActivationView()
     {
         return self::$activationView;
     }
 
+    /**
+     * Gets the activation route.
+     *
+     * @return string
+     */
     public static function getActivationRoute()
     {
         return self::$activationRoute;
     }
 
+    /**
+     * Redirect the user after activation with admin logic
+     *
+     * @param $user             The user
+     * @param currentRoute      The current route
+     *
+     * @return Redirect
+     */
     public static function activeRedirect($user, $currentRoute)
     {
         if ($user->activated) {
@@ -72,6 +100,11 @@ class ActivateController extends Controller
         return false;
     }
 
+    /**
+     * Initial Activation View
+     *
+     * @return Redirect
+     */
     public function initial()
     {
         $user = Auth::user();
@@ -91,6 +124,11 @@ class ActivateController extends Controller
         return view($this->getActivationView())->with($data);
     }
 
+    /**
+     * Check if actication is required
+     *
+     * @return View
+     */
     public function activationRequired()
     {
         $user = Auth::user();
@@ -129,6 +167,13 @@ class ActivateController extends Controller
         return view($this->getActivationView())->with($data);
     }
 
+    /**
+     * Activate a valid user with a token
+     *
+     * @param string $token  The token
+     *
+     * @return Redirect
+     */
     public function activate($token)
     {
         $user = Auth::user();
@@ -179,6 +224,11 @@ class ActivateController extends Controller
             ->with('message', trans('auth.successActivated'));
     }
 
+    /**
+     * Resend Activation
+     *
+     * @return Redirect
+     */
     public function resend()
     {
         $user = Auth::user();
@@ -217,6 +267,11 @@ class ActivateController extends Controller
             ->with('message', trans('auth.alreadyActivated'));
     }
 
+    /**
+     * Check if use is already activated.
+     *
+     * @return Redirect
+     */
     public function exceeded()
     {
         $user = Auth::user();

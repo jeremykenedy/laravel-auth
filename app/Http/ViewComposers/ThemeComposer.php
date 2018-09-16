@@ -11,6 +11,11 @@ class ThemeComposer
     protected $user;
     protected $theme;
 
+    /**
+     * Create a new instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->user = Auth::user();
