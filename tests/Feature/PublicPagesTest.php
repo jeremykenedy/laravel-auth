@@ -26,7 +26,6 @@ class PublicPagesTest extends TestCase
      */
     public function testNonPublicPages()
     {
-
         $this->get('/activate')->assertStatus(302);
         $this->get('/activation')->assertStatus(302);
         $this->get('/activity')->assertStatus(302);
@@ -41,7 +40,7 @@ class PublicPagesTest extends TestCase
     }
 
     /**
-     * Test the permanent (301) redirects
+     * Test the permanent (301) redirects.
      *
      * @return void
      */
@@ -49,6 +48,4 @@ class PublicPagesTest extends TestCase
     {
         $this->get('/php')->assertStatus(301);
     }
-
-
 }
