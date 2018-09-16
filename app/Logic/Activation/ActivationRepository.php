@@ -10,6 +10,13 @@ use Carbon\Carbon;
 
 class ActivationRepository
 {
+    /**
+     * Creates a token and send email.
+     *
+     * @param \App\Models\User $user
+     *
+     * @return boolean || void
+     */
     public function createTokenAndSendEmail(User $user)
     {
         $activations = Activation::where('user_id', $user->id)
@@ -34,6 +41,13 @@ class ActivationRepository
         self::sendNewActivationEmail($user, $activation->token);
     }
 
+    /**
+     * Creates a new activation token.
+     *
+     * @param \App\Models\User  $user
+     *
+     * @return \App\Models\Activation $activation
+     */
     public function createNewActivationToken(User $user)
     {
         $ipAddress = new CaptureIpTrait();
@@ -46,11 +60,22 @@ class ActivationRepository
         return $activation;
     }
 
+    /**
+     * Sends a new activation email.
+     *
+     * @param      \App\Models\User  $user   The user
+     * @param      <type>            $token  The token
+     */
     public function sendNewActivationEmail(User $user, $token)
     {
         $user->notify(new SendActivationEmail($token));
     }
 
+    /**
+     * Method to removed expired activations
+     *
+     * @return void
+     */
     public function deleteExpiredActivations()
     {
         Activation::where('created_at', '<=', Carbon::now()->subHours(72))->delete();
