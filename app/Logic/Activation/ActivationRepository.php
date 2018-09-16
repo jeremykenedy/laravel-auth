@@ -15,7 +15,7 @@ class ActivationRepository
      *
      * @param \App\Models\User $user
      *
-     * @return boolean or void
+     * @return bool or void
      */
     public function createTokenAndSendEmail(User $user)
     {
@@ -44,7 +44,7 @@ class ActivationRepository
     /**
      * Creates a new activation token.
      *
-     * @param \App\Models\User  $user
+     * @param \App\Models\User $user
      *
      * @return \App\Models\Activation $activation
      */
@@ -63,8 +63,8 @@ class ActivationRepository
     /**
      * Sends a new activation email.
      *
-     * @param \App\Models\User  $user   The user
-     * @param string            $token  The token
+     * @param \App\Models\User $user  The user
+     * @param string           $token The token
      */
     public function sendNewActivationEmail(User $user, $token)
     {
@@ -72,7 +72,7 @@ class ActivationRepository
     }
 
     /**
-     * Method to removed expired activations
+     * Method to removed expired activations.
      *
      * @return void
      */

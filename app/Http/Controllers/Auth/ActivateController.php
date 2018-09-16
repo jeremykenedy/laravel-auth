@@ -74,7 +74,7 @@ class ActivateController extends Controller
     }
 
     /**
-     * Redirect the user after activation with admin logic
+     * Redirect the user after activation with admin logic.
      *
      * @param $user             The user
      * @param currentRoute      The current route
@@ -101,7 +101,7 @@ class ActivateController extends Controller
     }
 
     /**
-     * Initial Activation View
+     * Initial Activation View.
      *
      * @return Redirect
      */
@@ -125,7 +125,7 @@ class ActivateController extends Controller
     }
 
     /**
-     * Check if actication is required
+     * Check if actication is required.
      *
      * @return View
      */
@@ -168,9 +168,9 @@ class ActivateController extends Controller
     }
 
     /**
-     * Activate a valid user with a token
+     * Activate a valid user with a token.
      *
-     * @param string $token  The token
+     * @param string $token The token
      *
      * @return Redirect
      */
@@ -225,7 +225,7 @@ class ActivateController extends Controller
     }
 
     /**
-     * Resend Activation
+     * Resend Activation.
      *
      * @return Redirect
      */

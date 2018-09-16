@@ -7,7 +7,7 @@ use Tests\TestCase;
 class PublicPagesTest extends TestCase
 {
     /**
-     * Test the public pages
+     * Test the public pages.
      *
      * @return void
      */
