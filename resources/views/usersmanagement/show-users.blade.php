@@ -5,8 +5,8 @@
 @endsection
 
 @section('template_linked_css')
-    @if(config('laravelusers.enabledDatatablesJs'))
-        <link rel="stylesheet" type="text/css" href="{{ config('laravelusers.datatablesCssCDN') }}">
+    @if(config('usersmanagement.enabledDatatablesJs'))
+        <link rel="stylesheet" type="text/css" href="{{ config('usersmanagement.datatablesCssCDN') }}">
     @endif
     <style type="text/css" media="screen">
         .users-table {
