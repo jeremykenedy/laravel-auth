@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    @lang('usersmanagement.showing-all-users')
+    {!! trans('usersmanagement.showing-all-users') !!}
 @endsection
 
 @section('template_linked_css')
@@ -35,24 +35,24 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                @lang('usersmanagement.showing-all-users')
+                                {!! trans('usersmanagement.showing-all-users') !!}
                             </span>
 
                             <div class="btn-group pull-right btn-group-xs">
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fa fa-ellipsis-v fa-fw" aria-hidden="true"></i>
                                     <span class="sr-only">
-                                        @lang('usersmanagement.users-menu-alt')
+                                        {!! trans('usersmanagement.users-menu-alt') !!}
                                     </span>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="/users/create">
                                         <i class="fa fa-fw fa-user-plus" aria-hidden="true"></i>
-                                        @lang('usersmanagement.buttons.create-new')
+                                        {!! trans('usersmanagement.buttons.create-new') !!}
                                     </a>
                                     <a class="dropdown-item" href="/users/deleted">
                                         <i class="fa fa-fw fa-group" aria-hidden="true"></i>
-                                        @lang('usersmanagement.show-deleted-users')
+                                        {!! trans('usersmanagement.show-deleted-users') !!}
                                     </a>
                                 </div>
                             </div>
@@ -72,15 +72,15 @@
                                 </caption>
                                 <thead class="thead">
                                     <tr>
-                                        <th>@lang('usersmanagement.users-table.id')</th>
-                                        <th>@lang('usersmanagement.users-table.name')</th>
-                                        <th class="hidden-xs">@lang('usersmanagement.users-table.email')</th>
-                                        <th class="hidden-xs">@lang('usersmanagement.users-table.fname')</th>
-                                        <th class="hidden-xs">@lang('usersmanagement.users-table.lname')</th>
-                                        <th>@lang('usersmanagement.users-table.role')</th>
-                                        <th class="hidden-sm hidden-xs hidden-md">@lang('usersmanagement.users-table.created')</th>
-                                        <th class="hidden-sm hidden-xs hidden-md">@lang('usersmanagement.users-table.updated')</th>
-                                        <th>@lang('usersmanagement.users-table.actions')</th>
+                                        <th>{!! trans('usersmanagement.users-table.id') !!}</th>
+                                        <th>{!! trans('usersmanagement.users-table.name') !!}</th>
+                                        <th class="hidden-xs">{!! trans('usersmanagement.users-table.email') !!}</th>
+                                        <th class="hidden-xs">{!! trans('usersmanagement.users-table.fname') !!}</th>
+                                        <th class="hidden-xs">{!! trans('usersmanagement.users-table.lname') !!}</th>
+                                        <th>{!! trans('usersmanagement.users-table.role') !!}</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">{!! trans('usersmanagement.users-table.created') !!}</th>
+                                        <th class="hidden-sm hidden-xs hidden-md">{!! trans('usersmanagement.users-table.updated') !!}</th>
+                                        <th>{!! trans('usersmanagement.users-table.actions') !!}</th>
                                         <th class="no-search no-sort"></th>
                                         <th class="no-search no-sort"></th>
                                     </tr>
@@ -117,12 +117,12 @@
                                             </td>
                                             <td>
                                                 <a class="btn btn-sm btn-success btn-block" href="{{ URL::to('users/' . $user->id) }}" data-toggle="tooltip" title="Show">
-                                                    @lang('usersmanagement.buttons.show')
+                                                    {!! trans('usersmanagement.buttons.show') !!}
                                                 </a>
                                             </td>
                                             <td>
                                                 <a class="btn btn-sm btn-info btn-block" href="{{ URL::to('users/' . $user->id . '/edit') }}" data-toggle="tooltip" title="Edit">
-                                                    @lang('usersmanagement.buttons.edit')
+                                                    {!! trans('usersmanagement.buttons.edit') !!}
                                                 </a>
                                             </td>
                                         </tr>
