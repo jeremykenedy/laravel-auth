@@ -35,9 +35,9 @@
                                 Showing Deleted Users
                             </span>
                             <div class="float-right">
-                                <a href="{{ route('users') }}" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="left" title="@lang('usersmanagement.tooltips.back-users')">
+                                <a href="{{ route('users') }}" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="left" title="{{ trans('usersmanagement.tooltips.back-users') }}">
                                     <i class="fa fa-fw fa-mail-reply" aria-hidden="true"></i>
-                                    @lang('usersmanagement.buttons.back-to-users')
+                                    {!! trans('usersmanagement.buttons.back-to-users') !!}
                                 </a>
                             </div>
                         </div>

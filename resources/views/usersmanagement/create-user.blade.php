@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    @lang('usersmanagement.create-new-user')
+    {!! trans('usersmanagement.create-new-user') !!}
 @endsection
 
 @section('template_fastload_css')
@@ -15,11 +15,11 @@
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-                            @lang('usersmanagement.create-new-user')
+                            {!! trans('usersmanagement.create-new-user') !!}
                             <div class="pull-right">
-                                <a href="{{ route('users') }}" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="left" title="@lang('usersmanagement.tooltips.back-users')">
+                                <a href="{{ route('users') }}" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="left" title="{{ trans('usersmanagement.tooltips.back-users') }}">
                                     <i class="fa fa-fw fa-reply-all" aria-hidden="true"></i>
-                                    @lang('usersmanagement.buttons.back-to-users')
+                                    {!! trans('usersmanagement.buttons.back-to-users') !!}
                                 </a>
                             </div>
                         </div>
