@@ -22,13 +22,13 @@
           <div class="card-header bg-danger text-white">
             <div style="display: flex; justify-content: space-between; align-items: center;">
 
-              @lang('usersmanagement.usersDeletedPanelTitle')
+              {!! trans('usersmanagement.usersDeletedPanelTitle') !!}
 
               <div class="float-right">
-                <a href="/users/deleted/" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="left" title="@lang('usersmanagement.usersBackDelBtn')">
+                <a href="/users/deleted/" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="left" title="{{ trans('usersmanagement.usersBackDelBtn') }}">
                   <i class="fa fa-fw fa-mail-reply" aria-hidden="true"></i>
                   <span class="sr-only">
-                    @lang('usersmanagement.usersBackDelBtn')
+                    {!! trans('usersmanagement.usersBackDelBtn') !!}
                   </span>
                 </a>
               </div>

@@ -36,13 +36,13 @@
                             <strong>{{ trans('themes.editTitle') }}</strong> {{ $theme->name }}
                         </div>
                         <div class="float-right">
-                            <a href="{{ url('/themes/' . $theme->id) }}" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="top" title="@lang('themes.backToThemeTt')">
+                            <a href="{{ url('/themes/' . $theme->id) }}" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="top" title="{{ trans('themes.backToThemeTt') }}">
                                 <i class="fa fa-fw fa-mail-reply" aria-hidden="true"></i>
-                                @lang('themes.backToThemeBtn')
+                                {!! trans('themes.backToThemeBtn') !!}
                             </a>
-                            <a href="{{ url('/themes/') }}" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="left" title="@lang('themes.backToThemesTt')">
+                            <a href="{{ url('/themes/') }}" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="left" title="{{ trans('themes.backToThemesTt') }}">
                                 <i class="fa fa-fw fa-mail-reply" aria-hidden="true"></i>
-                                @lang('themes.backToThemesBtn')
+                                {!! trans('themes.backToThemesBtn') !!}
                             </a>
                         </div>
                     </div>
@@ -133,7 +133,7 @@
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    {!! Form::button('<i class="fa fa-fw fa-save" aria-hidden="true"></i> ' . trans('themes.editSave'), array('class' => 'btn btn-success btn-block mb-0 btn-save','type' => 'button', 'data-toggle' => 'modal', 'data-target' => '#confirmSave', 'data-title' => Lang::get('modals.edit_user__modal_text_confirm_title'), 'data-message' => Lang::get('modals.edit_user__modal_text_confirm_message'))) !!}
+                                    {!! Form::button('<i class="fa fa-fw fa-save" aria-hidden="true"></i> ' . trans('themes.editSave'), array('class' => 'btn btn-success btn-block mb-0 btn-save','type' => 'button', 'data-toggle' => 'modal', 'data-target' => '#confirmSave', 'data-title' => trans('modals.edit_user__modal_text_confirm_title'), 'data-message' => trans('modals.edit_user__modal_text_confirm_message'))) !!}
                                 </div>
                             </div>
                         </div>

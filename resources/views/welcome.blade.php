@@ -82,7 +82,7 @@
             @endif
             <div class="content">
                 <div class="title m-b-md">
-                    @lang('titles.app')<br />
+                    {!! trans('titles.app') !!}<br />
                     <small>
                         {{ trans('titles.app2', ['version' => config('settings.app_project_version')]) }}
                     </small>

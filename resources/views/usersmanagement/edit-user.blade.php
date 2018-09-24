@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    @lang('usersmanagement.editing-user', ['name' => $user->name])
+    {!! trans('usersmanagement.editing-user', ['name' => $user->name]) !!}
 @endsection
 
 @section('template_linked_css')
@@ -21,15 +21,15 @@
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-                            @lang('usersmanagement.editing-user', ['name' => $user->name])
+                            {!! trans('usersmanagement.editing-user', ['name' => $user->name]) !!}
                             <div class="pull-right">
-                                <a href="{{ route('users') }}" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="top" title="@lang('usersmanagement.tooltips.back-users')">
+                                <a href="{{ route('users') }}" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="top" title="{{ trans('usersmanagement.tooltips.back-users') }}">
                                     <i class="fa fa-fw fa-reply-all" aria-hidden="true"></i>
-                                    @lang('usersmanagement.buttons.back-to-users')
+                                    {!! trans('usersmanagement.buttons.back-to-users') !!}
                                 </a>
-                                <a href="{{ url('/users/' . $user->id) }}" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="left" title="@lang('usersmanagement.tooltips.back-users')">
+                                <a href="{{ url('/users/' . $user->id) }}" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="left" title="{{ trans('usersmanagement.tooltips.back-users') }}">
                                     <i class="fa fa-fw fa-reply" aria-hidden="true"></i>
-                                    @lang('usersmanagement.buttons.back-to-user')
+                                    {!! trans('usersmanagement.buttons.back-to-user') !!}
                                 </a>
                             </div>
                         </div>
@@ -187,9 +187,9 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 col-sm-6 mb-2">
-                                    <a href="#" class="btn btn-outline-secondary btn-block btn-change-pw mt-3" title="@lang('forms.change-pw')">
+                                    <a href="#" class="btn btn-outline-secondary btn-block btn-change-pw mt-3" title="{{ trans('forms.change-pw')}} ">
                                         <i class="fa fa-fw fa-lock" aria-hidden="true"></i>
-                                        <span></span> @lang('forms.change-pw')
+                                        <span></span> {!! trans('forms.change-pw') !!}
                                     </a>
                                 </div>
                                 <div class="col-12 col-sm-6">

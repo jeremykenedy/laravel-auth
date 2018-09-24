@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-  @lang('usersmanagement.showing-user', ['name' => $user->name])
+  {!! trans('usersmanagement.showing-user', ['name' => $user->name]) !!}
 @endsection
 
 @php
@@ -21,11 +21,11 @@
 
           <div class="card-header text-white @if ($user->activated == 1) bg-success @else bg-danger @endif">
             <div style="display: flex; justify-content: space-between; align-items: center;">
-              @lang('usersmanagement.showing-user-title', ['name' => $user->name])
+              {!! trans('usersmanagement.showing-user-title', ['name' => $user->name]) !!}
               <div class="float-right">
-                <a href="{{ route('users') }}" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="left" title="@lang('usersmanagement.tooltips.back-users')">
+                <a href="{{ route('users') }}" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="left" title="{{ trans('usersmanagement.tooltips.back-users') }}">
                   <i class="fa fa-fw fa-mail-reply" aria-hidden="true"></i>
-                  @lang('usersmanagement.buttons.back-to-users')
+                  {!! trans('usersmanagement.buttons.back-to-users') !!}
                 </a>
               </div>
             </div>
@@ -47,7 +47,7 @@
                   </strong>
                   @if($user->email)
                     <br />
-                    <span class="text-center" data-toggle="tooltip" data-placement="top" title="@lang('usersmanagement.tooltips.email-user', ['user' => $user->email])">
+                    <span class="text-center" data-toggle="tooltip" data-placement="top" title="{{ trans('usersmanagement.tooltips.email-user', ['user' => $user->email]) }}">
                       {{ Html::mailto($user->email, $user->email) }}
                     </span>
                   @endif
@@ -98,7 +98,7 @@
             </div>
 
             <div class="col-sm-7">
-              <span data-toggle="tooltip" data-placement="top" title="@lang('usersmanagement.tooltips.email-user', ['user' => $user->email])">
+              <span data-toggle="tooltip" data-placement="top" title="{{ trans('usersmanagement.tooltips.email-user', ['user' => $user->email]) }}">
                 {{ HTML::mailto($user->email, $user->email) }}
               </span>
             </div>

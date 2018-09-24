@@ -18,35 +18,35 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
                             <a class="dropdown-item {{ Request::is('users', 'users/' . Auth::user()->id, 'users/' . Auth::user()->id . '/edit') ? 'active' : null }}" href="{{ url('/users') }}">
-                                @lang('titles.adminUserList')
+                                {!! trans('titles.adminUserList') !!}
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item {{ Request::is('users/create') ? 'active' : null }}" href="{{ url('/users/create') }}">
-                                @lang('titles.adminNewUser')
+                                {!! trans('titles.adminNewUser') !!}
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item {{ Request::is('themes','themes/create') ? 'active' : null }}" href="{{ url('/themes') }}">
-                                @lang('titles.adminThemesList')
+                                {!! trans('titles.adminThemesList') !!}
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item {{ Request::is('logs') ? 'active' : null }}" href="{{ url('/logs') }}">
-                                @lang('titles.adminLogs')
+                                {!! trans('titles.adminLogs') !!}
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item {{ Request::is('activity') ? 'active' : null }}" href="{{ url('/activity') }}">
-                                @lang('titles.adminActivity')
+                                {!! trans('titles.adminActivity') !!}
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item {{ Request::is('phpinfo') ? 'active' : null }}" href="{{ url('/phpinfo') }}">
-                                @lang('titles.adminPHP')
+                                {!! trans('titles.adminPHP') !!}
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item {{ Request::is('routes') ? 'active' : null }}" href="{{ url('/routes') }}">
-                                @lang('titles.adminRoutes')
+                                {!! trans('titles.adminRoutes') !!}
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item {{ Request::is('active-users') ? 'active' : null }}" href="{{ url('/active-users') }}">
-                                @lang('titles.activeUsers')
+                                {!! trans('titles.activeUsers') !!}
                             </a>
                         </div>
                     </li>
@@ -70,7 +70,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item {{ Request::is('profile/'.Auth::user()->name, 'profile/'.Auth::user()->name . '/edit') ? 'active' : null }}" href="{{ url('/profile/'.Auth::user()->name) }}">
-                                @lang('titles.profile')
+                                {!! trans('titles.profile') !!}
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}"
