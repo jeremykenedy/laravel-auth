@@ -177,7 +177,7 @@ class UsersManagementController extends Controller
             ]);
         } else {
             $validator = Validator::make($request->all(), [
-                'name'     => 'required|max:255|unique:users',
+                'name'     => 'required|max:255|unique:users,name,'.$id,
                 'password' => 'nullable|confirmed|min:6',
             ]);
         }
