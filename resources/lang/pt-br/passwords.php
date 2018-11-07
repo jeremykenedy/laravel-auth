@@ -17,6 +17,6 @@ return [
     'reset'    => 'Sua senha foi redefinada!',
     'sent'     => 'Enviamos um link para redefinar sua senha em seu email',
     'token'    => 'Este codigo de confirmação de redefinição de senha e inválido',
-    'user'     => "Não encontramos um usuário com esse endereço de email",
+    'user'     => 'Não encontramos um usuário com esse endereço de email',
 
 ];
