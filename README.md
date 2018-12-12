@@ -91,7 +91,7 @@ Laravel 5.7 with user authentication, registration with email confirmation, soci
 |404 Page|
 |403 Page|
 |Configurable Email Notification via [Laravel-Exception-Notifier](https://github.com/jeremykenedy/laravel-exception-notifier)|
-|User Delete with Goodby email|
+|User Delete with Goodbye email|
 |User Restore Deleted Account|
 |Activity Logging using [Laravel-logger](https://github.com/jeremykenedy/laravel-logger)|
 |Optional 2-step account login verfication with [Laravel 2-Step Verification](https://github.com/jeremykenedy/laravel2step)|
