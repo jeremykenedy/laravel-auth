@@ -124,7 +124,7 @@
                                                     <div class="margin-bottom-2 form-group has-feedback {{ $errors->has('github_username') ? ' has-error ' : '' }}">
                                                         {!! Form::label('github_username', trans('profile.label-github_username') , array('class' => 'col-12 control-label')); !!}
                                                         <div class="col-12">
-                                                            {!! Form::text('github_username', old('github_username'), array('id' => 'github_username', 'class' => 'form-control', 'placeholder' => trans('profile.ph-twitter_username'))) !!}
+                                                            {!! Form::text('github_username', old('github_username'), array('id' => 'github_username', 'class' => 'form-control', 'placeholder' => trans('profile.ph-github_username'))) !!}
                                                             <span class="glyphicon glyphicon-pencil form-control-feedback" aria-hidden="true"></span>
                                                             @if ($errors->has('github_username'))
                                                                 <span class="help-block">
