@@ -67,6 +67,6 @@ class Authenticate
     {
         $user = Auth::user();
         $currentRoute = Route::currentRouteName();
-        Log::info('Authenticate middlware was used: '.$currentRoute.'. ', [$user]);
+        Log::info('Authenticate middleware was used: '.$currentRoute.'. ', [$user]);
     }
 }
