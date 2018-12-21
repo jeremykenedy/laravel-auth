@@ -42,17 +42,17 @@
 - [Laravel Auth License](#laravel-auth-license)
 
 ### About
-Laravel 5.7 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. Uses offical [Bootstrap 4](http://getbootstrap.com). This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
+Laravel 5.7 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. Uses official [Bootstrap 4](https://getbootstrap.com). This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
 
 ### Features
-#### A [Laravel](http://laravel.com/) 5.7.x with minimal [Bootstrap](http://getbootstrap.com) 4.0.x project.
+#### A [Laravel](https://laravel.com/) 5.7.x with minimal [Bootstrap](https://getbootstrap.com) 4.0.x project.
 
 | Laravel-Auth Features  |
 | :------------ |
-|Built on [Laravel](http://laravel.com/) 5.7|
+|Built on [Laravel](https://laravel.com/) 5.7|
 |Built on [Bootstrap](https://getbootstrap.com/) 4|
 |Uses [MySQL](https://github.com/mysql) Database (can be changed)|
-|Uses [Artisan](http://laravel.com/docs/5.7/artisan) to manage database migration, schema creations, and create/publish page controller templates|
+|Uses [Artisan](https://laravel.com/docs/5.7/artisan) to manage database migration, schema creations, and create/publish page controller templates|
 |Dependencies are managed with [COMPOSER](https://getcomposer.org/)|
 |Laravel Scaffolding **User** and **Administrator Authentication**.|
 |User [Socialite Logins](https://github.com/laravel/socialite) ready to go - See API list used below|
@@ -62,20 +62,20 @@ Laravel 5.7 with user authentication, registration with email confirmation, soci
 |Robust [Laravel Logging](https://laravel.com/docs/5.7/errors#logging) with admin UI using MonoLog|
 |Google [reCaptcha Protection with Google API](https://developers.google.com/recaptcha/)|
 |User Registration with email verification|
-|Makes us of Laravel [Mix](https://laravel.com/docs/5.7/mix) to compile assets|
+|Makes use of Laravel [Mix](https://laravel.com/docs/5.7/mix) to compile assets|
 |Makes use of [Language Localization Files](https://laravel.com/docs/5.7/localization)|
 |Active Nav states using [Laravel Requests](https://laravel.com/docs/5.7/requests)|
 |Restrict User Email Activation Attempts|
 |Capture IP to users table upon signup|
 |Uses [Laravel Debugger](https://github.com/barryvdh/laravel-debugbar) for development|
-|Makes us of [Password Strength Meter](https://github.com/elboletaire/password-strength-meter)|
+|Makes use of [Password Strength Meter](https://github.com/elboletaire/password-strength-meter)|
 |Makes use of [hideShowPassword](https://github.com/cloudfour/hideShowPassword)|
-|User Avatar Image AJAX Upload with [Dropzone.js](http://www.dropzonejs.com/#configuration)|
+|User Avatar Image AJAX Upload with [Dropzone.js](https://www.dropzonejs.com/#configuration)|
 |User Gravatar using [Gravatar API](https://github.com/creativeorange/gravatar)|
 |User Password Reset via Email Token|
 |User Login with remember password|
 |User [Roles/ACL Implementation](https://github.com/jeremykenedy/laravel-roles)|
-|Makes of [Laravel's Soft Delete Structure](https://laravel.com/docs/5.7/eloquent#soft-deleting)|
+|Makes use of [Laravel's Soft Delete Structure](https://laravel.com/docs/5.7/eloquent#soft-deleting)|
 |Soft Deleted Users Management System|
 |Permanently Delete Soft Deleted Users|
 |User Delete Account with Goodbye email|
@@ -155,7 +155,7 @@ php artisan vendor:publish --tag=laravel2step
 
 ##### Themes Seed List
   * [ThemesTableSeeder](https://github.com/jeremykenedy/laravel-auth/blob/master/database/seeds/ThemesTableSeeder.php)
-  * NOTE: A lot of themes do not render the greated on Bootstrap 4 since their core was built to override Bootstrap 4. These will be updated soon and ones that do not render well will be removed from the seed. In the mean time you can remove them from the seed or manaully from the UI or database.
+  * NOTE: A lot of themes render incorrectly on Bootstrap 4 since their core was built to override Bootstrap 4. These will be updated soon and ones that do not render correctly will be removed from the seed. In the mean time you can remove them from the seed or manaully from the UI or database.
 
 ### Routes
 
@@ -245,15 +245,15 @@ php artisan vendor:publish --tag=laravel2step
 * [Google &plus; API](https://console.developers.google.com/)
 * [GitHub API](https://github.com/settings/applications/new)
 * [YouTube API](https://developers.google.com/youtube/v3/getting-started)
-* [Twitch TV API](http://www.twitch.tv/kraken/oauth2/clients/new)
+* [Twitch TV API](https://www.twitch.tv/kraken/oauth2/clients/new)
 * [Instagram API](https://instagram.com/developer/register/)
 * [37 Signals API](https://github.com/basecamp/basecamp-classic-api)
 
 #### Add More Socialite Logins
-* See full list of providers: [http://socialiteproviders.github.io](http://socialiteproviders.github.io/#providers)
+* See full list of providers: [https://socialiteproviders.github.io](https://socialiteproviders.github.io/#providers)
 ###### **Steps**:
-  1. Go to [http://socialiteproviders.github.io](http://socialiteproviders.github.io/providers/twitch/) and select the provider to be added.
-  2. From the projects root folder in terminal run composer command to get the needed package.
+  1. Go to [https://socialiteproviders.github.io](https://socialiteproviders.github.io/providers/twitch/) and select the provider to be added.
+  2. From the projects root folder, in the terminal, run composer to get the needed package.
      * Example:
 
       ```
@@ -450,7 +450,7 @@ YOUTUBE_KEY=YOURKEYHERE
 YOUTUBE_SECRET=YOURSECRETHERE
 YOUTUBE_REDIRECT_URI=https://larablog.io/social/handle/youtube
 
-# http://www.twitch.tv/kraken/oauth2/clients/new
+# https://www.twitch.tv/kraken/oauth2/clients/new
 TWITCH_KEY=YOURKEYHERE
 TWITCH_SECRET=YOURSECRETHERE
 TWITCH_REDIRECT_URI=http://laravel-authentication.local/social/handle/twitch
@@ -469,9 +469,9 @@ INSTAGRAM_REDIRECT_URI=http://laravel-authentication.local/social/handle/instagr
 ```
 
 #### Laravel Developement Packages Used References
-* http://laravel.com/docs/5.7/authentication
-* http://laravel.com/docs/5.7/authorization
-* http://laravel.com/docs/5.7/routing
+* https://laravel.com/docs/5.7/authentication
+* https://laravel.com/docs/5.7/authorization
+* https://laravel.com/docs/5.7/routing
 * https://laravel.com/docs/5.7/migrations
 * https://laravel.com/docs/5.7/queries
 * https://laravel.com/docs/5.7/views
@@ -871,7 +871,7 @@ Before opening an issue there are a couple of considerations:
 * If you have a questions send me an email to jeremykenedy@gmail.com
 * Please be considerate that this is an open source project that I provide to the community for FREE when opening an issue.
 
-Open source projects are a the community’s responsibility to use, contribute, and debug.
+Open source projects are the community’s responsibility to use, contribute, and debug.
 
 ### Laravel Auth License
 Laravel-auth is licensed under the [MIT license](https://opensource.org/licenses/MIT). Enjoy!
