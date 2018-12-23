@@ -869,6 +869,7 @@ Before opening an issue there are a couple of considerations:
 * **Check** to see if the issue you are *reporting is a duplicate* of a previous reported issue.
 * **Following these instructions show me that you have tried.**
 * If you have a questions send me an email to jeremykenedy@gmail.com
+* Need some help, I can do my best on Slack: https://opensourcehelpgroup.slack.com
 * Please be considerate that this is an open source project that I provide to the community for FREE when opening an issue.
 
 Open source projects are the community’s responsibility to use, contribute, and debug.
