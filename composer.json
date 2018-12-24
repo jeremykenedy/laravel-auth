@@ -25,7 +25,7 @@
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.5",
         "pusher/pusher-php-server": "^3.0",
-        "rap2hpoutre/laravel-log-viewer": "^0.10.4",
+        "rap2hpoutre/laravel-log-viewer": "^0.22.1",
         "socialiteproviders/37signals": "^3.0",
         "socialiteproviders/generators": "^2.0",
         "socialiteproviders/instagram": "^3.0",
