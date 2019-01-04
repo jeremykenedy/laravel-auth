@@ -9,7 +9,6 @@ use Redirect;
 use Response;
 use View;
 
-
 class CrudController extends Controller
 {
     /**
@@ -34,11 +33,10 @@ class CrudController extends Controller
         $commandArg = [];
         $commandArg['name'] = $request->crud_name;
 
-
         // Make sure we do not already have this module
         $directories = glob(base_path().'/resources/views/*', GLOB_ONLYDIR);
         foreach ($directories as $dir){
-            $this_name = str_replace(base_path().'/resources/views/','',$dir);
+            $this_name = str_replace(base_path().'/resources/views/', '',$dir);
             $used_names[] = $this_name;
         }
 
