@@ -32,4 +32,6 @@ return [
     'adminRoutes'       => 'Detalhes das rotas',
 
     'activeUsers'       => 'Usuários Ativos.',
+
+    'adminNewCrud'       => 'Criar CRUD',
 ];

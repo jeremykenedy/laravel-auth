@@ -1,0 +1,1 @@
+{!! Form::%%fieldType%%('%%itemName%%', null, ('%%required%%' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}

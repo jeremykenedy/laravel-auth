@@ -33,4 +33,6 @@ return [
     'adminRoutes'       => 'Routing Details',
 
     'activeUsers'       => 'Active Users',
+
+    'adminNewCrud'       => 'New CRUD',
 ];

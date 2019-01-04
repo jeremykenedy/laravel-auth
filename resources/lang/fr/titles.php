@@ -30,4 +30,6 @@ return [
     'adminPHP'    => 'Information PHP',
     'adminRoutes' => 'Details routage',
 
+    'adminNewCrud'       => 'Créer CRUD',
+
 ];

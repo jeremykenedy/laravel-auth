@@ -1,0 +1,6 @@
+<div class="checkbox">
+    <label><input name="{{ %1$s }}" type="checkbox" value="1" {{ (isset($%%crudNameSingular%%) && 1 == $%%crudNameSingular%%->%1$s) ? 'checked' : '' }}> Yes</label>
+</div>
+<div class="checkbox">
+    <label><input name="{{ %1$s }}" type="checkbox" value="0" {{ (isset($%%crudNameSingular%%) && 0 == $%%crudNameSingular%%->%1$s) ? 'checked' : '' }}> No</label>
+</div>
