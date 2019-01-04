@@ -34,23 +34,16 @@ class CrudController extends Controller
         $commandArg['name'] = $request->crud_name;
 
 
-        /**
-         * Make sure we do not already have this module
-         */
-        $directories = glob(base_path() . '/resources/views/*', GLOB_ONLYDIR);
-        foreach ( $directories as $dir ){
+        // Make sure we do not already have this module
+        $directories = glob(base_path().'/resources/views/*', GLOB_ONLYDIR);
+        foreach ($directories as $dir){
             $this_name = str_replace(base_path() . '/resources/views/','',$dir);
             $used_names[] = $this_name;
         }
-        //dd($request->crud_name);
 
-        if (in_array(strtolower($request->crud_name), $used_names)){
+        if (in_array(strtolower($request->crud_name), $used_names)) {
             return Redirect::back()->withErrors(['Name Exists or Restricted']);
         }
-
-
-
-
 
         if ($request->has('fields')) {
             $fieldsArray = [];
@@ -61,16 +54,16 @@ class CrudController extends Controller
                     $validationsArray[] = $field;
                 }
 
-                $fieldsArray[] = $field . '#' . $request->fields_type[$x];
+                $fieldsArray[] = $field.'#'.$request->fields_type[$x];
 
                 $x++;
             }
 
-            $commandArg['--fields'] = implode(";", $fieldsArray);
+            $commandArg['--fields'] = implode(';', $fieldsArray);
         }
 
         if (!empty($validationsArray)) {
-            $commandArg['--validations'] = implode("#required;", $validationsArray) . "#required";
+            $commandArg['--validations'] = implode('#required;', $validationsArray) . '#required';
         }
 
         if ($request->has('route')) {
@@ -111,13 +104,13 @@ class CrudController extends Controller
             $menus = json_decode(File::get(base_path('resources/laravel-admin/menus.json')));
 
             $name = $commandArg['name'];
-            $routeName = ($commandArg['--route-group']) ? $commandArg['--route-group'] . '/' . snake_case($name, '-') : snake_case($name, '-');
+            $routeName = ($commandArg['--route-group']) ? $commandArg['--route-group'].'/'.snake_case($name, '-') : snake_case($name, '-');
 
             $menus->menus = array_map(function ($menu) use ($name, $routeName) {
                 if ($menu->section == 'Resources') {
                     array_push($menu->items, (object) [
                         'title' => $name,
-                        'url' => '/' . $routeName,
+                        'url'   => '/'.$routeName,
                     ]);
                 }
 
