@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Artisan;
 use File;
 use Illuminate\Http\Request;
+use Redirect;
 use Response;
 use View;
-use Redirect;
+
 
 class CrudController extends Controller
 {
@@ -37,7 +38,7 @@ class CrudController extends Controller
         // Make sure we do not already have this module
         $directories = glob(base_path().'/resources/views/*', GLOB_ONLYDIR);
         foreach ($directories as $dir){
-            $this_name = str_replace(base_path() . '/resources/views/','',$dir);
+            $this_name = str_replace(base_path().'/resources/views/','',$dir);
             $used_names[] = $this_name;
         }
 
@@ -63,7 +64,7 @@ class CrudController extends Controller
         }
 
         if (!empty($validationsArray)) {
-            $commandArg['--validations'] = implode('#required;', $validationsArray) . '#required';
+            $commandArg['--validations'] = implode('#required;', $validationsArray).'#required';
         }
 
         if ($request->has('route')) {
