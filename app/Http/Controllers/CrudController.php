@@ -21,7 +21,6 @@ class CrudController extends Controller
         return view('crudmanagement.add-crud');
     }
 
-
     /**
      * Process generator.
      *
