@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: danielserrick
- * Date: 2019-01-04
- * Time: 21:04
- */
-
 
 namespace App\Http\Controllers;
 
@@ -14,7 +7,7 @@ use File;
 use Illuminate\Http\Request;
 use Response;
 use View;
-Use Redirect;
+use Redirect;
 
 class CrudController extends Controller
 {
@@ -44,14 +37,14 @@ class CrudController extends Controller
         /**
          * Make sure we do not already have this module
          */
-        $directories = glob(base_path() . '/resources/views/*' , GLOB_ONLYDIR);
-        foreach( $directories as $dir ){
+        $directories = glob(base_path() . '/resources/views/*', GLOB_ONLYDIR);
+        foreach ($directories as $dir){
             $this_name = str_replace(base_path() . '/resources/views/','',$dir);
             $used_names[] = $this_name;
         }
         //dd($request->crud_name);
 
-        if(in_array(strtolower($request->crud_name),$used_names)){
+        if (in_array(strtolower($request->crud_name), $used_names)){
             return Redirect::back()->withErrors(['Name Exists or Restricted']);
         }
 
