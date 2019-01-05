@@ -82,6 +82,6 @@
         @endif
 
         @yield('footer_scripts')
-
+        @include('scripts.dynamic-menu')
     </body>
 </html>

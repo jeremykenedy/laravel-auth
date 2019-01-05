@@ -11,7 +11,7 @@
             {{-- Left Side Of Navbar --}}
             <ul class="navbar-nav mr-auto">
                 @role('admin')
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" id="adm_mnu">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {!! trans('titles.adminDropdownNav') !!}
                         </a>
@@ -48,10 +48,8 @@
                             <a class="dropdown-item {{ Request::is('active-users') ? 'active' : null }}" href="{{ url('/active-users') }}">
                                 {!! trans('titles.activeUsers') !!}
                             </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item {{ Request::is('crud') ? 'active' : null }}" href="{{ url('/crud') }}">
-                                {!! trans('titles.adminNewCrud') !!}
-                            </a>
+                            {{--Dynamic Menu Items Generated From /resources/crud-generator/menus.json--}}
+
                         </div>
                     </li>
                 @endrole

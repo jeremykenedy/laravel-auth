@@ -100,13 +100,13 @@ class CrudController extends Controller
         try {
             Artisan::call('crud:generate', $commandArg);
 
-            $menus = json_decode(File::get(base_path('resources/laravel-admin/menus.json')));
+            $menus = json_decode(File::get(base_path('resources/crud-generator/menus.json')));
 
             $name = $commandArg['name'];
             $routeName = ($commandArg['--route-group']) ? $commandArg['--route-group'].'/'.snake_case($name, '-') : snake_case($name, '-');
 
             $menus->menus = array_map(function ($menu) use ($name, $routeName) {
-                if ($menu->section == 'Resources') {
+                if ($menu->section == 'Tools') {
                     array_push($menu->items, (object) [
                         'title' => $name,
                         'url'   => '/'.$routeName,
@@ -116,7 +116,7 @@ class CrudController extends Controller
                 return $menu;
             }, $menus->menus);
 
-            File::put(base_path('resources/laravel-admin/menus.json'), json_encode($menus));
+            File::put(base_path('resources/crud-generator/menus.json'), json_encode($menus));
 
             Artisan::call('migrate');
         } catch (\Exception $e) {
