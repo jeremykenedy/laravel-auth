@@ -35,4 +35,5 @@ return [
     'activeUsers'       => 'Active Users',
 
     'adminNewCrud'       => 'New CRUD',
+    'generateNewCrud'    => 'Generate New CRUD',
 ];

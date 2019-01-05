@@ -121,6 +121,8 @@ Route::group(['middleware' => ['auth', 'activated', 'role:admin', 'activity', 't
         ],
     ]);
 
+    Route::get('crud', 'CrudController@getGenerator');
+    Route::post('admin/generator', 'CrudController@postGenerator');
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
     Route::get('routes', 'AdminDetailsController@listRoutes');
     Route::get('active-users', 'AdminDetailsController@activeUsers');

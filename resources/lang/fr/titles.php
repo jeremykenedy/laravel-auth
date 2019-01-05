@@ -31,5 +31,6 @@ return [
     'adminRoutes' => 'Details routage',
 
     'adminNewCrud'       => 'Créer CRUD',
+    'generateNewCrud'    => 'Créer CRUD',
 
 ];

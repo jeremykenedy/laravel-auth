@@ -8,7 +8,8 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Generate New CRUD {{ Auth::user()->name }}
+     {{ Auth::user()->name }}
+    {{ trans('titles.generateNewCrud') }}
 @endsection
 
 @section('head')
