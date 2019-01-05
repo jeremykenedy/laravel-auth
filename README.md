@@ -24,6 +24,7 @@
 - [Installation Instructions](#installation-instructions)
     - [Build the Front End Assets with Mix](#build-front-end-assets-with-mix)
     - [Optionally Build Cache](#optionally-build-cache)
+- [CRUD Generator](#crud-generator)
 - [Seeds](#seeds)
     - [Seeded Roles](#seeded-roles)
     - [Seeded Permissions](#seeded-permissions)
@@ -59,6 +60,7 @@ Laravel 5.7 with user authentication, registration with email confirmation, soci
 |[Google Maps API v3](https://developers.google.com/maps/documentation/javascript/) for User Location lookup and Geocoding|
 |CRUD (Create, Read, Update, Delete) Themes Management|
 |CRUD (Create, Read, Update, Delete) User Management|
+|CRUD Generator to generate all required (module) files|
 |Robust [Laravel Logging](https://laravel.com/docs/5.7/errors#logging) with admin UI using MonoLog|
 |Google [reCaptcha Protection with Google API](https://developers.google.com/recaptcha/)|
 |User Registration with email verification|
@@ -112,6 +114,10 @@ php artisan vendor:publish --tag=laravelroles &&
 php artisan vendor:publish --tag=laravel2step
 ```
 7. From the projects root folder run `sudo chmod -R 755 ../laravel-auth`
+7. From the projects root folder run `sudo chmod 755 app`
+7. From the projects root folder run `sudo chmod 755 app/Http/Controllers`
+7. From the projects root folder run `sudo chmod 755 resources/crud-generator/menus.json`
+7. From the projects root folder run `sudo chmod 755 resources/views`
 8. From the projects root folder run `php artisan key:generate`
 9. From the projects root folder run `php artisan migrate`
 10. From the projects root folder run `composer dump-autoload`
@@ -156,6 +162,16 @@ php artisan vendor:publish --tag=laravel2step
 ##### Themes Seed List
   * [ThemesTableSeeder](https://github.com/jeremykenedy/laravel-auth/blob/master/database/seeds/ThemesTableSeeder.php)
   * NOTE: A lot of themes render incorrectly on Bootstrap 4 since their core was built to override Bootstrap 4. These will be updated soon and ones that do not render correctly will be removed from the seed. In the mean time you can remove them from the seed or manaully from the UI or database.
+
+### CRUD Generator
+Fill in the form with all required fields. Laravel-Auth will generate all required Models, Controllers, Views, Routes, Migrations etc.
+
+**NOTE**: For this to work properly, permissions on the related files and folders must be set accordingly. See install instructions
+
+    * /app/Http/Controllers (755)
+    * /resources/crud-generator/menus.json (666)
+    * /resources/views (755)
+
 
 ### Routes
 
@@ -230,6 +246,8 @@ php artisan vendor:publish --tag=laravel2step
 |        | PUT|PATCH                              | users/{user}                          | users.update                     | App\Http\Controllers\UsersManagementController@update                                             | web,auth,activated,role:admin,activity,twostep  |
 |        | GET|HEAD                               | users/{user}                          | users.show                       | App\Http\Controllers\UsersManagementController@show                                               | web,auth,activated,role:admin,activity,twostep  |
 |        | GET|HEAD                               | users/{user}/edit                     | users.edit                       | App\Http\Controllers\UsersManagementController@edit                                               | web,auth,activated,role:admin,activity,twostep  |
+|        | GET                                    | crud/create                           | crud:create                      | App\Http\Controllers\CrudController@getGenerator                                                  | web,auth,activated,role:admin,activity,twostep  |
+|        | POST                                   | crud/generate                         | crud:save                        | App\Http\Controllers\CrudController@gpostGenerator                                                | web,auth,activated,role:admin,activity,twostep  |
 |        | GET|HEAD                               | verification/needed                   | laravel2step::verificationNeeded | jeremykenedy\laravel2step\App\Http\Controllers\TwoStepController@showVerification                 | web,auth,Closure                                |
 |        | POST                                   | verification/resend                   | laravel2step::resend             | jeremykenedy\laravel2step\App\Http\Controllers\TwoStepController@resend                           | web,auth,Closure                                |
 |        | POST                                   | verification/verify                   | laravel2step::verify             | jeremykenedy\laravel2step\App\Http\Controllers\TwoStepController@verify                           | web,auth,Closure                                |
@@ -468,7 +486,7 @@ INSTAGRAM_REDIRECT_URI=http://laravel-authentication.local/social/handle/instagr
 
 ```
 
-#### Laravel Developement Packages Used References
+#### Laravel Development Packages Used References
 * https://laravel.com/docs/5.7/authentication
 * https://laravel.com/docs/5.7/authorization
 * https://laravel.com/docs/5.7/routing
