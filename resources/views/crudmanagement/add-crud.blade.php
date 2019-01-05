@@ -8,8 +8,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-     {{ Auth::user()->name }}
-    {{ trans('titles.generateNewCrud') }}
+     {{ trans('titles.generateNewCrud') }}
 @endsection
 
 @section('head')
