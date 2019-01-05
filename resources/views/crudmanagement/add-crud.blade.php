@@ -24,7 +24,7 @@
                     <div class="card-body">
 
 
-                        <form class="form-horizontal" method="post" action="{{ url('/admin/generator') }}">
+                        <form class="form-horizontal" method="post" action="{{ route('save-crud') }}">
                             {{ csrf_field() }}
 
                             <div class="form-group row">
