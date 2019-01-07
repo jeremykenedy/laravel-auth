@@ -32,6 +32,7 @@
         "socialiteproviders/youtube": "^3.0"
     },
     "require-dev": {
+        "appzcoder/crud-generator": "^3.0",
         "barryvdh/laravel-debugbar": "^3.0",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
