@@ -14,7 +14,7 @@ return [
 
     'templateTitle' => 'Edit your profile',
 
-    // profile erros
+    // profile errors
     'notYourProfile'      => 'This isn\'t the profile you\'re looking for.',
     'notYourProfileTitle' => 'Hmmm, something went wrong...',
     'noProfileYet'        => 'No profile yet.',
