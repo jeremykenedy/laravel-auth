@@ -36,7 +36,7 @@
                                 <tbody>
                                 @foreach($%%crudName%% as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{!! $loop->iteration !!}</td>
                                         %%formBodyHtml%%
                                         <td>
                                             <a href="{{ url('/%%routeGroup%%%%viewName%%/' . $item->%%primaryKey%%) }}" title="View %%modelName%%"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
