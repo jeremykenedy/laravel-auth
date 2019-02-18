@@ -203,7 +203,7 @@ class ProfilesController extends Controller
      * Update the specified resource in storage.
      *
      * @param \App\Http\Requests\UpdateUserPasswordRequest $request
-     * @param int $id
+     * @param int                                          $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -273,7 +273,7 @@ class ProfilesController extends Controller
      * Update the specified resource in storage.
      *
      * @param \App\Http\Requests\DeleteUserAccount $request
-     * @param int $id
+     * @param int                                  $id
      *
      * @return \Illuminate\Http\Response
      */

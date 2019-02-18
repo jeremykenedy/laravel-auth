@@ -42,5 +42,4 @@ class UpdateUserPasswordRequest extends FormRequest
             'password.max'      => trans('auth.PasswordMax'),
         ];
     }
-
 }

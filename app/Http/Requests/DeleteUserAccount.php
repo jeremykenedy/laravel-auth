@@ -39,5 +39,4 @@ class DeleteUserAccount extends FormRequest
             'checkConfirmDelete.required' => trans('profile.confirmDeleteRequired'),
         ];
     }
-
 }
