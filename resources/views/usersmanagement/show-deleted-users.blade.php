@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Showing Deleted Users
+    {!!trans('usersmanagement.showing-user-deleted')!!}
+
 @endsection
 
 @section('template_linked_css')
@@ -20,7 +21,6 @@
         .users-table.table-responsive table {
             margin-bottom: .15em;
         }
-
     </style>
 @endsection
 
@@ -32,7 +32,7 @@
                     <div class="card-header bg-danger text-white">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <span id="card_title">
-                                Showing Deleted Users
+                                {!!trans('usersmanagement.showing-user-deleted')!!}
                             </span>
                             <div class="float-right">
                                 <a href="{{ route('users') }}" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="left" title="{{ trans('usersmanagement.tooltips.back-users') }}">
@@ -49,7 +49,7 @@
 
                             <tr>
                                 <p class="text-center margin-half">
-                                    No Records Found
+                                    {!! trans('usersmanagement.no-records') !!}
                                 </p>
                             </tr>
 
@@ -63,14 +63,14 @@
                                     <thead>
                                         <tr>
                                             <th class="hidden-xxs">ID</th>
-                                            <th>Username</th>
+                                            <th>{!!trans('usersmanagement.users-table.name')!!}</th>
                                             <th class="hidden-xs hidden-sm">Email</th>
-                                            <th class="hidden-xs hidden-sm hidden-md">First Name</th>
-                                            <th class="hidden-xs hidden-sm hidden-md">Last Name</th>
-                                            <th class="hidden-xs hidden-sm">Role</th>
-                                            <th class="hidden-xs">Deleted</th>
-                                            <th class="hidden-xs">Deleted IP</th>
-                                            <th>Actions</th>
+                                            <th class="hidden-xs hidden-sm hidden-md">{!!trans('usersmanagement.users-table.fname')!!}</th>
+                                            <th class="hidden-xs hidden-sm hidden-md">{!!trans('usersmanagement.users-table.lname')!!}</th>
+                                            <th class="hidden-xs hidden-sm">{!!trans('usersmanagement.role')!!}</th>
+                                            <th class="hidden-xs">{!!trans('usersmanagement.deleted')!!}</th>
+                                            <th class="hidden-xs">{!!trans('usersmanagement.IpDeleted')!!}</th>
+                                            <th>{!!trans('usersmanagement.actions')!!}</th>
                                             <th></th>
                                             <th></th>
                                         </tr>
