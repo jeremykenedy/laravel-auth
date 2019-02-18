@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DeleteUserAccount;
+use App\Http\Requests\UpdateUserPasswordRequest;
+use App\Http\Requests\UpdateUserProfile;
 use App\Models\Profile;
 use App\Models\Theme;
 use App\Models\User;
@@ -30,26 +33,6 @@ class ProfilesController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-    }
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param array $data
-     *
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    public function profile_validator(array $data)
-    {
-        return Validator::make($data, [
-            'theme_id'         => '',
-            'location'         => '',
-            'bio'              => 'max:500',
-            'twitter_username' => 'max:50',
-            'github_username'  => 'max:50',
-            'avatar'           => '',
-            'avatar_status'    => '',
-        ]);
     }
 
     /**
@@ -126,25 +109,20 @@ class ProfilesController extends Controller
     /**
      * Update a user's profile.
      *
+     * @param \App\Http\Requests\UpdateUserProfile $request
      * @param $username
      *
      * @throws Laracasts\Validation\FormValidationException
      *
      * @return mixed
      */
-    public function update($username, Request $request)
+    public function update(UpdateUserProfile $request, $username)
     {
         $user = $this->getUserByUsername($username);
 
         $input = Input::only('theme_id', 'location', 'bio', 'twitter_username', 'github_username', 'avatar_status');
 
         $ipAddress = new CaptureIpTrait();
-
-        $profile_validator = $this->profile_validator($request->all());
-
-        if ($profile_validator->fails()) {
-            return back()->withErrors($profile_validator)->withInput();
-        }
 
         if ($user->profile == null) {
             $profile = new Profile();
@@ -155,7 +133,6 @@ class ProfilesController extends Controller
         }
 
         $user->updated_ip_address = $ipAddress->getClientIp();
-
         $user->save();
 
         return redirect('profile/'.$user->name.'/edit')->with('success', trans('profile.updateSuccess'));
@@ -225,39 +202,22 @@ class ProfilesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param \App\Http\Requests\UpdateUserPasswordRequest $request
+     * @param int                                          $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function updateUserPassword(Request $request, $id)
+    public function updateUserPassword(UpdateUserPasswordRequest $request, $id)
     {
         $currentUser = \Auth::user();
         $user = User::findOrFail($id);
         $ipAddress = new CaptureIpTrait();
-
-        $validator = Validator::make($request->all(),
-            [
-                'password'              => 'required|min:6|max:20|confirmed',
-                'password_confirmation' => 'required|same:password',
-            ],
-            [
-                'password.required' => trans('auth.passwordRequired'),
-                'password.min'      => trans('auth.PasswordMin'),
-                'password.max'      => trans('auth.PasswordMax'),
-            ]
-        );
-
-        if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
-        }
 
         if ($request->input('password') != null) {
             $user->password = bcrypt($request->input('password'));
         }
 
         $user->updated_ip_address = $ipAddress->getClientIp();
-
         $user->save();
 
         return redirect('profile/'.$user->name.'/edit')->with('success', trans('profile.updatePWSuccess'));
@@ -312,32 +272,19 @@ class ProfilesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param \App\Http\Requests\DeleteUserAccount $request
+     * @param int                                  $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function deleteUserAccount(Request $request, $id)
+    public function deleteUserAccount(DeleteUserAccount $request, $id)
     {
         $currentUser = \Auth::user();
         $user = User::findOrFail($id);
         $ipAddress = new CaptureIpTrait();
 
-        $validator = Validator::make($request->all(),
-            [
-                'checkConfirmDelete' => 'required',
-            ],
-            [
-                'checkConfirmDelete.required' => trans('profile.confirmDeleteRequired'),
-            ]
-        );
-
         if ($user->id != $currentUser->id) {
             return redirect('profile/'.$user->name.'/edit')->with('error', trans('profile.errorDeleteNotYour'));
-        }
-
-        if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
         }
 
         // Create and encrypt user account restore token
