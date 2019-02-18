@@ -13,6 +13,7 @@ return [
     'profile'           => 'Perfil',
     'editProfile'       => 'Editar Perfil',
     'createProfile'     => 'Criar Perfil',
+    'adminDropdownNav'  => 'Admin',
 
     'activation'        => 'Registro inciado em  | Ativação Obrigatória',
     'exceeded'          => 'Erro de Ativação',
