@@ -10,6 +10,14 @@ return [
     'editing-user'          => 'Editar usuário :name',
     'showing-user'          => 'Mostrar usuário :name',
     'showing-user-title'    => ':name\'s Informações',
+    'showing-user-deleted'  => 'Usuários Apagados',
+    'no-records'            => 'Não há registros de usuários apagados',
+
+    //Users deleted
+    'role'      => 'Nível do Usuário',
+    'IpDeleted' => 'Usuário apagado pelo Ip',
+    'deleted'   => 'Usuário apagado em',
+    'actions'   => 'Ações',
 
     // Flash Messages
     'createSuccess'   => 'Usuário criado com sucesso ',
@@ -52,15 +60,17 @@ return [
     'labelUserLevels' => 'Levels',
 
     'users-table' => [
-        'caption'   => '{1} :userscount user total|[2,*] :userscount total de usuários',
-        'id'        => 'ID',
-        'name'      => 'Nome',
-        'email'     => 'Email',
-        'role'      => 'Campo',
-        'created'   => 'Criar',
-        'updated'   => 'Atualizar',
-        'actions'   => 'Ações',
-        'updated'   => 'Atualizar',
+        'caption'    => '{1} :userscount user total|[2,*] :userscount total de usuários',
+        'id'         => 'ID',
+        'name'       => 'Nome de usúario',
+        'fname'      => 'Nome',
+        'lname'      => 'Sobrenome',
+        'email'      => 'Email',
+        'role'       => 'Campo',
+        'created'    => 'Criar',
+        'updated'    => 'Atualizar',
+        'actions'    => 'Ações',
+        'updated'    => 'Atualizar',
     ],
 
     'buttons' => [
@@ -68,7 +78,7 @@ return [
         'delete'        => '<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i>  <span class="hidden-xs hidden-sm">Apagar</span><span class="hidden-xs hidden-sm hidden-md"> Usuário</span>',
         'show'          => '<i class="fa fa-eye fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm">Mostrar</span><span class="hidden-xs hidden-sm hidden-md"> Usuário</span>',
         'edit'          => '<i class="fa fa-pencil fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm">Editar</span><span class="hidden-xs hidden-sm hidden-md"> Usuário</span>',
-        'back-to-users' => '<span class="hidden-sm hidden-xs">Back to </span><span class="hidden-xs">Users</span>',
+        'back-to-users' => '<span class="hidden-sm hidden-xs">Voltar para  </span><span class="hidden-xs">Usuários</span>',
         'back-to-user'  => 'Voltar  <span class="hidden-xs">para usuários</span>',
         'delete-user'   => '<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i>  <span class="hidden-xs">Apagar</span><span class="hidden-xs"> Usuário</span>',
         'edit-user'     => '<i class="fa fa-pencil fa-fw" aria-hidden="true"></i> <span class="hidden-xs">Editar</span><span class="hidden-xs"> Usuário</span>',

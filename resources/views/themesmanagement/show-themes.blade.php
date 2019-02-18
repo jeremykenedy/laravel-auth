@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-  Showing Themes
+    Showing Themes
 @endsection
 
 @section('template_linked_css')

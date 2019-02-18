@@ -14,16 +14,12 @@ Thumbs.db
 /.sass-cache/*
 .sass-cache
 
-### Sublimt Text Vendor Configs ###
+### Editor Configs ###
 *.sublime-workspace
-
-### PHP Storm Vendor Configs ###
 .idea/*
 /.idea/*
 .phpintel/*
 /.phpintel/*
-
-### VS Code Vendor Configs ###
 /.vscode
 
 ### Vagrant/Homestead Vendor Configs ###
