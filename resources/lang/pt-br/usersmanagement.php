@@ -13,13 +13,11 @@ return [
     'showing-user-deleted'  => 'Usuários Apagados',
     'no-records'            => 'Não há registros de usuários apagados',
 
-
     //Users deleted
     'role'      => 'Nível do Usuário',
     'IpDeleted' => 'Usuário apagado pelo Ip',
     'deleted'   => 'Usuário apagado em',
     'actions'   => 'Ações',
-
 
     // Flash Messages
     'createSuccess'   => 'Usuário criado com sucesso ',
@@ -62,17 +60,17 @@ return [
     'labelUserLevels' => 'Levels',
 
     'users-table' => [
-        'caption'   => '{1} :userscount user total|[2,*] :userscount total de usuários',
-        'id'        => 'ID',
-        'name'      => 'Nome de usúario',
+        'caption'    => '{1} :userscount user total|[2,*] :userscount total de usuários',
+        'id'         => 'ID',
+        'name'       => 'Nome de usúario',
         'fname'      => 'Nome',
-        'lname'     => 'Sobrenome',
-        'email'     => 'Email',
-        'role'      => 'Campo',
-        'created'   => 'Criar',
-        'updated'   => 'Atualizar',
-        'actions'   => 'Ações',
-        'updated'   => 'Atualizar',
+        'lname'      => 'Sobrenome',
+        'email'      => 'Email',
+        'role'       => 'Campo',
+        'created'    => 'Criar',
+        'updated'    => 'Atualizar',
+        'actions'    => 'Ações',
+        'updated'    => 'Atualizar',
     ],
 
     'buttons' => [
