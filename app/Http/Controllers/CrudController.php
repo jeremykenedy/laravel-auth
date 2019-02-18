@@ -124,6 +124,6 @@ class CrudController extends Controller
         }
         Artisan::call('route:clear');
 
-        return redirect()->route('create-crud')->with('flash_message', 'Your CRUD has been generated. See on the menu.');
+        return redirect()->route('create-crud')->with('success', 'Your CRUD has been generated. See on the menu.');
     }
 }
