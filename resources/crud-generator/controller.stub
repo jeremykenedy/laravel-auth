@@ -5,7 +5,7 @@ namespace DummyNamespace;
 use DummyRootNamespaceHttp\Requests;
 use DummyRootNamespaceHttp\Controllers\Controller;
 
-use DummyRootNamespace{{useModel}};
+use DummyRootNamespace{{modelNamespace}}{{modelName}};
 use Illuminate\Http\Request;
 
 class DummyClass extends Controller
@@ -26,7 +26,7 @@ class DummyClass extends Controller
             ${{crudName}} = {{modelName}}::latest()->paginate($perPage);
         }
 
-        return view('{{crudName}}::index', compact('{{crudName}}'));
+        return view('{{viewPath}}{{viewName}}.index', compact('{{crudName}}'));
     }
 
     /**
@@ -36,7 +36,7 @@ class DummyClass extends Controller
      */
     public function create()
     {
-        return view('{{crudName}}::create');
+        return view('{{viewPath}}{{viewName}}.create');
     }
 
     /**
@@ -53,7 +53,7 @@ class DummyClass extends Controller
         {{fileSnippet}}
         {{modelName}}::create($requestData);
 
-        return redirect('{{crudName}}')->with('flash_message', '{{modelName}} added!');
+        return redirect('{{routeGroup}}{{viewName}}')->with('success', '{{modelName}} added!');
     }
 
     /**
@@ -67,8 +67,7 @@ class DummyClass extends Controller
     {
         ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
 
-        //return view('{{viewPath}}{{viewName}}.show', compact('{{crudNameSingular}}'));
-        return view('{{crudName}}::show', compact('{{crudNameSingular}}'));
+        return view('{{viewPath}}{{viewName}}.show', compact('{{crudNameSingular}}'));
     }
 
     /**
@@ -82,7 +81,7 @@ class DummyClass extends Controller
     {
         ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
 
-        return view('{{crudName}}::edit', compact('{{crudNameSingular}}'));
+        return view('{{viewPath}}{{viewName}}.edit', compact('{{crudNameSingular}}'));
     }
 
     /**
@@ -101,7 +100,7 @@ class DummyClass extends Controller
         ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
         ${{crudNameSingular}}->update($requestData);
 
-        return redirect('{{crudName}}')->with('flash_message', '{{modelName}} updated!');
+        return redirect('{{routeGroup}}{{viewName}}')->with('success', '{{modelName}} updated!');
     }
 
     /**
@@ -115,6 +114,6 @@ class DummyClass extends Controller
     {
         {{modelName}}::destroy($id);
 
-        return redirect('{{crudName}}')->with('flash_message', '{{modelName}} deleted!');
+        return redirect('{{routeGroup}}{{viewName}}')->with('success', '{{modelName}} deleted!');
     }
 }
