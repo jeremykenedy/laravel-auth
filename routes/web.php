@@ -19,6 +19,9 @@ Route::get('/', 'WelcomeController@welcome')->name('welcome');
 // Authentication Routes
 Auth::routes();
 
+// Redirects
+Route::redirect('/php', '/phpinfo', 301);
+
 // Public Routes
 Route::group(['middleware' => ['web', 'activity']], function () {
 
@@ -128,5 +131,3 @@ Route::group(['middleware' => ['auth', 'activated', 'role:admin', 'activity', 't
     Route::get('routes', 'AdminDetailsController@listRoutes');
     Route::get('active-users', 'AdminDetailsController@activeUsers');
 });
-
-Route::redirect('/php', '/phpinfo', 301);
