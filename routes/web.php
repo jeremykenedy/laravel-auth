@@ -18,7 +18,6 @@ Route::group(['middleware' => ['web', 'checkblocked']], function () {
     Route::get('/', 'WelcomeController@welcome')->name('welcome');
 });
 
-
 // Authentication Routes
 Auth::routes();
 
