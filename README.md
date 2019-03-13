@@ -534,6 +534,8 @@ INSTAGRAM_REDIRECT_URI=http://laravel-authentication.local/social/handle/instagr
 * https://laravel.com/docs/5.7/errors
 
 ###### Updates:
+* Added Laravel Blocker Package
+* Added PHP Info Package
 * Update to Bootstrap 4
 * Update to Laravel 5.7
 * Added optional 2-step account login verfication with [Laravel 2-Step Verification](https://github.com/jeremykenedy/laravel2step)
