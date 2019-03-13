@@ -30,6 +30,7 @@ Homestead.json
 ### Master Configs ###
 .env
 composer.lock
+package-lock.json
 
 ### Assets ###
 /node_modules
