@@ -19,3 +19,4 @@ before_script:
   - composer dump-autoload
   - sudo chgrp -R www-data storage bootstrap/cache
   - sudo chmod -R ug+rwx storage bootstrap/cache
+  - php artisan migrate --seed
