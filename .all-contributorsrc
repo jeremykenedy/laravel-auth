@@ -18,6 +18,15 @@
         "code",
         "design"
       ]
+    },
+    {
+      "login": "4UForever",
+      "name": "Sawai Chungsri",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/13354566?v=4",
+      "profile": "https://github.com/4UForever",
+      "contributions": [
+        "maintenance"
+      ]
     }
   ],
   "contributorsPerLine": 7
