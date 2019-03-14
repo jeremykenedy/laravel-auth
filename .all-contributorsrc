@@ -18,6 +18,15 @@
         "code",
         "design"
       ]
+    },
+    {
+      "login": "hussamEL-Hwary",
+      "name": "Hussam",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/18594097?v=4",
+      "profile": "https://www.linkedin.com/in/hussam-el-hwary/",
+      "contributions": [
+        "maintenance"
+      ]
     }
   ],
   "contributorsPerLine": 7
