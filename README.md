@@ -41,6 +41,7 @@
 - [File Tree](#file-tree)
 - [Opening an Issue](#opening-an-issue)
 - [Laravel Auth License](#laravel-auth-license)
+- [Contributors](#Contributors)
 
 ### About
 Laravel 5.8 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. Uses official [Bootstrap 4](https://getbootstrap.com). This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
@@ -962,7 +963,7 @@ Before opening an issue there are a couple of considerations:
 ### Laravel Auth License
 Laravel-auth is licensed under the [MIT license](https://opensource.org/licenses/MIT). Enjoy!
 
-## Contributors
+### Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://github.com/all-contributors/all-contributors#emoji-key)):
 
