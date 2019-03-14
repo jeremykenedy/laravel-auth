@@ -5,7 +5,7 @@
 [![StyleCI](https://styleci.io/repos/44714043/shield?branch=master)](https://styleci.io/repos/44714043)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/badges/build.png?b=master)](https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/build-status/master)
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
  ### Sponsor
@@ -972,6 +972,7 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/all-contri
 <!-- prettier-ignore -->
 | [<img src="https://avatars0.githubusercontent.com/u/6244570?v=4" width="100px;" alt="Jeremy Kenedy"/><br /><sub><b>Jeremy Kenedy</b></sub>](http://jeremykenedy.github.io/)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=jeremykenedy "Code") [🚧](#maintenance-jeremykenedy "Maintenance") [🎨](#design-jeremykenedy "Design") | [<img src="https://avatars2.githubusercontent.com/u/3525566?v=4" width="100px;" alt="Manuel Montenegro"/><br /><sub><b>Manuel Montenegro</b></sub>](https://derrochando.com)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=mmonbr "Code") | [<img src="https://avatars1.githubusercontent.com/u/8403417?v=4" width="100px;" alt="VortixDev"/><br /><sub><b>VortixDev</b></sub>](https://github.com/VortixDev)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=VortixDev "Code") | [<img src="https://avatars3.githubusercontent.com/u/2678909?v=4" width="100px;" alt="terzinnorbert"/><br /><sub><b>terzinnorbert</b></sub>](https://github.com/terzinnorbert)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=terzinnorbert "Code") | [<img src="https://avatars1.githubusercontent.com/u/1177629?v=4" width="100px;" alt="Miguel Targa"/><br /><sub><b>Miguel Targa</b></sub>](http://targa.me)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=migueltarga "Code") | [<img src="https://avatars0.githubusercontent.com/u/4694803?v=4" width="100px;" alt="Chris Pappas"/><br /><sub><b>Chris Pappas</b></sub>](https://github.com/chrispappas)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=chrispappas "Code") | [<img src="https://avatars3.githubusercontent.com/u/18594097?v=4" width="100px;" alt="Hussam"/><br /><sub><b>Hussam</b></sub>](https://www.linkedin.com/in/hussam-el-hwary/)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=hussamEL-Hwary "Code") |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| [<img src="https://avatars2.githubusercontent.com/u/16390911?v=4" width="100px;" alt="Serge Ledig"/><br /><sub><b>Serge Ledig</b></sub>](http://www.cotiga.fr/)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=cotiga "Code") |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
