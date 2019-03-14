@@ -18,7 +18,8 @@
         "code",
         "maintenance",
         "design",
-        "translation"
+        "translation",
+        "platform"
       ]
     },
     {
