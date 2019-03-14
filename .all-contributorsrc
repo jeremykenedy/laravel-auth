@@ -46,6 +46,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "migueltarga",
+      "name": "Miguel Targa",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1177629?v=4",
+      "profile": "http://targa.me",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
