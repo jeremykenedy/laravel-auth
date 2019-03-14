@@ -5,7 +5,12 @@
  * Licensed under the MIT License
  *
  * https://github.com/lipis/bootstrap-social
+ * modified for bootstrap 4
  */
+
+$youtube: #ff0000;
+$twitch: #643fa6;
+$basecamp: #5ac45e;
 
 .btn.btn-social{position:relative;padding-left:44px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.btn.btn-social>:first-child{position:absolute;left:0;top:0;bottom:0;width:32px;line-height:34px;font-size:1.6em;text-align:center;border-right:1px solid rgba(0,0,0,0.2)}
 .btn.btn-social.btn.btn-lg{padding-left:61px}.btn.btn-social.btn.btn-lg>:first-child{line-height:45px;width:45px;font-size:1.8em}
@@ -145,3 +150,21 @@
 .btn.btn-yahoo:active,.btn.btn-yahoo.active,.open>.dropdown-toggle.btn.btn-yahoo{background-image:none}
 .btn.btn-yahoo.disabled:hover,.btn.btn-yahoo[disabled]:hover,fieldset[disabled] .btn.btn-yahoo:hover,.btn.btn-yahoo.disabled:focus,.btn.btn-yahoo[disabled]:focus,fieldset[disabled] .btn.btn-yahoo:focus,.btn.btn-yahoo.disabled.focus,.btn.btn-yahoo[disabled].focus,fieldset[disabled] .btn.btn-yahoo.focus{background-color:#720e9e;border-color:rgba(0,0,0,0.2)}
 .btn.btn-yahoo .badge{color:#720e9e;background-color:#fff}
+
+.btn.btn-youtube{color:#fff;background-color:$youtube;border-color:$youtube}
+.btn.btn-youtube:focus,
+.btn.btn-youtube.focus{color:#fff;background-color:darken($youtube, 15%);border-color:darken($youtube, 15%)}
+.btn.btn-youtube:hover{color:#fff;background-color:darken($youtube, 15%);border-color:darken($youtube, 15%)}
+
+.btn.btn-twitch{color:#fff;background-color:$twitch;border-color:$twitch}
+.btn.btn-twitch:focus,
+.btn.btn-twitch.focus{color:#fff;background-color:darken($twitch, 15%);border-color:darken($twitch, 15%)}
+.btn.btn-twitch:hover{color:#fff;background-color:darken($twitch, 15%);border-color:darken($twitch, 15%)}
+
+.btn.btn-basecamp{color:#fff;background-color:$basecamp;border-color:$basecamp}
+.btn.btn-basecamp:focus,
+.btn.btn-basecamp.focus{color:#fff;background-color:darken($basecamp, 15%);border-color:darken($basecamp, 15%)}
+.btn.btn-basecamp:hover{color:#fff;background-color:darken($basecamp, 15%);border-color:darken($basecamp, 15%)}
+
+
+

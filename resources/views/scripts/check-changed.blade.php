@@ -1,10 +1,17 @@
 <script type="text/javascript">
   $('.btn-change-pw').click(function(event) {
-    event.preventDefault();
-    $('.pw-change-container').slideToggle(100);
-    $(this).find('.fa').toggleClass('fa-times');
-    $(this).find('.fa').toggleClass('fa-lock');
-    $(this).find('span').toggleText('', 'Cancel');
+    var pwInput = $('#password');
+    var pwInputConf = $('#password_confirmation');
+    pwInput.val('').prop('disabled', true);
+    pwInputConf.val('').prop('disabled', true);
+    $('.pw-change-container').slideToggle(100, function() {
+      pwInput.prop('disabled', function () {
+         return ! pwInput.prop('disabled');
+      });
+      pwInputConf.prop('disabled', function () {
+         return ! pwInputConf.prop('disabled');
+      });
+    });
   });
   $("input").keyup(function() {
     checkChanged();
@@ -13,12 +20,12 @@
     checkChanged();
   });
   function checkChanged() {
+    var saveBtn = $(".btn-save");
     if(!$('input').val()){
-      $(".btn-save").hide();
+      saveBtn.hide();
     }
     else {
-      $(".btn-save").show();
+      saveBtn.show();
     }
   }
-
 </script>
