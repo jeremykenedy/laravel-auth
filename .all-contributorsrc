@@ -18,6 +18,15 @@
         "code",
         "design"
       ]
+    },
+    {
+      "login": "kentdahl",
+      "name": "Kent Dahl",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/2970005?v=4",
+      "profile": "http://kentdahl.no/",
+      "contributions": [
+        "maintenance"
+      ]
     }
   ],
   "contributorsPerLine": 7
