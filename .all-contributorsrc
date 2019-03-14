@@ -18,6 +18,15 @@
         "code",
         "design"
       ]
+    },
+    {
+      "login": "cotiga",
+      "name": "Serge Ledig",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/16390911?v=4",
+      "profile": "http://www.cotiga.fr/",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7
