@@ -968,7 +968,7 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/all-contri
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars0.githubusercontent.com/u/6244570?v=4" width="100px;" alt="Jeremy Kenedy"/><br /><sub><b>Jeremy Kenedy</b></sub>](http://jeremykenedy.github.io/)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=jeremykenedy "Code") [🎨](#design-jeremykenedy "Design") | [<img src="https://avatars1.githubusercontent.com/u/8403417?v=4" width="100px;" alt="VortixDev"/><br /><sub><b>VortixDev</b></sub>](https://github.com/VortixDev)<br />[🚧](#maintenance-VortixDev "Maintenance") |
+| [<img src="https://avatars0.githubusercontent.com/u/6244570?v=4" width="100px;" alt="Jeremy Kenedy"/><br /><sub><b>Jeremy Kenedy</b></sub>](http://jeremykenedy.github.io/)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=jeremykenedy "Code") [🎨](#design-jeremykenedy "Design") | [<img src="https://avatars1.githubusercontent.com/u/8403417?v=4" width="100px;" alt="VortixDev"/><br /><sub><b>VortixDev</b></sub>](https://github.com/VortixDev)<br />[🚧](#maintenance-VortixDev "Maintenance") [💻](https://github.com/jeremykenedy/laravel-auth/commits?author=VortixDev "Code") |
 | :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
