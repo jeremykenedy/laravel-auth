@@ -968,7 +968,7 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/all-contri
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars0.githubusercontent.com/u/6244570?v=4" width="100px;" alt="Jeremy Kenedy"/><br /><sub><b>Jeremy Kenedy</b></sub>](http://jeremykenedy.github.io/)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=jeremykenedy "Code") [🎨](#design-jeremykenedy "Design") | [<img src="https://avatars2.githubusercontent.com/u/16390911?v=4" width="100px;" alt="Serge Ledig"/><br /><sub><b>Serge Ledig</b></sub>](http://www.cotiga.fr/)<br />[🌍](#translation-cotiga "Translation") |
+| [<img src="https://avatars0.githubusercontent.com/u/6244570?v=4" width="100px;" alt="Jeremy Kenedy"/><br /><sub><b>Jeremy Kenedy</b></sub>](http://jeremykenedy.github.io/)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=jeremykenedy "Code") [🎨](#design-jeremykenedy "Design") | [<img src="https://avatars2.githubusercontent.com/u/16390911?v=4" width="100px;" alt="Serge Ledig"/><br /><sub><b>Serge Ledig</b></sub>](http://www.cotiga.fr/)<br />[🌍](#translation-cotiga "Translation") [🚧](#maintenance-cotiga "Maintenance") |
 | :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
