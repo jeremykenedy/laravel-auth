@@ -1,0 +1,23 @@
+{
+  "projectName": "laravel-auth",
+  "projectOwner": "jeremykenedy",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "jeremykenedy",
+      "name": "Jeremy Kenedy",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/6244570?v=4",
+      "profile": "http://jeremykenedy.github.io/",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
