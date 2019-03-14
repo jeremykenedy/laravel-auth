@@ -16,6 +16,7 @@
       "profile": "http://jeremykenedy.github.io/",
       "contributions": [
         "code",
+        "maintenance",
         "design"
       ]
     },
@@ -25,7 +26,6 @@
       "avatar_url": "https://avatars2.githubusercontent.com/u/3525566?v=4",
       "profile": "https://derrochando.com",
       "contributions": [
-        "maintenance",
         "code"
       ]
     }
