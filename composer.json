@@ -19,7 +19,7 @@
         "jeremykenedy/laravel-logger": "^2.0",
         "jeremykenedy/laravel-phpinfo": "^1.2",
         "jeremykenedy/laravel-roles": "^1.6",
-        "jeremykenedy/laravel2step": "^1.0",
+        "jeremykenedy/laravel2step": "^1.1",
         "jeremykenedy/uuid": "^3.1",
         "laravel/framework": "5.8.*",
         "laravel/socialite": "^3.0",
