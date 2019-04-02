@@ -126,11 +126,6 @@ php artisan vendor:publish --tag=laravel2step
 12. Compile the front end assets with [npm steps](#using-npm) or [yarn steps](#using-yarn).
 
 #### Build the Front End Assets with Mix
-##### Using NPM:
-1. From the projects root folder run `npm install`
-2. From the projects root folder run `npm run dev` or `npm run production`
-  * You can watch assets with `npm run watch`
-
 ##### Using Yarn:
 1. From the projects root folder run `yarn install`
 2. From the projects root folder run `yarn run dev` or `yarn run production`
