@@ -29,7 +29,7 @@
 - [About](#about)
 - [Features](#features)
 - [Installation Instructions](#installation-instructions)
-    - [Build the Front End Assets with Mix](#build-front-end-assets-with-mix)
+    - [Build the Front End Assets with Mix](#build-the-front-end-assets-with-mix)
     - [Optionally Build Cache](#optionally-build-cache)
 - [Seeds](#seeds)
     - [Seeded Roles](#seeded-roles)
