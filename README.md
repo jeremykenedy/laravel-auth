@@ -83,6 +83,7 @@ Laravel 5.8 with user authentication, registration with email confirmation, soci
 |User Password Reset via Email Token|
 |User Login with remember password|
 |User [Roles/ACL Implementation](https://github.com/jeremykenedy/laravel-roles)|
+|Roles and Permissions GUI|
 |Makes use of [Laravel's Soft Delete Structure](https://laravel.com/docs/5.8/eloquent#soft-deleting)|
 |Soft Deleted Users Management System|
 |Permanently Delete Soft Deleted Users|
