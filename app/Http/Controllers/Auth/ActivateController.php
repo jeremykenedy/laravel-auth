@@ -214,7 +214,7 @@ class ActivateController extends Controller
         Log::info('Registered user successfully activated. '.$currentRoute.'. ', [$user]);
 
         if ($user->isAdmin()) {
-            return redirect()->route(self::$getAdminHomeRoute())
+            return redirect()->route(self::getAdminHomeRoute())
             ->with('status', 'success')
             ->with('message', trans('auth.successActivated'));
         }
