@@ -90,12 +90,8 @@ class ThemesTableSeeder extends Seeder
                 'link' => 'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css',
             ],
             [
-                'name' => 'Bootstrap Material Design 4.0.0',
-                'link' => 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.0/bootstrap-material-design.min.css',
-            ],
-            [
-                'name' => 'Bootstrap Material Design 4.0.2',
-                'link' => 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.min.css',
+                'name' => 'Bootstrap Material Design 4.1.1',
+                'link' => 'https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css',
             ],
             [
                 'name' => 'mdbootstrap',
