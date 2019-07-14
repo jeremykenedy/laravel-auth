@@ -11,6 +11,9 @@ assignees: ''
 1. https://github.com/jeremykenedy/laravel-auth#opening-an-issue
 2. https://github.com/jeremykenedy/laravel-auth/issues?q=is%3Aissue+is%3Aclosed
 
+**Did you star the repo?**
+Yes or No
+
 **Is your feature request related to a problem? Please describe.**
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 
