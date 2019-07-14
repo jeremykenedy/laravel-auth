@@ -11,4 +11,7 @@ assignees: ''
 1. https://github.com/jeremykenedy/laravel-auth#opening-an-issue
 2. https://github.com/jeremykenedy/laravel-auth/issues?q=is%3Aissue+is%3Aclosed
 
-**Please desscripbe what you are needing help with below:**
+**Did you star the repo?**
+Yes or No
+
+**Please describe what you are needing help with below:**
