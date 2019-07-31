@@ -34,4 +34,6 @@ return [
 
     'activeUsers'       => 'Active Users',
     'laravelBlocker'    => 'Blocker',
+
+    'laravelroles'      => 'Roles Administration',
 ];

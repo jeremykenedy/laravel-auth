@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use jeremykenedy\LaravelRoles\Models\Permission;
 
