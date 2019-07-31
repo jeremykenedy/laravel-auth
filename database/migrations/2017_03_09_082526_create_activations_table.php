@@ -15,7 +15,7 @@ class CreateActivationsTable extends Migration
     {
         Schema::create('activations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->index();
+            $table->unsignedBigInteger('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('token');
             $table->ipAddress('ip_address');

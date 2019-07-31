@@ -1,6 +1,5 @@
 <?php
 
-use App\User;
 use Illuminate\Database\Seeder;
 use jeremykenedy\LaravelRoles\Models\Role;
 

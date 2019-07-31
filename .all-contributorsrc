@@ -1,0 +1,145 @@
+{
+  "projectName": "laravel-auth",
+  "projectOwner": "jeremykenedy",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 110,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "jeremykenedy",
+      "name": "Jeremy Kenedy",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/6244570?v=4",
+      "profile": "http://jeremykenedy.github.io/",
+      "contributions": [
+        "code",
+        "maintenance",
+        "design",
+        "translation",
+        "platform"
+      ]
+    },
+    {
+      "login": "mmonbr",
+      "name": "Manuel Montenegro",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/3525566?v=4",
+      "profile": "https://derrochando.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "VortixDev",
+      "name": "VortixDev",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/8403417?v=4",
+      "profile": "https://github.com/VortixDev",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "terzinnorbert",
+      "name": "terzinnorbert",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/2678909?v=4",
+      "profile": "https://github.com/terzinnorbert",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "migueltarga",
+      "name": "Miguel Targa",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1177629?v=4",
+      "profile": "http://targa.me",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "chrispappas",
+      "name": "Chris Pappas",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/4694803?v=4",
+      "profile": "https://github.com/chrispappas",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "hussamEL-Hwary",
+      "name": "Hussam",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/18594097?v=4",
+      "profile": "https://www.linkedin.com/in/hussam-el-hwary/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "cotiga",
+      "name": "Serge Ledig",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/16390911?v=4",
+      "profile": "http://www.cotiga.fr/",
+      "contributions": [
+        "code",
+        "translation"
+      ]
+    },
+    {
+      "login": "hennell-git",
+      "name": "Hennell",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/4799852?v=4",
+      "profile": "https://github.com/hennell-git",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "4UForever",
+      "name": "Sawai Chungsri",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/13354566?v=4",
+      "profile": "https://github.com/4UForever",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "kentdahl",
+      "name": "Kent Dahl",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/2970005?v=4",
+      "profile": "http://kentdahl.no/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "LorenzoSapora",
+      "name": "Lorenzo Sapora",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/25519274?v=4",
+      "profile": "https://sush.us",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "evnix",
+      "name": "D'Silva",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1516273?v=4",
+      "profile": "https://github.com/evnix",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "nibri10",
+      "name": "Nicolas dos Reis Barbosa de Oliveira",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/22533877?v=4",
+      "profile": "http://www.linkedin.com/in/nicolasdosreisOliveira",
+      "contributions": [
+        "translation"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
