@@ -517,6 +517,9 @@ FB_SECRET=YOURFACEBOOKsecretHERE
 FB_REDIRECT=http://yourwebsiteURLhere.com/social/handle/facebook
 
 # https://apps.twitter.com/
+# Note: Twitter does not return the user's email address by default. 
+# To change this setting, go to your app settings at https://developer.twitter.com/en/apps
+# App settings -> Permissions tab -> edit -> Request email address from users -> Save.
 TW_ID=YOURTWITTERidHERE
 TW_SECRET=YOURTWITTERkeyHERE
 TW_REDIRECT=http://yourwebsiteURLhere.com/social/handle/twitter
