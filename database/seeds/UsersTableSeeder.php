@@ -1,9 +1,6 @@
 <?php
 
-use App\Models\Profile;
-use App\Models\User;
 use Illuminate\Database\Seeder;
-use jeremykenedy\LaravelRoles\Models\Role;
 
 class UsersTableSeeder extends Seeder
 {
@@ -14,59 +11,36 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create();
-        $profile = new Profile();
-        $adminRole = Role::whereName('Admin')->first();
-        $userRole = Role::whereName('User')->first();
+        $userRole = config('roles.models.role')::where('name', '=', 'User')->first();
+        $adminRole = config('roles.models.role')::where('name', '=', 'Admin')->first();
+        $permissions = config('roles.models.permission')::all();
 
-        // Seed test admin
-        $seededAdminEmail = 'admin@admin.com';
-        $user = User::where('email', '=', $seededAdminEmail)->first();
-        if ($user === null) {
-            $user = User::create([
-                'name'                           => $faker->userName,
-                'first_name'                     => $faker->firstName,
-                'last_name'                      => $faker->lastName,
-                'email'                          => $seededAdminEmail,
-                'password'                       => Hash::make('password'),
-                'token'                          => str_random(64),
-                'activated'                      => true,
-                'signup_confirmation_ip_address' => $faker->ipv4,
-                'admin_ip_address'               => $faker->ipv4,
+        /*
+         * Add Users
+         *
+         */
+        if (config('roles.models.defaultUser')::where('email', '=', 'admin@admin.com')->first() === null) {
+            $newUser = config('roles.models.defaultUser')::create([
+                'name'     => 'Admin',
+                'email'    => 'admin@admin.com',
+                'password' => bcrypt('password'),
             ]);
 
-            $user->profile()->save($profile);
-            $user->attachRole($adminRole);
-            $user->save();
+            $newUser->attachRole($adminRole);
+            foreach ($permissions as $permission) {
+                $newUser->attachPermission($permission);
+            }
         }
 
-        // Seed test user
-        $user = User::where('email', '=', 'user@user.com')->first();
-        if ($user === null) {
-            $user = User::create([
-                'name'                           => $faker->userName,
-                'first_name'                     => $faker->firstName,
-                'last_name'                      => $faker->lastName,
-                'email'                          => 'user@user.com',
-                'password'                       => Hash::make('password'),
-                'token'                          => str_random(64),
-                'activated'                      => true,
-                'signup_ip_address'              => $faker->ipv4,
-                'signup_confirmation_ip_address' => $faker->ipv4,
+        if (config('roles.models.defaultUser')::where('email', '=', 'user@user.com')->first() === null) {
+            $newUser = config('roles.models.defaultUser')::create([
+                'name'     => 'User',
+                'email'    => 'user@user.com',
+                'password' => bcrypt('password'),
             ]);
 
-            $user->profile()->save(new Profile());
-            $user->attachRole($userRole);
-            $user->save();
+            $newUser;
+            $newUser->attachRole($userRole);
         }
-
-        // Seed test users
-        // $user = factory(App\Models\Profile::class, 5)->create();
-        // $users = User::All();
-        // foreach ($users as $user) {
-        //     if (!($user->isAdmin()) && !($user->isUnverified())) {
-        //         $user->attachRole($userRole);
-        //     }
-        // }
     }
 }
