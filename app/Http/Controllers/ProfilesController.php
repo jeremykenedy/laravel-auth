@@ -230,11 +230,11 @@ class ProfilesController extends Controller
      *
      * @return mixed
      */
-    public function upload()
+    public function upload(Request $request)
     {
-        if (Input::hasFile('file')) {
+        if ($request->hasFile('file')) {
             $currentUser = \Auth::user();
-            $avatar = Input::file('file');
+            $avatar = $request->file('file');
             $filename = 'avatar.'.$avatar->getClientOriginalExtension();
             $save_path = storage_path().'/users/id/'.$currentUser->id.'/uploads/images/avatar/';
             $path = $save_path.$filename;
