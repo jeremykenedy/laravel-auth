@@ -8,8 +8,8 @@ use App\Models\Social;
 use App\Models\User;
 use App\Traits\ActivationTrait;
 use App\Traits\CaptureIpTrait;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use jeremykenedy\LaravelRoles\Models\Role;
 use Laravel\Socialite\Facades\Socialite;
 
