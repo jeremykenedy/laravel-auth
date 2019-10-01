@@ -53,7 +53,7 @@ class ThemesManagementController extends Controller
      */
     public function store(Request $request)
     {
-        $input = Input::only('name', 'link', 'notes', 'status');
+        $input = $request->only('name', 'link', 'notes', 'status');
 
         $validator = Validator::make($input, Theme::rules());
 
@@ -142,7 +142,7 @@ class ThemesManagementController extends Controller
     {
         $theme = Theme::find($id);
 
-        $input = Input::only('name', 'link', 'notes', 'status');
+        $input = $request->only('name', 'link', 'notes', 'status');
 
         $validator = Validator::make($input, Theme::rules($id));
 
