@@ -2,8 +2,8 @@
 
 namespace App\Traits;
 
-use Request;
 use ReCaptcha\ReCaptcha;
+use Request;
 
 trait CaptchaTrait
 {
