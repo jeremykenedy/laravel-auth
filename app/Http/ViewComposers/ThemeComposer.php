@@ -39,7 +39,7 @@ class ThemeComposer
                 $theme = Theme::find($user->profile->theme_id);
 
                 if ($theme->status == 0) {
-                    $theme = Theme::find(Theme::DEFAULT);
+                    $theme = Theme::find(Theme::default);
                 }
             }
         }

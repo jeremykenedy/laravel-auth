@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Theme extends Model
 {
     use SoftDeletes;
-    const DEFAULT = 1;
+    const default = 1;
 
     /**
      * The database table used by the model.

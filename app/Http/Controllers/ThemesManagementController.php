@@ -127,7 +127,7 @@ class ThemesManagementController extends Controller
      */
     public function destroy(Theme $theme)
     {
-        $default = Theme::findOrFail(Theme::DEFAULT);
+        $default = Theme::findOrFail(Theme::default);
 
         if ($theme->id != $default->id) {
             $theme->delete();
