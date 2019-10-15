@@ -78,72 +78,37 @@ class ThemesManagementController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     *
+     * @param Theme $theme
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Theme $theme)
     {
-        $theme = Theme::find($id);
-        $users = User::all();
-        $themeUsers = [];
-
-        foreach ($users as $user) {
-            if ($user->profile && $user->profile->theme_id === $theme->id) {
-                $themeUsers[] = $user;
-            }
-        }
-
-        $data = [
-            'theme'      => $theme,
-            'themeUsers' => $themeUsers,
-        ];
-
-        return view('themesmanagement.show-theme')->with($data);
+        return view('themesmanagement.show-theme')->with($this->getThemeData($theme));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
-     *
+     * @param Theme $theme
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Theme $theme)
     {
-        $theme = Theme::find($id);
-        $users = User::all();
-        $themeUsers = [];
-
-        foreach ($users as $user) {
-            if ($user->profile && $user->profile->theme_id === $theme->id) {
-                $themeUsers[] = $user;
-            }
-        }
-
-        $data = [
-            'theme'      => $theme,
-            'themeUsers' => $themeUsers,
-        ];
-
-        return view('themesmanagement.edit-theme')->with($data);
+        return view('themesmanagement.edit-theme')->with($this->getThemeData($theme));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
-     *
+     * @param Theme                    $theme
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Theme $theme)
     {
-        $theme = Theme::find($id);
-
         $input = $request->only('name', 'link', 'notes', 'status');
 
-        $validator = Validator::make($input, Theme::rules($id));
+        $validator = Validator::make($input, Theme::rules($theme->id));
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
@@ -157,14 +122,12 @@ class ThemesManagementController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     *
+     * @param Theme $theme
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Theme $theme)
     {
-        $default = Theme::findOrFail(1);
-        $theme = Theme::findOrFail($id);
+        $default = Theme::findOrFail(Theme::DEFAULT);
 
         if ($theme->id != $default->id) {
             $theme->delete();
@@ -173,5 +136,27 @@ class ThemesManagementController extends Controller
         }
 
         return back()->with('error', trans('themes.deleteSelfError'));
+    }
+
+    /**
+     * @param Theme $theme
+     * @return array
+     */
+    protected function getThemeData(Theme $theme): array
+    {
+        $users = User::all();
+        $themeUsers = [];
+
+        foreach ($users as $user) {
+            if ($user->profile && $user->profile->theme_id === $theme->id) {
+                $themeUsers[] = $user;
+            }
+        }
+
+        $data = [
+            'theme' => $theme,
+            'themeUsers' => $themeUsers,
+        ];
+        return $data;
     }
 }
