@@ -30,8 +30,8 @@ class UsersManagementController extends Controller
      */
     public function index()
     {
-        $pagintaionEnabled = config('usersmanagement.enablePagination');
-        if ($pagintaionEnabled) {
+        $paginationEnabled = config('usersmanagement.enablePagination');
+        if ($paginationEnabled) {
             $users = User::paginate(config('usersmanagement.paginateListSize'));
         } else {
             $users = User::all();
@@ -50,11 +50,7 @@ class UsersManagementController extends Controller
     {
         $roles = Role::all();
 
-        $data = [
-            'roles' => $roles,
-        ];
-
-        return view('usersmanagement.create-user')->with($data);
+        return view('usersmanagement.create-user', compact('roles'));
     }
 
     /**
@@ -118,31 +114,26 @@ class UsersManagementController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     *
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        $user = User::find($id);
-
-        return view('usersmanagement.show-user')->withUser($user);
+        return view('usersmanagement.show-user', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
-     *
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user = User::findOrFail($id);
         $roles = Role::all();
 
-        foreach ($user->roles as $user_role) {
-            $currentRole = $user_role;
+        foreach ($user->roles as $userRole) {
+            $currentRole = $userRole;
         }
 
         $data = [
@@ -158,14 +149,11 @@ class UsersManagementController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
-     *
+     * @param User                     $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $currentUser = Auth::user();
-        $user = User::find($id);
         $emailCheck = ($request->input('email') != '') && ($request->input('email') != $user->email);
         $ipAddress = new CaptureIpTrait();
 
@@ -177,7 +165,7 @@ class UsersManagementController extends Controller
             ]);
         } else {
             $validator = Validator::make($request->all(), [
-                'name'     => 'required|max:255|unique:users,name,'.$id,
+                'name' => 'required|max:255|unique:users,name,' . $user->id,
                 'password' => 'nullable|confirmed|min:6',
             ]);
         }
@@ -224,14 +212,12 @@ class UsersManagementController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     *
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
         $currentUser = Auth::user();
-        $user = User::findOrFail($id);
         $ipAddress = new CaptureIpTrait();
 
         if ($user->id != $currentUser->id) {
