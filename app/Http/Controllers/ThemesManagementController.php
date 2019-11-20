@@ -79,6 +79,7 @@ class ThemesManagementController extends Controller
      * Display the specified resource.
      *
      * @param Theme $theme
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Theme $theme)
@@ -90,6 +91,7 @@ class ThemesManagementController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Theme $theme
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Theme $theme)
@@ -102,6 +104,7 @@ class ThemesManagementController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param Theme                    $theme
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Theme $theme)
@@ -123,6 +126,7 @@ class ThemesManagementController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Theme $theme
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Theme $theme)
@@ -140,6 +144,7 @@ class ThemesManagementController extends Controller
 
     /**
      * @param Theme $theme
+     *
      * @return array
      */
     protected function getThemeData(Theme $theme): array
@@ -154,9 +159,10 @@ class ThemesManagementController extends Controller
         }
 
         $data = [
-            'theme' => $theme,
+            'theme'      => $theme,
             'themeUsers' => $themeUsers,
         ];
+
         return $data;
     }
 }
