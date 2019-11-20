@@ -115,6 +115,7 @@ class UsersManagementController extends Controller
      * Display the specified resource.
      *
      * @param User $user
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
@@ -126,6 +127,7 @@ class UsersManagementController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param User $user
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
@@ -150,6 +152,7 @@ class UsersManagementController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param User                     $user
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
@@ -165,7 +168,7 @@ class UsersManagementController extends Controller
             ]);
         } else {
             $validator = Validator::make($request->all(), [
-                'name' => 'required|max:255|unique:users,name,' . $user->id,
+                'name'     => 'required|max:255|unique:users,name,'.$user->id,
                 'password' => 'nullable|confirmed|min:6',
             ]);
         }
@@ -213,6 +216,7 @@ class UsersManagementController extends Controller
      * Remove the specified resource from storage.
      *
      * @param User $user
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
