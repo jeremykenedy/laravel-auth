@@ -19,7 +19,7 @@
         <h4><span class="fa fa-fw fa-file-code-o" aria-hidden="true"></span> Log Files</h4>
         <div class="list-group">
           @foreach($files as $file)
-            <a href="?l={{ base64_encode($file) }}" class="list-group-item @if ($current_file == $file) llv-active @endif">
+            <a href="?l={{ \Illuminate\Support\Facades\Crypt::encrypt($file) }}" class="list-group-item @if ($current_file == $file) llv-active @endif">
               {{$file}}
               @if ($current_file == $file)
                 <span class="badge pull-right">
@@ -65,12 +65,12 @@
         @endif
         <div>
           @if($current_file)
-            <a href="?dl={{ base64_encode($current_file) }}" class="btn btn-link">
+            <a href="?dl={{ \Illuminate\Support\Facades\Crypt::encrypt($current_file) }}" class="btn btn-link">
               <i class="fa fa-download" aria-hidden="true"></i>
               Download file
             </a>
             -
-            <a id="delete-log" data-toggle="modal" data-target="#confirmDelete" data-href="?del={{ base64_encode($current_file) }}" data-title="Delete Log File" data-message="Are you sure you want to delete log file?" class="btn btn-link">
+            <a id="delete-log" data-toggle="modal" data-target="#confirmDelete" data-href="?del={{ \Illuminate\Support\Facades\Crypt::encrypt($current_file) }}" data-title="Delete Log File" data-message="Are you sure you want to delete log file?" class="btn btn-link">
               <i class="fa fa-trash-o" aria-hidden="true"></i>
               Delete file
             </a>
