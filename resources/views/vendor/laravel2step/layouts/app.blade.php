@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="_token" content="{!! csrf_token() !!}" >
-        <title>@if (trim($__env->yieldContent('title')))@yield('title') | @endif {{ config('app.name', 'Laravel 2-Step Verification') }}</title>
+        <title>@hasSection('title')@yield('title') | @endif {{ config('app.name', 'Laravel 2-Step Verification') }}</title>
         @if(config('laravel2step.laravel2stepBootstrapCssCdnEnbled'))
             <link rel="stylesheet" type="text/css" href="{{ config('laravel2step.laravel2stepBootstrapCssCdn') }}">
         @endif
