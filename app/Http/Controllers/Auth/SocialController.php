@@ -8,8 +8,8 @@ use App\Models\Social;
 use App\Models\User;
 use App\Traits\ActivationTrait;
 use App\Traits\CaptureIpTrait;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Input;
 use jeremykenedy\LaravelRoles\Models\Role;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -43,9 +43,9 @@ class SocialController extends Controller
      *
      * @return Redirect
      */
-    public function getSocialHandle($provider)
+    public function getSocialHandle($provider, Request $request)
     {
-        if (Input::get('denied') != '') {
+        if ($request->get('denied') != '') {
             return redirect()->to('login')
                 ->with('status', 'danger')
                 ->with('message', trans('socials.denied'));

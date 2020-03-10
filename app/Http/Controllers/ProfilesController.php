@@ -13,7 +13,6 @@ use App\Traits\CaptureIpTrait;
 use File;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Image;
 use jeremykenedy\Uuid\Uuid;
@@ -120,7 +119,7 @@ class ProfilesController extends Controller
     {
         $user = $this->getUserByUsername($username);
 
-        $input = Input::only('theme_id', 'location', 'bio', 'twitter_username', 'github_username', 'avatar_status');
+        $input = $request->only('theme_id', 'location', 'bio', 'twitter_username', 'github_username', 'avatar_status');
 
         $ipAddress = new CaptureIpTrait();
 
@@ -230,11 +229,11 @@ class ProfilesController extends Controller
      *
      * @return mixed
      */
-    public function upload()
+    public function upload(Request $request)
     {
-        if (Input::hasFile('file')) {
+        if ($request->hasFile('file')) {
             $currentUser = \Auth::user();
-            $avatar = Input::file('file');
+            $avatar = $request->file('file');
             $filename = 'avatar.'.$avatar->getClientOriginalExtension();
             $save_path = storage_path().'/users/id/'.$currentUser->id.'/uploads/images/avatar/';
             $path = $save_path.$filename;

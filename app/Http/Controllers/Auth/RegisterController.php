@@ -103,15 +103,15 @@ class RegisterController extends Controller
         $role = Role::where('slug', '=', 'unverified')->first();
 
         $user = User::create([
-                'name'              => $data['name'],
-                'first_name'        => $data['first_name'],
-                'last_name'         => $data['last_name'],
-                'email'             => $data['email'],
-                'password'          => Hash::make($data['password']),
-                'token'             => str_random(64),
-                'signup_ip_address' => $ipAddress->getClientIp(),
-                'activated'         => !config('settings.activation'),
-            ]);
+            'name'              => $data['name'],
+            'first_name'        => $data['first_name'],
+            'last_name'         => $data['last_name'],
+            'email'             => $data['email'],
+            'password'          => Hash::make($data['password']),
+            'token'             => str_random(64),
+            'signup_ip_address' => $ipAddress->getClientIp(),
+            'activated'         => !config('settings.activation'),
+        ]);
 
         $user->attachRole($role);
         $this->initiateEmailActivation($user);
