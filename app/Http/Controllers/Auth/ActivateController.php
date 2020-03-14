@@ -294,8 +294,6 @@ class ActivateController extends Controller
             return view('auth.exceeded')->with($data);
         }
 
-        return $this->activeRedirect($user, $currentRoute)
-            ->with('status', 'info')
-            ->with('message', trans('auth.alreadyActivated'));
+        return redirect()->route(self::getActivationRoute());
     }
 }
