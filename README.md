@@ -568,7 +568,7 @@ INSTAGRAM_REDIRECT_URI=http://laravel-authentication.local/social/handle/instagr
 * https://laravel.com/docs/master/errors
 
 ###### Updates:
-* Update to Laravel 7.0 (see changes: )
+* Update to Laravel 7.0 [See changes in this Commit](https://github.com/jeremykenedy/laravel-auth/commit/038a23f516efc08cd02c4582249234f6f6432c46)
 * Update to Laravel 6.0
 * Update to Laravel 5.8
 * Added [Laravel Blocker Package](https://github.com/jeremykenedy/laravel-blocker)
