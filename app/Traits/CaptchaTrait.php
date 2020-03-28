@@ -7,6 +7,11 @@ use Request;
 
 trait CaptchaTrait
 {
+    /**
+     * Check Google Captcha Passed or Failed
+     *
+     * @return boolean
+     */
     public function captchaCheck()
     {
         $response = Request::get('g-recaptcha-response');

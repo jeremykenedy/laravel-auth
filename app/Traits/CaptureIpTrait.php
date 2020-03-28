@@ -6,6 +6,11 @@ class CaptureIpTrait
 {
     private $ipAddress = null;
 
+    /**
+     * Get the Ip Address of the user.
+     *
+     * @return string
+     */
     public function getClientIp()
     {
         if (getenv('HTTP_CLIENT_IP')) {

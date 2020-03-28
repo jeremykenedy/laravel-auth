@@ -13,6 +13,25 @@ use Illuminate\Support\Facades\Route;
 class Authenticate extends Middleware
 {
     /**
+     * The Guard implementation.
+     *
+     * @var Guard
+     */
+    protected $auth;
+
+    /**
+     * Create a new filter instance.
+     *
+     * @param Guard $auth
+     *
+     * @return void
+     */
+    public function __construct(Guard $auth)
+    {
+        $this->auth = $auth;
+    }
+
+    /**
      * Get the path the user should be redirected to when they are not authenticated.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -26,6 +45,25 @@ class Authenticate extends Middleware
     }
 
     /**
+     * Handle an incoming request.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     *
+     * @return mixed
+     */
+    public function handle($request, Closure $next)
+    {
+        if (!$this->auth->check()) {
+            return redirect()->to('/login')
+                ->with('status', 'success')
+                ->with('message', 'Please login.');
+        }
+
+        return $next($request);
+    }
+
+    /**
      * Log a termination.
      * @param \Illuminate\Http\Request $request
      * @param $response
@@ -36,6 +74,6 @@ class Authenticate extends Middleware
     {
         $user = Auth::user();
         $currentRoute = Route::currentRouteName();
-        Log::info('Authenticate middleware was used: '.$currentRoute.'. ', [$user]);
+        // Log::info('Authenticate middleware was used: '.$currentRoute.'. ', [$user]);
     }
 }
