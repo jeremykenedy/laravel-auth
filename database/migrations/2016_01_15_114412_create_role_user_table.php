@@ -18,7 +18,7 @@ class CreateRoleUserTable extends Migration
         $rolesTable = config('roles.rolesTable');
         $tableCheck = Schema::connection($connection)->hasTable($table);
 
-        if (!$tableCheck) {
+        if (! $tableCheck) {
             Schema::connection($connection)->create($table, function (Blueprint $table) use ($rolesTable) {
                 $table->increments('id')->unsigned();
                 $table->integer('role_id')->unsigned()->index();

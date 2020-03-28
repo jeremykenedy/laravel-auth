@@ -123,7 +123,7 @@ class ProfilesController extends Controller
 
         $ipAddress = new CaptureIpTrait();
 
-        if ($user->profile == null) {
+        if ($user->profile === null) {
             $profile = new Profile();
             $profile->fill($input);
             $user->profile()->save($profile);
@@ -149,11 +149,11 @@ class ProfilesController extends Controller
     {
         $currentUser = \Auth::user();
         $user = User::findOrFail($id);
-        $emailCheck = ($request->input('email') != '') && ($request->input('email') != $user->email);
+        $emailCheck = ($request->input('email') !== '') && ($request->input('email') !== $user->email);
         $ipAddress = new CaptureIpTrait();
         $rules = [];
 
-        if ($user->name != $request->input('name')) {
+        if ($user->name !== $request->input('name')) {
             $usernameRules = [
                 'name' => 'required|max:255|unique:users',
             ];
@@ -212,7 +212,7 @@ class ProfilesController extends Controller
         $user = User::findOrFail($id);
         $ipAddress = new CaptureIpTrait();
 
-        if ($request->input('password') != null) {
+        if ($request->input('password') !== null) {
             $user->password = bcrypt($request->input('password'));
         }
 
@@ -282,7 +282,7 @@ class ProfilesController extends Controller
         $user = User::findOrFail($id);
         $ipAddress = new CaptureIpTrait();
 
-        if ($user->id != $currentUser->id) {
+        if ($user->id !== $currentUser->id) {
             return redirect('profile/'.$user->name.'/edit')->with('error', trans('profile.errorDeleteNotYour'));
         }
 

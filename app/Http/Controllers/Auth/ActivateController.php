@@ -140,7 +140,7 @@ class ActivateController extends Controller
             return $rCheck;
         }
 
-        if ($user->activated == false) {
+        if ($user->activated === false) {
             $activationsCount = Activation::where('user_id', $user->id)
                 ->where('created_at', '>=', Carbon::now()->subHours(config('settings.timePeriod')))
                 ->count();
@@ -235,7 +235,7 @@ class ActivateController extends Controller
         $lastActivation = Activation::where('user_id', $user->id)->get()->last();
         $currentRoute = Route::currentRouteName();
 
-        if ($user->activated == false) {
+        if ($user->activated === false) {
             $activationsCount = Activation::where('user_id', $user->id)
                 ->where('created_at', '>=', Carbon::now()->subHours(config('settings.timePeriod')))
                 ->count();

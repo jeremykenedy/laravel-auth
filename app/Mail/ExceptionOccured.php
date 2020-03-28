@@ -35,23 +35,23 @@ class ExceptionOccured extends Mailable
         $fromSender = config('exceptions.emailExceptionFrom');
         $subject = config('exceptions.emailExceptionSubject');
 
-        if ($emailsTo[0] == null) {
+        if ($emailsTo[0] === null) {
             $emailsTo = config('exceptions.emailExceptionsToDefault');
         }
 
-        if ($ccEmails[0] == null) {
+        if ($ccEmails[0] === null) {
             $ccEmails = config('exceptions.emailExceptionCCtoDefault');
         }
 
-        if ($bccEmails[0] == null) {
+        if ($bccEmails[0] === null) {
             $bccEmails = config('exceptions.emailExceptionBCCtoDefault');
         }
 
-        if (!$fromSender) {
+        if (! $fromSender) {
             $fromSender = config('exceptions.emailExceptionFromDefault');
         }
 
-        if (!$subject) {
+        if (! $subject) {
             $subject = config('exceptions.emailExceptionSubjectDefault');
         }
 

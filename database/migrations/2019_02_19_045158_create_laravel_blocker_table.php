@@ -20,7 +20,7 @@ class CreateLaravelBlockerTable extends Migration
         $table = $blocked->getTableName();
         $tableCheck = Schema::connection($connection)->hasTable($table);
 
-        if (!$tableCheck) {
+        if (! $tableCheck) {
             Schema::connection($connection)->create($table, function (Blueprint $table) {
                 $blockedType = new BlockedType();
                 $connectionType = $blockedType->getConnectionName();

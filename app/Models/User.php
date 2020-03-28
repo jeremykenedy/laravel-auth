@@ -131,12 +131,12 @@ class User extends Authenticatable
      *
      * @param  string  $name
      *
-     * @return boolean
+     * @return bool
      */
     public function hasProfile($name)
     {
         foreach ($this->profiles as $profile) {
-            if ($profile->name == $name) {
+            if ($profile->name === $name) {
                 return true;
             }
         }
@@ -145,7 +145,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Add/Attach a profile to a user
+     * Add/Attach a profile to a user.
      *
      * @param  Profile $profile
      */
@@ -155,7 +155,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Remove/Detach a profile to a user
+     * Remove/Detach a profile to a user.
      *
      * @param  Profile $profile
      */
