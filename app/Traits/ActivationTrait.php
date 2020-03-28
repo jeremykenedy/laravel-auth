@@ -27,11 +27,11 @@ trait ActivationTrait
     }
 
     /**
-     * Validate the Users Email
+     * Validate the Users Email.
      *
      * @param  User $user
      *
-     * @return boolean
+     * @return bool
      */
     protected function validateEmail(User $user)
     {
