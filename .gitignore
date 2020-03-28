@@ -44,6 +44,8 @@ yarn.lock
 /storage/logs
 /storage/users
 packages/
+.phpunit.result.cache
+.env.backup
 
 # Debug Files
 npm-debug.log

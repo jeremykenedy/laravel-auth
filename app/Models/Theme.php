@@ -18,12 +18,37 @@ class Theme extends Model
     protected $table = 'themes';
 
     /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = true;
+
+    /**
      * The attributes that are not mass assignable.
      *
      * @var array
      */
     protected $guarded = [
         'id',
+    ];
+
+    /**
+     * The attributes that are hidden.
+     *
+     * @var array
+     */
+    protected $hidden = [];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
     /**
@@ -41,12 +66,19 @@ class Theme extends Model
     ];
 
     /**
-     * The attributes that should be mutated to dates.
+     * The attributes that should be cast to native types.
      *
      * @var array
      */
-    protected $dates = [
-        'deleted_at',
+    protected $casts = [
+        'id'            => 'integer',
+        'name'          => 'string',
+        'link'          => 'string',
+        'notes'         => 'string',
+        'status'        => 'boolean',
+        'activated'     => 'boolean',
+        'taggable_id'   => 'integer',
+        'taggable_type' => 'string',
     ];
 
     /**
@@ -70,9 +102,7 @@ class Theme extends Model
     }
 
     /**
-     * Build Theme Relationships.
-     *
-     * @var array
+     * Get the profiles for the theme.
      */
     public function profile()
     {

@@ -22,11 +22,43 @@ class User extends Authenticatable
     protected $table = 'users';
 
     /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = true;
+
+    /**
      * The attributes that are not mass assignable.
      *
      * @var array
      */
-    protected $guarded = ['id'];
+    protected $guarded = [
+        'id',
+    ];
+
+    /**
+     * The attributes that are hidden.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+        'activated',
+        'token',
+    ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -50,25 +82,28 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * The attributes that should be cast to native types.
      *
      * @var array
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-        'activated',
-        'token',
-    ];
-
-    protected $dates = [
-        'deleted_at',
+    protected $casts = [
+        'id'                                => 'integer',
+        'first_name'                        => 'string',
+        'last_name'                         => 'string',
+        'email'                             => 'string',
+        'password'                          => 'string',
+        'activated'                         => 'boolean',
+        'token'                             => 'string',
+        'signup_ip_address'                 => 'string',
+        'signup_confirmation_ip_address'    => 'string',
+        'signup_sm_ip_address'              => 'string',
+        'admin_ip_address'                  => 'string',
+        'updated_ip_address'                => 'string',
+        'deleted_ip_address'                => 'string',
     ];
 
     /**
-     * Build Social Relationships.
-     *
-     * @var array
+     * Get the socials for the user.
      */
     public function social()
     {
@@ -76,22 +111,28 @@ class User extends Authenticatable
     }
 
     /**
-     * User Profile Relationships.
-     *
-     * @var array
+     * Get the profile associated with the user.
      */
     public function profile()
     {
         return $this->hasOne('App\Models\Profile');
     }
 
-    // User Profile Setup - SHould move these to a trait or interface...
-
+    /**
+     * The profiles that belong to the user.
+     */
     public function profiles()
     {
         return $this->belongsToMany('App\Models\Profile')->withTimestamps();
     }
 
+    /**
+     * Check if a user has a profile.
+     *
+     * @param  string  $name
+     *
+     * @return boolean
+     */
     public function hasProfile($name)
     {
         foreach ($this->profiles as $profile) {
@@ -103,12 +144,22 @@ class User extends Authenticatable
         return false;
     }
 
-    public function assignProfile($profile)
+    /**
+     * Add/Attach a profile to a user
+     *
+     * @param  Profile $profile
+     */
+    public function assignProfile(Profile $profile)
     {
         return $this->profiles()->attach($profile);
     }
 
-    public function removeProfile($profile)
+    /**
+     * Remove/Detach a profile to a user
+     *
+     * @param  Profile $profile
+     */
+    public function removeProfile(Profile $profile)
     {
         return $this->profiles()->detach($profile);
     }

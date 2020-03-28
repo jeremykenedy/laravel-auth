@@ -14,12 +14,15 @@ class CreateSocialLoginsTable extends Migration
     public function up()
     {
         Schema::create('social_logins', function (Blueprint $table) {
-            $table->increments('id');
+            // Structure
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('provider', 50);
+            $table->string('provider', 100);
             $table->text('social_id');
             $table->timestamps();
+
+            // Relationships
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
