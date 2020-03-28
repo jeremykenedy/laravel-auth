@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {!!trans('usersmanagement.showing-user-deleted')!!}
+    {!!trans('usersmanagement.show-deleted-users')!!}
 
 @endsection
 
@@ -32,7 +32,7 @@
                     <div class="card-header bg-danger text-white">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <span id="card_title">
-                                {!!trans('usersmanagement.showing-user-deleted')!!}
+                                {!!trans('usersmanagement.show-deleted-users')!!}
                             </span>
                             <div class="float-right">
                                 <a href="{{ route('users') }}" class="btn btn-light btn-sm float-right" data-toggle="tooltip" data-placement="left" title="{{ trans('usersmanagement.tooltips.back-users') }}">
@@ -67,10 +67,10 @@
                                             <th class="hidden-xs hidden-sm">Email</th>
                                             <th class="hidden-xs hidden-sm hidden-md">{!!trans('usersmanagement.users-table.fname')!!}</th>
                                             <th class="hidden-xs hidden-sm hidden-md">{!!trans('usersmanagement.users-table.lname')!!}</th>
-                                            <th class="hidden-xs hidden-sm">{!!trans('usersmanagement.role')!!}</th>
-                                            <th class="hidden-xs">{!!trans('usersmanagement.deleted')!!}</th>
-                                            <th class="hidden-xs">{!!trans('usersmanagement.IpDeleted')!!}</th>
-                                            <th>{!!trans('usersmanagement.actions')!!}</th>
+                                            <th class="hidden-xs hidden-sm">{!!trans('usersmanagement.users-table.role')!!}</th>
+                                            <th class="hidden-xs">{!!trans('usersmanagement.labelDeletedAt')!!}</th>
+                                            <th class="hidden-xs">{!!trans('usersmanagement.labelIpDeleted')!!}</th>
+                                            <th>{!!trans('usersmanagement.users-table.actions')!!}</th>
                                             <th></th>
                                             <th></th>
                                         </tr>

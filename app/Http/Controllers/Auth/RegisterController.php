@@ -63,7 +63,8 @@ class RegisterController extends Controller
             $data['captcha'] = true;
         }
 
-        return Validator::make($data,
+        return Validator::make(
+            $data,
             [
                 'name'                  => 'required|max:255|unique:users',
                 'first_name'            => '',
