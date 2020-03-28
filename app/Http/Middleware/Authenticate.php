@@ -54,7 +54,7 @@ class Authenticate extends Middleware
      */
     public function handle($request, Closure $next)
     {
-        if (!$this->auth->check()) {
+        if (! $this->auth->check()) {
             return redirect()->to('/login')
                 ->with('status', 'success')
                 ->with('message', 'Please login.');
