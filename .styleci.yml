@@ -1,10 +1,13 @@
-php:
-  preset: laravel
-  disabled:
-    - unused_use
-  enabled:
-    - align_double_arrow
-  finder:
-    not-name:
-      - index.php
-      - server.php
+preset: laravel
+
+enabled:
+  - strict
+  - align_double_arrow
+
+disabled:
+  - unused_use
+
+finder:
+  not-name:
+    - index.php
+    - server.php
