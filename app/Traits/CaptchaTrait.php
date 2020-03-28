@@ -8,9 +8,9 @@ use Request;
 trait CaptchaTrait
 {
     /**
-     * Check Google Captcha Passed or Failed
+     * Check Google Captcha Passed or Failed.
      *
-     * @return boolean
+     * @return bool
      */
     public function captchaCheck()
     {
