@@ -59,7 +59,7 @@ class RegisterController extends Controller
     {
         $data['captcha'] = $this->captchaCheck();
 
-        if (!config('settings.reCaptchStatus')) {
+        if (! config('settings.reCaptchStatus')) {
             $data['captcha'] = true;
         }
 
@@ -111,7 +111,7 @@ class RegisterController extends Controller
             'password'          => Hash::make($data['password']),
             'token'             => str_random(64),
             'signup_ip_address' => $ipAddress->getClientIp(),
-            'activated'         => !config('settings.activation'),
+            'activated'         => ! config('settings.activation'),
         ]);
 
         $user->attachRole($role);

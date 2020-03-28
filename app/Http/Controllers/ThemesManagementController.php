@@ -133,7 +133,7 @@ class ThemesManagementController extends Controller
     {
         $default = Theme::findOrFail(Theme::default);
 
-        if ($theme->id != $default->id) {
+        if ($theme->id !== $default->id) {
             $theme->delete();
 
             return redirect('themes')->with('success', trans('themes.deleteSuccess'));

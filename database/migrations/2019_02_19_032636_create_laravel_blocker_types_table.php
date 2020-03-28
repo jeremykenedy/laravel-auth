@@ -19,7 +19,7 @@ class CreateLaravelBlockerTypesTable extends Migration
         $table = $blocked->getTableName();
         $tableCheck = Schema::connection($connection)->hasTable($table);
 
-        if (!$tableCheck) {
+        if (! $tableCheck) {
             Schema::connection($connection)->create($table, function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('slug')->unique();

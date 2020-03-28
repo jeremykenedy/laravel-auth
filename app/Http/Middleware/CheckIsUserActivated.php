@@ -39,8 +39,8 @@ class CheckIsUserActivated
                 'welcome',
             ];
 
-            if (!in_array($currentRoute, $routesAllowed)) {
-                if ($user && $user->activated != 1) {
+            if (! in_array($currentRoute, $routesAllowed)) {
+                if ($user && $user->activated !== 1) {
                     Log::info('Non-activated user attempted to visit '.$currentRoute.'. ', [$user]);
 
                     return redirect()->route('activation-required')
@@ -51,7 +51,7 @@ class CheckIsUserActivated
                 }
             }
 
-            if ($user && $user->activated != 1) {
+            if ($user && $user->activated !== 1) {
                 $activationsCount = Activation::where('user_id', $user->id)
                     ->where('created_at', '>=', Carbon::now()->subHours(config('settings.timePeriod')))
                     ->count();
@@ -62,7 +62,7 @@ class CheckIsUserActivated
             }
 
             if (in_array($currentRoute, $routesAllowed)) {
-                if ($user && $user->activated == 1) {
+                if ($user && $user->activated === 1) {
                     Log::info('Activated user attempted to visit '.$currentRoute.'. ', [$user]);
 
                     if ($user->isAdmin()) {
@@ -72,7 +72,7 @@ class CheckIsUserActivated
                     return redirect('home');
                 }
 
-                if (!$user) {
+                if (! $user) {
                     Log::info('Non registered visit to '.$currentRoute.'. ');
 
                     return redirect()->route('welcome');

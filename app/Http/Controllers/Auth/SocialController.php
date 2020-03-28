@@ -45,7 +45,7 @@ class SocialController extends Controller
      */
     public function getSocialHandle($provider, Request $request)
     {
-        if ($request->get('denied') != '') {
+        if ($request->get('denied') !== '') {
             return redirect()->to('login')
                 ->with('status', 'danger')
                 ->with('message', trans('socials.denied'));
@@ -60,7 +60,7 @@ class SocialController extends Controller
 
         $email = $socialUserObject->email;
 
-        if (!$socialUserObject->email) {
+        if (! $socialUserObject->email) {
             $email = 'missing'.str_random(10).'@'.str_random(10).'.example.org';
         }
 
@@ -75,12 +75,12 @@ class SocialController extends Controller
                 $profile = new Profile();
                 $role = Role::where('slug', '=', 'user')->first();
                 $fullname = explode(' ', $socialUserObject->name);
-                if (count($fullname) == 1) {
+                if (count($fullname) === 1) {
                     $fullname[1] = '';
                 }
                 $username = $socialUserObject->nickname;
 
-                if ($username == null) {
+                if ($username === null) {
                     foreach ($fullname as $name) {
                         $username .= $name;
                     }
@@ -110,12 +110,12 @@ class SocialController extends Controller
                 $user->profile()->save($profile);
                 $user->save();
 
-                if ($socialData->provider == 'github') {
+                if ($socialData->provider === 'github') {
                     $user->profile->github_username = $socialUserObject->nickname;
                 }
 
                 // Twitter User Object details: https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/user-object
-                if ($socialData->provider == 'twitter') {
+                if ($socialData->provider === 'twitter') {
                     //$user->profile()->twitter_username = $socialUserObject->screen_name;
                     //If the above fails try (The documentation shows screen_name however so Twitters docs may be out of date.):
                     $user->profile()->twitter_username = $socialUserObject->nickname;
@@ -159,12 +159,12 @@ class SocialController extends Controller
                 $username = $this->generateUserName($username);
                 $newCheck = User::where('name', '=', $username)->first();
 
-                if ($newCheck == null) {
+                if ($newCheck === null) {
                     $newCheck = 0;
                 } else {
                     $newCheck = count($newCheck);
                 }
-            } while ($newCheck != 0);
+            } while ($newCheck !== 0);
         }
 
         return $username;

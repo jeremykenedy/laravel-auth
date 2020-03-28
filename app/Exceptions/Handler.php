@@ -8,8 +8,8 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Log;
 use Mail;
 use Response;
-use Symfony\Component\Debug\ExceptionHandler as SymfonyExceptionHandler;
 use Symfony\Component\Debug\Exception\FlattenException;
+use Symfony\Component\Debug\ExceptionHandler as SymfonyExceptionHandler;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -44,10 +44,9 @@ class Handler extends ExceptionHandler
      */
     public function report(Throwable $exception)
     {
-
         $enableEmailExceptions = config('exceptions.emailExceptionEnabled');
 
-        if ($enableEmailExceptions === "") {
+        if ($enableEmailExceptions === '') {
             $enableEmailExceptions = config('exceptions.emailExceptionEnabledDefault');
         }
 
@@ -75,10 +74,10 @@ class Handler extends ExceptionHandler
 
         if ($userLevelCheck) {
             if ($request->expectsJson()) {
-                return Response::json(array(
-                    'error'    =>  403,
-                    'message'   =>  'Unauthorized.'
-                ), 403);
+                return Response::json([
+                    'error'     => 403,
+                    'message'   => 'Unauthorized.',
+                ], 403);
             }
 
             abort(403);

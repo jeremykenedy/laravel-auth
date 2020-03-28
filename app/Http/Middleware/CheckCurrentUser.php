@@ -20,7 +20,7 @@ class CheckCurrentUser
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->user()) {
+        if (! $request->user()) {
             abort(403, 'Unauthorized action.');
         }
 

@@ -158,7 +158,7 @@ class UsersManagementController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $emailCheck = ($request->input('email') != '') && ($request->input('email') != $user->email);
+        $emailCheck = ($request->input('email') !== '') && ($request->input('email') !== $user->email);
         $ipAddress = new CaptureIpTrait();
 
         if ($emailCheck) {
@@ -186,12 +186,12 @@ class UsersManagementController extends Controller
             $user->email = $request->input('email');
         }
 
-        if ($request->input('password') != null) {
+        if ($request->input('password') !== null) {
             $user->password = bcrypt($request->input('password'));
         }
 
         $userRole = $request->input('role');
-        if ($userRole != null) {
+        if ($userRole !== null) {
             $user->detachAllRoles();
             $user->attachRole($userRole);
         }
@@ -225,7 +225,7 @@ class UsersManagementController extends Controller
         $currentUser = Auth::user();
         $ipAddress = new CaptureIpTrait();
 
-        if ($user->id != $currentUser->id) {
+        if ($user->id !== $currentUser->id) {
             $user->deleted_ip_address = $ipAddress->getClientIp();
             $user->save();
             $user->delete();
