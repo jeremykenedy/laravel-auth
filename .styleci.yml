@@ -1,11 +1,12 @@
 preset: laravel
 
 enabled:
+  - strict
   - align_double_arrow
 
 disabled:
   - unused_use
-  - strict_comparison
+  - strict_param
 
 finder:
   not-name:
