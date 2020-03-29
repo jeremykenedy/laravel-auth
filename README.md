@@ -385,16 +385,16 @@ APP_ENV=local
 APP_KEY=
 APP_DEBUG=true
 APP_URL=http://localhost
-APP_PROJECT_VERSION=5
+APP_PROJECT_VERSION=7
 
 LOG_CHANNEL=stack
 
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=laravelAuth
-DB_USERNAME=homestead
-DB_PASSWORD=secret
+DB_DATABASE=laravel
+DB_USERNAME=root
+DB_PASSWORD=
 
 BROADCAST_DRIVER=pusher
 CACHE_DRIVER=file
@@ -406,22 +406,26 @@ REDIS_HOST=127.0.0.1
 REDIS_PASSWORD=null
 REDIS_PORT=6379
 
-MAIL_DRIVER=smtp
+MAIL_MAILER=smtp
 MAIL_HOST=smtp.mailtrap.io
 MAIL_PORT=2525
 MAIL_USERNAME=null
 MAIL_PASSWORD=null
 MAIL_ENCRYPTION=null
-
-MAIL_FROM_ADDRESS=
-MAIL_FROM_NAME=''
+MAIL_FROM_ADDRESS=null
+MAIL_FROM_NAME="${APP_NAME}"
 
 EMAIL_EXCEPTION_ENABLED=false
-EMAIL_EXCEPTION_FROM=email@email.com
+EMAIL_EXCEPTION_FROM="${MAIL_FROM_ADDRESS}"
 EMAIL_EXCEPTION_TO='email1@gmail.com, email2@gmail.com'
 EMAIL_EXCEPTION_CC=''
 EMAIL_EXCEPTION_BCC=''
 EMAIL_EXCEPTION_SUBJECT=''
+
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=us-east-1
+AWS_BUCKET=
 
 PUSHER_APP_ID=
 PUSHER_APP_KEY=
@@ -446,7 +450,7 @@ LARAVEL_2STEP_ENABLED=false
 LARAVEL_2STEP_DATABASE_CONNECTION=mysql
 LARAVEL_2STEP_DATABASE_TABLE=laravel2step
 LARAVEL_2STEP_USER_MODEL=App\User
-LARAVEL_2STEP_EMAIL_FROM="jeremykenedy@gmail.com"
+LARAVEL_2STEP_EMAIL_FROM=
 LARAVEL_2STEP_EMAIL_FROM_NAME="Laravel 2 Step Verification"
 LARAVEL_2STEP_EMAIL_SUBJECT='Laravel 2 Step Verification'
 LARAVEL_2STEP_EXCEEDED_COUNT=3
@@ -492,7 +496,7 @@ LARAVEL_LOGGER_FONT_AWESOME_CDN_URL=https://maxcdn.bootstrapcdn.com/font-awesome
 LARAVEL_LOGGER_BOOTSTRAP_CSS_CDN_ENABLED=false
 LARAVEL_LOGGER_BOOTSTRAP_CSS_CDN_URL=https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css
 
-LARAVEL_BLOCKER_USER_MODEL='App\Models\User'
+LARAVEL_BLOCKER_USER_MODEL=App\Models\User
 LARAVEL_BLOCKER_AUTH_ENABLED=true
 LARAVEL_BLOCKER_ROLES_ENABLED=true
 LARAVEL_BLOCKER_FLASH_MESSAGES_ENABLED=false
@@ -502,56 +506,79 @@ LARAVEL_BLOCKER_BLADE_PLACEMENT_JS='footer_scripts'
 LARAVEL_BLOCKER_USE_TYPES_SEED_PUBLISHED=true
 LARAVEL_BLOCKER_USE_ITEMS_SEED_PUBLISHED=true
 
-// NOTE: YOU CAN REMOVE THE KEY CALL IN app.blade.php IF YOU GET A POP UP AND DO NOT WANT TO SETUP A KEY FOR DEV
+# Roles Default Models
+ROLES_DEFAULT_ROLE_MODEL=jeremykenedy\LaravelRoles\Models\Role
+ROLES_DEFAULT_PERMISSION_MODEL=jeremykenedy\LaravelRoles\Models\Permission
+
+# Roles database information
+ROLES_DATABASE_CONNECTION=null
+
+# Roles Misc Settings
+ROLES_DEFAULT_SEPARATOR='.'
+
+# Roles GUI Settings
+ROLES_GUI_ENABLED=true
+ROLES_GUI_AUTH_ENABLED=true
+ROLES_GUI_MIDDLEWARE_ENABLED=true
+ROLES_GUI_MIDDLEWARE='role:admin'
+ROLES_GUI_BLADE_EXTENDED='layouts.app'
+ROLES_GUI_TITLE_EXTENDED='template_title'
+ROLES_GUI_LARAVEL_ROLES_ENABLED=true
+ROLES_GUI_DATATABLES_JS_ENABLED=false
+ROLES_GUI_FLASH_MESSAGES_ENABLED=false
+ROLES_GUI_BLADE_PLACEMENT_CSS=template_linked_css
+ROLES_GUI_BLADE_PLACEMENT_JS=footer_scripts
+
+# NOTE: YOU CAN REMOVE THE KEY CALL IN app.blade.php IF YOU GET A POP UP AND DO NOT WANT TO SETUP A KEY FOR DEV
 # Google Maps API v3 Key - https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key
 GOOGLEMAPS_API_STATUS=true
 GOOGLEMAPS_API_KEY=YOURGOOGLEMAPSkeyHERE
-
-# https://console.developers.google.com/ - NEED OAUTH CREDS
-GOOGLE_ID=YOURGOOGLEPLUSidHERE
-GOOGLE_SECRET=YOURGOOGLEPLUSsecretHERE
-GOOGLE_REDIRECT=http://yourwebsiteURLhere.com/social/handle/google
 
 # https://www.google.com/recaptcha/admin#list
 ENABLE_RECAPTCHA=true
 RE_CAP_SITE=YOURGOOGLECAPTCHAsitekeyHERE
 RE_CAP_SECRET=YOURGOOGLECAPTCHAsecretHERE
 
+# https://console.developers.google.com/ - NEED OAUTH CREDS
+GOOGLE_ID=YOURGOOGLEPLUSidHERE
+GOOGLE_SECRET=YOURGOOGLEPLUSsecretHERE
+GOOGLE_REDIRECT=https://YOURWEBURLHERE.COM/social/handle/google
+
 # https://developers.facebook.com/
 FB_ID=YOURFACEBOOKidHERE
 FB_SECRET=YOURFACEBOOKsecretHERE
-FB_REDIRECT=http://yourwebsiteURLhere.com/social/handle/facebook
+FB_REDIRECT=https://YOURWEBURLHERE.COM/social/handle/facebook
 
 # https://apps.twitter.com/
 TW_ID=YOURTWITTERidHERE
 TW_SECRET=YOURTWITTERkeyHERE
-TW_REDIRECT=http://yourwebsiteURLhere.com/social/handle/twitter
+TW_REDIRECT=https://YOURWEBURLHERE.COM/social/handle/twitter
 
 # https://github.com/settings/applications/new
 GITHUB_ID=YOURIDHERE
 GITHUB_SECRET=YOURSECRETHERE
-GITHUB_URL=https://larablog.io/social/handle/github
+GITHUB_URL=https://YOURWEBURLHERE.COM/social/handle/github
 
 # https://developers.google.com/youtube/v3/getting-started
 YOUTUBE_KEY=YOURKEYHERE
 YOUTUBE_SECRET=YOURSECRETHERE
-YOUTUBE_REDIRECT_URI=https://larablog.io/social/handle/youtube
+YOUTUBE_REDIRECT_URI=https://YOURWEBURLHERE.COM/social/handle/youtube
 
-# http://www.twitch.tv/kraken/oauth2/clients/new
+# https://dev.twitch.tv/docs/authentication/
 TWITCH_KEY=YOURKEYHERE
 TWITCH_SECRET=YOURSECRETHERE
-TWITCH_REDIRECT_URI=http://laravel-authentication.local/social/handle/twitch
+TWITCH_REDIRECT_URI=https://YOURWEBURLHERE.COM/social/handle/twitch
 
 # https://instagram.com/developer/register/
 INSTAGRAM_KEY=YOURKEYHERE
 INSTAGRAM_SECRET=YOURSECRETHERE
-INSTAGRAM_REDIRECT_URI=http://laravel-authentication.local/social/handle/instagram
+INSTAGRAM_REDIRECT_URI=https://YOURWEBURLHERE.COM/social/handle/instagram
 
 # https://basecamp.com/
 # https://github.com/basecamp/basecamp-classic-api
 37SIGNALS_KEY=YOURKEYHERE
 37SIGNALS_SECRET=YOURSECRETHERE
-37SIGNALS_REDIRECT_URI=http://laravel-authentication.local/social/handle/37signals
+37SIGNALS_REDIRECT_URI=https://YOURWEBURLHERE.COM/social/handle/37signals
 
 ```
 
@@ -1043,4 +1070,3 @@ Laravel-auth is licensed under the [MIT license](https://opensource.org/licenses
 ### Contributors
 * Thanks goes to these [wonderful people](https://github.com/jeremykenedy/laravel-auth/graphs/contributors):
 * Please feel free to contribute and make pull requests!
-
