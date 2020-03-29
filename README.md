@@ -674,15 +674,25 @@ INSTAGRAM_REDIRECT_URI=http://laravel-authentication.local/social/handle/instagr
 ### File Tree
 ```
 laravel-auth
-├── .all-contributorsrc
+├── .editorconfig
+├── .env
 ├── .env.example
 ├── .env.travis
 ├── .gitattributes
+├── .github
+│   ├── FUNDING.yml
+│   └── ISSUE_TEMPLATE
+│       ├── bug_report.md
+│       ├── feature_request.md
+│       └── project-questions-and-help.md
 ├── .gitignore
+├── .phpunit.result.cache
+├── .styleci.yml
 ├── .travis.yml
 ├── CODE_OF_CONDUCT.md
 ├── LICENSE
 ├── README.md
+├── _config.yml
 ├── app
 │   ├── Console
 │   │   ├── Commands
@@ -704,6 +714,7 @@ laravel-auth
 │   │   │   ├── ProfilesController.php
 │   │   │   ├── RestoreUserController.php
 │   │   │   ├── SoftDeletesController.php
+│   │   │   ├── TermsController.php
 │   │   │   ├── ThemesManagementController.php
 │   │   │   ├── UserController.php
 │   │   │   ├── UsersManagementController.php
@@ -712,6 +723,7 @@ laravel-auth
 │   │   ├── Middleware
 │   │   │   ├── Authenticate.php
 │   │   │   ├── CheckCurrentUser.php
+│   │   │   ├── CheckForMaintenanceMode.php
 │   │   │   ├── CheckIsUserActivated.php
 │   │   │   ├── EncryptCookies.php
 │   │   │   ├── RedirectIfAuthenticated.php
@@ -768,6 +780,7 @@ laravel-auth
 │   ├── auth.php
 │   ├── broadcasting.php
 │   ├── cache.php
+│   ├── cors.php
 │   ├── database.php
 │   ├── debugbar.php
 │   ├── exceptions.php
@@ -793,13 +806,19 @@ laravel-auth
 │   ├── migrations
 │   │   ├── 2014_10_12_000000_create_users_table.php
 │   │   ├── 2014_10_12_100000_create_password_resets_table.php
+│   │   ├── 2016_01_15_105324_create_roles_table.php
+│   │   ├── 2016_01_15_114412_create_role_user_table.php
+│   │   ├── 2016_01_26_115212_create_permissions_table.php
+│   │   ├── 2016_01_26_115523_create_permission_role_table.php
+│   │   ├── 2016_02_09_132439_create_permission_user_table.php
 │   │   ├── 2017_03_09_082449_create_social_logins_table.php
 │   │   ├── 2017_03_09_082526_create_activations_table.php
 │   │   ├── 2017_03_20_213554_create_themes_table.php
 │   │   ├── 2017_03_21_042918_create_profiles_table.php
 │   │   ├── 2017_12_09_070937_create_two_step_auth_table.php
 │   │   ├── 2019_02_19_032636_create_laravel_blocker_types_table.php
-│   │   └── 2019_02_19_045158_create_laravel_blocker_table.php
+│   │   ├── 2019_02_19_045158_create_laravel_blocker_table.php
+│   │   └── 2019_08_19_000000_create_failed_jobs_table.php
 │   └── seeds
 │       ├── BlockedItemsTableSeeder.php
 │       ├── BlockedTypeTableSeeder.php
@@ -810,6 +829,7 @@ laravel-auth
 │       ├── ThemesTableSeeder.php
 │       └── UsersTableSeeder.php
 ├── license.svg
+├── package-lock.json
 ├── package.json
 ├── phpunit.xml
 ├── public
@@ -837,7 +857,8 @@ laravel-auth
 │   ├── index.php
 │   ├── js
 │   │   ├── app.99230f42ad184f498ce6.js
-│   │   └── app.js
+│   │   ├── app.js
+│   │   └── app.js.LICENSE.txt
 │   ├── mix-manifest.json
 │   ├── robots.txt
 │   └── web.config
@@ -849,28 +870,36 @@ laravel-auth
 │   │   │   └── components
 │   │   │       ├── ExampleComponent.vue
 │   │   │       └── UsersCount.vue
-│   │   └── sass
-│   │       ├── _avatar.scss
-│   │       ├── _badges.scss
-│   │       ├── _bootstrap-social.scss
-│   │       ├── _buttons.scss
-│   │       ├── _forms.scss
-│   │       ├── _helpers.scss
-│   │       ├── _hideShowPassword.scss
-│   │       ├── _lists.scss
-│   │       ├── _logs.scss
-│   │       ├── _margins.scss
-│   │       ├── _mixins.scss
-│   │       ├── _modals.scss
-│   │       ├── _panels.scss
-│   │       ├── _password.scss
-│   │       ├── _socials.scss
-│   │       ├── _typography.scss
-│   │       ├── _user-profile.scss
-│   │       ├── _variables.scss
-│   │       ├── _visibility.scss
-│   │       ├── _wells.scss
-│   │       └── app.scss
+│   │   ├── sass
+│   │   │   ├── _avatar.scss
+│   │   │   ├── _badges.scss
+│   │   │   ├── _bootstrap-social.scss
+│   │   │   ├── _buttons.scss
+│   │   │   ├── _forms.scss
+│   │   │   ├── _helpers.scss
+│   │   │   ├── _hideShowPassword.scss
+│   │   │   ├── _lists.scss
+│   │   │   ├── _logs.scss
+│   │   │   ├── _margins.scss
+│   │   │   ├── _mixins.scss
+│   │   │   ├── _modals.scss
+│   │   │   ├── _panels.scss
+│   │   │   ├── _password.scss
+│   │   │   ├── _socials.scss
+│   │   │   ├── _typography.scss
+│   │   │   ├── _user-profile.scss
+│   │   │   ├── _variables.scss
+│   │   │   ├── _visibility.scss
+│   │   │   ├── _wells.scss
+│   │   │   └── app.scss
+│   │   └── scss
+│   │       └── laravel2step
+│   │           ├── _animations.scss
+│   │           ├── _mixins.scss
+│   │           ├── _modals.scss
+│   │           ├── _variables.scss
+│   │           ├── _verification.scss
+│   │           └── app.scss
 │   ├── lang
 │   │   ├── en
 │   │   │   ├── auth.php
@@ -882,6 +911,7 @@ laravel-auth
 │   │   │   ├── permsandroles.php
 │   │   │   ├── profile.php
 │   │   │   ├── socials.php
+│   │   │   ├── terms.php
 │   │   │   ├── themes.php
 │   │   │   ├── titles.php
 │   │   │   ├── usersmanagement.php
@@ -941,6 +971,8 @@ laravel-auth
 │       │   │   ├── active-users.blade.php
 │       │   │   ├── home.blade.php
 │       │   │   └── route-details.blade.php
+│       │   ├── public
+│       │   │   └── terms.blade.php
 │       │   ├── status.blade.php
 │       │   └── user
 │       │       └── home.blade.php
@@ -997,30 +1029,18 @@ laravel-auth
 
 ### Opening an Issue
 Before opening an issue there are a couple of considerations:
-* A **star** on this project shows support and is way to say thank you to all the contributors. If you open an issue without a star, *your issue may be closed without consideration.* Thank you for understanding and the support. You are all awesome!
-* **Read the instructions** and make sure all steps were *followed correctly*.
-* **Check** that the issue is not *specific to the development environment* setup.
-* **Provide** *duplication steps*.
-* **Attempt to look into the issue**, and if you *have a solution, make a pull request*.
-* **Show that you have made an attempt** to *look into the issue*.
-* **Check** to see if the issue you are *reporting is a duplicate* of a previous reported issue.
-* **Following these instructions show me that you have tried.**
-* If you have a questions send me an email to jeremykenedy@gmail.com
-* Need some help, I can do my best on Slack: https://opensourcehelpgroup.slack.com
-* Please be considerate that this is an open source project that I provide to the community for FREE when opening an issue.
+* A **star** on this project shows support and is way to say thank you to all the contributors. If you open an issue without a star, *your issue may be closed.* Thank you for understanding and the support. You are all awesome!
+* **PLease Read the instructions** and make sure all steps were *followed correctly*.
+* **Please Check** that the issue is not *specific to the development environment* setup.
+* **Please Provide** *duplication steps*.
+* **PLease Attempt to look into the issue**, and if you *have a solution, make a pull request*.
+* **Please Show that you have made an attempt** to *look into the issue*.
+* **PLease Check** to see if the issue you are *reporting is a duplicate* of a previous reported issue.
 
 ### Laravel Auth License
 Laravel-auth is licensed under the [MIT license](https://opensource.org/licenses/MIT). Enjoy!
 
 ### Contributors
+* Thanks goes to these [wonderful people](https://github.com/jeremykenedy/laravel-auth/graphs/contributors):
+* Please feel free to contribute and make pull requests!
 
-Thanks goes to these wonderful people ([emoji key](https://github.com/all-contributors/all-contributors#emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore -->
-| [<img src="https://avatars0.githubusercontent.com/u/6244570?v=4" width="110px;" alt="Jeremy Kenedy"/><br /><sub><b>Jeremy Kenedy</b></sub>](http://jeremykenedy.github.io/)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=jeremykenedy "Code") [🚧](#maintenance-jeremykenedy "Maintenance") [🎨](#design-jeremykenedy "Design") [🌍](#translation-jeremykenedy "Translation") [📦](#platform-jeremykenedy "Packaging/porting to new platform") | [<img src="https://avatars2.githubusercontent.com/u/3525566?v=4" width="110px;" alt="Manuel Montenegro"/><br /><sub><b>Manuel Montenegro</b></sub>](https://derrochando.com)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=mmonbr "Code") | [<img src="https://avatars1.githubusercontent.com/u/8403417?v=4" width="110px;" alt="VortixDev"/><br /><sub><b>VortixDev</b></sub>](https://github.com/VortixDev)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=VortixDev "Code") | [<img src="https://avatars3.githubusercontent.com/u/2678909?v=4" width="110px;" alt="terzinnorbert"/><br /><sub><b>terzinnorbert</b></sub>](https://github.com/terzinnorbert)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=terzinnorbert "Code") | [<img src="https://avatars1.githubusercontent.com/u/1177629?v=4" width="110px;" alt="Miguel Targa"/><br /><sub><b>Miguel Targa</b></sub>](http://targa.me)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=migueltarga "Code") | [<img src="https://avatars0.githubusercontent.com/u/4694803?v=4" width="110px;" alt="Chris Pappas"/><br /><sub><b>Chris Pappas</b></sub>](https://github.com/chrispappas)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=chrispappas "Code") | [<img src="https://avatars3.githubusercontent.com/u/18594097?v=4" width="110px;" alt="Hussam"/><br /><sub><b>Hussam</b></sub>](https://www.linkedin.com/in/hussam-el-hwary/)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=hussamEL-Hwary "Code") |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| [<img src="https://avatars2.githubusercontent.com/u/16390911?v=4" width="110px;" alt="Serge Ledig"/><br /><sub><b>Serge Ledig</b></sub>](http://www.cotiga.fr/)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=cotiga "Code") [🌍](#translation-cotiga "Translation") | [<img src="https://avatars0.githubusercontent.com/u/4799852?v=4" width="110px;" alt="Hennell"/><br /><sub><b>Hennell</b></sub>](https://github.com/hennell-git)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=hennell-git "Code") | [<img src="https://avatars2.githubusercontent.com/u/13354566?v=4" width="110px;" alt="Sawai Chungsri"/><br /><sub><b>Sawai Chungsri</b></sub>](https://github.com/4UForever)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=4UForever "Code") | [<img src="https://avatars1.githubusercontent.com/u/2970005?v=4" width="110px;" alt="Kent Dahl"/><br /><sub><b>Kent Dahl</b></sub>](http://kentdahl.no/)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=kentdahl "Code") | [<img src="https://avatars0.githubusercontent.com/u/25519274?v=4" width="110px;" alt="Lorenzo Sapora"/><br /><sub><b>Lorenzo Sapora</b></sub>](https://sush.us)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=LorenzoSapora "Code") | [<img src="https://avatars2.githubusercontent.com/u/1516273?v=4" width="110px;" alt="D'Silva"/><br /><sub><b>D'Silva</b></sub>](https://github.com/evnix)<br />[💻](https://github.com/jeremykenedy/laravel-auth/commits?author=evnix "Code") | [<img src="https://avatars3.githubusercontent.com/u/22533877?v=4" width="110px;" alt="Nicolas dos Reis Barbosa de Oliveira"/><br /><sub><b>Nicolas dos Reis Barbosa de Oliveira</b></sub>](http://www.linkedin.com/in/nicolasdosreisOliveira)<br />[🌍](#translation-nibri10 "Translation") |
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
