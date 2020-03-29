@@ -28,7 +28,7 @@ class SoftDeletesController extends Controller
     public static function getDeletedUser($id)
     {
         $user = User::onlyTrashed()->where('id', $id)->get();
-        if (count($user) != 1) {
+        if (count($user) !== 1) {
             return redirect('/users/deleted/')->with('error', trans('usersmanagement.errorUserNotFound'));
         }
 

@@ -1,0 +1,35 @@
+.modal {
+    .modal-header {
+        @include vendor(border-radius, $standardRadius $standardRadius 0 0);
+    }
+    &.modal-success {
+        .modal-header {
+            color: $white;
+            background-color: $brand-success;
+        }
+    }
+    &.modal-warning {
+        .modal-header {
+            color: $white;
+            background-color: $brand-warning;
+        }
+    }
+    &.modal-danger {
+        .modal-header {
+            color: $white;
+            background-color: $brand-danger;
+        }
+    }
+    &.modal-info {
+        .modal-header {
+            color: $white;
+            background-color: $brand-info;
+        }
+    }
+    &.modal-primary {
+        .modal-header {
+            color: $white;
+            background-color: $brand-primary;
+        }
+    }
+}

@@ -42,7 +42,7 @@ class RestoreUserController extends ProfilesController
         $userId = $level1[0][1] / $userIdKey;
         $user = SoftDeletesController::getDeletedUser($userId);
 
-        if (!is_object($user)) {
+        if (! is_object($user)) {
             abort(500);
         }
 

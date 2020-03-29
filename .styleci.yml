@@ -1,0 +1,15 @@
+preset: laravel
+
+enabled:
+  - strict
+  - align_double_arrow
+
+disabled:
+  - unused_use
+
+finder:
+  not-name:
+    - index.php
+    - server.php
+    - CheckIsUserActivated.php
+    - SocialController.php

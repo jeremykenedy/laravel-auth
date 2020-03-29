@@ -1,49 +1,59 @@
 {
     "name": "laravel/laravel",
+    "type": "project",
+    "description": "Laravel Auth",
     "keywords": [
         "framework",
         "laravel"
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.2",
+        "php": "^7.2.5",
         "creativeorange/gravatar": "^1.0",
-        "doctrine/dbal": "^2.9",
-        "fideloper/proxy": "^4.0",
+        "doctrine/dbal": "^2.10",
+        "fideloper/proxy": "^4.2",
+        "fruitcake/laravel-cors": "^1.0",
         "google/recaptcha": "^1.2",
+        "guzzlehttp/guzzle": "^6.3",
         "intervention/image": "^2.5",
         "jaybizzle/laravel-crawler-detect": "^1.2",
         "jeremykenedy/laravel-blocker": "^2.2",
         "jeremykenedy/laravel-exception-notifier": "^1.2",
         "jeremykenedy/laravel-https": "^1.1",
-        "jeremykenedy/laravel-logger": "^3.0",
+        "jeremykenedy/laravel-logger": "^3.2",
         "jeremykenedy/laravel-phpinfo": "^1.2",
-        "jeremykenedy/laravel-roles": "^2.2",
-        "jeremykenedy/laravel2step": "^1.5",
+        "jeremykenedy/laravel-roles": "^3.0",
+        "jeremykenedy/laravel2step": "^1.6",
         "jeremykenedy/uuid": "^3.1",
-        "laravel/framework": "^6.0",
-        "laravel/helpers": "^1.1",
-        "laravel/socialite": "^4.2",
-        "laravel/tinker": "^1.0",
-        "laravelcollective/html": "^6.0",
-        "pusher/pusher-php-server": "^4.0",
-        "rap2hpoutre/laravel-log-viewer": "^1.3",
+        "laravel/framework": "^7.0",
+        "laravel/helpers": "^1.2",
+        "laravel/socialite": "^4.3",
+        "laravel/tinker": "^2.0",
+        "laravel/ui": "^2.0",
+        "laravelcollective/html": "^6.1",
+        "pusher/pusher-php-server": "^4.1",
+        "rap2hpoutre/laravel-log-viewer": "^1.4",
         "socialiteproviders/37signals": "^3.0",
-        "socialiteproviders/generators": "^4.4",
+        "socialiteproviders/generators": "^4.6",
         "socialiteproviders/instagram": "^3.0",
-        "socialiteproviders/twitch": "^5.0",
+        "socialiteproviders/linkedin": "^3.1",
+        "socialiteproviders/twitch": "^5.1",
         "socialiteproviders/youtube": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
-        "beyondcode/laravel-dump-server": "^1.3",
-        "facade/ignition": "^1.4",
-        "fzaninotto/faker": "^1.4",
-        "laravel/ui": "^1.0",
-        "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^3.0",
-        "phpunit/phpunit": "^8.0"
+        "facade/ignition": "^2.0",
+        "fzaninotto/faker": "^1.9.1",
+        "mockery/mockery": "^1.3.1",
+        "nunomaduro/collision": "^4.1",
+        "phpunit/phpunit": "^8.5"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "https://github.com/jeremykenedy/Generators-1.git"
+        }
+    ],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
@@ -51,8 +61,7 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": [
-            ]
+            "dont-discover": []
         }
     },
     "autoload": {

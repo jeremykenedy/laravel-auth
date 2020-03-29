@@ -3,7 +3,6 @@
 namespace App\Exceptions;
 
 use App\Mail\ExceptionOccured;
-use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Log;
@@ -11,6 +10,7 @@ use Mail;
 use Response;
 use Symfony\Component\Debug\Exception\FlattenException;
 use Symfony\Component\Debug\ExceptionHandler as SymfonyExceptionHandler;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -20,12 +20,17 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        \Illuminate\Auth\AuthenticationException::class,
-        \Illuminate\Auth\Access\AuthorizationException::class,
-        \Symfony\Component\HttpKernel\Exception\HttpException::class,
-        \Illuminate\Database\Eloquent\ModelNotFoundException::class,
-        \Illuminate\Session\TokenMismatchException::class,
-        \Illuminate\Validation\ValidationException::class,
+        //
+    ];
+
+    /**
+     * A list of the inputs that are never flashed for validation exceptions.
+     *
+     * @var array
+     */
+    protected $dontFlash = [
+        'password',
+        'password_confirmation',
     ];
 
     /**
@@ -33,11 +38,11 @@ class Handler extends ExceptionHandler
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param \Exception $exception
+     * @param \Throwable $exception
      *
      * @return void
      */
-    public function report(Exception $exception)
+    public function report(Throwable $exception)
     {
         $enableEmailExceptions = config('exceptions.emailExceptionEnabled');
 
@@ -56,22 +61,22 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Exception               $exception
+     * @param \Throwable               $exception
      *
-     * @return \Illuminate\Http\Response
+     * @throws \Throwable
      */
-    public function render($request, Exception $exception)
+    public function render($request, Throwable $exception)
     {
-        $userLevelCheck = $exception instanceof \jeremykenedy\LaravelRoles\Exceptions\RoleDeniedException ||
-            $exception instanceof \jeremykenedy\LaravelRoles\Exceptions\RoleDeniedException ||
-            $exception instanceof \jeremykenedy\LaravelRoles\Exceptions\PermissionDeniedException ||
-            $exception instanceof \jeremykenedy\LaravelRoles\Exceptions\LevelDeniedException;
+        $userLevelCheck = $exception instanceof \jeremykenedy\LaravelRoles\App\Exceptions\RoleDeniedException ||
+            $exception instanceof \jeremykenedy\LaravelRoles\App\Exceptions\RoleDeniedException ||
+            $exception instanceof \jeremykenedy\LaravelRoles\App\Exceptions\PermissionDeniedException ||
+            $exception instanceof \jeremykenedy\LaravelRoles\App\Exceptions\LevelDeniedException;
 
         if ($userLevelCheck) {
             if ($request->expectsJson()) {
                 return Response::json([
-                    'error'   => 403,
-                    'message' => 'Unauthorized.',
+                    'error'     => 403,
+                    'message'   => 'Unauthorized.',
                 ], 403);
             }
 
@@ -101,11 +106,11 @@ class Handler extends ExceptionHandler
     /**
      * Sends an email upon exception.
      *
-     * @param \Exception $exception
+     * @param \Throwable $exception
      *
      * @return void
      */
-    public function sendEmail(Exception $exception)
+    public function sendEmail(Throwable $exception)
     {
         try {
             $e = FlattenException::create($exception);
@@ -113,7 +118,7 @@ class Handler extends ExceptionHandler
             $html = $handler->getHtml($e);
 
             Mail::send(new ExceptionOccured($html));
-        } catch (Exception $exception) {
+        } catch (Throwable $exception) {
             Log::error($exception);
         }
     }

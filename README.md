@@ -1,6 +1,6 @@
-## Laravel-Auth
+## Laravel Auth
 
-#### Laravel-Auth is a Complete Build of Laravel 6 with Email Registration Verification, Social Authentication, User Roles and Permissions, User Profiles, and Admin restricted user management system. Built on Bootstrap 4.
+#### Laravel Auth is a Complete Build of Laravel 7 with Email Registration Verification, Social Authentication, User Roles and Permissions, User Profiles, and Admin restricted user management system. Built on Bootstrap 4.
 [![Build Status](https://travis-ci.org/jeremykenedy/laravel-auth.svg?branch=master)](https://travis-ci.org/jeremykenedy/laravel-auth)
 [![StyleCI](https://styleci.io/repos/44714043/shield?branch=master)](https://styleci.io/repos/44714043)
 [![Build Status](https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/badges/build.png?b=master)](https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/build-status/master)
@@ -51,29 +51,29 @@
 - [Contributors](#Contributors)
 
 ### About
-Laravel 6.0 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. Uses official [Bootstrap 4](https://getbootstrap.com). This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
+Laravel 7 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. Uses official [Bootstrap 4](https://getbootstrap.com). This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
 
 ### Features
-#### A [Laravel](https://laravel.com/) 6.0.x with minimal [Bootstrap](https://getbootstrap.com) 4.0.x project.
+#### A [Laravel](https://laravel.com/) 7.x with [Bootstrap](https://getbootstrap.com) 4.x project.
 
-| Laravel-Auth Features  |
+| Laravel Auth Features  |
 | :------------ |
-|Built on [Laravel](https://laravel.com/) 6.0|
+|Built on [Laravel](https://laravel.com/) 7.0|
 |Built on [Bootstrap](https://getbootstrap.com/) 4|
 |Uses [MySQL](https://github.com/mysql) Database (can be changed)|
-|Uses [Artisan](https://laravel.com/docs/6.x/artisan) to manage database migration, schema creations, and create/publish page controller templates|
+|Uses [Artisan](https://laravel.com/docs/master/artisan) to manage database migration, schema creations, and create/publish page controller templates|
 |Dependencies are managed with [COMPOSER](https://getcomposer.org/)|
 |Laravel Scaffolding **User** and **Administrator Authentication**.|
 |User [Socialite Logins](https://github.com/laravel/socialite) ready to go - See API list used below|
 |[Google Maps API v3](https://developers.google.com/maps/documentation/javascript/) for User Location lookup and Geocoding|
 |CRUD (Create, Read, Update, Delete) Themes Management|
 |CRUD (Create, Read, Update, Delete) User Management|
-|Robust [Laravel Logging](https://laravel.com/docs/6.x/errors#logging) with admin UI using MonoLog|
+|Robust [Laravel Logging](https://laravel.com/docs/master/errors#logging) with admin UI using MonoLog|
 |Google [reCaptcha Protection with Google API](https://developers.google.com/recaptcha/)|
 |User Registration with email verification|
-|Makes use of Laravel [Mix](https://laravel.com/docs/6.x/mix) to compile assets|
-|Makes use of [Language Localization Files](https://laravel.com/docs/6.x/localization)|
-|Active Nav states using [Laravel Requests](https://laravel.com/docs/6.x/requests)|
+|Makes use of Laravel [Mix](https://laravel.com/docs/master/mix) to compile assets|
+|Makes use of [Language Localization Files](https://laravel.com/docs/master/localization)|
+|Active Nav states using [Laravel Requests](https://laravel.com/docs/master/requests)|
 |Restrict User Email Activation Attempts|
 |Capture IP to users table upon signup|
 |Uses [Laravel Debugger](https://github.com/barryvdh/laravel-debugbar) for development|
@@ -85,7 +85,7 @@ Laravel 6.0 with user authentication, registration with email confirmation, soci
 |User Login with remember password|
 |User [Roles/ACL Implementation](https://github.com/jeremykenedy/laravel-roles)|
 |Roles and Permissions GUI|
-|Makes use of [Laravel's Soft Delete Structure](https://laravel.com/docs/6.x/eloquent#soft-deleting)|
+|Makes use of [Laravel's Soft Delete Structure](https://laravel.com/docs/master/eloquent#soft-deleting)|
 |Soft Deleted Users Management System|
 |Permanently Delete Soft Deleted Users|
 |User Delete Account with Goodbye email|
@@ -133,10 +133,15 @@ php artisan vendor:publish --tag=laravel2step
 2. From the projects root folder run `yarn run dev` or `yarn run production`
   * You can watch assets with `yarn run watch`
 
+##### Using NPM:
+1. From the projects root folder run `npm install`
+2. From the projects root folder run `npm run dev` or `npm run production`
+  * You can watch assets with `npm run watch`
+
 #### Optionally Build Cache
 1. From the projects root folder run `php artisan config:cache`
 
-###### And thats it with the caveat of setting up and configuring your development environment. I recommend [Laravel Homestead](https://laravel.com/docs/6.x/homestead)
+###### And thats it with the caveat of setting up and configuring your development environment. I recommend [Laravel Homestead](https://laravel.com/docs/master/homestead)
 
 ### Seeds
 ##### Seeded Roles
@@ -551,18 +556,19 @@ INSTAGRAM_REDIRECT_URI=http://laravel-authentication.local/social/handle/instagr
 ```
 
 #### Laravel Developement Packages Used References
-* https://laravel.com/docs/6.x/authentication
-* https://laravel.com/docs/6.x/authorization
-* https://laravel.com/docs/6.x/routing
-* https://laravel.com/docs/6.x/migrations
-* https://laravel.com/docs/6.x/queries
-* https://laravel.com/docs/6.x/views
-* https://laravel.com/docs/6.x/eloquent
-* https://laravel.com/docs/6.x/eloquent-relationships
-* https://laravel.com/docs/6.x/requests
-* https://laravel.com/docs/6.x/errors
+* https://laravel.com/docs/master/authentication
+* https://laravel.com/docs/master/authorization
+* https://laravel.com/docs/master/routing
+* https://laravel.com/docs/master/migrations
+* https://laravel.com/docs/master/queries
+* https://laravel.com/docs/master/views
+* https://laravel.com/docs/master/eloquent
+* https://laravel.com/docs/master/eloquent-relationships
+* https://laravel.com/docs/master/requests
+* https://laravel.com/docs/master/errors
 
 ###### Updates:
+* Update to Laravel 7.0 [See changes in this Commit](https://github.com/jeremykenedy/laravel-auth/commit/038a23f516efc08cd02c4582249234f6f6432c46)
 * Update to Laravel 6.0
 * Update to Laravel 5.8
 * Added [Laravel Blocker Package](https://github.com/jeremykenedy/laravel-blocker)
@@ -575,7 +581,7 @@ INSTAGRAM_REDIRECT_URI=http://laravel-authentication.local/social/handle/instagr
 * Update to Laravel 5.5
 * Added User Delete with Goodbye email
 * Added User Restore Deleted Account from email with secure token
-* Added [Soft Deletes](https://laravel.com/docs/6.x/eloquent#soft-deleting) and Soft Deletes Management panel
+* Added [Soft Deletes](https://laravel.com/docs/master/eloquent#soft-deleting) and Soft Deletes Management panel
 * Added User Account Settings to Profile Edit
 * Added User Change Password to Profile Edit
 * Added User Delete Account to Profile Edit
@@ -583,8 +589,8 @@ INSTAGRAM_REDIRECT_URI=http://laravel-authentication.local/social/handle/instagr
 * Added [hideShowPassword](https://github.com/cloudfour/hideShowPassword)
 * Added Admin Routing Details
 * Admin PHP Information
-* Added Robust [Laravel Logging](https://laravel.com/docs/6.x/errors#logging) with admin UI using MonoLog
-* Added Active Nav states using [Laravel Requests](https://laravel.com/docs/6.x/requests)
+* Added Robust [Laravel Logging](https://laravel.com/docs/master/errors#logging) with admin UI using MonoLog
+* Added Active Nav states using [Laravel Requests](https://laravel.com/docs/master/requests)
 * Added [Laravel Debugger](https://github.com/barryvdh/laravel-debugbar) with Service Provider to manage status in `.env` file.
 * Updated Capture IP not found IP address
 * Added User Avatar Image AJAX Upload with [Dropzone.js](http://www.dropzonejs.com/#configuration)

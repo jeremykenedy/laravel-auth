@@ -17,6 +17,8 @@ class SocialController extends Controller
 {
     use ActivationTrait;
 
+    private $redirectSuccessLogin = 'home';
+
     /**
      * Gets the social redirect.
      *
@@ -45,7 +47,10 @@ class SocialController extends Controller
      */
     public function getSocialHandle($provider, Request $request)
     {
-        if ($request->get('denied') != '') {
+        $denied = $request->denied ? $request->denied : null;
+        $socialUser = null;
+
+        if ($denied != null || $denied != '') {
             return redirect()->to('login')
                 ->with('status', 'danger')
                 ->with('message', trans('socials.denied'));
@@ -53,17 +58,16 @@ class SocialController extends Controller
 
         $socialUserObject = Socialite::driver($provider)->user();
 
-        $socialUser = null;
-
         // Check if email is already registered
         $userCheck = User::where('email', '=', $socialUserObject->email)->first();
 
         $email = $socialUserObject->email;
 
-        if (!$socialUserObject->email) {
+        if (! $socialUserObject->email) {
             $email = 'missing'.str_random(10).'@'.str_random(10).'.example.org';
         }
 
+        // If user is not registered
         if (empty($userCheck)) {
             $sameSocialId = Social::where('social_id', '=', $socialUserObject->id)
                 ->where('provider', '=', $provider)
@@ -129,14 +133,14 @@ class SocialController extends Controller
 
             auth()->login($socialUser, true);
 
-            return redirect('home')->with('success', trans('socials.registerSuccess'));
+            return redirect($this->redirectSuccessLogin)->with('success', trans('socials.registerSuccess'));
         }
 
         $socialUser = $userCheck;
 
         auth()->login($socialUser, true);
 
-        return redirect('home');
+        return redirect($this->redirectSuccessLogin);
     }
 
     /**

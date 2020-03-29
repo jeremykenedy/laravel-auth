@@ -19,7 +19,7 @@ class CreateTwoStepAuthTable extends Migration
         $table = $twoStepAuth->getTableName();
         $tableCheck = Schema::connection($connection)->hasTable($table);
 
-        if (!$tableCheck) {
+        if (! $tableCheck) {
             Schema::connection($connection)->create($table, function (Blueprint $table) {
                 $table->increments('id');
                 $table->unsignedBigInteger('userId')->unsigned()->index();

@@ -14,12 +14,15 @@ class CreateActivationsTable extends Migration
     public function up()
     {
         Schema::create('activations', function (Blueprint $table) {
-            $table->increments('id');
+            //Structure
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('token');
             $table->ipAddress('ip_address');
             $table->timestamps();
+
+            //Relationships
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
