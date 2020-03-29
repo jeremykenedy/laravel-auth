@@ -1030,12 +1030,12 @@ laravel-auth
 ### Opening an Issue
 Before opening an issue there are a couple of considerations:
 * A **star** on this project shows support and is way to say thank you to all the contributors. If you open an issue without a star, *your issue may be closed.* Thank you for understanding and the support. You are all awesome!
-* **PLease Read the instructions** and make sure all steps were *followed correctly*.
+* **Please Read the instructions** and make sure all steps were *followed correctly*.
 * **Please Check** that the issue is not *specific to the development environment* setup.
 * **Please Provide** *duplication steps*.
-* **PLease Attempt to look into the issue**, and if you *have a solution, make a pull request*.
+* **Please Attempt to look into the issue**, and if you *have a solution, make a pull request*.
 * **Please Show that you have made an attempt** to *look into the issue*.
-* **PLease Check** to see if the issue you are *reporting is a duplicate* of a previous reported issue.
+* **Please Check** to see if the issue you are *reporting is a duplicate* of a previous reported issue.
 
 ### Laravel Auth License
 Laravel-auth is licensed under the [MIT license](https://opensource.org/licenses/MIT). Enjoy!
