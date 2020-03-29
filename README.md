@@ -58,7 +58,7 @@ Laravel 7 with user authentication, registration with email confirmation, social
 
 | Laravel Auth Features  |
 | :------------ |
-|Built on [Laravel](https://laravel.com/) 7.0|
+|Built on [Laravel](https://laravel.com/) 7|
 |Built on [Bootstrap](https://getbootstrap.com/) 4|
 |Uses [MySQL](https://github.com/mysql) Database (can be changed)|
 |Uses [Artisan](https://laravel.com/docs/master/artisan) to manage database migration, schema creations, and create/publish page controller templates|
@@ -568,8 +568,8 @@ INSTAGRAM_REDIRECT_URI=http://laravel-authentication.local/social/handle/instagr
 * https://laravel.com/docs/master/errors
 
 ###### Updates:
-* Update to Laravel 7.0 [See changes in this PR](https://github.com/jeremykenedy/laravel-auth/pull/348/files)
-* Update to Laravel 6.0
+* Update to Laravel 7 [See changes in this PR](https://github.com/jeremykenedy/laravel-auth/pull/348/files)
+* Update to Laravel 6
 * Update to Laravel 5.8
 * Added [Laravel Blocker Package](https://github.com/jeremykenedy/laravel-blocker)
 * Added [PHP Info Package](https://github.com/jeremykenedy/laravel-phpinfo)
