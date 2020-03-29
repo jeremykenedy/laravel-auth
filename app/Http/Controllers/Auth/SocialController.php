@@ -23,10 +23,11 @@ class SocialController extends Controller
      * Gets the social redirect.
      *
      * @param string $provider The provider
+     * @param \Illuminate\Http\Request $request
      *
-     * @return Redirect
+     * @return \Illuminate\Http\Response
      */
-    public function getSocialRedirect($provider)
+    public function getSocialRedirect($provider, Request $request)
     {
         $providerKey = Config::get('services.'.$provider);
 
@@ -42,8 +43,9 @@ class SocialController extends Controller
      * Gets the social handle.
      *
      * @param string $provider The provider
+     * @param \Illuminate\Http\Request $request
      *
-     * @return Redirect
+     * @return \Illuminate\Http\Response
      */
     public function getSocialHandle($provider, Request $request)
     {
