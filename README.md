@@ -11,16 +11,16 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
  ### Sponsor
- <table>
-     <tr>
-         <td>
-             <img src="https://s3.amazonaws.com/sponsers/sponsor-logo.png" alt="Auth0">
-         </td>
-         <td>
-             If you want to quickly add secure token-based authentication to Laravel apps, feel free to check Auth0's Laravel SDK and free plan at <a href="https://auth0.com/overview?utm_source=GHsponsor&utm_medium=GHsponsor&utm_campaign=laravel-auth&utm_content=auth" target="_blank">https://auth0.com/overview</a>.
-         </td>
-     </tr>
- </table>
+<table>
+    <tr>
+        <td>
+            <img src="https://cdn.auth0.com/styleguide/components/1.0.8/media/logos/img/badge.png" alt="Auth0" width="100">
+        </td>
+        <td>
+            If you want to quickly add secure token-based authentication to Laravel apps, feel free to check Auth0's Laravel SDK and free plan at <a href="https://auth0.com/overview?utm_source=GHsponsor&utm_medium=GHsponsor&utm_campaign=laravel-auth&utm_content=auth" target="_blank">https://auth0.com/overview</a>.
+        </td>
+    </tr>
+</table>
 
 <a href="https://www.patreon.com/bePatron?u=10119959" title="Become a Patreon">
     <img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" alt="Become a Patreon" width="120px" >
