@@ -6,10 +6,10 @@ enabled:
 
 disabled:
   - unused_use
-  - strict_param
 
 finder:
   not-name:
     - index.php
     - server.php
     - CheckIsUserActivated.php
+    - SocialController.php
