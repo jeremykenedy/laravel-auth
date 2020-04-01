@@ -86,15 +86,21 @@ class ActivateController extends Controller
         if ($user->activated) {
             Log::info('Activated user attempted to visit '.$currentRoute.'. ', [$user]);
 
+            $message = trans('auth.regThanks');
+            if (config('settings.activation')) {
+                $message = trans('auth.alreadyActivated');
+            }
+
             if ($user->isAdmin()) {
                 return redirect()->route(self::getAdminHomeRoute())
                 ->with('status', 'info')
-                ->with('message', trans('auth.alreadyActivated'));
+                ->with('message', $message);
             }
+
 
             return redirect()->route(self::getUserHomeRoute())
                 ->with('status', 'info')
-                ->with('message', trans('auth.alreadyActivated'));
+                ->with('message', $message);
         }
 
         return false;
