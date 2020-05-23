@@ -13,6 +13,7 @@ use App\Traits\CaptureIpTrait;
 use File;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Image;
 use jeremykenedy\Uuid\Uuid;
@@ -213,7 +214,7 @@ class ProfilesController extends Controller
         $ipAddress = new CaptureIpTrait();
 
         if ($request->input('password') !== null) {
-            $user->password = bcrypt($request->input('password'));
+            $user->password = Hash::make($request->input('password'));
         }
 
         $user->updated_ip_address = $ipAddress->getClientIp();
