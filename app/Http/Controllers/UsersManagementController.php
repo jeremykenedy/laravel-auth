@@ -66,9 +66,9 @@ class UsersManagementController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'name'                  => 'required|max:255|unique:users',
-                'first_name'            => '',
-                'last_name'             => '',
+                'name'                  => 'required|max:255|unique:users|alpha_dash',
+                'first_name'            => 'alpha_dash',
+                'last_name'             => 'alpha_dash',
                 'email'                 => 'required|email|max:255|unique:users',
                 'password'              => 'required|min:6|max:20|confirmed',
                 'password_confirmation' => 'required|same:password',
@@ -164,14 +164,18 @@ class UsersManagementController extends Controller
 
         if ($emailCheck) {
             $validator = Validator::make($request->all(), [
-                'name'     => 'required|max:255|unique:users',
-                'email'    => 'email|max:255|unique:users',
-                'password' => 'present|confirmed|min:6',
+                'name'          => 'required|max:255|unique:users|alpha_dash',
+                'email'         => 'email|max:255|unique:users',
+                'first_name'    => 'alpha_dash',
+                'last_name'     => 'alpha_dash',
+                'password'      => 'present|confirmed|min:6',
             ]);
         } else {
             $validator = Validator::make($request->all(), [
-                'name'     => 'required|max:255|unique:users,name,'.$user->id,
-                'password' => 'nullable|confirmed|min:6',
+                'name'          => 'required|max:255|alpha_dash|unique:users,name,'.$user->id,
+                'first_name'    => 'alpha_dash',
+                'last_name'     => 'alpha_dash',
+                'password'      => 'nullable|confirmed|min:6',
             ]);
         }
 
