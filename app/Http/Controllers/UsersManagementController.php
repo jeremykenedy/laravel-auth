@@ -8,6 +8,7 @@ use App\Traits\CaptureIpTrait;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 use jeremykenedy\LaravelRoles\Models\Role;
 use Validator;
 
@@ -95,11 +96,11 @@ class UsersManagementController extends Controller
         $profile = new Profile();
 
         $user = User::create([
-            'name'             => $request->input('name'),
-            'first_name'       => $request->input('first_name'),
-            'last_name'        => $request->input('last_name'),
+            'name'             => strip_tags($request->input('name')),
+            'first_name'       => strip_tags($request->input('first_name')),
+            'last_name'        => strip_tags($request->input('last_name')),
             'email'            => $request->input('email'),
-            'password'         => bcrypt($request->input('password')),
+            'password'         => Hash::make($request->input('password')),
             'token'            => str_random(64),
             'admin_ip_address' => $ipAddress->getClientIp(),
             'activated'        => 1,
@@ -178,16 +179,16 @@ class UsersManagementController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        $user->name = $request->input('name');
-        $user->first_name = $request->input('first_name');
-        $user->last_name = $request->input('last_name');
+        $user->name = strip_tags($request->input('name'));
+        $user->first_name = strip_tags($request->input('first_name'));
+        $user->last_name = strip_tags($request->input('last_name'));
 
         if ($emailCheck) {
             $user->email = $request->input('email');
         }
 
         if ($request->input('password') !== null) {
-            $user->password = bcrypt($request->input('password'));
+            $user->password = Hash::make($request->input('password'));
         }
 
         $userRole = $request->input('role');
