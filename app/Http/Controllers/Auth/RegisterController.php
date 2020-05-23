@@ -125,11 +125,9 @@ class RegisterController extends Controller
         $user->attachRole($role);
         $this->initiateEmailActivation($user);
 
-        if (! config('settings.activation')) {
-            $profile = new Profile();
-            $user->profile()->save($profile);
-            $user->save();
-        }
+        $profile = new Profile();
+        $user->profile()->save($profile);
+        $user->save();
 
         return $user;
     }
