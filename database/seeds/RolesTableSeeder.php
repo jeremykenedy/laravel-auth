@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use jeremykenedy\LaravelRoles\Models\Role;
 
 class RolesTableSeeder extends Seeder
 {
@@ -13,34 +12,44 @@ class RolesTableSeeder extends Seeder
     public function run()
     {
         /*
-         * Add Roles
+         * Role Types
          *
          */
-        if (Role::where('slug', '=', 'admin')->first() === null) {
-            $adminRole = Role::create([
+        $RoleItems = [
+            [
                 'name'        => 'Admin',
                 'slug'        => 'admin',
                 'description' => 'Admin Role',
                 'level'       => 5,
-            ]);
-        }
-
-        if (Role::where('slug', '=', 'user')->first() === null) {
-            $userRole = Role::create([
+            ],
+            [
                 'name'        => 'User',
                 'slug'        => 'user',
                 'description' => 'User Role',
                 'level'       => 1,
-            ]);
-        }
-
-        if (Role::where('slug', '=', 'unverified')->first() === null) {
-            $userRole = Role::create([
+            ],
+            [
                 'name'        => 'Unverified',
                 'slug'        => 'unverified',
                 'description' => 'Unverified Role',
                 'level'       => 0,
-            ]);
+            ],
+        ];
+
+        /*
+         * Add Role Items
+         *
+         */
+        foreach ($RoleItems as $RoleItem) {
+            $newRoleItem = config('roles.models.role')::where('slug', '=', $RoleItem['slug'])->first();
+            if ($newRoleItem === null) {
+                $newRoleItem = config('roles.models.role')::create([
+                    'name'          => $RoleItem['name'],
+                    'slug'          => $RoleItem['slug'],
+                    'description'   => $RoleItem['description'],
+                    'level'         => $RoleItem['level'],
+                ]);
+            }
         }
     }
 }
