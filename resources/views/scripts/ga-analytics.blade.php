@@ -9,6 +9,3 @@
         gtag('config', '{{ config('settings.googleanalyticsId') }}');
     </script>
 @endif
-
-
-
