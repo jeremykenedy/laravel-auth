@@ -525,7 +525,7 @@ ROLES_GUI_FLASH_MESSAGES_ENABLED=false
 ROLES_GUI_BLADE_PLACEMENT_CSS=template_linked_css
 ROLES_GUI_BLADE_PLACEMENT_JS=footer_scripts
 
-# Google Analytics
+# Google Analytics - If blank it will not render, default is false
 GOOGLE_ANALYTICS_ID=
 #GOOGLE_ANALYTICS_ID='UA-XXXXXXXX-X'
 
