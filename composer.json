@@ -34,6 +34,7 @@
         "laravelcollective/html": "^6.1",
         "pusher/pusher-php-server": "^4.1",
         "rap2hpoutre/laravel-log-viewer": "^1.4",
+        "shvetsgroup/laravel-email-database-log": "^1.4",
         "socialiteproviders/37signals": "^3.0",
         "socialiteproviders/generators": "^4.6",
         "socialiteproviders/instagram": "^3.0",
