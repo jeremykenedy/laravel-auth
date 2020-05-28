@@ -51,7 +51,7 @@
         @endif
 
         @yield('head')
-
+        @include('scripts.ga-analytics')
     </head>
     <body>
         <div id="app">

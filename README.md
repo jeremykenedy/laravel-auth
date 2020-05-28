@@ -191,7 +191,7 @@ php artisan vendor:publish --tag=laravel2step
 
 ### Routes
 
-```
+```bash
 +--------+----------------------------------------+---------------------------------------+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------+
 | Domain | Method                                 | URI                                   | Name                                          | Action                                                                                                          | Middleware                                                   |
 +--------+----------------------------------------+---------------------------------------+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------+
@@ -524,6 +524,10 @@ ROLES_GUI_DATATABLES_JS_ENABLED=false
 ROLES_GUI_FLASH_MESSAGES_ENABLED=false
 ROLES_GUI_BLADE_PLACEMENT_CSS=template_linked_css
 ROLES_GUI_BLADE_PLACEMENT_JS=footer_scripts
+
+# Google Analytics
+GOOGLE_ANALYTICS_ID=
+#GOOGLE_ANALYTICS_ID='UA-XXXXXXXX-X'
 
 # NOTE: YOU CAN REMOVE THE KEY CALL IN app.blade.php IF YOU GET A POP UP AND DO NOT WANT TO SETUP A KEY FOR DEV
 # Google Maps API v3 Key - https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key

@@ -66,6 +66,7 @@
                 margin-bottom: 30px;
             }
         </style>
+        @include('scripts.ga-analytics')
     </head>
     <body>
         <div class="flex-center position-ref full-height">
