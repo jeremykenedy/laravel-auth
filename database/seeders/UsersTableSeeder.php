@@ -1,8 +1,11 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use jeremykenedy\LaravelRoles\Models\Role;
 
 class UsersTableSeeder extends Seeder
@@ -14,7 +17,6 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create();
         $profile = new Profile();
         $adminRole = Role::whereName('Admin')->first();
         $userRole = Role::whereName('User')->first();
@@ -24,15 +26,15 @@ class UsersTableSeeder extends Seeder
         $user = User::where('email', '=', $seededAdminEmail)->first();
         if ($user === null) {
             $user = User::create([
-                'name'                           => $faker->userName,
-                'first_name'                     => $faker->firstName,
-                'last_name'                      => $faker->lastName,
+                'name'                           => 'Admin',
+                'first_name'                     => 'Harry',
+                'last_name'                      => 'Potter',
                 'email'                          => $seededAdminEmail,
                 'password'                       => Hash::make('password'),
                 'token'                          => str_random(64),
                 'activated'                      => true,
-                'signup_confirmation_ip_address' => $faker->ipv4,
-                'admin_ip_address'               => $faker->ipv4,
+                'signup_confirmation_ip_address' => '127.0.0.1',
+                'admin_ip_address'               => '127.0.0.1',
             ]);
 
             $user->profile()->save($profile);
@@ -44,15 +46,15 @@ class UsersTableSeeder extends Seeder
         $user = User::where('email', '=', 'user@user.com')->first();
         if ($user === null) {
             $user = User::create([
-                'name'                           => $faker->userName,
-                'first_name'                     => $faker->firstName,
-                'last_name'                      => $faker->lastName,
+                'name'                           => 'User',
+                'first_name'                     => 'Hermione',
+                'last_name'                      => 'Granger',
                 'email'                          => 'user@user.com',
                 'password'                       => Hash::make('password'),
                 'token'                          => str_random(64),
                 'activated'                      => true,
-                'signup_ip_address'              => $faker->ipv4,
-                'signup_confirmation_ip_address' => $faker->ipv4,
+                'signup_ip_address'              => '127.0.0.1',
+                'signup_confirmation_ip_address' => '127.0.0.1',
             ]);
 
             $user->profile()->save(new Profile());

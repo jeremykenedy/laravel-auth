@@ -1,5 +1,9 @@
 <?php
 
+namespace Database\Factories;
+
+use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 use jeremykenedy\LaravelRoles\Models\Role;
 
 /*
@@ -26,7 +30,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'password'                       => $password ?: $password = bcrypt('secret'),
         'token'                          => str_random(64),
         'activated'                      => true,
-        'remember_token'                 => str_random(10),
+        'remember_token'                 => Str::random(10),
         'signup_ip_address'              => $faker->ipv4,
         'signup_confirmation_ip_address' => $faker->ipv4,
     ];
