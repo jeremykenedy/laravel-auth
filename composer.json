@@ -18,7 +18,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.5",
         "jaybizzle/laravel-crawler-detect": "^1.2",
-        "jeremykenedy/laravel-blocker": "^2.6",
+        "jeremykenedy/laravel-blocker": "^3.1",
         "jeremykenedy/laravel-exception-notifier": "1.2",
         "jeremykenedy/laravel-https": "^1.2",
         "jeremykenedy/laravel-logger": "^3.6",
