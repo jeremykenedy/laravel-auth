@@ -23,7 +23,7 @@ HTML::macro('image_link', function ($url = '', $img = '', $alt = '', $link_name 
     return $link;
 });
 
-/**
+/*
  * Render an icon with an anchor tag around it.
  *
  * @var string url
@@ -44,7 +44,7 @@ HTML::macro('icon_link', function ($url = '', $icon = '', $link_name = '', $para
     return $link;
 });
 
-/**
+/*
  * Render an button with an icon with an anchor tag around it.
  *
  * @var string url
@@ -65,7 +65,7 @@ HTML::macro('icon_btn', function ($url = '', $icon = '', $link_name = '', $param
     return $link;
 });
 
-/**
+/*
  * Show Username.
  *
  * @return string
