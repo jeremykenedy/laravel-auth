@@ -69,7 +69,7 @@ Route::group(['middleware' => ['auth', 'activated', 'currentUser', 'activity', '
     // User Profile and Account Routes
     Route::resource(
         'profile',
-        'App\Http\Controllers\ProfilesController',
+        \App\Http\Controllers\ProfilesController::class,
         [
             'only' => [
                 'show',
@@ -103,13 +103,13 @@ Route::group(['middleware' => ['auth', 'activated', 'currentUser', 'activity', '
 
 // Registered, activated, and is admin routes.
 Route::group(['middleware' => ['auth', 'activated', 'role:admin', 'activity', 'twostep', 'checkblocked']], function () {
-    Route::resource('/users/deleted', 'App\Http\Controllers\SoftDeletesController', [
+    Route::resource('/users/deleted', \App\Http\Controllers\SoftDeletesController::class, [
         'only' => [
             'index', 'show', 'update', 'destroy',
         ],
     ]);
 
-    Route::resource('users', 'App\Http\Controllers\UsersManagementController', [
+    Route::resource('users', \App\Http\Controllers\UsersManagementController::class, [
         'names' => [
             'index'   => 'users',
             'destroy' => 'user.destroy',
@@ -120,7 +120,7 @@ Route::group(['middleware' => ['auth', 'activated', 'role:admin', 'activity', 't
     ]);
     Route::post('search-users', 'App\Http\Controllers\UsersManagementController@search')->name('search-users');
 
-    Route::resource('themes', 'App\Http\Controllers\ThemesManagementController', [
+    Route::resource('themes', \App\Http\Controllers\ThemesManagementController::class, [
         'names' => [
             'index'   => 'themes',
             'destroy' => 'themes.destroy',
