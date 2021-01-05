@@ -34,7 +34,7 @@
         "laravelcollective/html": "^6.1",
         "pusher/pusher-php-server": "^4.1",
         "rap2hpoutre/laravel-log-viewer": "^1.4",
-        "shvetsgroup/laravel-email-database-log": "^1.5",
+        "shvetsgroup/laravel-email-database-log": "^8.0.0",
         "socialiteproviders/37signals": "^3.0",
         "socialiteproviders/generators": "^4.6.1",
         "socialiteproviders/instagram": "^3.0",
@@ -50,12 +50,6 @@
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url":  "https://github.com/jeremykenedy/laravel-email-database-log.git"
-        }
-    ],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
