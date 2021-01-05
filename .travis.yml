@@ -11,7 +11,7 @@ before_script:
   - cp .env.travis .env
   - mysql -u root -e 'create database laravelAuth;'
   - composer self-update
-  - composer install --prefer-source --no-interaction
+  - composer install --no-interaction
   - php artisan vendor:publish --tag=laravelroles
   - php artisan vendor:publish --tag=laravel2step
   - php artisan key:generate
