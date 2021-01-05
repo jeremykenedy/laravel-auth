@@ -30,7 +30,7 @@ Homestead.json
 ### Master Configs ###
 .env
 composer.lock
-#package-lock.json
+package-lock.json
 yarn.lock
 
 ### Assets ###
