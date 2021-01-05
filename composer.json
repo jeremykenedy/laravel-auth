@@ -36,7 +36,7 @@
         "rap2hpoutre/laravel-log-viewer": "^1.4",
         "shvetsgroup/laravel-email-database-log": "^1.5",
         "socialiteproviders/37signals": "^3.0",
-        "socialiteproviders/generators": "^4.7",
+        "socialiteproviders/generators": "^4.6.1",
         "socialiteproviders/instagram": "^3.0",
         "socialiteproviders/linkedin": "^3.1",
         "socialiteproviders/twitch": "^5.1",
@@ -51,10 +51,6 @@
         "phpunit/phpunit": "^9.3"
     },
     "repositories": [
-        {
-            "type": "vcs",
-            "url":  "https://github.com/jeremykenedy/Generators-1.git"
-        },
         {
             "type": "vcs",
             "url":  "https://github.com/jeremykenedy/laravel-email-database-log.git"
