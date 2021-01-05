@@ -1057,7 +1057,7 @@ laravel-auth
 
 ### Opening an Issue
 Before opening an issue there are a couple of considerations:
-* A **star** on this project shows support and is way to say thank you to all the contributors. If you open an issue without a star, *your issue may be closed.* Thank you for understanding and the support. You are all awesome!
+* You are all awesome!
 * **Please Read the instructions** and make sure all steps were *followed correctly*.
 * **Please Check** that the issue is not *specific to the development environment* setup.
 * **Please Provide** *duplication steps*.
