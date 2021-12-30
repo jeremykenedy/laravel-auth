@@ -29,7 +29,7 @@ return [
     | Laravel Default User Model
     |--------------------------------------------------------------------------
     */
-    'defaultUserModel'              => env('LARAVEL_BLOCKER_USER_MODEL', 'App\User'),
+    'defaultUserModel'              => env('LARAVEL_BLOCKER_USER_MODEL', 'App\Models\User'),
 
     /*
     |--------------------------------------------------------------------------
