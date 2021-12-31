@@ -130,7 +130,6 @@ class User extends Authenticatable
      * Check if a user has a profile.
      *
      * @param  string  $name
-     *
      * @return bool
      */
     public function hasProfile($name)
@@ -147,7 +146,7 @@ class User extends Authenticatable
     /**
      * Add/Attach a profile to a user.
      *
-     * @param  Profile $profile
+     * @param  Profile  $profile
      */
     public function assignProfile(Profile $profile)
     {
@@ -157,7 +156,7 @@ class User extends Authenticatable
     /**
      * Remove/Detach a profile to a user.
      *
-     * @param  Profile $profile
+     * @param  Profile  $profile
      */
     public function removeProfile(Profile $profile)
     {

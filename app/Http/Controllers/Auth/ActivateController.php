@@ -78,7 +78,6 @@ class ActivateController extends Controller
      *
      * @param $user             The user
      * @param currentRoute      The current route
-     *
      * @return Redirect
      */
     public static function activeRedirect($user, $currentRoute)
@@ -175,8 +174,7 @@ class ActivateController extends Controller
     /**
      * Activate a valid user with a token.
      *
-     * @param string $token The token
-     *
+     * @param  string  $token  The token
      * @return Redirect
      */
     public function activate($token)

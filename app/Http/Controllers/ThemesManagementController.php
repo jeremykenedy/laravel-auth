@@ -46,8 +46,7 @@ class ThemesManagementController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -78,8 +77,7 @@ class ThemesManagementController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Theme $theme
-     *
+     * @param  Theme  $theme
      * @return \Illuminate\Http\Response
      */
     public function show(Theme $theme)
@@ -90,8 +88,7 @@ class ThemesManagementController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Theme $theme
-     *
+     * @param  Theme  $theme
      * @return \Illuminate\Http\Response
      */
     public function edit(Theme $theme)
@@ -102,9 +99,8 @@ class ThemesManagementController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param Theme                    $theme
-     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  Theme  $theme
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Theme $theme)
@@ -125,8 +121,7 @@ class ThemesManagementController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Theme $theme
-     *
+     * @param  Theme  $theme
      * @return \Illuminate\Http\Response
      */
     public function destroy(Theme $theme)
@@ -143,8 +138,7 @@ class ThemesManagementController extends Controller
     }
 
     /**
-     * @param Theme $theme
-     *
+     * @param  Theme  $theme
      * @return array
      */
     protected function getThemeData(Theme $theme): array

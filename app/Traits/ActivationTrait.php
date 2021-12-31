@@ -12,8 +12,7 @@ trait ActivationTrait
      * Trigger Activation Email
      * Note: this was build pre laravel verification emails.
      *
-     * @param  User $user
-     *
+     * @param  User  $user
      * @return void
      */
     public function initiateEmailActivation(User $user)
@@ -29,8 +28,7 @@ trait ActivationTrait
     /**
      * Validate the Users Email.
      *
-     * @param  User $user
-     *
+     * @param  User  $user
      * @return bool
      */
     protected function validateEmail(User $user)

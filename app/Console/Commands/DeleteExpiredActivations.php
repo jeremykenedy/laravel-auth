@@ -28,7 +28,7 @@ class DeleteExpiredActivations extends Command
      *
      * DeleteExpiredActivations constructor.
      *
-     * @param ActivationRepository $activationRepository
+     * @param  ActivationRepository  $activationRepository
      */
     public function __construct(ActivationRepository $activationRepository)
     {

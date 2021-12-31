@@ -84,8 +84,7 @@ class Theme extends Model
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param array $data
-     *
+     * @param  array  $data
      * @return array
      */
     public static function rules($id = 0, $merge = [])

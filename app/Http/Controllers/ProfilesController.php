@@ -40,7 +40,6 @@ class ProfilesController extends Controller
      * (You can extract this to repository method).
      *
      * @param $username
-     *
      * @return mixed
      */
     public function getUserByUsername($username)
@@ -51,8 +50,7 @@ class ProfilesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param string $username
-     *
+     * @param  string  $username
      * @return Response
      */
     public function show($username)
@@ -77,7 +75,6 @@ class ProfilesController extends Controller
      * /profiles/username/edit.
      *
      * @param $username
-     *
      * @return mixed
      */
     public function edit($username)
@@ -109,12 +106,11 @@ class ProfilesController extends Controller
     /**
      * Update a user's profile.
      *
-     * @param \App\Http\Requests\UpdateUserProfile $request
+     * @param  \App\Http\Requests\UpdateUserProfile  $request
      * @param $username
+     * @return mixed
      *
      * @throws Laracasts\Validation\FormValidationException
-     *
-     * @return mixed
      */
     public function update(UpdateUserProfile $request, $username)
     {
@@ -141,9 +137,8 @@ class ProfilesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int                      $id
-     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function updateUserAccount(Request $request, $id)
@@ -202,9 +197,8 @@ class ProfilesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \App\Http\Requests\UpdateUserPasswordRequest $request
-     * @param int                                          $id
-     *
+     * @param  \App\Http\Requests\UpdateUserPasswordRequest  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function updateUserPassword(UpdateUserPasswordRequest $request, $id)
@@ -227,7 +221,6 @@ class ProfilesController extends Controller
      * Upload and Update user avatar.
      *
      * @param $file
-     *
      * @return mixed
      */
     public function upload(Request $request)
@@ -261,7 +254,6 @@ class ProfilesController extends Controller
      *
      * @param $id
      * @param $image
-     *
      * @return string
      */
     public function userProfileAvatar($id, $image)
@@ -272,9 +264,8 @@ class ProfilesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \App\Http\Requests\DeleteUserAccount $request
-     * @param int                                  $id
-     *
+     * @param  \App\Http\Requests\DeleteUserAccount  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function deleteUserAccount(DeleteUserAccount $request, $id)
@@ -319,9 +310,8 @@ class ProfilesController extends Controller
     /**
      * Send GoodBye Email Function via Notify.
      *
-     * @param array  $user
-     * @param string $token
-     *
+     * @param  array  $user
+     * @param  string  $token
      * @return void
      */
     public static function sendGoodbyEmail(User $user, $token)
