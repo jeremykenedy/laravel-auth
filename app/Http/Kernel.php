@@ -66,9 +66,9 @@ class Kernel extends HttpKernel
         'throttle'          => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified'          => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'activated'         => CheckIsUserActivated::class,
-        'role'              => \jeremykenedy\LaravelRoles\Middleware\VerifyRole::class,
-        'permission'        => \jeremykenedy\LaravelRoles\Middleware\VerifyPermission::class,
-        'level'             => \jeremykenedy\LaravelRoles\Middleware\VerifyLevel::class,
+        'role'              => \jeremykenedy\LaravelRoles\App\Http\Middleware\VerifyRole::class,
+        'permission'        => \jeremykenedy\LaravelRoles\App\Http\Middleware\VerifyPermission::class,
+        'level'             => \jeremykenedy\LaravelRoles\App\Http\Middleware\VerifyLevel::class,
         'currentUser'       => \App\Http\Middleware\CheckCurrentUser::class,
     ];
 }
