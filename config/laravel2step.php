@@ -25,7 +25,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'defaultUserModel' => env('LARAVEL_2STEP_USER_MODEL', 'App\User'),
+    'defaultUserModel' => env('LARAVEL_2STEP_USER_MODEL', 'App\Models\User'),
 
     /*
     |--------------------------------------------------------------------------
