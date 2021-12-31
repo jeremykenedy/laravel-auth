@@ -21,9 +21,8 @@ class RestoreUserController extends ProfilesController
     /**
      * User Account Restore.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param string                   $token
-     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $token
      * @return \Illuminate\Http\Response
      */
     public function userReActivate(Request $request, $token)

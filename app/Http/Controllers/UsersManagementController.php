@@ -57,8 +57,7 @@ class UsersManagementController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -116,8 +115,7 @@ class UsersManagementController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param User $user
-     *
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
@@ -128,8 +126,7 @@ class UsersManagementController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param User $user
-     *
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
@@ -152,9 +149,8 @@ class UsersManagementController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param User                     $user
-     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
@@ -221,8 +217,7 @@ class UsersManagementController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param User $user
-     *
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
@@ -244,8 +239,7 @@ class UsersManagementController extends Controller
     /**
      * Method to search the users.
      *
-     * @param Request $request
-     *
+     * @param  Request  $request
      * @return \Illuminate\Http\Response
      */
     public function search(Request $request)

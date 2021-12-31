@@ -22,8 +22,7 @@ class Authenticate extends Middleware
     /**
      * Create a new filter instance.
      *
-     * @param Guard $auth
-     *
+     * @param  Guard  $auth
      * @return void
      */
     public function __construct(Guard $auth)
@@ -47,9 +46,8 @@ class Authenticate extends Middleware
     /**
      * Handle an incoming request.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure                 $next
-     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -65,9 +63,9 @@ class Authenticate extends Middleware
 
     /**
      * Log a termination.
-     * @param \Illuminate\Http\Request $request
-     * @param $response
      *
+     * @param  \Illuminate\Http\Request  $request
+     * @param $response
      * @return void
      */
     public function terminate($request, $response)
