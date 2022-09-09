@@ -115,7 +115,8 @@ Laravel 8 with user authentication, registration with email confirmation, social
 7. From the projects root folder run:
 ```
 php artisan vendor:publish --tag=laravelroles &&
-php artisan vendor:publish --tag=laravel2step
+php artisan vendor:publish --tag=laravel2step &&
+php artisan vendor:publish --tag=laravel-email-database-log-migration
 ```
 7. From the projects root folder run `sudo chmod -R 755 ../laravel-auth`
 8. From the projects root folder run `php artisan key:generate`
