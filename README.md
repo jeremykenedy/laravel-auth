@@ -110,8 +110,9 @@ Laravel 8 with user authentication, registration with email confirmation, social
     * ```\q```
 3. From the projects root run `cp .env.example .env`
 4. Configure your `.env` file
-5. Run `composer update` from the projects root folder
-6. From the projects root folder run:
+5. Install composer, php-mysql, php-ext and php-dom (dependent on your distrubtion, For Debian run `apt install composer php-mysql php-ext php-dom`)
+6. Run `composer update` from the projects root folder
+7. From the projects root folder run:
 ```
 php artisan vendor:publish --tag=laravelroles &&
 php artisan vendor:publish --tag=laravel2step
@@ -125,8 +126,9 @@ php artisan vendor:publish --tag=laravel2step
 
 #### Build the Front End Assets with Mix
 ##### Using Yarn:
-1. From the projects root folder run `yarn install`
-2. From the projects root folder run `yarn run dev` or `yarn run production`
+1. Install yarn (dependent on your distribution)
+2. From the projects root folder run `yarn install`
+3. From the projects root folder run `yarn run dev` or `yarn run production`
   * You can watch assets with `yarn run watch`
 
 ##### Using NPM:
