@@ -22,6 +22,9 @@
     </tr>
 </table>
 
+### Note
+If you like this, you will love [Laravel Auth Spa](https://github.com/jeremykenedy/laravel-spa) with configurable providers from an admin panel.
+
 #### Table of contents
 - [About](#about)
 - [Features](#features)
