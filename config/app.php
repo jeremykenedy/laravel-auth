@@ -193,14 +193,14 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
-        'Redis' => Illuminate\Support\Facades\Redis::class,
-        'Form' => \Collective\Html\FormFacade::class,
-        'HTML' => \Collective\Html\HtmlFacade::class,
+        'Redis'     => Illuminate\Support\Facades\Redis::class,
+        'Form'      => \Collective\Html\FormFacade::class,
+        'HTML'      => \Collective\Html\HtmlFacade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Input' => Illuminate\Support\Facades\Input::class,
-        'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
-        'Image' => Intervention\Image\Facades\Image::class,
-        'Uuid' => jeremykenedy\Uuid\Uuid::class,
+        'Input'     => Illuminate\Support\Facades\Input::class,
+        'Gravatar'  => Creativeorange\Gravatar\Facades\Gravatar::class,
+        'Image'     => Intervention\Image\Facades\Image::class,
+        'Uuid'      => jeremykenedy\Uuid\Uuid::class,
     ])->toArray(),
 
 ];
