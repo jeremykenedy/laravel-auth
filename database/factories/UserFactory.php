@@ -21,15 +21,15 @@ class UserFactory extends Factory
         $userRole = Role::whereName('User')->first();
 
         return [
-            'name'  => fake()->name(),
-            'first_name' => fake()->firstName,
-            'last_name'  => fake()->lastName,
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => bcrypt('secret'),
-            'token'       => str_random(64),
-            'activated'   => true,
-            'remember_token' => Str::random(10),
+            'name'                           => fake()->name(),
+            'first_name'                     => fake()->firstName,
+            'last_name'                      => fake()->lastName,
+            'email'                          => fake()->unique()->safeEmail(),
+            'email_verified_at'              => now(),
+            'password'                       => bcrypt('secret'),
+            'token'                          => str_random(64),
+            'activated'                      => true,
+            'remember_token'                 => Str::random(10),
             'signup_ip_address'              => fake()->ipv4,
             'signup_confirmation_ip_address' => fake()->ipv4,
         ];
