@@ -57,7 +57,7 @@ Route::group(['middleware' => ['auth', 'activated', 'activity', 'twostep', 'chec
     Route::get('/home', [
         'as'    => 'public.home',
         'uses'  => 'App\Http\Controllers\UserController@index',
-        'name'  => 'home'
+        'name'  => 'home',
     ]);
 
     // Show users profile - viewable by other users.
