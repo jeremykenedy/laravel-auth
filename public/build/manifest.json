@@ -52,7 +52,7 @@
     "src": "node_modules/font-awesome/fonts/fontawesome-webfont.woff2"
   },
   "resources/assets/js/app.js": {
-    "file": "assets/app-7108be59.js",
+    "file": "assets/app-c2c68c1d.js",
     "isEntry": true,
     "src": "resources/assets/js/app.js"
   },

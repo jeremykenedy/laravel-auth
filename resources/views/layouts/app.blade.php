@@ -54,8 +54,8 @@
             </main>
         </div>
 
-        <script src="{{ mix('/js/app.js') }}"></script>
-        {{-- @vite(['resources/assets/js/app.js']) --}}
+        {{-- <script src="{{ mix('/js/app.js') }}"></script> --}}
+        @vite(['resources/assets/js/app.js'])
 
         @if(config('settings.googleMapsAPIStatus'))
             {!! HTML::script('//maps.googleapis.com/maps/api/js?key='.config("settings.googleMapsAPIKey").'&libraries=places&dummy=.js', array('type' => 'text/javascript')) !!}
