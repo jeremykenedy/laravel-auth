@@ -45,8 +45,8 @@ return [
     */
 
     'models' => [
-        'role'          => env('ROLES_DEFAULT_ROLE_MODEL', jeremykenedy\LaravelRoles\Models\Role::class),
-        'permission'    => env('ROLES_DEFAULT_PERMISSION_MODEL', jeremykenedy\LaravelRoles\Models\Permission::class),
+        'role'          => \App\Models\Role::class,
+        'permission'    => \App\Models\Permission::class,
         'defaultUser'   => env('ROLES_DEFAULT_USER_MODEL', config('auth.providers.users.model')),
     ],
 
@@ -139,7 +139,7 @@ return [
     'bootstrapCardClasses'          => env('ROLES_GUI_CARD_CLASSES', ''),
 
     // Bootstrap Tooltips
-    'tooltipsEnabled'               => env('ROLES_GUI_TOOLTIPS_ENABLED', true),
+    'tooltipsEnabled'               => env('ROLES_GUI_TOOLTIPS_ENABLED', false),
 
     // jQuery
     'enablejQueryCDN'               => env('ROLES_GUI_JQUERY_CDN_ENABLED', true), // You may need to change this if you compile and include jquery

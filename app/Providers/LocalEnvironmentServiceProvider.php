@@ -27,10 +27,8 @@ class LocalEnvironmentServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap the application services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         if (\App::environment(config('debugbar.enabled_environment'))) {
             $this->registerServiceProviders();
@@ -40,10 +38,8 @@ class LocalEnvironmentServiceProvider extends ServiceProvider
 
     /**
      * Register the application services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         //
     }
@@ -51,7 +47,7 @@ class LocalEnvironmentServiceProvider extends ServiceProvider
     /**
      * Load local service providers.
      */
-    protected function registerServiceProviders()
+    protected function registerServiceProviders(): void
     {
         foreach ($this->localProviders as $provider) {
             $this->app->register($provider);
@@ -61,7 +57,7 @@ class LocalEnvironmentServiceProvider extends ServiceProvider
     /**
      * Load additional Aliases.
      */
-    public function registerFacadeAliases()
+    public function registerFacadeAliases(): void
     {
         $loader = AliasLoader::getInstance();
         foreach ($this->facadeAliases as $alias => $facade) {

@@ -5,7 +5,7 @@
 @import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
 .navbar-laravel {
     background-color: #fff;
@@ -13,11 +13,12 @@
 }
 
 // Font Awesome
-@import '~font-awesome/scss/font-awesome';
+@import "~font-awesome/css/font-awesome.css"; // V4
+@import "@fortawesome/fontawesome-free/css/all.css"; // V5
 
-// Dropzone
-@import "~dropzone/dist/basic";
-@import "~dropzone/dist/dropzone";
+// // Dropzone
+// @import "~dropzone/dist/basic";
+// @import "~dropzone/dist/dropzone";
 
 @import "mixins";
 @import "margins";

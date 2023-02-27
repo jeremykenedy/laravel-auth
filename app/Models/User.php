@@ -2,17 +2,18 @@
 
 namespace App\Models;
 
+use App\Notifications\ResetPasswordNotification;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasRoleAndPermission;
-    use Notifiable;
-    use SoftDeletes;
+    use HasApiTokens, HasFactory, HasRoleAndPermission, Notifiable, SoftDeletes;
 
     /**
      * The database table used by the model.
@@ -101,6 +102,11 @@ class User extends Authenticatable
         'updated_ip_address'                => 'string',
         'deleted_ip_address'                => 'string',
     ];
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
 
     /**
      * Get the socials for the user.

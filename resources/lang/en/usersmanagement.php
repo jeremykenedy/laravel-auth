@@ -10,6 +10,7 @@ return [
     'editing-user'          => 'Editing User :name',
     'showing-user'          => 'Showing User :name',
     'showing-user-title'    => ':name\'s Information',
+    'no-records'            => 'No Records Found',
 
     // Flash Messages
     'createSuccess'   => 'Successfully created user! ',

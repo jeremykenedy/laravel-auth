@@ -64,7 +64,7 @@ return [
     'blockerFontAwesomeCDN'         => env('LARAVEL_BLOCKER_FONT_AWESOME_CDN_URL', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'),
 
     // Bootstrap Tooltips
-    'tooltipsEnabled'               => env('LARAVEL_BLOCKER_TOOLTIPS_ENABLED', true),
+    'tooltipsEnabled'               => env('LARAVEL_BLOCKER_TOOLTIPS_ENABLED', false),
 
     // jQuery IP Mask
     'jQueryIpMaskEnabled'           => env('LARAVEL_BLOCKER_JQUERY_IP_MASK_ENABLED', true),

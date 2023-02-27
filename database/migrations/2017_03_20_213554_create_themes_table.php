@@ -11,7 +11,7 @@ class CreateThemesTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('themes', function (Blueprint $table) {
             $table->bigIncrements('id')->index();
@@ -30,7 +30,7 @@ class CreateThemesTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('themes');
     }

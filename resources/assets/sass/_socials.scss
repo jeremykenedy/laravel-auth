@@ -15,7 +15,7 @@
     background-color: $twitter;
     border-color: $twitter;
     &:hover {
-        background-color: lighten($twitter, 10%) ;
+        background-color: lighten($twitter, 10%);
         border-color: lighten($twitter, 10%);
     }
     &:focus,

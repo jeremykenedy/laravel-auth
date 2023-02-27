@@ -5,9 +5,9 @@
         a {
             border-radius: 0 !important;
             border-bottom: 2px solid $body-bg;
-            &:first-child{
+            &:first-child {
                 border-radius: $border-radius $border-radius 0 0 !important;
-                @media(min-width: $bs4-phone) {
+                @media (min-width: $bs4-phone) {
                     border-radius: $border-radius 0 0 0 !important;
                 }
             }

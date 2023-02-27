@@ -1,63 +1,59 @@
 .margin-half {
-	margin: .5em;
+    margin: 0.5em;
 }
 
 .margin-bottom-half {
-	margin-bottom: 1em;
+    margin-bottom: 1em;
 }
 
-@media(max-width: $phone) {
+@media (max-width: $phone) {
+    .margin-half-phone {
+        margin: 0.5em;
+    }
 
-	.margin-half-phone {
-		margin: .5em;
-	}
+    .margin-bottom-half-phone {
+        margin-bottom: 1em;
+    }
 
-	.margin-bottom-half-phone {
-		margin-bottom: 1em;
-	}
-
-	.margin-top-half-phone {
-		margin-top: 1em;
-	}
-
+    .margin-top-half-phone {
+        margin-top: 1em;
+    }
 }
 
-@media(max-width: $tablet) {
+@media (max-width: $tablet) {
+    .margin-half-tablet {
+        margin: 0.5em;
+    }
 
-	.margin-half-tablet {
-		margin: .5em;
-	}
+    .margin-bottom-half-tablet {
+        margin-bottom: 1em;
+    }
 
-	.margin-bottom-half-tablet {
-		margin-bottom: 1em;
-	}
-
-	.margin-top-half-tablet {
-		margin-top: 1em;
-	}
-
+    .margin-top-half-tablet {
+        margin-top: 1em;
+    }
 }
 
 @mixin generate-margins {
-  	@each $type in $types {
-	  	@each $direction in $directions {
-	  		@for $i from 0 through ($num-of-classes) - 1 {
-	  			.#{$type}-#{$direction}-#{$i} {
-	  				#{$type}-#{$direction}: (#{$i}em);
-	  			}
-	  		}
-	  	}
-	    @each $query, $z in $queries {
-	      	@media(min-width: #{$query}) {
-		      	@each $direction in $directions {
-		      		@for $i from 0 through ($num-of-classes) - 1 {
-		      			.#{$type}-#{$direction}-#{$z}-#{$i} {
-		      				#{$type}-#{$direction}: (#{$i}em);
-		      			}
-		      		}
-		      	}
-	      	}
-	    }
-  	}
+    @each $type in $types {
+        @each $direction in $directions {
+            @for $i from 0 through ($num-of-classes) - 1 {
+                .#{$type}-#{$direction}-#{$i} {
+                    #{$type}-#{$direction}: (#{$i}em);
+                }
+            }
+        }
+        @each $query, $z in $queries {
+            @media (min-width: #{$query}) {
+                @each $direction in $directions {
+                    @for $i from 0 through ($num-of-classes) - 1 {
+                        .#{$type}-#{$direction}-#{$z}-#{$i} {
+                            #{$type}-#{$direction}: (#{$i}em);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 @include generate-margins();

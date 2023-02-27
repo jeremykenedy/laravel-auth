@@ -47,10 +47,12 @@
                             <a class="dropdown-item {{ Request::is('routes') ? 'active' : null }}" href="{{ url('/routes') }}">
                                 {!! trans('titles.adminRoutes') !!}
                             </a>
+                            {{--
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item {{ Request::is('active-users') ? 'active' : null }}" href="{{ url('/active-users') }}">
                                 {!! trans('titles.activeUsers') !!}
                             </a>
+                            --}}
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item {{ Request::is('blocker') ? 'active' : null }}" href="{{ route('laravelblocker::blocker.index') }}">
                                 {!! trans('titles.laravelBlocker') !!}

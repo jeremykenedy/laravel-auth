@@ -1,5 +1,7 @@
 <?php
 
+use Collective\Html\HtmlFacade as HTML;
+
 /**
  * Render an image with an anchor tag around it.
  *

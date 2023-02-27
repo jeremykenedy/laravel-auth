@@ -23,7 +23,7 @@ return [
     'datatablesJsPresetCDN'         => 'https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js',
 
     // Bootstrap Tooltips
-    'tooltipsEnabled'               => true,
+    'tooltipsEnabled'               => false,
     'enableBootstrapPopperJsCdn'    => true,
     'bootstrapPopperJsCdn'          => 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js',
 

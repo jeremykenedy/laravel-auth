@@ -1,6 +1,7 @@
 ## Laravel Auth
 
-#### Laravel Auth is a Complete Build of Laravel 8 with Email Registration Verification, Social Authentication, User Roles and Permissions, User Profiles, and Admin restricted user management system. Built on Bootstrap 4.
+#### Laravel Auth is a Complete Build of Laravel 10 with Email Registration Verification, Social Authentication, User Roles and Permissions, User Profiles, and Admin restricted user management system. Built on Bootstrap 4.
+
 [![Build Status](https://travis-ci.org/jeremykenedy/laravel-auth.svg?branch=master)](https://travis-ci.org/jeremykenedy/laravel-auth)
 [![StyleCI](https://styleci.io/repos/44714043/shield?branch=master)](https://styleci.io/repos/44714043)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/?branch=master)
@@ -9,7 +10,8 @@
 [![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/1342-shield.svg)](https://madewithlaravel.com/p/laravel-auth/shield-link)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
- ### Sponsor
+### Sponsor
+
 <table>
     <tr>
         <td>
@@ -22,104 +24,111 @@
 </table>
 
 ### Note
+
 If you like this, you will love [Laravel Auth Spa](https://github.com/jeremykenedy/laravel-spa) with configurable providers from an admin panel.
 
 #### Table of contents
-- [About](#about)
-- [Features](#features)
-- [Installation Instructions](#installation-instructions)
-    - [Build the Front End Assets with Mix](#build-the-front-end-assets-with-mix)
-    - [Optionally Build Cache](#optionally-build-cache)
-- [Seeds](#seeds)
-    - [Seeded Roles](#seeded-roles)
-    - [Seeded Permissions](#seeded-permissions)
-    - [Seeded Users](#seeded-users)
-    - [Themes Seed List](#themes-seed-list)
-- [Routes](#routes)
-- [Socialite](#socialite)
-    - [Get Socialite Login API Keys](#get-socialite-login-api-keys)
-    - [Add More Socialite Logins](#add-more-socialite-logins)
-- [Other API keys](#other-api-keys)
-- [Environment File](#environment-file)
-- [Updates](#updates)
-- [Screenshots](#screenshots)
-- [File Tree](#file-tree)
-- [Opening an Issue](#opening-an-issue)
-- [Laravel Auth License](#laravel-auth-license)
-- [Contributors](#Contributors)
+
+-   [About](#about)
+-   [Features](#features)
+-   [Installation Instructions](#installation-instructions)
+    -   [Build the Front End Assets with Mix](#build-the-front-end-assets-with-mix)
+    -   [Optionally Build Cache](#optionally-build-cache)
+-   [Seeds](#seeds)
+    -   [Seeded Roles](#seeded-roles)
+    -   [Seeded Permissions](#seeded-permissions)
+    -   [Seeded Users](#seeded-users)
+    -   [Themes Seed List](#themes-seed-list)
+-   [Routes](#routes)
+-   [Socialite](#socialite)
+    -   [Get Socialite Login API Keys](#get-socialite-login-api-keys)
+    -   [Add More Socialite Logins](#add-more-socialite-logins)
+-   [Other API keys](#other-api-keys)
+-   [Environment File](#environment-file)
+-   [Updates](#updates)
+-   [Screenshots](#screenshots)
+-   [File Tree](#file-tree)
+-   [Opening an Issue](#opening-an-issue)
+-   [Laravel Auth License](#laravel-auth-license)
+-   [Contributors](#Contributors)
 
 ### About
-Laravel 8 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. Uses official [Bootstrap 4](https://getbootstrap.com). This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
+
+Laravel 10 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. Uses official [Bootstrap 4](https://getbootstrap.com). This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
 
 ### Features
-#### A [Laravel](https://laravel.com/) 8.x with [Bootstrap](https://getbootstrap.com) 4.x project.
 
-| Laravel Auth Features  |
-| :------------ |
-|Built on [Laravel](https://laravel.com/) 8|
-|Built on [Bootstrap](https://getbootstrap.com/) 4|
-|Uses [MySQL](https://github.com/mysql) Database (can be changed)|
-|Uses [Artisan](https://laravel.com/docs/master/artisan) to manage database migration, schema creations, and create/publish page controller templates|
-|Dependencies are managed with [COMPOSER](https://getcomposer.org/)|
-|Laravel Scaffolding **User** and **Administrator Authentication**.|
-|User [Socialite Logins](https://github.com/laravel/socialite) ready to go - See API list used below|
-|[Google Maps API v3](https://developers.google.com/maps/documentation/javascript/) for User Location lookup and Geocoding|
-|CRUD (Create, Read, Update, Delete) Themes Management|
-|CRUD (Create, Read, Update, Delete) User Management|
-|Robust [Laravel Logging](https://laravel.com/docs/master/errors#logging) with admin UI using MonoLog|
-|Google [reCaptcha Protection with Google API](https://developers.google.com/recaptcha/)|
-|User Registration with email verification|
-|Makes use of Laravel [Mix](https://laravel.com/docs/master/mix) to compile assets|
-|Makes use of [Language Localization Files](https://laravel.com/docs/master/localization)|
-|Active Nav states using [Laravel Requests](https://laravel.com/docs/master/requests)|
-|Restrict User Email Activation Attempts|
-|Capture IP to users table upon signup|
-|Uses [Laravel Debugger](https://github.com/barryvdh/laravel-debugbar) for development|
-|Makes use of [Password Strength Meter](https://github.com/elboletaire/password-strength-meter)|
-|Makes use of [hideShowPassword](https://github.com/cloudfour/hideShowPassword)|
-|User Avatar Image AJAX Upload with [Dropzone.js](https://www.dropzonejs.com/#configuration)|
-|User Gravatar using [Gravatar API](https://github.com/creativeorange/gravatar)|
-|User Password Reset via Email Token|
-|User Login with remember password|
-|User [Roles/ACL Implementation](https://github.com/jeremykenedy/laravel-roles)|
-|Roles and Permissions GUI|
-|Makes use of [Laravel's Soft Delete Structure](https://laravel.com/docs/master/eloquent#soft-deleting)|
-|Soft Deleted Users Management System|
-|Permanently Delete Soft Deleted Users|
-|User Delete Account with Goodbye email|
-|User Restore Deleted Account Token|
-|Restore Soft Deleted Users|
-|View Soft Deleted Users|
-|Captures Soft Delete Date|
-|Captures Soft Delete IP|
-|Admin Routing Details UI|
-|Admin PHP Information UI|
-|Eloquent user profiles|
-|User Themes|
-|404 Page|
-|403 Page|
-|Configurable Email Notification via [Laravel-Exception-Notifier](https://github.com/jeremykenedy/laravel-exception-notifier)|
-|Activity Logging using [Laravel-logger](https://github.com/jeremykenedy/laravel-logger)|
-|Optional 2-step account login verfication with [Laravel 2-Step Verification](https://github.com/jeremykenedy/laravel2step)|
-|Uses [Laravel PHP Info](https://github.com/jeremykenedy/laravel-phpinfo) package|
-|Uses [Laravel Blocker](https://github.com/jeremykenedy/laravel-blocker) package|
+#### A [Laravel](https://laravel.com/) 10 with [Bootstrap](https://getbootstrap.com) 4.x project.
+
+| Laravel Auth Features                                                                                                                                |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Built on [Laravel](https://laravel.com/) 10                                                                                                          |
+| Built on [Bootstrap](https://getbootstrap.com/) 4                                                                                                    |
+| Uses [MySQL](https://github.com/mysql) Database (can be changed)                                                                                     |
+| Uses [Artisan](https://laravel.com/docs/master/artisan) to manage database migration, schema creations, and create/publish page controller templates |
+| Dependencies are managed with [COMPOSER](https://getcomposer.org/)                                                                                   |
+| Laravel Scaffolding **User** and **Administrator Authentication**.                                                                                   |
+| User [Socialite Logins](https://github.com/laravel/socialite) ready to go - See API list used below                                                  |
+| [Google Maps API v3](https://developers.google.com/maps/documentation/javascript/) for User Location lookup and Geocoding                            |
+| CRUD (Create, Read, Update, Delete) Themes Management                                                                                                |
+| CRUD (Create, Read, Update, Delete) User Management                                                                                                  |
+| Robust [Laravel Logging](https://laravel.com/docs/master/errors#logging) with admin UI using MonoLog                                                 |
+| Google [reCaptcha Protection with Google API](https://developers.google.com/recaptcha/)                                                              |
+| User Registration with email verification                                                                                                            |
+| Makes use of Laravel [Mix](https://laravel.com/docs/master/mix) to compile assets                                                                    |
+| Makes use of [Language Localization Files](https://laravel.com/docs/master/localization)                                                             |
+| Active Nav states using [Laravel Requests](https://laravel.com/docs/master/requests)                                                                 |
+| Restrict User Email Activation Attempts                                                                                                              |
+| Capture IP to users table upon signup                                                                                                                |
+| Uses [Laravel Debugger](https://github.com/barryvdh/laravel-debugbar) for development                                                                |
+| Makes use of [Password Strength Meter](https://github.com/elboletaire/password-strength-meter)                                                       |
+| Makes use of [hideShowPassword](https://github.com/cloudfour/hideShowPassword)                                                                       |
+| User Avatar Image AJAX Upload with [Dropzone.js](https://www.dropzonejs.com/#configuration)                                                          |
+| User Gravatar using [Gravatar API](https://github.com/creativeorange/gravatar)                                                                       |
+| User Password Reset via Email Token                                                                                                                  |
+| User Login with remember password                                                                                                                    |
+| User [Roles/ACL Implementation](https://github.com/jeremykenedy/laravel-roles)                                                                       |
+| Roles and Permissions GUI                                                                                                                            |
+| Makes use of [Laravel's Soft Delete Structure](https://laravel.com/docs/master/eloquent#soft-deleting)                                               |
+| Soft Deleted Users Management System                                                                                                                 |
+| Permanently Delete Soft Deleted Users                                                                                                                |
+| User Delete Account with Goodbye email                                                                                                               |
+| User Restore Deleted Account Token                                                                                                                   |
+| Restore Soft Deleted Users                                                                                                                           |
+| View Soft Deleted Users                                                                                                                              |
+| Captures Soft Delete Date                                                                                                                            |
+| Captures Soft Delete IP                                                                                                                              |
+| Admin Routing Details UI                                                                                                                             |
+| Admin PHP Information UI                                                                                                                             |
+| Eloquent user profiles                                                                                                                               |
+| User Themes                                                                                                                                          |
+| 404 Page                                                                                                                                             |
+| 403 Page                                                                                                                                             |
+| Configurable Email Notification via [Laravel-Exception-Notifier](https://github.com/jeremykenedy/laravel-exception-notifier)                         |
+| Activity Logging using [Laravel-logger](https://github.com/jeremykenedy/laravel-logger)                                                              |
+| Optional 2-step account login verfication with [Laravel 2-Step Verification](https://github.com/jeremykenedy/laravel2step)                           |
+| Uses [Laravel PHP Info](https://github.com/jeremykenedy/laravel-phpinfo) package                                                                     |
+| Uses [Laravel Blocker](https://github.com/jeremykenedy/laravel-blocker) package                                                                      |
 
 ### Installation Instructions
+
 1. Run `git clone https://github.com/jeremykenedy/laravel-auth.git laravel-auth`
 2. Create a MySQL database for the project
-    * ```mysql -u root -p```, if using Vagrant: ```mysql -u homestead -psecret```
-    * ```create database laravelAuth;```
-    * ```\q```
+    - `mysql -u root -p`, if using Vagrant: `mysql -u homestead -psecret`
+    - `create database laravelAuth;`
+    - `\q`
 3. From the projects root run `cp .env.example .env`
 4. Configure your `.env` file
 5. Install composer, php-mysql, php-ext and php-dom (dependent on your distrubtion, For Debian run `apt install composer php-mysql php-ext php-dom`)
 6. Run `composer update` from the projects root folder
 7. From the projects root folder run:
+
 ```
 php artisan vendor:publish --tag=laravelroles &&
 php artisan vendor:publish --tag=laravel2step &&
 php artisan vendor:publish --tag=laravel-email-database-log-migration
 ```
+
 7. From the projects root folder run `sudo chmod -R 755 ../laravel-auth`
 8. From the projects root folder run `php artisan key:generate`
 9. From the projects root folder run `php artisan migrate`
@@ -128,71 +137,83 @@ php artisan vendor:publish --tag=laravel-email-database-log-migration
 12. Compile the front end assets with [npm steps](#using-npm) or [yarn steps](#using-yarn).
 
 #### Build the Front End Assets with Mix
+
 ##### Using Yarn:
+
 1. Install yarn (dependent on your distribution)
 2. From the projects root folder run `yarn install`
 3. From the projects root folder run `yarn run dev` or `yarn run production`
-  * You can watch assets with `yarn run watch`
+
+-   You can watch assets with `yarn run watch`
 
 ##### Using NPM:
+
 1. From the projects root folder run `npm install`
 2. From the projects root folder run `npm run dev` or `npm run production`
-  * You can watch assets with `npm run watch`
+
+-   You can watch assets with `npm run watch`
 
 #### Optionally Build Cache
+
 1. From the projects root folder run `php artisan config:cache`
 
 ###### And thats it with the caveat of setting up and configuring your development environment. I recommend [Laravel Homestead](https://laravel.com/docs/master/homestead)
 
 ### Seeds
+
 ##### Seeded Roles
-  * Unverified - Level 0
-  * User  - Level 1
-  * Administrator - Level 5
+
+-   Unverified - Level 0
+-   User - Level 1
+-   Administrator - Level 5
 
 ##### Seeded Permissions
-  * view.users
-  * create.users
-  * edit.users
-  * delete.users
+
+-   view.users
+-   create.users
+-   edit.users
+-   delete.users
 
 ##### Seeded Users
 
-|Email|Password|Access|
-|:------------|:------------|:------------|
-|user@user.com|password|User Access|
-|admin@admin.com|password|Admin Access|
+| Email           | Password | Access       |
+| :-------------- | :------- | :----------- |
+| user@user.com   | password | User Access  |
+| admin@admin.com | password | Admin Access |
 
 ##### Themes Seed List
-  * [ThemesTableSeeder](https://github.com/jeremykenedy/laravel-auth/blob/master/database/seeds/ThemesTableSeeder.php)
-  * NOTE: A lot of themes render incorrectly on Bootstrap 4 since their core was built to override Bootstrap 4. These will be updated soon and ones that do not render correctly will be removed from the seed. In the mean time you can remove them from the seed or manaully from the UI or database.
+
+-   [ThemesTableSeeder](https://github.com/jeremykenedy/laravel-auth/blob/master/database/seeds/ThemesTableSeeder.php)
+-   NOTE: A lot of themes render incorrectly on Bootstrap 4 since their core was built to override Bootstrap 4. These will be updated soon and ones that do not render correctly will be removed from the seed. In the mean time you can remove them from the seed or manaully from the UI or database.
 
 ##### Blocked Types Seed List
-  * [BlockedTypeTableSeeder.php](https://github.com/jeremykenedy/laravel-auth/blob/master/database/seeds/BlockedTypeTableSeeder.php)
 
-|Slug|Name|
-|:------------|:------------|
-|email|E-mail|
-|ipAddress|IP Address|
-|domain|Domain Name|
-|user|User|
-|city|City|
-|state|State|
-|country|Country|
-|countryCode|Country Code|
-|continent|Continent|
-|region|Region|
+-   [BlockedTypeTableSeeder.php](https://github.com/jeremykenedy/laravel-auth/blob/master/database/seeds/BlockedTypeTableSeeder.php)
+
+| Slug        | Name         |
+| :---------- | :----------- |
+| email       | E-mail       |
+| ipAddress   | IP Address   |
+| domain      | Domain Name  |
+| user        | User         |
+| city        | City         |
+| state       | State        |
+| country     | Country      |
+| countryCode | Country Code |
+| continent   | Continent    |
+| region      | Region       |
 
 ##### Blocked Items Seed List
-  * [BlockedItemsTableSeeder.php](https://github.com/jeremykenedy/laravel-auth/blob/master/database/seeds/BlockedItemsTableSeeder.php)
 
-|Type|Value|Note|
-|:------------|:------------|:------------|
-|domain|test.com|Block all domains/emails @test.com|
-|domain|test.ca|Block all domains/emails @test.ca|
-|domain|fake.com|Block all domains/emails @fake.com|
-|domain|example.com|Block all domains/emails @example.com|
-|domain|mailinator.com|Block all domains/emails @mailinator.com|
+-   [BlockedItemsTableSeeder.php](https://github.com/jeremykenedy/laravel-auth/blob/master/database/seeds/BlockedItemsTableSeeder.php)
+
+| Type   | Value          | Note                                     |
+| :----- | :------------- | :--------------------------------------- |
+| domain | test.com       | Block all domains/emails @test.com       |
+| domain | test.ca        | Block all domains/emails @test.ca        |
+| domain | fake.com       | Block all domains/emails @fake.com       |
+| domain | example.com    | Block all domains/emails @example.com    |
+| domain | mailinator.com | Block all domains/emails @mailinator.com |
 
 ### Routes
 
@@ -318,69 +339,81 @@ php artisan vendor:publish --tag=laravel-email-database-log-migration
 ### Socialite
 
 #### Get Socialite Login API Keys:
-* [Google Captcha API](https://www.google.com/recaptcha/admin#list)
-* [Facebook API](https://developers.facebook.com/)
-* [Twitter API](https://apps.twitter.com/)
-* [Google &plus; API](https://console.developers.google.com/)
-* [GitHub API](https://github.com/settings/applications/new)
-* [YouTube API](https://developers.google.com/youtube/v3/getting-started)
-* [Twitch TV API](https://www.twitch.tv/kraken/oauth2/clients/new)
-* [Instagram API](https://instagram.com/developer/register/)
-* [37 Signals API](https://github.com/basecamp/basecamp-classic-api)
+
+-   [Google Captcha API](https://www.google.com/recaptcha/admin#list)
+-   [Facebook API](https://developers.facebook.com/)
+-   [Twitter API](https://apps.twitter.com/)
+-   [Google &plus; API](https://console.developers.google.com/)
+-   [GitHub API](https://github.com/settings/applications/new)
+-   [YouTube API](https://developers.google.com/youtube/v3/getting-started)
+-   [Twitch TV API](https://www.twitch.tv/kraken/oauth2/clients/new)
+-   [Instagram API](https://instagram.com/developer/register/)
+-   [37 Signals API](https://github.com/basecamp/basecamp-classic-api)
 
 #### Add More Socialite Logins
-* See full list of providers: [https://socialiteproviders.github.io](https://socialiteproviders.github.io/#providers)
+
+-   See full list of providers: [https://socialiteproviders.github.io](https://socialiteproviders.github.io/#providers)
+
 ###### **Steps**:
-  1. Go to [https://socialiteproviders.github.io](https://socialiteproviders.github.io/providers/twitch/) and select the provider to be added.
-  2. From the projects root folder, in the terminal, run composer to get the needed package.
-     * Example:
 
-      ```
-         composer require socialiteproviders/twitch
-      ```
+1. Go to [https://socialiteproviders.github.io](https://socialiteproviders.github.io/providers/twitch/) and select the provider to be added.
+2. From the projects root folder, in the terminal, run composer to get the needed package.
 
-  3. From the projects root folder run ```composer update```
-  4. Add the service provider to ```/config/services.php```
-     * Example:
+    - Example:
 
-     ```
-        'twitch' => [
-            'client_id'   => env('TWITCH_KEY'),
-            'client_secret' => env('TWITCH_SECRET'),
-            'redirect'    => env('TWITCH_REDIRECT_URI'),
-        ],
-     ```
+    ```
+       composer require socialiteproviders/twitch
+    ```
 
-  5. Add the API credentials to ``` /.env  ```
-     * Example:
+3. From the projects root folder run `composer update`
+4. Add the service provider to `/config/services.php`
 
-      ```
-         TWITCH_KEY=YOURKEYHERE
-         TWITCH_SECRET=YOURSECRETHERE
-         TWITCH_REDIRECT_URI=http://YOURWEBSITEURL.COM/social/handle/twitch
-      ```
+    - Example:
 
-  6. Add the social media login link:
-      * Example:
-      In file ```/resources/views/auth/login.blade.php``` add ONE of the following:
-         * Conventional HTML:
+    ```
+       'twitch' => [
+           'client_id'   => env('TWITCH_KEY'),
+           'client_secret' => env('TWITCH_SECRET'),
+           'redirect'    => env('TWITCH_REDIRECT_URI'),
+       ],
+    ```
+
+5. Add the API credentials to `/.env `
+
+    - Example:
+
+    ```
+       TWITCH_KEY=YOURKEYHERE
+       TWITCH_SECRET=YOURSECRETHERE
+       TWITCH_REDIRECT_URI=http://YOURWEBSITEURL.COM/social/handle/twitch
+    ```
+
+6. Add the social media login link:
+
+    - Example:
+      In file `/resources/views/auth/login.blade.php` add ONE of the following:
+
+        - Conventional HTML:
+
         ```
         <a href="{{ route('social.redirect', ['provider' => 'twitch']) }}" class="btn btn-lg btn-primary btn-block twitch">Twitch</a>
         ```
-         * Use Laravel HTML Facade with [Laravel Collective](https://laravelcollective.com/):
+
+        - Use Laravel HTML Facade with [Laravel Collective](https://laravelcollective.com/):
 
         ```
         {!! HTML::link(route('social.redirect', ['provider' => 'twitch']), 'Twitch', array('class' => 'btn btn-lg btn-primary btn-block twitch')) !!}
         ```
 
 ### Other API keys
-* [Google Maps API v3 Key](https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key)
+
+-   [Google Maps API v3 Key](https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key)
 
 ### Environment File
+
 Example `.env` file:
 
 ```bash
-
 APP_NAME=Laravel
 APP_ENV=local
 APP_KEY=
@@ -588,58 +621,63 @@ INSTAGRAM_REDIRECT_URI=https://YOURWEBURLHERE.COM/social/handle/instagram
 ```
 
 #### Laravel Developement Packages Used References
-* https://laravel.com/docs/master/authentication
-* https://laravel.com/docs/master/authorization
-* https://laravel.com/docs/master/routing
-* https://laravel.com/docs/master/migrations
-* https://laravel.com/docs/master/queries
-* https://laravel.com/docs/master/views
-* https://laravel.com/docs/master/eloquent
-* https://laravel.com/docs/master/eloquent-relationships
-* https://laravel.com/docs/master/requests
-* https://laravel.com/docs/master/errors
+
+-   https://laravel.com/docs/master/authentication
+-   https://laravel.com/docs/master/authorization
+-   https://laravel.com/docs/master/routing
+-   https://laravel.com/docs/master/migrations
+-   https://laravel.com/docs/master/queries
+-   https://laravel.com/docs/master/views
+-   https://laravel.com/docs/master/eloquent
+-   https://laravel.com/docs/master/eloquent-relationships
+-   https://laravel.com/docs/master/requests
+-   https://laravel.com/docs/master/errors
 
 ###### Updates:
-* Update to Laravel 8
-* Update to Laravel 7 [See changes in this PR](https://github.com/jeremykenedy/laravel-auth/pull/348/files)
-* Update to Laravel 6
-* Update to Laravel 5.8
-* Added [Laravel Blocker Package](https://github.com/jeremykenedy/laravel-blocker)
-* Added [PHP Info Package](https://github.com/jeremykenedy/laravel-phpinfo)
-* Update to Bootstrap 4
-* Update to Laravel 5.7
-* Added optional 2-step account login verfication with [Laravel 2-Step Verification](https://github.com/jeremykenedy/laravel2step)
-* Added activity logging using [Laravel-logger](https://github.com/jeremykenedy/laravel-logger)
-* Added Configurable Email Notification using [Laravel-Exception-Notifier](https://github.com/jeremykenedy/laravel-exception-notifier)
-* Update to Laravel 5.5
-* Added User Delete with Goodbye email
-* Added User Restore Deleted Account from email with secure token
-* Added [Soft Deletes](https://laravel.com/docs/master/eloquent#soft-deleting) and Soft Deletes Management panel
-* Added User Account Settings to Profile Edit
-* Added User Change Password to Profile Edit
-* Added User Delete Account to Profile Edit
-* Added [Password Strength Meter](https://github.com/elboletaire/password-strength-meter)
-* Added [hideShowPassword](https://github.com/cloudfour/hideShowPassword)
-* Added Admin Routing Details
-* Admin PHP Information
-* Added Robust [Laravel Logging](https://laravel.com/docs/master/errors#logging) with admin UI using MonoLog
-* Added Active Nav states using [Laravel Requests](https://laravel.com/docs/master/requests)
-* Added [Laravel Debugger](https://github.com/barryvdh/laravel-debugbar) with Service Provider to manage status in `.env` file.
-* Updated Capture IP not found IP address
-* Added User Avatar Image AJAX Upload with [Dropzone.js](http://www.dropzonejs.com/#configuration)
-* Added User Gravatar using Gravatar API
-* Added Themes Management.
-* Add user profiles with seeded list and global view
-* Major overhaul on Laravel 5.4
-* Update from Laravel 5.1 to 5.2
-* Added eloquent editable user profile
-* Added IP Capture
-* Added Google Maps API v3 for User Location lookup
-* Added Google Maps API v3 for User Location Input Geocoding
-* Added Google Maps API v3 for User Location Map with Options
-* Added CRUD(Create, Read, Update, Delete) User Management
+
+-   Update to Laravel 10 (Major Changes)
+-   Update to Laravel 9
+-   Update to Laravel 8
+-   Update to Laravel 7 [See changes in this PR](https://github.com/jeremykenedy/laravel-auth/pull/348/files)
+-   Update to Laravel 6
+-   Update to Laravel 5.8
+-   Added [Laravel Blocker Package](https://github.com/jeremykenedy/laravel-blocker)
+-   Added [PHP Info Package](https://github.com/jeremykenedy/laravel-phpinfo)
+-   Update to Bootstrap 4
+-   Update to Laravel 5.7
+-   Added optional 2-step account login verfication with [Laravel 2-Step Verification](https://github.com/jeremykenedy/laravel2step)
+-   Added activity logging using [Laravel-logger](https://github.com/jeremykenedy/laravel-logger)
+-   Added Configurable Email Notification using [Laravel-Exception-Notifier](https://github.com/jeremykenedy/laravel-exception-notifier)
+-   Update to Laravel 5.5
+-   Added User Delete with Goodbye email
+-   Added User Restore Deleted Account from email with secure token
+-   Added [Soft Deletes](https://laravel.com/docs/master/eloquent#soft-deleting) and Soft Deletes Management panel
+-   Added User Account Settings to Profile Edit
+-   Added User Change Password to Profile Edit
+-   Added User Delete Account to Profile Edit
+-   Added [Password Strength Meter](https://github.com/elboletaire/password-strength-meter)
+-   Added [hideShowPassword](https://github.com/cloudfour/hideShowPassword)
+-   Added Admin Routing Details
+-   Admin PHP Information
+-   Added Robust [Laravel Logging](https://laravel.com/docs/master/errors#logging) with admin UI using MonoLog
+-   Added Active Nav states using [Laravel Requests](https://laravel.com/docs/master/requests)
+-   Added [Laravel Debugger](https://github.com/barryvdh/laravel-debugbar) with Service Provider to manage status in `.env` file.
+-   Updated Capture IP not found IP address
+-   Added User Avatar Image AJAX Upload with [Dropzone.js](http://www.dropzonejs.com/#configuration)
+-   Added User Gravatar using Gravatar API
+-   Added Themes Management.
+-   Add user profiles with seeded list and global view
+-   Major overhaul on Laravel 5.4
+-   Update from Laravel 5.1 to 5.2
+-   Added eloquent editable user profile
+-   Added IP Capture
+-   Added Google Maps API v3 for User Location lookup
+-   Added Google Maps API v3 for User Location Input Geocoding
+-   Added Google Maps API v3 for User Location Map with Options
+-   Added CRUD(Create, Read, Update, Delete) User Management
 
 ### Screenshots
+
 ![Login](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/1laravel-auth2-login.jpg)
 ![Register](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/2laravel-auth2-register.jpg)
 ![Registration Confirmation](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/3laravel-auth2-account-req-activation.jpg)
@@ -705,7 +743,8 @@ INSTAGRAM_REDIRECT_URI=https://YOURWEBURLHERE.COM/social/handle/instagram
 ![Laravel Roles GUI Success Restore](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-15.png)
 
 ### File Tree
-```
+
+```bash
 laravel-auth
 ├── .editorconfig
 ├── .env
@@ -1057,22 +1096,26 @@ laravel-auth
 └── webpack.mix.js
 ```
 
-* Tree command can be installed using brew: `brew install tree`
-* File tree generated using command `tree -a -I '.git|node_modules|vendor|storage|tests'`
+-   Tree command can be installed using brew: `brew install tree`
+-   File tree generated using command `tree -a -I '.git|node_modules|vendor|storage|tests'`
 
 ### Opening an Issue
+
 Before opening an issue there are a couple of considerations:
-* You are all awesome!
-* **Please Read the instructions** and make sure all steps were *followed correctly*.
-* **Please Check** that the issue is not *specific to the development environment* setup.
-* **Please Provide** *duplication steps*.
-* **Please Attempt to look into the issue**, and if you *have a solution, make a pull request*.
-* **Please Show that you have made an attempt** to *look into the issue*.
-* **Please Check** to see if the issue you are *reporting is a duplicate* of a previous reported issue.
+
+-   You are all awesome!
+-   **Please Read the instructions** and make sure all steps were _followed correctly_.
+-   **Please Check** that the issue is not _specific to the development environment_ setup.
+-   **Please Provide** _duplication steps_.
+-   **Please Attempt to look into the issue**, and if you _have a solution, make a pull request_.
+-   **Please Show that you have made an attempt** to _look into the issue_.
+-   **Please Check** to see if the issue you are _reporting is a duplicate_ of a previous reported issue.
 
 ### Laravel Auth License
-Laravel-auth is licensed under the [MIT license](https://opensource.org/licenses/MIT). Enjoy!
+
+Licensed under the [MIT license](https://opensource.org/licenses/MIT). Enjoy!
 
 ### Contributors
-* Thanks goes to these [wonderful people](https://github.com/jeremykenedy/laravel-auth/graphs/contributors):
-* Please feel free to contribute and make pull requests!
+
+-   Thanks goes to these [wonderful people](https://github.com/jeremykenedy/laravel-auth/graphs/contributors):
+-   Please feel free to contribute and make pull requests!

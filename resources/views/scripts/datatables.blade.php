@@ -1,11 +1,13 @@
 {{-- FYI: Datatables do not support colspan or rowpan --}}
 
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
-
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap4.min.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap4.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('.data-table').dataTable({
+        $.noConflict();
+        var dt = $('.data-table').dataTable({
             "paging": true,
             "lengthChange": true,
             "searching": true,

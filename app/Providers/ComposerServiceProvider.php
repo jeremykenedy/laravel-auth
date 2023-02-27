@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\ViewComposers\ThemeComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -9,21 +10,17 @@ class ComposerServiceProvider extends ServiceProvider
 {
     /**
      * Register bindings in the container.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         View::composer(
-            'layouts.app',
-            \App\Http\ViewComposers\ThemeComposer::class
+            '*',
+            ThemeComposer::class
         );
     }
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {

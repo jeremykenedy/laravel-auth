@@ -11,7 +11,7 @@ class CreateRolesTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         $connection = config('roles.connection');
         $table = config('roles.rolesTable');
@@ -35,7 +35,7 @@ class CreateRolesTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         $connection = config('roles.connection');
         $table = config('roles.rolesTable');

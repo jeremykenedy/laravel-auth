@@ -11,7 +11,7 @@ class CreateSocialLoginsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('social_logins', function (Blueprint $table) {
             // Structure
@@ -31,7 +31,7 @@ class CreateSocialLoginsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('social_logins');
     }

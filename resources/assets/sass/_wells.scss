@@ -12,40 +12,37 @@
 //   }
 
 .well {
+    &.well-white {
+        background-color: $white;
+    }
 
-  &.well-white {
-    background-color: $white;
-  }
+    &.well-primary {
+        background-color: $brand-primary;
+        border-color: $brand-primary;
+        color: $white;
+    }
 
-  &.well-primary {
-    background-color: $brand-primary;
-    border-color: $brand-primary;
-    color: $white;
-  }
+    &.well-info {
+        background-color: $brand-info;
+        border-color: $brand-info;
+        color: $white;
+    }
 
-  &.well-info {
-    background-color: $brand-info;
-    border-color: $brand-info;
-    color: $white;
-  }
+    &.well-success {
+        background-color: $brand-success;
+        border-color: $brand-success;
+        color: $white;
+    }
 
-  &.well-success {
-    background-color: $brand-success;
-    border-color: $brand-success;
-    color: $white;
-  }
+    &.well-warning {
+        background-color: $brand-warning;
+        border-color: $brand-warning;
+        color: $white;
+    }
 
-
-  &.well-warning {
-    background-color: $brand-warning;
-    border-color: $brand-warning;
-    color: $white;
-  }
-
-  &.well-danger {
-    background-color: $brand-danger;
-    border-color: $brand-danger;
-    color: $white;
-  }
-
+    &.well-danger {
+        background-color: $brand-danger;
+        border-color: $brand-danger;
+        color: $white;
+    }
 }

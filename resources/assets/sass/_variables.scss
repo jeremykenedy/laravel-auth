@@ -5,11 +5,11 @@ $body-bg: #f5f8fa;
 // Social Media
 $facebook: #4863ae;
 $twitter: #46c0fb;
-$google: #DD4B39;
-$github: #4183C4;
+$google: #dd4b39;
+$github: #4183c4;
 
 // Brands
-$brand-primary: #3097D1;
+$brand-primary: #3097d1;
 $brand-info: #8eb4cb;
 $brand-success: #2ab27b;
 $brand-warning: #cbb956;
@@ -37,14 +37,14 @@ $lg-desktop: 1200px;
 
 // Margins and Padding
 $num-of-classes: 5;
-$directions: ('top', 'bottom', 'left', 'right');
-$types: ('margin', 'padding');
+$directions: ("top", "bottom", "left", "right");
+$types: ("margin", "padding");
 $queries: (
-    $mq-tiny: 'xxs',
-    $phone: 'xs',
-    $tablet: 'sm',
-    $desktop: 'md',
-    $lg-desktop: 'lg'
+    $mq-tiny: "xxs",
+    $phone: "xs",
+    $tablet: "sm",
+    $desktop: "md",
+    $lg-desktop: "lg",
 );
 
 // // Buttons

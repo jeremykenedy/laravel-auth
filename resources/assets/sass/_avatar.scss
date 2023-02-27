@@ -17,15 +17,14 @@
 }
 
 #avatar_container {
-
     height: 202px;
 
-    .dz-preview{
+    .dz-preview {
         display: none;
     }
     .dropzone {
-        border: 1px dashed rgba(0,0,0,0.3);
-        background: rgba($white, .05);
+        border: 1px dashed rgba(0, 0, 0, 0.3);
+        background: rgba($white, 0.05);
         height: 180px;
         padding: 0;
         @include vendor(border-radius, $standard-radius);
@@ -42,7 +41,7 @@
 }
 
 .user-image {
-  width: 100px;
-  height: 100px;
-  border:2px solid $brand-info;
+    width: 100px;
+    height: 100px;
+    border: 2px solid $brand-info;
 }

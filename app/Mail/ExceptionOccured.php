@@ -8,8 +8,8 @@ use Illuminate\Queue\SerializesModels;
 
 class ExceptionOccured extends Mailable
 {
-    use Queueable;
-    use SerializesModels;
+    use Queueable, SerializesModels;
+
     private $content;
 
     /**

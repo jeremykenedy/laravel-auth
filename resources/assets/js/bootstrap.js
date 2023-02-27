@@ -1,63 +1,85 @@
-window._ = require('lodash');
-window.Popper = require('popper.js').default;
+import axios from "axios";
+import Echo from "laravel-echo";
+import Pusher from "pusher-js";
+import * as Popper from "@popperjs/core";
+import loadash from "lodash";
 
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
+window._ = loadash;
+window.Popper = Popper;
+window.axios = axios;
+window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+window.axios.defaults.withCredentials = true;
+// window.Vue = require("vue");
+window.Pusher = Pusher;
 
-try {
-    window.$ = window.jQuery = require('jquery');
-
-    require('bootstrap');
-} catch (e) {}
-
-/**
- * Vue is a modern JavaScript library for building interactive web interfaces
- * using reactive data binding and reusable components. Vue's API is clean
- * and simple, leaving you to focus on building your next great project.
- */
-
-window.Vue = require('vue');
-
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
-
-window.axios = require('axios');
-
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-/**
- * Next we will register the CSRF Token as a common header with Axios so that
- * all outgoing HTTP requests automatically have it attached. This is just
- * a simple convenience so we don't have to attach every token manually.
- */
-
-let token = document.head.querySelector('meta[name="csrf-token"]');
+// const password = require("password-strength-meter");
+const token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+  window.axios.defaults.headers.common["X-CSRF-TOKEN"] = token.content;
 } else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+  console.error(
+    "CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token"
+  );
 }
 
-/**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
- */
+try {
+  // var $ = require('jquery');
+  // window.$ = window.jQuery = require("jquery");
+  // require("hideshowpassword");
+  // require('password-strength-meter');
+} catch (e) {}
 
-import Echo from 'laravel-echo'
-
-window.Pusher = require('pusher-js');
-
+/*eslint-disable */
 window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: process.env.MIX_PUSHER_APP_KEY,
-    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    forceTLS: true
+  broadcaster: "pusher",
+  key: import.meta.env.VITE_PUSHER_APP_KEY,
+  cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? "mt1",
+  wsHost: import.meta.env.VITE_PUSHER_HOST
+    ? import.meta.env.VITE_PUSHER_HOST
+    : `ws-${import.meta.env.VITE_PUSHER_APP_CLUSTER}.pusher.com`,
+  wsPort: import.meta.env.VITE_PUSHER_PORT ?? 80,
+  wssPort: import.meta.env.VITE_PUSHER_PORT ?? 443,
+  forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? "https") === "https",
+  enabledTransports: ["ws", "wss"],
+});
+/*eslint-enable */
+
+$.fn.extend({
+  toggleText(a, b) {
+    return this.text(this.text() == b ? a : b);
+  },
+
+  /**
+   * Remove element classes with wildcard matching. Optionally add classes:
+   *   $( '#foo' ).alterClass( 'foo-* bar-*', 'foobar' )
+   *
+   */
+  alterClass(removals, additions) {
+    const self = this;
+
+    if (removals.indexOf("*") === -1) {
+      // Use native jQuery methods if there is no wildcard matching
+      self.removeClass(removals);
+      return !additions ? self : self.addClass(additions);
+    }
+
+    const patt = new RegExp(
+      `\\s${removals
+        .replace(/\*/g, "[A-Za-z0-9-_]+")
+        .split(" ")
+        .join("\\s|\\s")}\\s`,
+      "g"
+    );
+
+    self.each((i, it) => {
+      let cn = ` ${it.className} `;
+      while (patt.test(cn)) {
+        cn = cn.replace(patt, " ");
+      }
+      it.className = $.trim(cn);
+    });
+
+    return !additions ? self : self.addClass(additions);
+  },
 });
