@@ -26,6 +26,7 @@ class EventServiceProvider extends ServiceProvider
             'SocialiteProviders\\LinkedIn\\LinkedInExtendSocialite@handle',
         ],
     ];
+
     /**
      * Register any events for your application.
      */

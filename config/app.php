@@ -5,12 +5,12 @@ use App\Providers\MacroServiceProvider;
 use Collective\Html\FormFacade;
 use Collective\Html\HtmlFacade;
 use Creativeorange\Gravatar\Facades\Gravatar;
-use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redis;
 use Intervention\Image\Facades\Image;
 use jeremykenedy\Uuid\Uuid;
+use Laravel\Socialite\Facades\Socialite;
 
 return [
 
