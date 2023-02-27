@@ -1,6 +1,6 @@
 ## Laravel Auth
 
-#### Laravel Auth is a Complete Build of Laravel 8 with Email Registration Verification, Social Authentication, User Roles and Permissions, User Profiles, and Admin restricted user management system. Built on Bootstrap 4.
+#### Laravel Auth is a Complete Build of Laravel 10 with Email Registration Verification, Social Authentication, User Roles and Permissions, User Profiles, and Admin restricted user management system. Built on Bootstrap 4.
 
 [![Build Status](https://travis-ci.org/jeremykenedy/laravel-auth.svg?branch=master)](https://travis-ci.org/jeremykenedy/laravel-auth)
 [![StyleCI](https://styleci.io/repos/44714043/shield?branch=master)](https://styleci.io/repos/44714043)
@@ -54,15 +54,15 @@ If you like this, you will love [Laravel Auth Spa](https://github.com/jeremykene
 
 ### About
 
-Laravel 8 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. Uses official [Bootstrap 4](https://getbootstrap.com). This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
+Laravel 10 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. Uses official [Bootstrap 4](https://getbootstrap.com). This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
 
 ### Features
 
-#### A [Laravel](https://laravel.com/) 8.x with [Bootstrap](https://getbootstrap.com) 4.x project.
+#### A [Laravel](https://laravel.com/) 10 with [Bootstrap](https://getbootstrap.com) 4.x project.
 
 | Laravel Auth Features                                                                                                                                |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Built on [Laravel](https://laravel.com/) 8                                                                                                           |
+| Built on [Laravel](https://laravel.com/) 10                                                                                                          |
 | Built on [Bootstrap](https://getbootstrap.com/) 4                                                                                                    |
 | Uses [MySQL](https://github.com/mysql) Database (can be changed)                                                                                     |
 | Uses [Artisan](https://laravel.com/docs/master/artisan) to manage database migration, schema creations, and create/publish page controller templates |
@@ -635,6 +635,8 @@ INSTAGRAM_REDIRECT_URI=https://YOURWEBURLHERE.COM/social/handle/instagram
 
 ###### Updates:
 
+-   Update to Laravel 10 (Major Changes)
+-   Update to Laravel 9
 -   Update to Laravel 8
 -   Update to Laravel 7 [See changes in this PR](https://github.com/jeremykenedy/laravel-auth/pull/348/files)
 -   Update to Laravel 6
@@ -1111,7 +1113,7 @@ Before opening an issue there are a couple of considerations:
 
 ### Laravel Auth License
 
-Laravel-auth is licensed under the [MIT license](https://opensource.org/licenses/MIT). Enjoy!
+Licensed under the [MIT license](https://opensource.org/licenses/MIT). Enjoy!
 
 ### Contributors
 
