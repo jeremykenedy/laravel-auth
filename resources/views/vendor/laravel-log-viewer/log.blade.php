@@ -96,41 +96,43 @@
 
 @section('footer_scripts')
 
-  @include('scripts.datatables')
+  {{-- @include('scripts.datatables') --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap4.min.css">
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.noConflict();
+          var table = $('#table-log').DataTable({
+            "order": [ 1, 'desc' ],
+            "stateSave": true,
+            "stateSaveCallback": function (settings, data) {
+              window.localStorage.setItem("datatable", JSON.stringify(data));
+            },
+            "stateLoadCallback": function (settings) {
+              var data = JSON.parse(window.localStorage.getItem("datatable"));
+              if (data) data.start = 0;
+              return data;
+            }
+          });
 
-  <script>
-    $(document).ready(function(){
-      $('#table-log').DataTable({
-        "order": [ 1, 'desc' ],
-        "stateSave": true,
-        "stateSaveCallback": function (settings, data) {
-          window.localStorage.setItem("datatable", JSON.stringify(data));
-        },
-        "stateLoadCallback": function (settings) {
-          var data = JSON.parse(window.localStorage.getItem("datatable"));
-          if (data) data.start = 0;
-          return data;
-        }
-      });
+          $('.table-container').on('click', '.expand', function(){
+            $('#' + $(this).data('display')).toggle();
+          });
 
-      $('.table-container').on('click', '.expand', function(){
-        $('#' + $(this).data('display')).toggle();
-      });
+          // Delete Logs Modal
+          $('#confirmDelete').on('show.bs.modal', function (e) {
+            var message = $(e.relatedTarget).attr('data-message');
+            var title = $(e.relatedTarget).attr('data-title');
+            var href = $(e.relatedTarget).attr('data-href');
+            $(this).find('.modal-body p').text(message);
+            $(this).find('.modal-title').text(title);
+            $(this).find('.modal-footer #confirm').data('href', href);
+          });
+          $('#confirmDelete').find('.modal-footer #confirm').on('click', function(){
+            window.location = $(this).data('href');
+          });
 
-      // Delete Logs Modal
-      $('#confirmDelete').on('show.bs.modal', function (e) {
-        var message = $(e.relatedTarget).attr('data-message');
-        var title = $(e.relatedTarget).attr('data-title');
-        var href = $(e.relatedTarget).attr('data-href');
-        $(this).find('.modal-body p').text(message);
-        $(this).find('.modal-title').text(title);
-        $(this).find('.modal-footer #confirm').data('href', href);
-      });
-      $('#confirmDelete').find('.modal-footer #confirm').on('click', function(){
-        window.location = $(this).data('href');
-      });
-
-    });
-  </script>
-
+        });
+    </script>
 @endsection

@@ -139,7 +139,7 @@ return [
     'bootstrapCardClasses'          => env('ROLES_GUI_CARD_CLASSES', ''),
 
     // Bootstrap Tooltips
-    'tooltipsEnabled'               => env('ROLES_GUI_TOOLTIPS_ENABLED', true),
+    'tooltipsEnabled'               => env('ROLES_GUI_TOOLTIPS_ENABLED', false),
 
     // jQuery
     'enablejQueryCDN'               => env('ROLES_GUI_JQUERY_CDN_ENABLED', true), // You may need to change this if you compile and include jquery

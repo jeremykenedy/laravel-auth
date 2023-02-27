@@ -17,7 +17,7 @@
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
         @yield('template_linked_fonts')
-        @vite(['resources/assets/sass/app.scss'])
+        @vite(['resources/assets/sass/app.scss', 'resources/assets/js/app.js'])
         @yield('template_linked_css')
         <style type="text/css">
             @yield('template_fastload_css')
@@ -53,15 +53,10 @@
                 @yield('content')
             </main>
         </div>
-
-        {{-- <script src="{{ mix('/js/app.js') }}"></script> --}}
-        @vite(['resources/assets/js/app.js'])
-
         @if(config('settings.googleMapsAPIStatus'))
             {!! HTML::script('//maps.googleapis.com/maps/api/js?key='.config("settings.googleMapsAPIKey").'&libraries=places&dummy=.js', array('type' => 'text/javascript')) !!}
         @endif
-
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         @yield('footer_scripts')
-
     </body>
 </html>
