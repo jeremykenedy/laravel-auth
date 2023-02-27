@@ -11,7 +11,7 @@ class CreateActivationsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('activations', function (Blueprint $table) {
             //Structure
@@ -31,7 +31,7 @@ class CreateActivationsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('activations');
     }

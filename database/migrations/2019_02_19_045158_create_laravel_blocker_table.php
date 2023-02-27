@@ -13,7 +13,7 @@ class CreateLaravelBlockerTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         $blocked = new BlockedItem();
         $connection = $blocked->getConnectionName();
@@ -43,7 +43,7 @@ class CreateLaravelBlockerTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         $blocked = new BlockedItem();
         $connection = $blocked->getConnectionName();

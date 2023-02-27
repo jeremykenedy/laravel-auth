@@ -1,6 +1,16 @@
 <?php
 
+use App\Providers\ComposerServiceProvider;
+use App\Providers\MacroServiceProvider;
+use Collective\Html\FormFacade;
+use Collective\Html\HtmlFacade;
+use Creativeorange\Gravatar\Facades\Gravatar;
+use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Facade;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redis;
+use Intervention\Image\Facades\Image;
+use jeremykenedy\Uuid\Uuid;
 
 return [
 
@@ -56,7 +66,7 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-    'asset_url' => env('ASSET_URL', null),
+    'asset_url' => env('ASSET_URL', '/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -127,6 +137,24 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Maintenance Mode Driver
+    |--------------------------------------------------------------------------
+    |
+    | These configuration options determine the driver used to determine and
+    | manage Laravel's "maintenance mode" status. The "cache" driver will
+    | allow maintenance mode to be controlled across multiple machines.
+    |
+    | Supported drivers: "file", "cache"
+    |
+    */
+
+    'maintenance' => [
+        'driver' => 'file',
+        // 'store'  => 'redis',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Autoloaded Service Providers
     |--------------------------------------------------------------------------
     |
@@ -163,8 +191,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        App\Providers\MacroServiceProvider::class,
-        App\Providers\ComposerServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
@@ -174,10 +201,11 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        \SocialiteProviders\Manager\ServiceProvider::class,
+        ComposerServiceProvider::class,
+        MacroServiceProvider::class,
     ],
 
     /*
@@ -192,15 +220,14 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
-        'Redis'     => Illuminate\Support\Facades\Redis::class,
-        'Form'      => \Collective\Html\FormFacade::class,
-        'HTML'      => \Collective\Html\HtmlFacade::class,
-        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Input'     => Illuminate\Support\Facades\Input::class,
-        'Gravatar'  => Creativeorange\Gravatar\Facades\Gravatar::class,
-        'Image'     => Intervention\Image\Facades\Image::class,
-        'Uuid'      => jeremykenedy\Uuid\Uuid::class,
+        'Redis'     => Redis::class,
+        'Form'      => FormFacade::class,
+        'HTML'      => HtmlFacade::class,
+        'Socialite' => Socialite::class,
+        'Input'     => Input::class,
+        'Gravatar'  => Gravatar::class,
+        'Image'     => Image::class,
+        'Uuid'      => Uuid::class,
     ])->toArray(),
 
 ];

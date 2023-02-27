@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $profile = new Profile();
         $adminRole = Role::whereName('Admin')->first();

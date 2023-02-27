@@ -13,7 +13,7 @@ return [
         'fallback' => env('DEFAULT_GRAVATAR_FALLBACK', false),
 
         // would you like to return a https://... image
-        'secure' => env('DEFAULT_GRAVATAR_SECURE', false),
+        'secure' => env('DEFAULT_GRAVATAR_SECURE', true),
 
         // Gravatar allows users to self-rate their images so that they can indicate if an image
         // is appropriate for a certain audience. By default, only 'G' rated images are displayed

@@ -17,7 +17,7 @@
             font-size: 6em;
             text-align: center;
             display: block;
-            margin: .25em 0 .75em;
+            margin: 0.25em 0 0.75em;
         }
     }
     .panel {
@@ -36,13 +36,13 @@
             height: 90px;
         }
     }
-    @media(min-width: $breakpoint-xs){
+    @media (min-width: $breakpoint-xs) {
         .verification-form-panel input {
             font-size: 3em;
             height: 140px;
         }
     }
-    @media(min-width: $breakpoint-sm){
+    @media (min-width: $breakpoint-sm) {
         .verification-form-panel input {
             font-size: 4em;
             height: 180px;

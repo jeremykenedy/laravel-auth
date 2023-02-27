@@ -21,6 +21,9 @@ Thumbs.db
 .phpintel/*
 /.phpintel/*
 /.vscode
+/.fleet
+/.idea
+/.vscode
 
 ### Vagrant/Homestead Vendor Configs ###
 /.vagrant

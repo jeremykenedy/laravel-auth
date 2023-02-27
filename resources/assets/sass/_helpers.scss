@@ -13,21 +13,21 @@
 }
 
 .border-bottom {
-    border-bottom:1px #f8f8f8 solid;
-    margin:5px 0  5px 0;
+    border-bottom: 1px #f8f8f8 solid;
+    margin: 5px 0 5px 0;
 }
 
 .border-radius {
     @include vendor(border-radius, $standard-radius);
 }
 
-@media(max-width: $mq-tiny) {
+@media (max-width: $mq-tiny) {
     .hidden-xxxs {
         display: none;
     }
 }
 
-@media(max-width: $phone) {
+@media (max-width: $phone) {
     .hidden-xxs {
         display: none;
     }
@@ -37,16 +37,15 @@
     margin-right: auto;
     margin-left: auto;
 }
-@media(min-width: $bs4-phone) {
+@media (min-width: $bs4-phone) {
     .rounded-left-sm-up {
         border-top-left-radius: $border-radius !important;
         border-bottom-left-radius: $border-radius !important;
     }
 }
-@media(min-width: $tablet) {
+@media (min-width: $tablet) {
     .rounded-left-md-up {
         border-top-left-radius: $border-radius !important;
         border-bottom-left-radius: $border-radius !important;
     }
 }
-

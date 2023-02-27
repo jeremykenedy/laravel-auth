@@ -12,10 +12,8 @@ class MacroServiceProvider extends HtmlServiceProvider
 {
     /**
      * Register the application services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         // Macros must be loaded after the HTMLServiceProvider's
         // register method is called. Otherwise, csrf tokens

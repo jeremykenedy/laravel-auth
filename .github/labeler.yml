@@ -1,0 +1,125 @@
+# Add 'repo' label to any root file changes
+repo:
+  - "*"
+
+frontend-core:
+  - any: ["resources/js/app.js", "resources/js/bootstrap.js"]
+
+# Add 'frontend` label to any change to *.js files as long as the `app.js` hasn't changed
+frontend:
+  - any: ["resources/js/**/*.js", "resources/css/**/*.css"]
+    all: ["!resources/js/app.js"]
+
+backend:
+  - any: ["app/**/*.php"]
+
+models:
+  - any: ["app/Models/**/*.php"]
+
+notifications:
+  - any: ["app/Notifications/**/*.php"]
+
+providers:
+  - any: ["app/Providers/**/*.php"]
+
+controllers:
+  - any: ["app/Http/Controllers/**/*.php"]
+
+app-middleware:
+  - any: ["app/Http/Middleware/**/*.php", "app/Http/Kernel.php"]
+
+commands-and-crons:
+  - any: ["app/Console/**/*.php"]
+
+app-requests:
+  - any: ["app/Http/Requests/**/*.php"]
+
+app-resource-collections:
+  - any: ["app/Http/Resources/**/*.php"]
+
+config:
+  - any: ["config/**/*.php", ".env.example"]
+
+database:
+  - any: ["database/**/*.php"]
+
+migrations:
+  - any: ["database/migrations/**/*.php"]
+
+seeders:
+  - any: ["database/seeders/**/*.php"]
+
+core-routing:
+  - any: ["routes/**/*.php"]
+
+framework:
+  - any: ["bootstrap/**/*.php"]
+
+tests:
+  - any: ["tests/**/*.php"]
+
+language:
+  - any: ["resources/lang/**/*.php"]
+
+css:
+  - any: ["resources/css/**/*.css"]
+
+images:
+  - any: ["resources/img/**/*.*"]
+
+storage:
+  - any: ["storage/**/*.*"]
+
+workflow:
+  - any: [".github/**/*.*"]
+
+build:
+  - any: ["*.js", "*.yml", "*.json", "*.ts", "*.xml", "*.travis"]
+
+linting:
+  - any:
+      [
+        ".browserslistrc",
+        ".eslintrc.js",
+        ".editorconfig",
+        ".prettierignore",
+        "prettierrc.json",
+      ]
+
+documentation:
+  - any: ["*.md", "LICENSE", ".example"]
+
+tailwindcss:
+  - any:
+      [
+        "tailwindcss-perspective.js",
+        "tailwind.config.js",
+        "resources/css/**/*.css",
+      ]
+
+vite:
+  - any: ["vite.config.ts", "tsconfig.vite-config.json", "tsconfig.json"]
+
+vue-components:
+  - any: ["resources/js/components/**/*.vue"]
+
+vue-layouts:
+  - any: ["resources/js/layouts/**/*.vue"]
+
+vue-routing:
+  - any: ["resources/js/router/**/*.js"]
+
+vue-store:
+  - any: ["resources/js/store/**/*.js"]
+
+vue-middleware:
+  - any: ["resources/js/middleware/**/*.js"]
+
+vue-services:
+  - any: ["resources/js/services/**/*.js"]
+
+vue-views:
+  - any: ["resources/js/views/**/*.vue"]
+
+vue-admin:
+  - any: ["resources/js/views/admin/**/*.vue"]

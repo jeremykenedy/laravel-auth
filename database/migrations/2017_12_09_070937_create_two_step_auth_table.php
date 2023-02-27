@@ -12,7 +12,7 @@ class CreateTwoStepAuthTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         $twoStepAuth = new TwoStepAuth();
         $connection = $twoStepAuth->getConnectionName();
@@ -39,7 +39,7 @@ class CreateTwoStepAuthTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         $twoStepAuth = new TwoStepAuth();
         $connection = $twoStepAuth->getConnectionName();

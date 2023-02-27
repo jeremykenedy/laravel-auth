@@ -1,27 +1,23 @@
 .text-danger {
-	color: $brand-danger
+    color: $brand-danger;
 }
 .text-warning {
-	color: $brand-warning
+    color: $brand-warning;
 }
 
 .text-muted {
-	color: #00b1b1;
+    color: #00b1b1;
 }
 
 .text-larger {
-	font-size: 1.15em;
+    font-size: 1.15em;
 }
 
-@media(min-width: $tablet + 1) {
-
-	.text-left-tablet {
-		text-align: left;
-	}
-
+@media (min-width: $tablet + 1) {
+    .text-left-tablet {
+        text-align: left;
+    }
 }
-
-
 
 // $brand-primary: #3097D1;
 // $brand-info: #8eb4cb;
