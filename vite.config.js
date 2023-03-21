@@ -15,9 +15,9 @@ import viteImagemin from "vite-plugin-imagemin";
 import vue from "@vitejs/plugin-vue";
 import Pages from "vite-plugin-pages";
 import generateSitemap from "vite-plugin-pages-sitemap";
-import "jquery";
-import $ from " jquery";
-import jQuery from "jquery";
+// import "jquery";
+// import $ from " jquery";
+// import jQuery from "jquery";
 
 export default ({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
