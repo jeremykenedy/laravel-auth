@@ -37,16 +37,6 @@ class Social extends Model
     protected $hidden = [];
 
     /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'created_at',
-        'updated_at',
-    ];
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -63,10 +53,12 @@ class Social extends Model
      * @var array
      */
     protected $casts = [
-        'id'        => 'integer',
-        'user_id'   => 'integer',
-        'provider'  => 'string',
-        'social_id' => 'string',
+        'id'         => 'integer',
+        'user_id'    => 'integer',
+        'provider'   => 'string',
+        'social_id'  => 'string',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
     /**

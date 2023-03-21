@@ -51,17 +51,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'deleted_at',
-    ];
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -101,6 +90,9 @@ class User extends Authenticatable
         'admin_ip_address'                  => 'string',
         'updated_ip_address'                => 'string',
         'deleted_ip_address'                => 'string',
+        'created_at'                        => 'datetime',
+        'updated_at'                        => 'datetime',
+        'deleted_at'                        => 'datetime',
     ];
 
     public function sendPasswordResetNotification($token)
