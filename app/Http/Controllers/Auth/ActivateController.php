@@ -12,7 +12,7 @@ use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
-use jeremykenedy\LaravelRoles\Models\Role;
+use App\Models\Role;
 
 class ActivateController extends Controller
 {

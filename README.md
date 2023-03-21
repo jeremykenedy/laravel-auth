@@ -540,10 +540,6 @@ LARAVEL_BLOCKER_BLADE_PLACEMENT_JS='footer_scripts'
 LARAVEL_BLOCKER_USE_TYPES_SEED_PUBLISHED=true
 LARAVEL_BLOCKER_USE_ITEMS_SEED_PUBLISHED=true
 
-# Roles Default Models
-ROLES_DEFAULT_ROLE_MODEL=jeremykenedy\LaravelRoles\Models\Role
-ROLES_DEFAULT_PERMISSION_MODEL=jeremykenedy\LaravelRoles\Models\Permission
-
 # Roles database information
 ROLES_DATABASE_CONNECTION=null
 

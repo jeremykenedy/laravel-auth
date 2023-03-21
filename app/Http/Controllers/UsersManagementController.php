@@ -9,7 +9,7 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
-use jeremykenedy\LaravelRoles\Models\Role;
+use App\Models\Role;
 use Validator;
 
 class UsersManagementController extends Controller

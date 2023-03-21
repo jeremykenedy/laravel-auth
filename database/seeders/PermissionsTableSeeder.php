@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Permission;
 use Illuminate\Database\Seeder;
 
 class PermissionsTableSeeder extends Seeder
@@ -49,9 +50,9 @@ class PermissionsTableSeeder extends Seeder
          *
          */
         foreach ($Permissionitems as $Permissionitem) {
-            $newPermissionitem = config('roles.models.permission')::where('slug', '=', $Permissionitem['slug'])->first();
+            $newPermissionitem = Permission::where('slug', '=', $Permissionitem['slug'])->first();
             if ($newPermissionitem === null) {
-                $newPermissionitem = config('roles.models.permission')::create([
+                $newPermissionitem = Permission::create([
                     'name'          => $Permissionitem['name'],
                     'slug'          => $Permissionitem['slug'],
                     'description'   => $Permissionitem['description'],
