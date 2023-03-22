@@ -51,12 +51,12 @@ class PermissionsTableSeeder extends Seeder
          */
         foreach ($Permissionitems as $Permissionitem) {
             $newPermissionitem = Permission::where('slug', '=', $Permissionitem['slug'])->first();
-            if ($newPermissionitem === null) {
+            if (null === $newPermissionitem) {
                 $newPermissionitem = Permission::create([
-                    'name'          => $Permissionitem['name'],
-                    'slug'          => $Permissionitem['slug'],
-                    'description'   => $Permissionitem['description'],
-                    'model'         => $Permissionitem['model'],
+                    'name'        => $Permissionitem['name'],
+                    'slug'        => $Permissionitem['slug'],
+                    'description' => $Permissionitem['description'],
+                    'model'       => $Permissionitem['model'],
                 ]);
             }
         }

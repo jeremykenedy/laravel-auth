@@ -45,12 +45,12 @@ class RolesTableSeeder extends Seeder
          */
         foreach ($RoleItems as $RoleItem) {
             $newRoleItem = Role::where('slug', '=', $RoleItem['slug'])->first();
-            if ($newRoleItem === null) {
+            if (null === $newRoleItem) {
                 $newRoleItem = Role::create([
-                    'name'          => $RoleItem['name'],
-                    'slug'          => $RoleItem['slug'],
-                    'description'   => $RoleItem['description'],
-                    'level'         => $RoleItem['level'],
+                    'name'        => $RoleItem['name'],
+                    'slug'        => $RoleItem['slug'],
+                    'description' => $RoleItem['description'],
+                    'level'       => $RoleItem['level'],
                 ]);
             }
         }
