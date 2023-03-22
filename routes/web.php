@@ -56,9 +56,9 @@ Route::group(['middleware' => ['auth', 'activated', 'activity', 'twostep', 'chec
 
     //  Homepage Route - Redirect based on user role is in controller.
     Route::get('/home', [
-        'as'    => 'public.home',
-        'uses'  => 'App\Http\Controllers\UserController@index',
-        'name'  => 'home',
+        'as'   => 'public.home',
+        'uses' => 'App\Http\Controllers\UserController@index',
+        'name' => 'home',
     ]);
 
     // Show users profile - viewable by other users.
@@ -85,15 +85,15 @@ Route::group(['middleware' => ['auth', 'activated', 'currentUser', 'activity', '
         ]
     );
     Route::put('profile/{username}/updateUserAccount', [
-        'as'   => '{username}',
+        'as'   => 'profile.updateUserAccount',
         'uses' => 'App\Http\Controllers\ProfilesController@updateUserAccount',
     ]);
     Route::put('profile/{username}/updateUserPassword', [
-        'as'   => '{username}',
+        'as'   => 'profile.updateUserPassword',
         'uses' => 'App\Http\Controllers\ProfilesController@updateUserPassword',
     ]);
     Route::delete('profile/{username}/deleteUserAccount', [
-        'as'   => '{username}',
+        'as'   => 'profile.deleteUserAccount',
         'uses' => 'App\Http\Controllers\ProfilesController@deleteUserAccount',
     ]);
 
