@@ -13,7 +13,7 @@
 [![Sponsor me on Patreon](https://img.shields.io/static/v1?label=patreon&message=%E2%9D%A4&logo=Patreon&color=F35B49&style=flat)](https://patreon.com/jeremykenedy)
 [![Buy me a Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/jeremykenedy)
 [![Vultr](https://img.shields.io/badge/Vultr-007BFC.svg?style=flat&logo=vultr)](https://www.vultr.com/?ref=9338425-8H)
-[![GitHub Stars](https://img.shields.io/github/stars/jeremykenedy/laravel-spa?style=social)](https://github.com/jeremykenedy/laravel-spa/stargazers)
+[![GitHub Stars](https://img.shields.io/github/stars/jeremykenedy/laravel-auth?style=social)](https://github.com/jeremykenedy/laravel-auth/stargazers)
 [![Follow on GitHub](https://img.shields.io/github/followers/jeremykenedy?style=social)](https://github.com/jeremykenedy)
 [![Follow on Twitter](https://img.shields.io/twitter/follow/developernator?style=social&logo=twitter)](https://twitter.com/intent/follow?screen_name=developernator)
 
