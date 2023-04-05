@@ -11,15 +11,17 @@ class ExceptionOccured extends Mailable
     use Queueable, SerializesModels;
 
     private $content;
+    private $css;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($content)
+    public function __construct($content, $css)
     {
         $this->content = $content;
+        $this->css = $css;
     }
 
     /**
@@ -61,6 +63,7 @@ class ExceptionOccured extends Mailable
                     ->bcc($bccEmails)
                     ->subject($subject)
                     ->view(config('exceptions.emailExceptionView'))
+                    ->with('css', $this->css)
                     ->with('content', $this->content);
     }
 }

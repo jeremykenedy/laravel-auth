@@ -5,11 +5,11 @@ namespace App\Exceptions;
 use App\Mail\ExceptionOccured;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use Symfony\Component\Debug\ExceptionHandler as SymfonyExceptionHandler;
+use Symfony\Component\ErrorHandler\ErrorRenderer\HtmlErrorRenderer;
+use Symfony\Component\ErrorHandler\Exception\FlattenException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -117,14 +117,11 @@ class Handler extends ExceptionHandler
     public function sendEmail(Throwable $exception): void
     {
         try {
-            $content['message'] = $exception->getMessage();
-            $content['file'] = $exception->getFile();
-            $content['line'] = $exception->getLine();
-            $content['trace'] = $exception->getTrace();
-            $content['url'] = request()->url();
-            $content['body'] = request()->all();
-            $content['ip'] = request()->ip();
-            Mail::send(new ExceptionOccured($content));
+            $e = FlattenException::createFromThrowable($exception);
+            $handler = new HtmlErrorRenderer(true);
+            $css = $handler->getStylesheet();
+            $content = $handler->getBody($e);
+            Mail::send(new ExceptionOccured($content, $css));
         } catch (Throwable $exception) {
             Log::error($exception);
         }
