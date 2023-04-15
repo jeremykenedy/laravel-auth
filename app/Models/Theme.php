@@ -41,17 +41,6 @@ class Theme extends Model
     protected $hidden = [];
 
     /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'deleted_at',
-    ];
-
-    /**
      * Fillable fields for a Profile.
      *
      * @var array
@@ -79,6 +68,9 @@ class Theme extends Model
         'activated'     => 'boolean',
         'taggable_id'   => 'integer',
         'taggable_type' => 'string',
+        'created_at'    => 'datetime',
+        'updated_at'    => 'datetime',
+        'deleted_at'    => 'datetime',
     ];
 
     /**
