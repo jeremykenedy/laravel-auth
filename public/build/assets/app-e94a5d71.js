@@ -9051,7 +9051,7 @@ var pusher = {
               if (Date.now) {
                 return Date.now();
               } else {
-                return new Date().valueOf();
+                return (/* @__PURE__ */ new Date()).valueOf();
               }
             },
             defer: function(callback) {
@@ -11750,7 +11750,7 @@ var pusher = {
           }
           function getUniqueURL(url) {
             var separator = url.indexOf("?") === -1 ? "?" : "&";
-            return url + separator + "t=" + +new Date() + "&n=" + autoIncrement++;
+            return url + separator + "t=" + +/* @__PURE__ */ new Date() + "&n=" + autoIncrement++;
           }
           function replaceHost(url, hostname) {
             var urlParts = /(https?:\/\/)([^\/:]+)((\/|:)?.*)/.exec(url);
@@ -19683,6 +19683,7 @@ $.fn.extend({
 var flushPending = false;
 var flushing = false;
 var queue = [];
+var lastFlushedIndex = -1;
 function scheduler(callback) {
   queueJob(callback);
 }
@@ -19693,7 +19694,7 @@ function queueJob(job) {
 }
 function dequeueJob(job) {
   let index = queue.indexOf(job);
-  if (index !== -1)
+  if (index !== -1 && index > lastFlushedIndex)
     queue.splice(index, 1);
 }
 function queueFlush() {
@@ -19707,8 +19708,10 @@ function flushJobs() {
   flushing = true;
   for (let i = 0; i < queue.length; i++) {
     queue[i]();
+    lastFlushedIndex = i;
   }
   queue.length = 0;
+  lastFlushedIndex = -1;
   flushing = false;
 }
 var reactive;
@@ -20112,10 +20115,7 @@ function normalEvaluator(el, expression) {
   let overriddenMagics = {};
   injectMagics(overriddenMagics, el);
   let dataStack = [overriddenMagics, ...closestDataStack(el)];
-  if (typeof expression === "function") {
-    return generateEvaluatorFromFunction(dataStack, expression);
-  }
-  let evaluator = generateEvaluatorFromString(dataStack, expression, el);
+  let evaluator = typeof expression === "function" ? generateEvaluatorFromFunction(dataStack, expression) : generateEvaluatorFromString(dataStack, expression, el);
   return tryCatch.bind(null, el, expression, evaluator);
 }
 function generateEvaluatorFromFunction(dataStack, func) {
@@ -20191,15 +20191,14 @@ function directive(name, callback) {
   directiveHandlers[name] = callback;
   return {
     before(directive2) {
-      var _a2;
       if (!directiveHandlers[directive2]) {
-        console.warn("Cannot find directive `${directive}`. `${name}` will use the default order of execution");
+        console.warn(
+          "Cannot find directive `${directive}`. `${name}` will use the default order of execution"
+        );
         return;
       }
-      const pos = (_a2 = directiveOrder.indexOf(directive2)) != null ? _a2 : directiveOrder.indexOf("DEFAULT");
-      if (pos >= 0) {
-        directiveOrder.splice(pos, 0, name);
-      }
+      const pos = directiveOrder.indexOf(directive2);
+      directiveOrder.splice(pos >= 0 ? pos : directiveOrder.indexOf("DEFAULT"), 0, name);
     }
   };
 }
@@ -20325,17 +20324,9 @@ var directiveOrder = [
   "ref",
   "data",
   "id",
-  "radio",
-  "tabs",
-  "switch",
-  "disclosure",
-  "menu",
-  "listbox",
-  "combobox",
   "bind",
   "init",
   "for",
-  "mask",
   "model",
   "modelable",
   "transition",
@@ -20350,12 +20341,15 @@ function byPriority(a, b) {
   return directiveOrder.indexOf(typeA) - directiveOrder.indexOf(typeB);
 }
 function dispatch(el, name, detail = {}) {
-  el.dispatchEvent(new CustomEvent(name, {
-    detail,
-    bubbles: true,
-    composed: true,
-    cancelable: true
-  }));
+  el.dispatchEvent(
+    new CustomEvent(name, {
+      detail,
+      bubbles: true,
+      // Allows events to pass the shadow DOM barrier.
+      composed: true,
+      cancelable: true
+    })
+  );
 }
 function walk(el, callback) {
   if (typeof ShadowRoot === "function" && el instanceof ShadowRoot) {
@@ -20571,7 +20565,7 @@ directive("transition", (el, { value, modifiers: modifiers2, expression }, { eva
 function registerTransitionsFromClassString(el, classString, stage) {
   registerTransitionObject(el, setClasses, "");
   let directiveStorageMap = {
-    enter: (classes) => {
+    "enter": (classes) => {
       el._x_transition.enter.during = classes;
     },
     "enter-start": (classes) => {
@@ -20580,7 +20574,7 @@ function registerTransitionsFromClassString(el, classString, stage) {
     "enter-end": (classes) => {
       el._x_transition.enter.end = classes;
     },
-    leave: (classes) => {
+    "leave": (classes) => {
       el._x_transition.leave.during = classes;
     },
     "leave-start": (classes) => {
@@ -21119,7 +21113,7 @@ var Alpine = {
   get raw() {
     return raw;
   },
-  version: "3.11.1",
+  version: "3.12.0",
   flushAndStopDeferringMutations,
   dontAutoEvaluateFunctions,
   disableEffectScheduling,
@@ -21142,8 +21136,11 @@ var Alpine = {
   closestRoot,
   destroyTree,
   interceptor,
+  // INTERNAL: not public API and is subject to change without major release.
   transition,
+  // INTERNAL
   setStyles: setStyles$1,
+  // INTERNAL
   mutateDom,
   directive,
   throttle,
@@ -21517,7 +21514,10 @@ var toReadonly = (value) => isObject(value) ? readonly(value) : value;
 var toShallow = (value) => value;
 var getProto = (v) => Reflect.getPrototypeOf(v);
 function get$1(target, key, isReadonly2 = false, isShallow2 = false) {
-  target = target["__v_raw"];
+  target = target[
+    "__v_raw"
+    /* RAW */
+  ];
   const rawTarget = toRaw(target);
   const rawKey = toRaw(key);
   if (key !== rawKey) {
@@ -21535,7 +21535,10 @@ function get$1(target, key, isReadonly2 = false, isShallow2 = false) {
   }
 }
 function has$1(key, isReadonly2 = false) {
-  const target = this["__v_raw"];
+  const target = this[
+    "__v_raw"
+    /* RAW */
+  ];
   const rawTarget = toRaw(target);
   const rawKey = toRaw(key);
   if (key !== rawKey) {
@@ -21545,7 +21548,10 @@ function has$1(key, isReadonly2 = false) {
   return key === rawKey ? target.has(key) : target.has(key) || target.has(rawKey);
 }
 function size(target, isReadonly2 = false) {
-  target = target["__v_raw"];
+  target = target[
+    "__v_raw"
+    /* RAW */
+  ];
   !isReadonly2 && track(toRaw(target), "iterate", ITERATE_KEY);
   return Reflect.get(target, "size", target);
 }
@@ -21610,7 +21616,10 @@ function clear() {
 function createForEach(isReadonly2, isShallow2) {
   return function forEach2(callback, thisArg) {
     const observed = this;
-    const target = observed["__v_raw"];
+    const target = observed[
+      "__v_raw"
+      /* RAW */
+    ];
     const rawTarget = toRaw(target);
     const wrap = isShallow2 ? toShallow : isReadonly2 ? toReadonly : toReactive;
     !isReadonly2 && track(rawTarget, "iterate", ITERATE_KEY);
@@ -21621,7 +21630,10 @@ function createForEach(isReadonly2, isShallow2) {
 }
 function createIterableMethod(method, isReadonly2, isShallow2) {
   return function(...args) {
-    const target = this["__v_raw"];
+    const target = this[
+      "__v_raw"
+      /* RAW */
+    ];
     const rawTarget = toRaw(target);
     const targetIsMap = isMap(rawTarget);
     const isPair = method === "entries" || method === Symbol.iterator && targetIsMap;
@@ -21630,6 +21642,7 @@ function createIterableMethod(method, isReadonly2, isShallow2) {
     const wrap = isShallow2 ? toShallow : isReadonly2 ? toReadonly : toReactive;
     !isReadonly2 && track(rawTarget, "iterate", isKeyOnly ? MAP_KEY_ITERATE_KEY : ITERATE_KEY);
     return {
+      // iterator protocol
       next() {
         const { value, done } = innerIterator.next();
         return done ? { value, done } : {
@@ -21637,6 +21650,7 @@ function createIterableMethod(method, isReadonly2, isShallow2) {
           done
         };
       },
+      // iterable protocol
       [Symbol.iterator]() {
         return this;
       }
@@ -21690,10 +21704,22 @@ var readonlyInstrumentations = {
   has(key) {
     return has$1.call(this, key, true);
   },
-  add: createReadonlyMethod("add"),
-  set: createReadonlyMethod("set"),
-  delete: createReadonlyMethod("delete"),
-  clear: createReadonlyMethod("clear"),
+  add: createReadonlyMethod(
+    "add"
+    /* ADD */
+  ),
+  set: createReadonlyMethod(
+    "set"
+    /* SET */
+  ),
+  delete: createReadonlyMethod(
+    "delete"
+    /* DELETE */
+  ),
+  clear: createReadonlyMethod(
+    "clear"
+    /* CLEAR */
+  ),
   forEach: createForEach(true, false)
 };
 var shallowReadonlyInstrumentations = {
@@ -21706,10 +21732,22 @@ var shallowReadonlyInstrumentations = {
   has(key) {
     return has$1.call(this, key, true);
   },
-  add: createReadonlyMethod("add"),
-  set: createReadonlyMethod("set"),
-  delete: createReadonlyMethod("delete"),
-  clear: createReadonlyMethod("clear"),
+  add: createReadonlyMethod(
+    "add"
+    /* ADD */
+  ),
+  set: createReadonlyMethod(
+    "set"
+    /* SET */
+  ),
+  delete: createReadonlyMethod(
+    "delete"
+    /* DELETE */
+  ),
+  clear: createReadonlyMethod(
+    "clear"
+    /* CLEAR */
+  ),
   forEach: createForEach(true, true)
 };
 var iteratorMethods = ["keys", "values", "entries", Symbol.iterator];
@@ -21764,10 +21802,16 @@ function targetTypeMap(rawType) {
   }
 }
 function getTargetType(value) {
-  return value["__v_skip"] || !Object.isExtensible(value) ? 0 : targetTypeMap(toRawType(value));
+  return value[
+    "__v_skip"
+    /* SKIP */
+  ] || !Object.isExtensible(value) ? 0 : targetTypeMap(toRawType(value));
 }
 function reactive2(target) {
-  if (target && target["__v_isReadonly"]) {
+  if (target && target[
+    "__v_isReadonly"
+    /* IS_READONLY */
+  ]) {
     return target;
   }
   return createReactiveObject(target, false, mutableHandlers, mutableCollectionHandlers, reactiveMap);
@@ -21782,7 +21826,13 @@ function createReactiveObject(target, isReadonly2, baseHandlers, collectionHandl
     }
     return target;
   }
-  if (target["__v_raw"] && !(isReadonly2 && target["__v_isReactive"])) {
+  if (target[
+    "__v_raw"
+    /* RAW */
+  ] && !(isReadonly2 && target[
+    "__v_isReactive"
+    /* IS_REACTIVE */
+  ])) {
     return target;
   }
   const existingProxy = proxyMap.get(target);
@@ -21798,7 +21848,10 @@ function createReactiveObject(target, isReadonly2, baseHandlers, collectionHandl
   return proxy;
 }
 function toRaw(observed) {
-  return observed && toRaw(observed["__v_raw"]) || observed;
+  return observed && toRaw(observed[
+    "__v_raw"
+    /* RAW */
+  ]) || observed;
 }
 function isRef(r) {
   return Boolean(r && r.__v_isRef === true);
@@ -21911,7 +21964,7 @@ directive("modelable", (el, { expression }, { effect: effect3, evaluateLater: ev
   };
   let evaluateInnerSet = evaluateLater2(`${expression} = __placeholder`);
   let innerSet = (val) => evaluateInnerSet(() => {
-  }, { scope: { __placeholder: val } });
+  }, { scope: { "__placeholder": val } });
   let initialValue = innerGet();
   innerSet(initialValue);
   queueMicrotask(() => {
@@ -21920,21 +21973,24 @@ directive("modelable", (el, { expression }, { effect: effect3, evaluateLater: ev
     el._x_removeModelListeners["default"]();
     let outerGet = el._x_model.get;
     let outerSet = el._x_model.set;
-    let releaseEntanglement = entangle({
-      get() {
-        return outerGet();
+    let releaseEntanglement = entangle(
+      {
+        get() {
+          return outerGet();
+        },
+        set(value) {
+          outerSet(value);
+        }
       },
-      set(value) {
-        outerSet(value);
+      {
+        get() {
+          return innerGet();
+        },
+        set(value) {
+          innerSet(value);
+        }
       }
-    }, {
-      get() {
-        return innerGet();
-      },
-      set(value) {
-        innerSet(value);
-      }
-    });
+    );
     cleanup2(releaseEntanglement);
   });
 });
@@ -22068,7 +22124,9 @@ function isNumeric$1(subject) {
   return !Array.isArray(subject) && !isNaN(subject);
 }
 function kebabCase2(subject) {
-  if ([" ", "_"].includes(subject))
+  if ([" ", "_"].includes(
+    subject
+  ))
     return subject;
   return subject.replace(/([a-z])([A-Z])/g, "$1-$2").replace(/[_\s]/, "-").toLowerCase();
 }
@@ -22077,7 +22135,7 @@ function isKeyEvent(event) {
 }
 function isListeningForASpecificKeyThatHasntBeenPressed(e, modifiers2) {
   let keyModifiers = modifiers2.filter((i) => {
-    return !["window", "document", "prevent", "stop", "once"].includes(i);
+    return !["window", "document", "prevent", "stop", "once", "capture"].includes(i);
   });
   if (keyModifiers.includes("debounce")) {
     let debounceIndex = keyModifiers.indexOf("debounce");
@@ -22112,20 +22170,20 @@ function keyToModifiers(key) {
     return [];
   key = kebabCase2(key);
   let modifierToKeyMap = {
-    ctrl: "control",
-    slash: "/",
-    space: " ",
-    spacebar: " ",
-    cmd: "meta",
-    esc: "escape",
-    up: "arrow-up",
-    down: "arrow-down",
-    left: "arrow-left",
-    right: "arrow-right",
-    period: ".",
-    equal: "=",
-    minus: "-",
-    underscore: "_"
+    "ctrl": "control",
+    "slash": "/",
+    "space": " ",
+    "spacebar": " ",
+    "cmd": "meta",
+    "esc": "escape",
+    "up": "arrow-up",
+    "down": "arrow-down",
+    "left": "arrow-left",
+    "right": "arrow-right",
+    "period": ".",
+    "equal": "=",
+    "minus": "-",
+    "underscore": "_"
   };
   modifierToKeyMap[key] = key;
   return Object.keys(modifierToKeyMap).map((modifier) => {
@@ -22161,10 +22219,13 @@ directive("model", (el, { modifiers: modifiers2, expression }, { effect: effect3
     } else {
       evaluateSet(() => {
       }, {
-        scope: { __placeholder: value }
+        scope: { "__placeholder": value }
       });
     }
   };
+  if (modifiers2.includes("fill") && el.hasAttribute("value") && (getValue() === null || getValue() === "")) {
+    setValue(el.value);
+  }
   if (typeof expression === "string" && el.type === "radio") {
     mutateDom(() => {
       if (!el.hasAttribute("name"))
@@ -22172,7 +22233,8 @@ directive("model", (el, { modifiers: modifiers2, expression }, { effect: effect3
     });
   }
   var event = el.tagName.toLowerCase() === "select" || ["checkbox", "radio"].includes(el.type) || modifiers2.includes("lazy") ? "change" : "input";
-  let removeListener = on(el, event, modifiers2, (e) => {
+  let removeListener = isCloning ? () => {
+  } : on(el, event, modifiers2, (e) => {
     setValue(getInputValue(el, modifiers2, e, getValue()));
   });
   if (!el._x_removeModelListeners)
@@ -22308,7 +22370,7 @@ directive("data", skipDuringClone((el, { expression }, { cleanup: cleanup2 }) =>
   let dataProviderContext = {};
   injectDataProviders(dataProviderContext, magicContext);
   let data2 = evaluate(el, expression, { scope: dataProviderContext });
-  if (data2 === void 0)
+  if (data2 === void 0 || data2 === true)
     data2 = {};
   injectMagics(data2, el);
   let reactiveData = reactive(data2);
@@ -22347,13 +22409,16 @@ directive("show", (el, { modifiers: modifiers2, expression }, { effect: effect3 
     el._x_isShown = true;
   };
   let clickAwayCompatibleShow = () => setTimeout(show);
-  let toggle = once((value) => value ? show() : hide2(), (value) => {
-    if (typeof el._x_toggleAndCascadeWithTransitions === "function") {
-      el._x_toggleAndCascadeWithTransitions(el, value, show, hide2);
-    } else {
-      value ? clickAwayCompatibleShow() : hide2();
+  let toggle = once(
+    (value) => value ? show() : hide2(),
+    (value) => {
+      if (typeof el._x_toggleAndCascadeWithTransitions === "function") {
+        el._x_toggleAndCascadeWithTransitions(el, value, show, hide2);
+      } else {
+        value ? clickAwayCompatibleShow() : hide2();
+      }
     }
-  });
+  );
   let oldValue;
   let firstTime = true;
   effect3(() => evaluate2((value) => {
@@ -22369,7 +22434,11 @@ directive("show", (el, { modifiers: modifiers2, expression }, { effect: effect3 
 directive("for", (el, { expression }, { effect: effect3, cleanup: cleanup2 }) => {
   let iteratorNames = parseForExpression(expression);
   let evaluateItems = evaluateLater(el, iteratorNames.items);
-  let evaluateKey = evaluateLater(el, el._x_keyExpression || "index");
+  let evaluateKey = evaluateLater(
+    el,
+    // the x-bind:key expression is stored for our use instead of evaluated.
+    el._x_keyExpression || "index"
+  );
   el._x_prevKeys = [];
   el._x_lookup = {};
   effect3(() => loop(el, iteratorNames, evaluateItems, evaluateKey));
@@ -22587,7 +22656,7 @@ directive("on", skipDuringClone((el, { value, modifiers: modifiers2, expression 
   }
   let removeListener = on(el, value, modifiers2, (e) => {
     evaluate2(() => {
-    }, { scope: { $event: e }, params: [e] });
+    }, { scope: { "$event": e }, params: [e] });
   });
   cleanup2(() => removeListener());
 }));
@@ -22621,7 +22690,7 @@ var jquery = {
   }
 };
 /*!
- * jQuery JavaScript Library v3.6.3
+ * jQuery JavaScript Library v3.6.4
  * https://jquery.com/
  *
  * Includes Sizzle.js
@@ -22631,7 +22700,7 @@ var jquery = {
  * Released under the MIT license
  * https://jquery.org/license
  *
- * Date: 2022-12-20T21:28Z
+ * Date: 2023-03-08T15:28Z
  */
 var hasRequiredJquery;
 function requireJquery() {
@@ -22698,7 +22767,7 @@ function requireJquery() {
         }
         return typeof obj === "object" || typeof obj === "function" ? class2type[toString3.call(obj)] || "object" : typeof obj;
       }
-      var version2 = "3.6.3", jQuery2 = function(selector, context) {
+      var version2 = "3.6.4", jQuery2 = function(selector, context) {
         return new jQuery2.fn.init(selector, context);
       };
       jQuery2.fn = jQuery2.prototype = {
@@ -22941,17 +23010,17 @@ function requireJquery() {
       }
       var Sizzle = (
         /*!
-         * Sizzle CSS Selector Engine v2.3.9
+         * Sizzle CSS Selector Engine v2.3.10
          * https://sizzlejs.com/
          *
          * Copyright JS Foundation and other contributors
          * Released under the MIT license
          * https://js.foundation/
          *
-         * Date: 2022-12-19
+         * Date: 2023-02-14
          */
         function(window3) {
-          var i, support2, Expr, getText, isXML, tokenize, compile2, select, outermostContext, sortInput, hasDuplicate, setDocument, document3, docElem, documentIsHTML, rbuggyQSA, rbuggyMatches, matches, contains2, expando = "sizzle" + 1 * new Date(), preferredDoc = window3.document, dirruns = 0, done = 0, classCache = createCache(), tokenCache = createCache(), compilerCache = createCache(), nonnativeSelectorCache = createCache(), sortOrder = function(a, b) {
+          var i, support2, Expr, getText, isXML, tokenize, compile2, select, outermostContext, sortInput, hasDuplicate, setDocument, document3, docElem, documentIsHTML, rbuggyQSA, rbuggyMatches, matches, contains2, expando = "sizzle" + 1 * /* @__PURE__ */ new Date(), preferredDoc = window3.document, dirruns = 0, done = 0, classCache = createCache(), tokenCache = createCache(), compilerCache = createCache(), nonnativeSelectorCache = createCache(), sortOrder = function(a, b) {
             if (a === b) {
               hasDuplicate = true;
             }
@@ -22967,7 +23036,7 @@ function requireJquery() {
           }, booleans = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped", whitespace2 = "[\\x20\\t\\r\\n\\f]", identifier = "(?:\\\\[\\da-fA-F]{1,6}" + whitespace2 + "?|\\\\[^\\r\\n\\f]|[\\w-]|[^\0-\\x7f])+", attributes = "\\[" + whitespace2 + "*(" + identifier + ")(?:" + whitespace2 + // Operator (capture 2)
           "*([*^$|!~]?=)" + whitespace2 + // "Attribute values must be CSS identifiers [capture 5]
           // or strings [capture 3 or capture 4]"
-          `*(?:'((?:\\\\.|[^\\\\'])*)'|"((?:\\\\.|[^\\\\"])*)"|(` + identifier + "))|)" + whitespace2 + "*\\]", pseudos = ":(" + identifier + `)(?:\\((('((?:\\\\.|[^\\\\'])*)'|"((?:\\\\.|[^\\\\"])*)")|((?:\\\\.|[^\\\\()[\\]]|` + attributes + ")*)|.*)\\)|)", rwhitespace = new RegExp(whitespace2 + "+", "g"), rtrim2 = new RegExp("^" + whitespace2 + "+|((?:^|[^\\\\])(?:\\\\.)*)" + whitespace2 + "+$", "g"), rcomma = new RegExp("^" + whitespace2 + "*," + whitespace2 + "*"), rcombinators = new RegExp("^" + whitespace2 + "*([>+~]|" + whitespace2 + ")" + whitespace2 + "*"), rdescend = new RegExp(whitespace2 + "|>"), rpseudo = new RegExp(pseudos), ridentifier = new RegExp("^" + identifier + "$"), matchExpr = {
+          `*(?:'((?:\\\\.|[^\\\\'])*)'|"((?:\\\\.|[^\\\\"])*)"|(` + identifier + "))|)" + whitespace2 + "*\\]", pseudos = ":(" + identifier + `)(?:\\((('((?:\\\\.|[^\\\\'])*)'|"((?:\\\\.|[^\\\\"])*)")|((?:\\\\.|[^\\\\()[\\]]|` + attributes + ")*)|.*)\\)|)", rwhitespace = new RegExp(whitespace2 + "+", "g"), rtrim2 = new RegExp("^" + whitespace2 + "+|((?:^|[^\\\\])(?:\\\\.)*)" + whitespace2 + "+$", "g"), rcomma = new RegExp("^" + whitespace2 + "*," + whitespace2 + "*"), rleadingCombinator = new RegExp("^" + whitespace2 + "*([>+~]|" + whitespace2 + ")" + whitespace2 + "*"), rdescend = new RegExp(whitespace2 + "|>"), rpseudo = new RegExp(pseudos), ridentifier = new RegExp("^" + identifier + "$"), matchExpr = {
             "ID": new RegExp("^#(" + identifier + ")"),
             "CLASS": new RegExp("^\\.(" + identifier + ")"),
             "TAG": new RegExp("^(" + identifier + "|[*])"),
@@ -23071,7 +23140,7 @@ function requireJquery() {
                 (nodeType !== 1 || context.nodeName.toLowerCase() !== "object")) {
                   newSelector = selector;
                   newContext = context;
-                  if (nodeType === 1 && (rdescend.test(selector) || rcombinators.test(selector))) {
+                  if (nodeType === 1 && (rdescend.test(selector) || rleadingCombinator.test(selector))) {
                     newContext = rsibling.test(selector) && testContext(context.parentNode) || context;
                     if (newContext !== context || !support2.scope) {
                       if (nid = context.getAttribute("id")) {
@@ -23088,10 +23157,6 @@ function requireJquery() {
                     newSelector = groups.join(",");
                   }
                   try {
-                    if (support2.cssSupportsSelector && // eslint-disable-next-line no-undef
-                    !CSS.supports("selector(:is(" + newSelector + "))")) {
-                      throw new Error();
-                    }
                     push2.apply(
                       results,
                       newContext.querySelectorAll(newSelector)
@@ -23230,16 +23295,13 @@ function requireJquery() {
               docElem.appendChild(el).appendChild(document3.createElement("div"));
               return typeof el.querySelectorAll !== "undefined" && !el.querySelectorAll(":scope fieldset div").length;
             });
-            support2.cssSupportsSelector = assert(function() {
-              return CSS.supports("selector(*)") && // Support: Firefox 78-81 only
-              // In old Firefox, `:is()` didn't use forgiving parsing. In that case,
-              // fail this test as there's no selector to test against that.
-              // `CSS.supports` uses unforgiving parsing
-              document3.querySelectorAll(":is(:jqfake)") && // `*` is needed as Safari & newer Chrome implemented something in between
-              // for `:has()` - it throws in `qSA` if it only contains an unsupported
-              // argument but multiple ones, one of which is supported, are fine.
-              // We want to play safe in case `:is()` gets the same treatment.
-              !CSS.supports("selector(:is(*,:jqfake))");
+            support2.cssHas = assert(function() {
+              try {
+                document3.querySelector(":has(*,:jqfake)");
+                return false;
+              } catch (e) {
+                return true;
+              }
             });
             support2.attributes = assert(function(el) {
               el.className = "i";
@@ -23375,7 +23437,7 @@ function requireJquery() {
                 rbuggyMatches.push("!=", pseudos);
               });
             }
-            if (!support2.cssSupportsSelector) {
+            if (!support2.cssHas) {
               rbuggyQSA.push(":has");
             }
             rbuggyQSA = rbuggyQSA.length && new RegExp(rbuggyQSA.join("|"));
@@ -23877,7 +23939,7 @@ function requireJquery() {
                 groups.push(tokens = []);
               }
               matched = false;
-              if (match = rcombinators.exec(soFar)) {
+              if (match = rleadingCombinator.exec(soFar)) {
                 matched = match.shift();
                 tokens.push({
                   value: matched,
@@ -33929,4 +33991,4 @@ $.fn.extend({
 export {
   __vite_legacy_guard
 };
-//# sourceMappingURL=app-6c603e38.js.map
+//# sourceMappingURL=app-e94a5d71.js.map

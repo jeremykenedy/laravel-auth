@@ -11,7 +11,7 @@ use App\Traits\CaptureIpTrait;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use jeremykenedy\LaravelRoles\Models\Role;
+use App\Models\Role;
 
 class RegisterController extends Controller
 {
