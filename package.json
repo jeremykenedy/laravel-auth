@@ -62,7 +62,7 @@
     "terser": "^5.16.5",
     "toasty": "^6.0.3",
     "tw-elements": "^1.0.0-beta1",
-    "typescript": "^4.9.5",
+    "typescript": "^5.0.4",
     "universal-social-auth": "^0.2.6",
     "vform": "^2.1.2",
     "vite": "^4.1.4",
