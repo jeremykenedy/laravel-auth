@@ -5,11 +5,8 @@ namespace App\Exceptions;
 use App\Mail\ExceptionOccured;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use Symfony\Component\Debug\ExceptionHandler as SymfonyExceptionHandler;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -81,7 +78,7 @@ class Handler extends ExceptionHandler
 
         if ($userLevelCheck) {
             if ($request->expectsJson()) {
-                return Response::json([
+                return response()->json([
                     'error'     => 403,
                     'message'   => 'Unauthorized.',
                 ], 403);
