@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profile;
+use App\Models\Role;
 use App\Models\User;
 use App\Traits\CaptureIpTrait;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Role;
 use Validator;
 
 class UsersManagementController extends Controller

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Profile;
+use App\Models\Role;
 use App\Models\User;
 use App\Traits\ActivationTrait;
 use App\Traits\CaptchaTrait;
@@ -11,7 +12,6 @@ use App\Traits\CaptureIpTrait;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Role;
 
 class RegisterController extends Controller
 {
