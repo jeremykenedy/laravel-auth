@@ -15,7 +15,7 @@
     "@originjs/vite-plugin-commonjs": "^1.0.3",
     "@popperjs/core": "^2.11.6",
     "@rushstack/eslint-patch": "^1.2.0",
-    "@sentry/vite-plugin": "^0.4.0",
+    "@sentry/vite-plugin": "^0.5.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/line-clamp": "^0.4.2",
