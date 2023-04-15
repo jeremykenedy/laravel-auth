@@ -35,11 +35,11 @@
     "predis/predis": "^2.1",
     "pusher/pusher-php-server": "^7.2",
     "rap2hpoutre/laravel-log-viewer": "^2.3",
-    "socialiteproviders/37signals": "*",
-    "socialiteproviders/instagram": "*",
-    "socialiteproviders/linkedin": "*",
+    "socialiteproviders/37signals": "^4.1",
+    "socialiteproviders/instagram": "^5.0",
+    "socialiteproviders/linkedin": "^4.2",
     "socialiteproviders/twitch": "^5.3",
-    "socialiteproviders/youtube": "*"
+    "socialiteproviders/youtube": "^4.1"
   },
   "require-dev": {
     "fakerphp/faker": "^1.9.1",

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class RolesTableSeeder extends Seeder
@@ -43,13 +44,13 @@ class RolesTableSeeder extends Seeder
          *
          */
         foreach ($RoleItems as $RoleItem) {
-            $newRoleItem = config('roles.models.role')::where('slug', '=', $RoleItem['slug'])->first();
-            if ($newRoleItem === null) {
-                $newRoleItem = config('roles.models.role')::create([
-                    'name'          => $RoleItem['name'],
-                    'slug'          => $RoleItem['slug'],
-                    'description'   => $RoleItem['description'],
-                    'level'         => $RoleItem['level'],
+            $newRoleItem = Role::where('slug', '=', $RoleItem['slug'])->first();
+            if (null === $newRoleItem) {
+                $newRoleItem = Role::create([
+                    'name'        => $RoleItem['name'],
+                    'slug'        => $RoleItem['slug'],
+                    'description' => $RoleItem['description'],
+                    'level'       => $RoleItem['level'],
                 ]);
             }
         }

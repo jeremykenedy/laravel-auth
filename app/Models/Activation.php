@@ -41,16 +41,6 @@ class Activation extends Model
     ];
 
     /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'created_at',
-        'updated_at',
-    ];
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -71,6 +61,8 @@ class Activation extends Model
         'user_id'       => 'integer',
         'token'         => 'string',
         'ip_address'    => 'string',
+        'created_at'    => 'datetime',
+        'updated_at'    => 'datetime',
     ];
 
     /**

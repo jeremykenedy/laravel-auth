@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,7 +27,6 @@ Auth::routes();
 
 // Public Routes
 Route::group(['middleware' => ['web', 'activity', 'checkblocked']], function () {
-
     // Activation Routes
     Route::get('/activate', ['as' => 'activate', 'uses' => 'App\Http\Controllers\Auth\ActivateController@initial']);
 
@@ -44,7 +44,6 @@ Route::group(['middleware' => ['web', 'activity', 'checkblocked']], function () 
 
 // Registered and Activated User Routes
 Route::group(['middleware' => ['auth', 'activated', 'activity', 'checkblocked']], function () {
-
     // Activation Routes
     Route::get('/activation-required', ['uses' => 'App\Http\Controllers\Auth\ActivateController@activationRequired'])->name('activation-required');
     // Route::get('/logout', ['uses' => 'App\Http\Controllers\Auth\LoginController@logout'])->name('logout');
@@ -52,12 +51,11 @@ Route::group(['middleware' => ['auth', 'activated', 'activity', 'checkblocked']]
 
 // Registered and Activated User Routes
 Route::group(['middleware' => ['auth', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
-
     //  Homepage Route - Redirect based on user role is in controller.
     Route::get('/home', [
-        'as'    => 'public.home',
-        'uses'  => 'App\Http\Controllers\UserController@index',
-        'name'  => 'home',
+        'as'   => 'public.home',
+        'uses' => 'App\Http\Controllers\UserController@index',
+        'name' => 'home',
     ]);
 
     // Show users profile - viewable by other users.
@@ -69,7 +67,6 @@ Route::group(['middleware' => ['auth', 'activated', 'activity', 'twostep', 'chec
 
 // Registered, activated, and is current user routes.
 Route::group(['middleware' => ['auth', 'activated', 'currentUser', 'activity', 'twostep', 'checkblocked']], function () {
-
     // User Profile and Account Routes
     Route::resource(
         'profile',
@@ -84,15 +81,15 @@ Route::group(['middleware' => ['auth', 'activated', 'currentUser', 'activity', '
         ]
     );
     Route::put('profile/{username}/updateUserAccount', [
-        'as'   => '{username}',
+        'as'   => 'profile.updateUserAccount',
         'uses' => 'App\Http\Controllers\ProfilesController@updateUserAccount',
     ]);
     Route::put('profile/{username}/updateUserPassword', [
-        'as'   => '{username}',
+        'as'   => 'profile.updateUserPassword',
         'uses' => 'App\Http\Controllers\ProfilesController@updateUserPassword',
     ]);
     Route::delete('profile/{username}/deleteUserAccount', [
-        'as'   => '{username}',
+        'as'   => 'profile.deleteUserAccount',
         'uses' => 'App\Http\Controllers\ProfilesController@deleteUserAccount',
     ]);
 
