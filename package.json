@@ -111,7 +111,7 @@
     "pusher-js": "^8.0.1",
     "requirejs": "^2.3.6",
     "save-dev": "^0.0.1-security",
-    "vite-plugin-static-copy": "^0.13.1",
+    "vite-plugin-static-copy": "^0.14.0",
     "vue-axios": "^3.5.2",
     "vue-html-secure": "^1.0.10",
     "vue-loader": "^17.0.1",
