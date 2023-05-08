@@ -22,7 +22,7 @@
     "@tailwindcss/nesting": "^0.0.0-insiders.565cd3e",
     "@tailwindcss/postcss7-compat": "^2.2.17",
     "@tailwindcss/typography": "^0.5.9",
-    "@types/node": "^18.14.2",
+    "@types/node": "^20.1.0",
     "@vitejs/plugin-basic-ssl": "^1.0.1",
     "@vitejs/plugin-legacy": "^4.0.1",
     "@vitejs/plugin-vue": "^4.0.0",
