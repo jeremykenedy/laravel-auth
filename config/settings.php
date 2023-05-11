@@ -81,4 +81,9 @@ return [
      * Google Analytics
      */
     'googleanalyticsId' => env('GOOGLE_ANALYTICS_ID', false),
+
+    /*
+     * enable/disable HTTP Method column in admin's route details list
+     */
+    'showRouteHttpMethod' => env('SHOW_ROUTE_HTTP_METHOD',1),
 ];
