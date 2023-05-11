@@ -61,7 +61,7 @@
   "autoload-dev": {
     "psr-4": {
       "Tests\\": "tests/",
-      "jeremykenedy\\LaravelRoles\\": "packages/jeremykenedy/laravel-rosles/src/"
+      "jeremykenedy\\LaravelRoles\\": "vendor/jeremykenedy/laravel-roles/src/"
     }
   },
   "scripts": {
