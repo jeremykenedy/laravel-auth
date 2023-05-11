@@ -85,5 +85,5 @@ return [
     /*
      * enable/disable HTTP Method column in admin's route details list
      */
-    'showRouteHttpMethod' => env('SHOW_ROUTE_HTTP_METHOD',1),
+    'showRouteHttpMethod' => env('SHOW_ROUTE_HTTP_METHOD', 1),
 ];
