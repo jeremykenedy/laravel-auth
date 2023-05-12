@@ -21,6 +21,9 @@
 							<table class="table table-striped table-sm data-table">
 								<thead>
 									<tr class="success">
+                                        @if(config('settings.showRouteHttpMethod'))
+                                            <th>Request Method</th>
+                                        @endif
 					                    <th>URI</th>
 					                    <th>Name</th>
 					                    <th>Type</th>
@@ -30,6 +33,13 @@
 								<tbody>
 							        @foreach ($routes as $route)
 										<tr>
+                                            @if(config('settings.showRouteHttpMethod'))
+                                                <td>
+                                                    @foreach ($route->methods as $method)
+                                                        <span class="badge badge-primary">{{strtolower($method)}}</span>
+                                                    @endforeach
+                                                </td>
+                                            @endif
 				                        <td>{{$route->uri}}</td>
 				                        <td>{{$route->getName()}}</td>
 				                        <td>{{$route->getPrefix()}}</td>
