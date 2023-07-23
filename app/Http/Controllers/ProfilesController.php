@@ -39,7 +39,7 @@ class ProfilesController extends Controller
      * Fetch user
      * (You can extract this to repository method).
      *
-     * @param $username
+     * @param  $username
      * @return mixed
      */
     public function getUserByUsername($username)
@@ -74,7 +74,7 @@ class ProfilesController extends Controller
     /**
      * /profiles/username/edit.
      *
-     * @param $username
+     * @param  $username
      * @return mixed
      */
     public function edit($username)
@@ -107,7 +107,7 @@ class ProfilesController extends Controller
      * Update a user's profile.
      *
      * @param  \App\Http\Requests\UpdateUserProfile  $request
-     * @param $username
+     * @param  $username
      * @return mixed
      *
      * @throws Laracasts\Validation\FormValidationException
@@ -220,7 +220,7 @@ class ProfilesController extends Controller
     /**
      * Upload and Update user avatar.
      *
-     * @param $file
+     * @param  $file
      * @return mixed
      */
     public function upload(Request $request)
@@ -252,8 +252,8 @@ class ProfilesController extends Controller
     /**
      * Show user avatar.
      *
-     * @param $id
-     * @param $image
+     * @param  $id
+     * @param  $image
      * @return string
      */
     public function userProfileAvatar($id, $image)
