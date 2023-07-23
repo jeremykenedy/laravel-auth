@@ -76,7 +76,7 @@ class ActivateController extends Controller
     /**
      * Redirect the user after activation with admin logic.
      *
-     * @param $user             The user
+     * @param  $user  The user
      * @param currentRoute      The current route
      * @return Redirect
      */
