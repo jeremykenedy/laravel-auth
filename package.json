@@ -49,7 +49,7 @@
     "laravel-vite-plugin": "^0.7.4",
     "nodemon": "^2.0.20",
     "postcss": "^8.4.21",
-    "postcss-nesting": "^11.2.1",
+    "postcss-nesting": "^12.0.0",
     "prettier": "^2.8.4",
     "prettier-plugin-tailwindcss": "^0.4.1",
     "resolve-url-loader": "^5.0.0",
