@@ -47,7 +47,7 @@
     "js-cookie": "^3.0.1",
     "laravel-mix": "^6.0.49",
     "laravel-vite-plugin": "^0.7.4",
-    "nodemon": "^2.0.20",
+    "nodemon": "^3.0.1",
     "postcss": "^8.4.21",
     "postcss-nesting": "^11.2.1",
     "prettier": "^2.8.4",
