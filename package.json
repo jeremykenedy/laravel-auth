@@ -74,7 +74,7 @@
     "vite-plugin-minify": "^1.5.2",
     "vite-plugin-pages": "^0.31.0",
     "vite-plugin-pages-sitemap": "^1.4.5",
-    "vite-plugin-pwa": "^0.14.4",
+    "vite-plugin-pwa": "^0.16.4",
     "vite-plugin-stylelint": "^4.2.0",
     "vue": "^3.2.47",
     "vue-content-loader": "^2.0.1",
