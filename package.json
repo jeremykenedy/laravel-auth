@@ -46,7 +46,7 @@
     "html-webpack-plugin": "^5.5.0",
     "js-cookie": "^3.0.1",
     "laravel-mix": "^6.0.49",
-    "laravel-vite-plugin": "^0.7.4",
+    "laravel-vite-plugin": "^0.8.0",
     "nodemon": "^3.0.1",
     "postcss": "^8.4.21",
     "postcss-nesting": "^12.0.0",
