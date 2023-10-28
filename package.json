@@ -75,7 +75,7 @@
     "vite-plugin-pages": "^0.31.0",
     "vite-plugin-pages-sitemap": "^1.4.5",
     "vite-plugin-pwa": "^0.16.4",
-    "vite-plugin-stylelint": "^4.2.0",
+    "vite-plugin-stylelint": "^5.2.0",
     "vue": "^3.2.47",
     "vue-content-loader": "^2.0.1",
     "vue-github-button": "^3.1.0",
