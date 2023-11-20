@@ -70,7 +70,7 @@
     "vite-plugin-html": "^3.2.0",
     "vite-plugin-imagemin": "^0.6.1",
     "vite-plugin-inspect": "^0.7.15",
-    "vite-plugin-manifest-sri": "^0.1.0",
+    "vite-plugin-manifest-sri": "^0.2.0",
     "vite-plugin-minify": "^1.5.2",
     "vite-plugin-pages": "^0.31.0",
     "vite-plugin-pages-sitemap": "^1.4.5",
