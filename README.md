@@ -176,7 +176,8 @@ php artisan vendor:publish --tag=laravel-email-database-log-migration
 | Email           | Password | Access       |
 | :-------------- | :------- | :----------- |
 | user@user.com   | password | User Access  |
-| admin@admin.com | password | Admin Access |
+| admin@user.com | password | Admin Access |
+| unverified@user.com | password | Unverified Access |
 
 ##### Themes Seed List
 
