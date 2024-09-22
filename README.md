@@ -180,12 +180,12 @@ php artisan vendor:publish --tag=laravel-email-database-log-migration
 
 ##### Themes Seed List
 
--   [ThemesTableSeeder](https://github.com/jeremykenedy/laravel-auth/blob/master/database/seeds/ThemesTableSeeder.php)
+-   [ThemesTableSeeder](https://github.com/jeremykenedy/laravel-auth/blob/master/database/seeders/ThemesTableSeeder.php)
 -   NOTE: A lot of themes render incorrectly on Bootstrap 4 since their core was built to override Bootstrap 4. These will be updated soon and ones that do not render correctly will be removed from the seed. In the mean time you can remove them from the seed or manaully from the UI or database.
 
 ##### Blocked Types Seed List
 
--   [BlockedTypeTableSeeder.php](https://github.com/jeremykenedy/laravel-auth/blob/master/database/seeds/BlockedTypeTableSeeder.php)
+-   [BlockedTypeTableSeeder.php](https://github.com/jeremykenedy/laravel-auth/blob/master/database/seeders/BlockedTypeTableSeeder.php)
 
 | Slug        | Name         |
 | :---------- | :----------- |
@@ -202,7 +202,7 @@ php artisan vendor:publish --tag=laravel-email-database-log-migration
 
 ##### Blocked Items Seed List
 
--   [BlockedItemsTableSeeder.php](https://github.com/jeremykenedy/laravel-auth/blob/master/database/seeds/BlockedItemsTableSeeder.php)
+-   [BlockedItemsTableSeeder.php](https://github.com/jeremykenedy/laravel-auth/blob/master/database/seeders/BlockedItemsTableSeeder.php)
 
 | Type   | Value          | Note                                     |
 | :----- | :------------- | :--------------------------------------- |
