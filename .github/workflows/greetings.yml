@@ -13,4 +13,4 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           issue-message: "Thank you for using this application, please make sure you reviewed the readme and checked that it is not an environmental issue.  If it is an urgent security concern, please email jeremykenedy@gmial.com. Thank you!"
-          pr-message: "Thank you so much for contributong the project! This will be reviewed shortly. If it is urgent or a security concern, please email jeremykenedy@gmial.com"
+          pr-message: "Thank you so much for contributong the project! This will be reviewed shortly. If it is urgent or a security concern, please email jeremykenedy@gmail.com"
