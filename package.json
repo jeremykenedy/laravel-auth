@@ -65,7 +65,7 @@
     "typescript": "^5.0.4",
     "universal-social-auth": "^0.2.6",
     "vform": "^2.1.2",
-    "vite": "^4.1.4",
+    "vite": "^6.0.3",
     "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-html": "^3.2.0",
     "vite-plugin-imagemin": "^0.6.1",
