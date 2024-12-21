@@ -28,7 +28,7 @@
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/compiler-sfc": "^3.2.47",
     "@vue/eslint-config-prettier": "^10.1.0",
-    "@vue/eslint-config-typescript": "^13.0.0",
+    "@vue/eslint-config-typescript": "^14.1.4",
     "@vue/tsconfig": "^0.6.0",
     "autoprefixer": "^10.4.13",
     "babel-loader": "^9.1.2",
