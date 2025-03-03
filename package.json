@@ -31,7 +31,7 @@
     "@vue/eslint-config-typescript": "^13.0.0",
     "@vue/tsconfig": "^0.7.0",
     "autoprefixer": "^10.4.13",
-    "babel-loader": "^9.1.2",
+    "babel-loader": "^10.0.0",
     "chart.js": "^4.2.1",
     "core-js": "^3.29.0",
     "cross-env": "^7.0.3",
