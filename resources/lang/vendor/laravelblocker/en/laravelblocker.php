@@ -30,7 +30,7 @@ return [
         'back-to-blocked-deleted'   => '<span class="hidden-xs">Back</span> <span class="hidden-xs hidden-sm">to Deleted</span>',
         'show'                      => '<span class="hidden-xs hidden-sm">Show </span><i class="fa fa-eye fa-fw" aria-hidden="true"></i>',
         'edit'                      => '<span class="hidden-xs hidden-sm">Edit </span><i class="fa fa-pencil fa-fw" aria-hidden="true"></i>',
-        'delete'                    => '<span class="hidden-xs hidden-sm">Delete </span><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i>',
+        'delete'                    => '<span class="hidden-xs hidden-sm">Delete </span><i class="fa fa-trash fa-fw" aria-hidden="true"></i>',
         'destroy'                   => '<span class="hidden-xs hidden-sm">Destroy </span><i class="fa fa-trash fa-fw" aria-hidden="true"></i>',
         'save-larger'               => 'Save Edits <i class="fa fa-save fa-fw" aria-hidden="true"></i>',
         'create-larger'             => 'Create New Blocked Item <i class="fa fa-save fa-fw" aria-hidden="true"></i>',

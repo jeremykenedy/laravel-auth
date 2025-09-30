@@ -1,10 +1,12 @@
+@use "mixins";
+
 .user-avatar {
     width: 80px;
     height: 80px;
     margin: 2em auto;
     display: block;
-    @include vendor(border-radius, 50%);
-    @include draggless();
+    @include mixins.vendor(border-radius, 50%);
+    @include mixins.draggless();
 }
 .user-avatar-nav {
     margin-top: -3px;
@@ -12,8 +14,8 @@
     float: left;
     width: 30px;
     height: 30px;
-    @include vendor(border-radius, 50%);
-    @include draggless();
+    @include mixins.vendor(border-radius, 50%);
+    @include mixins.draggless();
 }
 
 #avatar_container {
@@ -27,7 +29,7 @@
         background: rgba($white, 0.05);
         height: 180px;
         padding: 0;
-        @include vendor(border-radius, $standard-radius);
+        @include mixins.vendor(border-radius, $standard-radius);
     }
     .dz-message {
         margin-top: -20px 1em 0;

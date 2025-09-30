@@ -1,6 +1,6 @@
 ## Laravel Auth
 
-#### Laravel Auth is a Complete Build of Laravel 10 with Email Registration Verification, Social Authentication, User Roles and Permissions, User Profiles, and Admin restricted user management system. Built on Bootstrap 4.
+#### Laravel Auth is a Complete Build of Laravel 12 with Email Registration Verification, Social Authentication, User Roles and Permissions, User Profiles, and Admin restricted user management system. Built on Bootstrap 4.
 
 [![StyleCI](https://styleci.io/repos/44714043/shield?branch=master)](https://styleci.io/repos/44714043)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/?branch=master)
@@ -51,15 +51,15 @@ If you like this, you will love [Laravel Auth Spa](https://github.com/jeremykene
 
 ### About
 
-Laravel 10 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. Uses official [Bootstrap 4](https://getbootstrap.com). This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
+Laravel 12 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. Uses official [Bootstrap 4](https://getbootstrap.com). This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
 
 ### Features
 
-#### A [Laravel](https://laravel.com/) 10 with [Bootstrap](https://getbootstrap.com) 4.x project.
+#### A [Laravel](https://laravel.com/) 12 with [Bootstrap](https://getbootstrap.com) 4.x project.
 
 | Laravel Auth Features                                                                                                                                |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Built on [Laravel](https://laravel.com/) 10                                                                                                          |
+| Built on [Laravel](https://laravel.com/) 12                                                                                                          |
 | Built on [Bootstrap](https://getbootstrap.com/) 4                                                                                                    |
 | Uses [MySQL](https://github.com/mysql) Database (can be changed)                                                                                     |
 | Uses [Artisan](https://laravel.com/docs/master/artisan) to manage database migration, schema creations, and create/publish page controller templates |
@@ -133,22 +133,18 @@ php artisan vendor:publish --tag=laravel-email-database-log-migration
 11. From the projects root folder run `php artisan db:seed`
 12. Compile the front end assets with [npm steps](#using-npm) or [yarn steps](#using-yarn).
 
-#### Build the Front End Assets with Mix
+#### Build the Front End Assets with Vite
 
 ##### Using Yarn:
 
 1. Install yarn (dependent on your distribution)
 2. From the projects root folder run `yarn install`
-3. From the projects root folder run `yarn run dev` or `yarn run production`
-
--   You can watch assets with `yarn run watch`
+3. From the projects root folder run `yarn run dev` or `yarn run build`
 
 ##### Using NPM:
 
 1. From the projects root folder run `npm install`
-2. From the projects root folder run `npm run dev` or `npm run production`
-
--   You can watch assets with `npm run watch`
+2. From the projects root folder run `npm run dev` or `npm run build`
 
 #### Optionally Build Cache
 
@@ -176,7 +172,7 @@ php artisan vendor:publish --tag=laravel-email-database-log-migration
 | Email           | Password | Access       |
 | :-------------- | :------- | :----------- |
 | user@user.com   | password | User Access  |
-| admin@admin.com | password | Admin Access |
+| admin@user.com | password | Admin Access |
 
 ##### Themes Seed List
 
@@ -215,122 +211,116 @@ php artisan vendor:publish --tag=laravel-email-database-log-migration
 ### Routes
 
 ```bash
-+--------+----------------------------------------+---------------------------------------+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------+
-| Domain | Method                                 | URI                                   | Name                                          | Action                                                                                                          | Middleware                                                   |
-+--------+----------------------------------------+---------------------------------------+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------+
-|        | GET|HEAD                               | /                                     | welcome                                       | App\Http\Controllers\WelcomeController@welcome                                                                  | web,checkblocked                                             |
-|        | GET|HEAD                               | _debugbar/assets/javascript           | debugbar.assets.js                            | Barryvdh\Debugbar\Controllers\AssetController@js                                                                | Barryvdh\Debugbar\Middleware\DebugbarEnabled,Closure         |
-|        | GET|HEAD                               | _debugbar/assets/stylesheets          | debugbar.assets.css                           | Barryvdh\Debugbar\Controllers\AssetController@css                                                               | Barryvdh\Debugbar\Middleware\DebugbarEnabled,Closure         |
-|        | DELETE                                 | _debugbar/cache/{key}/{tags?}         | debugbar.cache.delete                         | Barryvdh\Debugbar\Controllers\CacheController@delete                                                            | Barryvdh\Debugbar\Middleware\DebugbarEnabled,Closure         |
-|        | GET|HEAD                               | _debugbar/clockwork/{id}              | debugbar.clockwork                            | Barryvdh\Debugbar\Controllers\OpenHandlerController@clockwork                                                   | Barryvdh\Debugbar\Middleware\DebugbarEnabled,Closure         |
-|        | GET|HEAD                               | _debugbar/open                        | debugbar.openhandler                          | Barryvdh\Debugbar\Controllers\OpenHandlerController@handle                                                      | Barryvdh\Debugbar\Middleware\DebugbarEnabled,Closure         |
-|        | GET|HEAD                               | _debugbar/telescope/{id}              | debugbar.telescope                            | Barryvdh\Debugbar\Controllers\TelescopeController@show                                                          | Barryvdh\Debugbar\Middleware\DebugbarEnabled,Closure         |
-|        | GET|HEAD                               | activate                              | activate                                      | App\Http\Controllers\Auth\ActivateController@initial                                                            | web,activity,checkblocked,auth                               |
-|        | GET|HEAD                               | activate/{token}                      | authenticated.activate                        | App\Http\Controllers\Auth\ActivateController@activate                                                           | web,activity,checkblocked,auth                               |
-|        | GET|HEAD                               | activation                            | authenticated.activation-resend               | App\Http\Controllers\Auth\ActivateController@resend                                                             | web,activity,checkblocked,auth                               |
-|        | GET|HEAD                               | activation-required                   | activation-required                           | App\Http\Controllers\Auth\ActivateController@activationRequired                                                 | web,auth,activated,activity,checkblocked                     |
-|        | GET|HEAD                               | active-users                          |                                               | App\Http\Controllers\AdminDetailsController@activeUsers                                                         | web,auth,activated,role:admin,activity,twostep,checkblocked  |
-|        | GET|HEAD                               | activity                              | activity                                      | jeremykenedy\LaravelLogger\App\Http\Controllers\LaravelLoggerController@showAccessLog                           | web,auth,activity,role:admin                                 |
-|        | DELETE                                 | activity/clear-activity               | clear-activity                                | jeremykenedy\LaravelLogger\App\Http\Controllers\LaravelLoggerController@clearActivityLog                        | web,auth,activity,role:admin                                 |
-|        | GET|HEAD                               | activity/cleared                      | cleared                                       | jeremykenedy\LaravelLogger\App\Http\Controllers\LaravelLoggerController@showClearedActivityLog                  | web,auth,activity,role:admin                                 |
-|        | GET|HEAD                               | activity/cleared/log/{id}             |                                               | jeremykenedy\LaravelLogger\App\Http\Controllers\LaravelLoggerController@showClearedAccessLogEntry               | web,auth,activity,role:admin                                 |
-|        | DELETE                                 | activity/destroy-activity             | destroy-activity                              | jeremykenedy\LaravelLogger\App\Http\Controllers\LaravelLoggerController@destroyActivityLog                      | web,auth,activity,role:admin                                 |
-|        | GET|HEAD                               | activity/log/{id}                     |                                               | jeremykenedy\LaravelLogger\App\Http\Controllers\LaravelLoggerController@showAccessLogEntry                      | web,auth,activity,role:admin                                 |
-|        | POST                                   | activity/restore-log                  | restore-activity                              | jeremykenedy\LaravelLogger\App\Http\Controllers\LaravelLoggerController@restoreClearedActivityLog               | web,auth,activity,role:admin                                 |
-|        | POST                                   | avatar/upload                         | avatar.upload                                 | App\Http\Controllers\ProfilesController@upload                                                                  | web,auth,activated,currentUser,activity,twostep,checkblocked |
-|        | GET|HEAD                               | blocker                               | laravelblocker::blocker.index                 | jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerController@index                                 | web,checkblocked,auth,activated,role:admin,activity,twostep  |
-|        | POST                                   | blocker                               | laravelblocker::blocker.store                 | jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerController@store                                 | web,checkblocked,auth,activated,role:admin,activity,twostep  |
-|        | GET|HEAD                               | blocker-deleted                       | laravelblocker::blocker-deleted               | jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerDeletedController@index                          | web,checkblocked,auth,activated,role:admin,activity,twostep  |
-|        | DELETE                                 | blocker-deleted-destroy-all           | laravelblocker::destroy-all-blocked           | jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerDeletedController@destroyAllItems                | web,checkblocked,auth,activated,role:admin,activity,twostep  |
-|        | POST                                   | blocker-deleted-restore-all           | laravelblocker::blocker-deleted-restore-all   | jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerDeletedController@restoreAllBlockedItems         | web,checkblocked,auth,activated,role:admin,activity,twostep  |
-|        | DELETE                                 | blocker-deleted/{id}                  | laravelblocker::blocker-item-destroy          | jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerDeletedController@destroy                        | web,checkblocked,auth,activated,role:admin,activity,twostep  |
-|        | PUT                                    | blocker-deleted/{id}                  | laravelblocker::blocker-item-restore          | jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerDeletedController@restoreBlockedItem             | web,checkblocked,auth,activated,role:admin,activity,twostep  |
-|        | GET|HEAD                               | blocker-deleted/{id}                  | laravelblocker::blocker-item-show-deleted     | jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerDeletedController@show                           | web,checkblocked,auth,activated,role:admin,activity,twostep  |
-|        | GET|HEAD                               | blocker/create                        | laravelblocker::blocker.create                | jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerController@create                                | web,checkblocked,auth,activated,role:admin,activity,twostep  |
-|        | DELETE                                 | blocker/{blocker}                     | laravelblocker::blocker.destroy               | jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerController@destroy                               | web,checkblocked,auth,activated,role:admin,activity,twostep  |
-|        | PUT|PATCH                              | blocker/{blocker}                     | laravelblocker::blocker.update                | jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerController@update                                | web,checkblocked,auth,activated,role:admin,activity,twostep  |
-|        | GET|HEAD                               | blocker/{blocker}                     | laravelblocker::blocker.show                  | jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerController@show                                  | web,checkblocked,auth,activated,role:admin,activity,twostep  |
-|        | GET|HEAD                               | blocker/{blocker}/edit                | laravelblocker::blocker.edit                  | jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerController@edit                                  | web,checkblocked,auth,activated,role:admin,activity,twostep  |
-|        | GET|HEAD                               | exceeded                              | exceeded                                      | App\Http\Controllers\Auth\ActivateController@exceeded                                                           | web,activity,checkblocked,auth                               |
-|        | GET|HEAD                               | home                                  | public.home                                   | App\Http\Controllers\UserController@index                                                                       | web,auth,activated,activity,twostep,checkblocked             |
-|        | GET|HEAD                               | images/profile/{id}/avatar/{image}    |                                               | App\Http\Controllers\ProfilesController@userProfileAvatar                                                       | web,auth,activated,currentUser,activity,twostep,checkblocked |
-|        | POST                                   | login                                 |                                               | App\Http\Controllers\Auth\LoginController@login                                                                 | web,guest                                                    |
-|        | GET|HEAD                               | login                                 | login                                         | App\Http\Controllers\Auth\LoginController@showLoginForm                                                         | web,guest                                                    |
-|        | POST                                   | logout                                | logout                                        | App\Http\Controllers\Auth\LoginController@logout                                                                | web                                                          |
-|        | GET|HEAD                               | logout                                | logout                                        | App\Http\Controllers\Auth\LoginController@logout                                                                | web,auth,activated,activity,checkblocked                     |
-|        | GET|HEAD                               | logs                                  |                                               | Rap2hpoutre\LaravelLogViewer\LogViewerController@index                                                          | web,auth,activated,role:admin,activity,twostep,checkblocked  |
-|        | POST                                   | password/email                        | password.email                                | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail                                           | web,guest                                                    |
-|        | GET|HEAD                               | password/reset                        | password.request                              | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm                                          | web,guest                                                    |
-|        | POST                                   | password/reset                        | password.update                               | App\Http\Controllers\Auth\ResetPasswordController@reset                                                         | web,guest                                                    |
-|        | GET|HEAD                               | password/reset/{token}                | password.reset                                | App\Http\Controllers\Auth\ResetPasswordController@showResetForm                                                 | web,guest                                                    |
-|        | GET|HEAD                               | permission-deleted/{id}               | laravelroles::permission-show-deleted         | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelpermissionsDeletedController@show                         | web,auth,role:admin                                          |
-|        | DELETE                                 | permission-destroy/{id}               | laravelroles::permission-item-destroy         | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelpermissionsDeletedController@destroy                      | web,auth,role:admin                                          |
-|        | PUT                                    | permission-restore/{id}               | laravelroles::permission-restore              | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelpermissionsDeletedController@restorePermission            | web,auth,role:admin                                          |
-|        | POST                                   | permissions                           | laravelroles::permissions.store               | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelPermissionsController@store                               | web,auth,role:admin                                          |
-|        | GET|HEAD                               | permissions                           | laravelroles::permissions.index               | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelPermissionsController@index                               | web,auth,role:admin                                          |
-|        | GET|HEAD                               | permissions-deleted                   | laravelroles::permissions-deleted             | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelpermissionsDeletedController@index                        | web,auth,role:admin                                          |
-|        | DELETE                                 | permissions-deleted-destroy-all       | laravelroles::destroy-all-deleted-permissions | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelpermissionsDeletedController@destroyAllDeletedPermissions | web,auth,role:admin                                          |
-|        | POST                                   | permissions-deleted-restore-all       | laravelroles::permissions-deleted-restore-all | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelpermissionsDeletedController@restoreAllDeletedPermissions | web,auth,role:admin                                          |
-|        | GET|HEAD                               | permissions/create                    | laravelroles::permissions.create              | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelPermissionsController@create                              | web,auth,role:admin                                          |
-|        | GET|HEAD                               | permissions/{permission}              | laravelroles::permissions.show                | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelPermissionsController@show                                | web,auth,role:admin                                          |
-|        | DELETE                                 | permissions/{permission}              | laravelroles::permissions.destroy             | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelPermissionsController@destroy                             | web,auth,role:admin                                          |
-|        | PUT|PATCH                              | permissions/{permission}              | laravelroles::permissions.update              | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelPermissionsController@update                              | web,auth,role:admin                                          |
-|        | GET|HEAD                               | permissions/{permission}/edit         | laravelroles::permissions.edit                | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelPermissionsController@edit                                | web,auth,role:admin                                          |
-|        | GET|HEAD|POST|PUT|PATCH|DELETE|OPTIONS | php                                   |                                               | Illuminate\Routing\RedirectController                                                                           | web                                                          |
-|        | GET|HEAD                               | phpinfo                               | laravelPhpInfo::phpinfo                       | jeremykenedy\LaravelPhpInfo\App\Http\Controllers\LaravelPhpInfoController@phpinfo                               | web,auth,activated,role:admin,activity,twostep               |
-|        | GET|HEAD                               | profile/create                        | profile.create                                | App\Http\Controllers\ProfilesController@create                                                                  | web,auth,activated,currentUser,activity,twostep,checkblocked |
-|        | PUT|PATCH                              | profile/{profile}                     | profile.update                                | App\Http\Controllers\ProfilesController@update                                                                  | web,auth,activated,currentUser,activity,twostep,checkblocked |
-|        | GET|HEAD                               | profile/{profile}                     | profile.show                                  | App\Http\Controllers\ProfilesController@show                                                                    | web,auth,activated,currentUser,activity,twostep,checkblocked |
-|        | GET|HEAD                               | profile/{profile}/edit                | profile.edit                                  | App\Http\Controllers\ProfilesController@edit                                                                    | web,auth,activated,currentUser,activity,twostep,checkblocked |
-|        | GET|HEAD                               | profile/{username}                    | {username}                                    | App\Http\Controllers\ProfilesController@show                                                                    | web,auth,activated,activity,twostep,checkblocked             |
-|        | DELETE                                 | profile/{username}/deleteUserAccount  | {username}                                    | App\Http\Controllers\ProfilesController@deleteUserAccount                                                       | web,auth,activated,currentUser,activity,twostep,checkblocked |
-|        | PUT                                    | profile/{username}/updateUserAccount  | {username}                                    | App\Http\Controllers\ProfilesController@updateUserAccount                                                       | web,auth,activated,currentUser,activity,twostep,checkblocked |
-|        | PUT                                    | profile/{username}/updateUserPassword | {username}                                    | App\Http\Controllers\ProfilesController@updateUserPassword                                                      | web,auth,activated,currentUser,activity,twostep,checkblocked |
-|        | GET|HEAD                               | re-activate/{token}                   | user.reactivate                               | App\Http\Controllers\RestoreUserController@userReActivate                                                       | web,activity,checkblocked                                    |
-|        | POST                                   | register                              |                                               | App\Http\Controllers\Auth\RegisterController@register                                                           | web,guest                                                    |
-|        | GET|HEAD                               | register                              | register                                      | App\Http\Controllers\Auth\RegisterController@showRegistrationForm                                               | web,guest                                                    |
-|        | GET|HEAD                               | role-deleted/{id}                     | laravelroles::role-show-deleted               | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelRolesDeletedController@show                               | web,auth,role:admin                                          |
-|        | DELETE                                 | role-destroy/{id}                     | laravelroles::role-item-destroy               | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelRolesDeletedController@destroy                            | web,auth,role:admin                                          |
-|        | PUT                                    | role-restore/{id}                     | laravelroles::role-restore                    | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelRolesDeletedController@restoreRole                        | web,auth,role:admin                                          |
-|        | POST                                   | roles                                 | laravelroles::roles.store                     | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelRolesController@store                                     | web,auth,role:admin                                          |
-|        | GET|HEAD                               | roles                                 | laravelroles::roles.index                     | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelRolesController@index                                     | web,auth,role:admin                                          |
-|        | GET|HEAD                               | roles-deleted                         | laravelroles::roles-deleted                   | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelRolesDeletedController@index                              | web,auth,role:admin                                          |
-|        | DELETE                                 | roles-deleted-destroy-all             | laravelroles::destroy-all-deleted-roles       | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelRolesDeletedController@destroyAllDeletedRoles             | web,auth,role:admin                                          |
-|        | POST                                   | roles-deleted-restore-all             | laravelroles::roles-deleted-restore-all       | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelRolesDeletedController@restoreAllDeletedRoles             | web,auth,role:admin                                          |
-|        | GET|HEAD                               | roles/create                          | laravelroles::roles.create                    | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelRolesController@create                                    | web,auth,role:admin                                          |
-|        | GET|HEAD                               | roles/{role}                          | laravelroles::roles.show                      | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelRolesController@show                                      | web,auth,role:admin                                          |
-|        | PUT|PATCH                              | roles/{role}                          | laravelroles::roles.update                    | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelRolesController@update                                    | web,auth,role:admin                                          |
-|        | DELETE                                 | roles/{role}                          | laravelroles::roles.destroy                   | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelRolesController@destroy                                   | web,auth,role:admin                                          |
-|        | GET|HEAD                               | roles/{role}/edit                     | laravelroles::roles.edit                      | jeremykenedy\LaravelRoles\App\Http\Controllers\LaravelRolesController@edit                                      | web,auth,role:admin                                          |
-|        | GET|HEAD                               | routes                                |                                               | App\Http\Controllers\AdminDetailsController@listRoutes                                                          | web,auth,activated,role:admin,activity,twostep,checkblocked  |
-|        | POST                                   | search-blocked                        | laravelblocker::search-blocked                | jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerController@search                                | web,checkblocked,auth,activated,role:admin,activity,twostep  |
-|        | POST                                   | search-blocked-deleted                | laravelblocker::search-blocked-deleted        | jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerDeletedController@search                         | web,checkblocked,auth,activated,role:admin,activity,twostep  |
-|        | POST                                   | search-users                          | search-users                                  | App\Http\Controllers\UsersManagementController@search                                                           | web,auth,activated,role:admin,activity,twostep,checkblocked  |
-|        | GET|HEAD                               | social/handle/{provider}              | social.handle                                 | App\Http\Controllers\Auth\SocialController@getSocialHandle                                                      | web,activity,checkblocked                                    |
-|        | GET|HEAD                               | social/redirect/{provider}            | social.redirect                               | App\Http\Controllers\Auth\SocialController@getSocialRedirect                                                    | web,activity,checkblocked                                    |
-|        | GET|HEAD                               | terms                                 | terms                                         | App\Http\Controllers\TermsController@terms                                                                      | web,checkblocked                                             |
-|        | GET|HEAD                               | themes                                | themes                                        | App\Http\Controllers\ThemesManagementController@index                                                           | web,auth,activated,role:admin,activity,twostep,checkblocked  |
-|        | POST                                   | themes                                | themes.store                                  | App\Http\Controllers\ThemesManagementController@store                                                           | web,auth,activated,role:admin,activity,twostep,checkblocked  |
-|        | GET|HEAD                               | themes/create                         | themes.create                                 | App\Http\Controllers\ThemesManagementController@create                                                          | web,auth,activated,role:admin,activity,twostep,checkblocked  |
-|        | DELETE                                 | themes/{theme}                        | themes.destroy                                | App\Http\Controllers\ThemesManagementController@destroy                                                         | web,auth,activated,role:admin,activity,twostep,checkblocked  |
-|        | PUT|PATCH                              | themes/{theme}                        | themes.update                                 | App\Http\Controllers\ThemesManagementController@update                                                          | web,auth,activated,role:admin,activity,twostep,checkblocked  |
-|        | GET|HEAD                               | themes/{theme}                        | themes.show                                   | App\Http\Controllers\ThemesManagementController@show                                                            | web,auth,activated,role:admin,activity,twostep,checkblocked  |
-|        | GET|HEAD                               | themes/{theme}/edit                   | themes.edit                                   | App\Http\Controllers\ThemesManagementController@edit                                                            | web,auth,activated,role:admin,activity,twostep,checkblocked  |
-|        | GET|HEAD                               | users                                 | users                                         | App\Http\Controllers\UsersManagementController@index                                                            | web,auth,activated,role:admin,activity,twostep,checkblocked  |
-|        | POST                                   | users                                 | users.store                                   | App\Http\Controllers\UsersManagementController@store                                                            | web,auth,activated,role:admin,activity,twostep,checkblocked  |
-|        | GET|HEAD                               | users/create                          | users.create                                  | App\Http\Controllers\UsersManagementController@create                                                           | web,auth,activated,role:admin,activity,twostep,checkblocked  |
-|        | GET|HEAD                               | users/deleted                         | deleted.index                                 | App\Http\Controllers\SoftDeletesController@index                                                                | web,auth,activated,role:admin,activity,twostep,checkblocked  |
-|        | GET|HEAD                               | users/deleted/{deleted}               | deleted.show                                  | App\Http\Controllers\SoftDeletesController@show                                                                 | web,auth,activated,role:admin,activity,twostep,checkblocked  |
-|        | DELETE                                 | users/deleted/{deleted}               | deleted.destroy                               | App\Http\Controllers\SoftDeletesController@destroy                                                              | web,auth,activated,role:admin,activity,twostep,checkblocked  |
-|        | PUT|PATCH                              | users/deleted/{deleted}               | deleted.update                                | App\Http\Controllers\SoftDeletesController@update                                                               | web,auth,activated,role:admin,activity,twostep,checkblocked  |
-|        | DELETE                                 | users/{user}                          | user.destroy                                  | App\Http\Controllers\UsersManagementController@destroy                                                          | web,auth,activated,role:admin,activity,twostep,checkblocked  |
-|        | PUT|PATCH                              | users/{user}                          | users.update                                  | App\Http\Controllers\UsersManagementController@update                                                           | web,auth,activated,role:admin,activity,twostep,checkblocked  |
-|        | GET|HEAD                               | users/{user}                          | users.show                                    | App\Http\Controllers\UsersManagementController@show                                                             | web,auth,activated,role:admin,activity,twostep,checkblocked  |
-|        | GET|HEAD                               | users/{user}/edit                     | users.edit                                    | App\Http\Controllers\UsersManagementController@edit                                                             | web,auth,activated,role:admin,activity,twostep,checkblocked  |
-|        | GET|HEAD                               | verification/needed                   | laravel2step::verificationNeeded              | jeremykenedy\laravel2step\App\Http\Controllers\TwoStepController@showVerification                               | web,auth,Closure                                             |
-|        | POST                                   | verification/resend                   | laravel2step::resend                          | jeremykenedy\laravel2step\App\Http\Controllers\TwoStepController@resend                                         | web,auth,Closure                                             |
-|        | POST                                   | verification/verify                   | laravel2step::verify                          | jeremykenedy\laravel2step\App\Http\Controllers\TwoStepController@verify                                         | web,auth,Closure                                             |
-+--------+----------------------------------------+---------------------------------------+-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------+
+  GET|HEAD        / ..................................................................................................................... welcome › WelcomeController@welcome
+  POST            _ignition/execute-solution .................................................. ignition.executeSolution › Spatie\LaravelIgnition › ExecuteSolutionController
+  GET|HEAD        _ignition/health-check .............................................................. ignition.healthCheck › Spatie\LaravelIgnition › HealthCheckController
+  POST            _ignition/update-config ........................................................... ignition.updateConfig › Spatie\LaravelIgnition › UpdateConfigController
+  GET|HEAD        activate ....................................................................................................... activate › Auth\ActivateController@initial
+  GET|HEAD        activate/{token} ................................................................................ authenticated.activate › Auth\ActivateController@activate
+  GET|HEAD        activation ............................................................................... authenticated.activation-resend › Auth\ActivateController@resend
+  GET|HEAD        activation-required ...................................................................... activation-required › Auth\ActivateController@activationRequired
+  GET|HEAD        activity .................................................................... activity › jeremykenedy\LaravelLogger › LaravelLoggerController@showAccessLog
+  DELETE          activity/clear-activity ............................................ clear-activity › jeremykenedy\LaravelLogger › LaravelLoggerController@clearActivityLog
+  GET|HEAD        activity/cleared .................................................... cleared › jeremykenedy\LaravelLogger › LaravelLoggerController@showClearedActivityLog
+  GET|HEAD        activity/cleared/log/{id} .................................................. jeremykenedy\LaravelLogger › LaravelLoggerController@showClearedAccessLogEntry
+  DELETE          activity/destroy-activity ...................................... destroy-activity › jeremykenedy\LaravelLogger › LaravelLoggerController@destroyActivityLog
+  POST            activity/live-search ......................................................... liveSearch › jeremykenedy\LaravelLogger › LaravelLoggerController@liveSearch
+  GET|HEAD        activity/log/{id} ................................................................. jeremykenedy\LaravelLogger › LaravelLoggerController@showAccessLogEntry
+  POST            activity/restore-log .................................... restore-activity › jeremykenedy\LaravelLogger › LaravelLoggerController@restoreClearedActivityLog
+  POST            avatar/upload ................................................................................................... avatar.upload › ProfilesController@upload
+  GET|HEAD        blocker ................................... laravelblocker::blocker.index › jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerController@index
+  POST            blocker ................................... laravelblocker::blocker.store › jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerController@store
+  GET|HEAD        blocker-deleted .................. laravelblocker::blocker-deleted › jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerDeletedController@index
+  DELETE          blocker-deleted-destroy-all laravelblocker::destroy-all-blocked › jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerDeletedController@destroy…
+  POST            blocker-deleted-restore-all laravelblocker::blocker-deleted-restore-all › jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerDeletedController…
+  GET|HEAD        blocker-deleted/{id} .... laravelblocker::blocker-item-show-deleted › jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerDeletedController@show
+  PUT             blocker-deleted/{id} laravelblocker::blocker-item-restore › jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerDeletedController@restoreBlocke…
+  DELETE          blocker-deleted/{id} ...... laravelblocker::blocker-item-destroy › jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerDeletedController@destroy
+  GET|HEAD        blocker/create .......................... laravelblocker::blocker.create › jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerController@create
+  GET|HEAD        blocker/{blocker} ........................... laravelblocker::blocker.show › jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerController@show
+  PUT|PATCH       blocker/{blocker} ....................... laravelblocker::blocker.update › jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerController@update
+  DELETE          blocker/{blocker} ..................... laravelblocker::blocker.destroy › jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerController@destroy
+  GET|HEAD        blocker/{blocker}/edit ...................... laravelblocker::blocker.edit › jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerController@edit
+  GET|POST|HEAD   broadcasting/auth .............................................................................. Illuminate\Broadcasting › BroadcastController@authenticate
+  GET|HEAD        exceeded ...................................................................................................... exceeded › Auth\ActivateController@exceeded
+  GET|HEAD        home ................................................................................................................... public.home › UserController@index
+  GET|HEAD        images/profile/{id}/avatar/{image} ................................................................................... ProfilesController@userProfileAvatar
+  GET|HEAD        login .......................................................................................................... login › Auth\LoginController@showLoginForm
+  POST            login .......................................................................................................................... Auth\LoginController@login
+  POST            logout ............................................................................................................... logout › Auth\LoginController@logout
+  GET|HEAD        logs ............................................................................................. Rap2hpoutre\LaravelLogViewer › LogViewerController@index
+  POST            password/email .......................................................................... password.email › Auth\ForgotPasswordController@sendResetLinkEmail
+  GET|HEAD        password/reset ....................................................................... password.request › Auth\ForgotPasswordController@showLinkRequestForm
+  POST            password/reset ....................................................................................... password.update › Auth\ResetPasswordController@reset
+  GET|HEAD        password/reset/{token} ........................................................................ password.reset › Auth\ResetPasswordController@showResetForm
+  GET|HEAD        permission-deleted/{id} ...................... laravelroles::permission-show-deleted › jeremykenedy\LaravelRoles › LaravelpermissionsDeletedController@show
+  DELETE          permission-destroy/{id} ................... laravelroles::permission-item-destroy › jeremykenedy\LaravelRoles › LaravelpermissionsDeletedController@destroy
+  PUT             permission-restore/{id} .............. laravelroles::permission-restore › jeremykenedy\LaravelRoles › LaravelpermissionsDeletedController@restorePermission
+  GET|HEAD        permissions .............................................. laravelroles::permissions.index › jeremykenedy\LaravelRoles › LaravelPermissionsController@index
+  POST            permissions .............................................. laravelroles::permissions.store › jeremykenedy\LaravelRoles › LaravelPermissionsController@store
+  GET|HEAD        permissions-deleted ............................. laravelroles::permissions-deleted › jeremykenedy\LaravelRoles › LaravelpermissionsDeletedController@index
+  DELETE          permissions-deleted-destroy-all laravelroles::destroy-all-deleted-permissions › jeremykenedy\LaravelRoles › LaravelpermissionsDeletedController@destroyAll…
+  POST            permissions-deleted-restore-all laravelroles::permissions-deleted-restore-all › jeremykenedy\LaravelRoles › LaravelpermissionsDeletedController@restoreAll…
+  GET|HEAD        permissions/create ..................................... laravelroles::permissions.create › jeremykenedy\LaravelRoles › LaravelPermissionsController@create
+  GET|HEAD        permissions/{permission} ................................... laravelroles::permissions.show › jeremykenedy\LaravelRoles › LaravelPermissionsController@show
+  PUT|PATCH       permissions/{permission} ............................... laravelroles::permissions.update › jeremykenedy\LaravelRoles › LaravelPermissionsController@update
+  DELETE          permissions/{permission} ............................. laravelroles::permissions.destroy › jeremykenedy\LaravelRoles › LaravelPermissionsController@destroy
+  GET|HEAD        permissions/{permission}/edit .............................. laravelroles::permissions.edit › jeremykenedy\LaravelRoles › LaravelPermissionsController@edit
+  ANY             php ............................................................................................................... Illuminate\Routing › RedirectController
+  GET|HEAD        phpinfo .......................................................... laravelPhpInfo::phpinfo › jeremykenedy\LaravelPhpInfo › LaravelPhpInfoController@phpinfo
+  GET|HEAD        profile/create ................................................................................................. profile.create › ProfilesController@create
+  GET|HEAD        profile/{profile} .................................................................................................. profile.show › ProfilesController@show
+  PUT|PATCH       profile/{profile} .............................................................................................. profile.update › ProfilesController@update
+  GET|HEAD        profile/{profile}/edit ............................................................................................. profile.edit › ProfilesController@edit
+  GET|HEAD        profile/{username} ................................................................................................... {username} › ProfilesController@show
+  DELETE          profile/{username}/deleteUserAccount ..................................................... profile.deleteUserAccount › ProfilesController@deleteUserAccount
+  PUT             profile/{username}/updateUserAccount ..................................................... profile.updateUserAccount › ProfilesController@updateUserAccount
+  PUT             profile/{username}/updateUserPassword .................................................. profile.updateUserPassword › ProfilesController@updateUserPassword
+  GET|HEAD        re-activate/{token} ................................................................................ user.reactivate › RestoreUserController@userReActivate
+  GET|HEAD        register .......................................................................................... register › Auth\RegisterController@showRegistrationForm
+  POST            register ................................................................................................................. Auth\RegisterController@register
+  GET|HEAD        role-deleted/{id} ........................................ laravelroles::role-show-deleted › jeremykenedy\LaravelRoles › LaravelRolesDeletedController@show
+  DELETE          role-destroy/{id} ..................................... laravelroles::role-item-destroy › jeremykenedy\LaravelRoles › LaravelRolesDeletedController@destroy
+  PUT             role-restore/{id} ...................................... laravelroles::role-restore › jeremykenedy\LaravelRoles › LaravelRolesDeletedController@restoreRole
+  GET|HEAD        roles ................................................................ laravelroles::roles.index › jeremykenedy\LaravelRoles › LaravelRolesController@index
+  POST            roles ................................................................ laravelroles::roles.store › jeremykenedy\LaravelRoles › LaravelRolesController@store
+  GET|HEAD        roles-deleted ............................................... laravelroles::roles-deleted › jeremykenedy\LaravelRoles › LaravelRolesDeletedController@index
+  DELETE          roles-deleted-destroy-all ...... laravelroles::destroy-all-deleted-roles › jeremykenedy\LaravelRoles › LaravelRolesDeletedController@destroyAllDeletedRoles
+  POST            roles-deleted-restore-all ...... laravelroles::roles-deleted-restore-all › jeremykenedy\LaravelRoles › LaravelRolesDeletedController@restoreAllDeletedRoles
+  GET|HEAD        roles/create ....................................................... laravelroles::roles.create › jeremykenedy\LaravelRoles › LaravelRolesController@create
+  GET|HEAD        roles/{role} ........................................................... laravelroles::roles.show › jeremykenedy\LaravelRoles › LaravelRolesController@show
+  PUT|PATCH       roles/{role} ....................................................... laravelroles::roles.update › jeremykenedy\LaravelRoles › LaravelRolesController@update
+  DELETE          roles/{role} ..................................................... laravelroles::roles.destroy › jeremykenedy\LaravelRoles › LaravelRolesController@destroy
+  GET|HEAD        roles/{role}/edit ...................................................... laravelroles::roles.edit › jeremykenedy\LaravelRoles › LaravelRolesController@edit
+  GET|HEAD        routes .................................................................................................................. AdminDetailsController@listRoutes
+  GET|HEAD        sanctum/csrf-cookie ..................................................................... sanctum.csrf-cookie › Laravel\Sanctum › CsrfCookieController@show
+  POST            search-blocked .......................... laravelblocker::search-blocked › jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerController@search
+  POST            search-blocked-deleted ... laravelblocker::search-blocked-deleted › jeremykenedy\LaravelBlocker\App\Http\Controllers\LaravelBlockerDeletedController@search
+  POST            search-users .............................................................................................. search-users › UsersManagementController@search
+  GET|HEAD        social/handle/{provider} ............................................................................ social.handle › Auth\SocialController@getSocialHandle
+  GET|HEAD        social/redirect/{provider} ...................................................................... social.redirect › Auth\SocialController@getSocialRedirect
+  GET|HEAD        terms ....................................................................................................................... terms › TermsController@terms
+  GET|HEAD        themes .......................................................................................................... themes › ThemesManagementController@index
+  POST            themes .................................................................................................... themes.store › ThemesManagementController@store
+  GET|HEAD        themes/create ........................................................................................... themes.create › ThemesManagementController@create
+  GET|HEAD        themes/{theme} .............................................................................................. themes.show › ThemesManagementController@show
+  PUT|PATCH       themes/{theme} .......................................................................................... themes.update › ThemesManagementController@update
+  DELETE          themes/{theme} ........................................................................................ themes.destroy › ThemesManagementController@destroy
+  GET|HEAD        themes/{theme}/edit ......................................................................................... themes.edit › ThemesManagementController@edit
+  GET|HEAD        users ............................................................................................................. users › UsersManagementController@index
+  POST            users ....................................................................................................... users.store › UsersManagementController@store
+  GET|HEAD        users/create .............................................................................................. users.create › UsersManagementController@create
+  GET|HEAD        users/deleted ................................................................................................. deleted.index › SoftDeletesController@index
+  GET|HEAD        users/deleted/{deleted} ......................................................................................... deleted.show › SoftDeletesController@show
+  PUT|PATCH       users/deleted/{deleted} ..................................................................................... deleted.update › SoftDeletesController@update
+  DELETE          users/deleted/{deleted} ................................................................................... deleted.destroy › SoftDeletesController@destroy
+  GET|HEAD        users/{user} .................................................................................................. users.show › UsersManagementController@show
+  PUT|PATCH       users/{user} .............................................................................................. users.update › UsersManagementController@update
+  DELETE          users/{user} ............................................................................................. user.destroy › UsersManagementController@destroy
+  GET|HEAD        users/{user}/edit ............................................................................................. users.edit › UsersManagementController@edit
+  GET|HEAD        verification/needed .................. laravel2step::verificationNeeded › jeremykenedy\laravel2step\App\Http\Controllers\TwoStepController@showVerification
+  POST            verification/resend ........................................ laravel2step::resend › jeremykenedy\laravel2step\App\Http\Controllers\TwoStepController@resend
+  POST            verification/verify ........................................ laravel2step::verify › jeremykenedy\laravel2step\App\Http\Controllers\TwoStepController@verify
 ```
 
 ### Socialite
@@ -399,7 +389,7 @@ php artisan vendor:publish --tag=laravel-email-database-log-migration
         - Use Laravel HTML Facade with [Laravel Collective](https://laravelcollective.com/):
 
         ```
-        {!! HTML::link(route('social.redirect', ['provider' => 'twitch']), 'Twitch', array('class' => 'btn btn-lg btn-primary btn-block twitch')) !!}
+        {!! html()->link(route('social.redirect', ['provider' => 'twitch']), 'Twitch', array('class' => 'btn btn-lg btn-primary btn-block twitch')) !!}
         ```
 
 ### Other API keys
@@ -415,8 +405,8 @@ APP_NAME=Laravel
 APP_ENV=local
 APP_KEY=
 APP_DEBUG=true
-APP_URL=http://localhost
-APP_PROJECT_VERSION=7
+APP_URL=http://localhost:8000
+APP_PROJECT_VERSION=12
 
 LOG_CHANNEL=stack
 
@@ -628,6 +618,7 @@ INSTAGRAM_REDIRECT_URI=https://YOURWEBURLHERE.COM/social/handle/instagram
 
 ###### Updates:
 
+-   Update to Laravel 12
 -   Update to Laravel 10 (Major Changes)
 -   Update to Laravel 9
 -   Update to Laravel 8
@@ -746,12 +737,28 @@ laravel-auth
 ├── .gitattributes
 ├── .github
 │   ├── FUNDING.yml
-│   └── ISSUE_TEMPLATE
-│       ├── bug_report.md
-│       ├── feature_request.md
-│       └── project-questions-and-help.md
+│   ├── ISSUE_TEMPLATE
+│   │   ├── bug_report.md
+│   │   ├── feature_request.md
+│   │   └── project-questions-and-help.md
+│   ├── dependabot.yml
+│   ├── labeler.yml
+│   └── workflows
+│       ├── changelog.yml
+│       ├── codeql.yml
+│       ├── dependency-review.yml
+│       ├── deploy.yml
+│       ├── gitguardian.yml
+│       ├── greetings.yml
+│       ├── labeler.yml
+│       ├── laravel.yml
+│       ├── node.js.yml
+│       ├── php.yml
+│       ├── sentry.yml
+│       └── stale.yml
 ├── .gitignore
-├── .phpunit.result.cache
+├── .scripts
+│   └── deploy.sh
 ├── .styleci.yml
 ├── .travis.yml
 ├── CODE_OF_CONDUCT.md
@@ -764,15 +771,22 @@ laravel-auth
 │   │   │   └── DeleteExpiredActivations.php
 │   │   └── Kernel.php
 │   ├── Exceptions
-│   │   └── Handler.php
+│   │   ├── Handler.php
+│   │   └── SocialProviderDeniedException.php
 │   ├── Http
 │   │   ├── Controllers
 │   │   │   ├── AdminDetailsController.php
 │   │   │   ├── Auth
 │   │   │   │   ├── ActivateController.php
+│   │   │   │   ├── AuthenticatedSessionController.php
+│   │   │   │   ├── ConfirmablePasswordController.php
 │   │   │   │   ├── ForgotPasswordController.php
 │   │   │   │   ├── LoginController.php
+│   │   │   │   ├── NewPasswordController.php
+│   │   │   │   ├── PasswordController.php
+│   │   │   │   ├── PasswordResetLinkController.php
 │   │   │   │   ├── RegisterController.php
+│   │   │   │   ├── RegisteredUserController.php
 │   │   │   │   ├── ResetPasswordController.php
 │   │   │   │   └── SocialController.php
 │   │   │   ├── Controller.php
@@ -788,14 +802,18 @@ laravel-auth
 │   │   ├── Middleware
 │   │   │   ├── Authenticate.php
 │   │   │   ├── CheckCurrentUser.php
-│   │   │   ├── CheckForMaintenanceMode.php
 │   │   │   ├── CheckIsUserActivated.php
 │   │   │   ├── EncryptCookies.php
+│   │   │   ├── PreventRequestsDuringMaintenance.php
 │   │   │   ├── RedirectIfAuthenticated.php
 │   │   │   ├── TrimStrings.php
+│   │   │   ├── TrustHosts.php
 │   │   │   ├── TrustProxies.php
+│   │   │   ├── ValidateSignature.php
 │   │   │   └── VerifyCsrfToken.php
 │   │   ├── Requests
+│   │   │   ├── Auth
+│   │   │   │   └── LoginRequest.php
 │   │   │   ├── DeleteUserAccount.php
 │   │   │   ├── UpdateUserPasswordRequest.php
 │   │   │   └── UpdateUserProfile.php
@@ -810,11 +828,14 @@ laravel-auth
 │   │   └── ExceptionOccured.php
 │   ├── Models
 │   │   ├── Activation.php
+│   │   ├── Permission.php
 │   │   ├── Profile.php
+│   │   ├── Role.php
 │   │   ├── Social.php
 │   │   ├── Theme.php
 │   │   └── User.php
 │   ├── Notifications
+│   │   ├── ResetPasswordNotification.php
 │   │   ├── SendActivationEmail.php
 │   │   └── SendGoodbyeEmail.php
 │   ├── Providers
@@ -826,14 +847,17 @@ laravel-auth
 │   │   ├── LocalEnvironmentServiceProvider.php
 │   │   ├── MacroServiceProvider.php
 │   │   └── RouteServiceProvider.php
-│   └── Traits
-│       ├── ActivationTrait.php
-│       ├── CaptchaTrait.php
-│       └── CaptureIpTrait.php
+│   ├── Traits
+│   │   ├── ActivationTrait.php
+│   │   ├── CaptchaTrait.php
+│   │   └── CaptureIpTrait.php
+│   └── View
+│       └── Components
+│           ├── AppLayout.php
+│           └── GuestLayout.php
 ├── artisan
 ├── bootstrap
 │   ├── app.php
-│   ├── autoload.php
 │   └── cache
 │       ├── .gitignore
 │       ├── packages.php
@@ -859,6 +883,7 @@ laravel-auth
 │   ├── mail.php
 │   ├── queue.php
 │   ├── roles.php
+│   ├── sanctum.php
 │   ├── services.php
 │   ├── session.php
 │   ├── settings.php
@@ -867,7 +892,7 @@ laravel-auth
 ├── database
 │   ├── .gitignore
 │   ├── factories
-│   │   └── ModelFactory.php
+│   │   └── UserFactory.php
 │   ├── migrations
 │   │   ├── 2014_10_12_000000_create_users_table.php
 │   │   ├── 2014_10_12_100000_create_password_resets_table.php
@@ -883,8 +908,10 @@ laravel-auth
 │   │   ├── 2017_12_09_070937_create_two_step_auth_table.php
 │   │   ├── 2019_02_19_032636_create_laravel_blocker_types_table.php
 │   │   ├── 2019_02_19_045158_create_laravel_blocker_table.php
-│   │   └── 2019_08_19_000000_create_failed_jobs_table.php
-│   └── seeds
+│   │   ├── 2019_08_19_000000_create_failed_jobs_table.php
+│   │   ├── 2019_12_14_000001_create_personal_access_tokens_table.php
+│   │   └── 2023_02_26_001638_create_email_log.php
+│   └── seeders
 │       ├── BlockedItemsTableSeeder.php
 │       ├── BlockedTypeTableSeeder.php
 │       ├── ConnectRelationshipsSeeder.php
@@ -893,17 +920,45 @@ laravel-auth
 │       ├── RolesTableSeeder.php
 │       ├── ThemesTableSeeder.php
 │       └── UsersTableSeeder.php
+├── eslint.config.mjs
 ├── license.svg
 ├── package-lock.json
 ├── package.json
 ├── phpunit.xml
+├── postcss.config.js
 ├── public
 │   ├── .htaccess
+│   ├── build
+│   │   ├── .vite
+│   │   │   └── manifest.json
+│   │   └── assets
+│   │       ├── app-B7vS8Mbm.css
+│   │       ├── app-BG0_vVbD.js
+│   │       ├── app-BG0_vVbD.js.map
+│   │       ├── app-WPGwnzyH.css
+│   │       ├── app-legacy-DDUFYwBY.js
+│   │       ├── app-legacy-DDUFYwBY.js.map
+│   │       ├── app-legacy-Mb7mMJCE.js
+│   │       ├── app-legacy-Mb7mMJCE.js.map
+│   │       ├── fa-brands-400-D1LuMI3I.ttf
+│   │       ├── fa-brands-400-D_cYUPeE.woff2
+│   │       ├── fa-regular-400-BjRzuEpd.woff2
+│   │       ├── fa-regular-400-DZaxPHgR.ttf
+│   │       ├── fa-solid-900-CTAAxXor.woff2
+│   │       ├── fa-solid-900-D0aA9rwL.ttf
+│   │       ├── fa-v4compatibility-C9RhG_FT.woff2
+│   │       ├── fa-v4compatibility-CCth-dXg.ttf
+│   │       ├── fontawesome-webfont-B-jkhYfk.woff2
+│   │       ├── fontawesome-webfont-CDK5bt4p.woff
+│   │       ├── fontawesome-webfont-CQDK8MU3.ttf
+│   │       ├── fontawesome-webfont-D13rzr4g.svg
+│   │       ├── fontawesome-webfont-G5YE5S7X.eot
+│   │       ├── polyfills-legacy-Ci8jmAHT.js
+│   │       ├── polyfills-legacy-Ci8jmAHT.js.map
+│   │       ├── wink.png
+│   │       └── wink.svg
 │   ├── css
-│   │   ├── app.css
-│   │   └── laravel2step
-│   │       ├── app.css
-│   │       └── app.min.css
+│   │   └── app.css
 │   ├── favicon.ico
 │   ├── fonts
 │   │   ├── fontawesome-webfont.eot
@@ -920,11 +975,6 @@ laravel-auth
 │   │   ├── wink.png
 │   │   └── wink.svg
 │   ├── index.php
-│   ├── js
-│   │   ├── app.99230f42ad184f498ce6.js
-│   │   ├── app.js
-│   │   └── app.js.LICENSE.txt
-│   ├── mix-manifest.json
 │   ├── robots.txt
 │   └── web.config
 ├── resources
@@ -958,13 +1008,7 @@ laravel-auth
 │   │   │   ├── _wells.scss
 │   │   │   └── app.scss
 │   │   └── scss
-│   │       └── laravel2step
-│   │           ├── _animations.scss
-│   │           ├── _mixins.scss
-│   │           ├── _modals.scss
-│   │           ├── _variables.scss
-│   │           ├── _verification.scss
-│   │           └── app.scss
+│   │       └── .gitkeep
 │   ├── lang
 │   │   ├── en
 │   │   │   ├── auth.php
@@ -1020,13 +1064,16 @@ laravel-auth
 │       ├── emails
 │       │   └── exception.blade.php
 │       ├── errors
+│       │   ├── 401.blade.php
 │       │   ├── 403.blade.php
 │       │   ├── 404.blade.php
 │       │   ├── 500.blade.php
 │       │   └── 503.blade.php
 │       ├── home.blade.php
 │       ├── layouts
-│       │   └── app.blade.php
+│       │   ├── app.blade.php
+│       │   ├── guest.blade.php
+│       │   └── navigation.blade.php
 │       ├── modals
 │       │   ├── modal-delete.blade.php
 │       │   ├── modal-form.blade.php
@@ -1060,6 +1107,7 @@ laravel-auth
 │       │   ├── datatables.blade.php
 │       │   ├── delete-modal-script.blade.php
 │       │   ├── form-modal-script.blade.php
+│       │   ├── ga-analytics.blade.php
 │       │   ├── gmaps-address-lookup-api3.blade.php
 │       │   ├── google-maps-geocode-and-map.blade.php
 │       │   ├── save-modal-script.blade.php
@@ -1085,8 +1133,9 @@ laravel-auth
 │   ├── channels.php
 │   ├── console.php
 │   └── web.php
-├── server.php
-└── webpack.mix.js
+├── tailwind.config.js
+├── tailwindcss-perspective.js
+└── vite.config.js
 ```
 
 -   Tree command can be installed using brew: `brew install tree`

@@ -46,17 +46,41 @@
                                     {{ $user->first_name }} {{ $user->last_name }}
                                     </strong>
                                     <br />
-                                    {{ HTML::mailto($user->email, $user->email) }}
+                                    {{ html()->mailto($user->email, $user->email) }}
                                 </p>
                                 @if ($user->profile)
                                 <div class="text-center text-left-tablet mb-4">
-                                    {!! Form::model($user, array('action' => array('SoftDeletesController@update', $user->id), 'method' => 'PUT', 'class' => 'form-inline')) !!}
-                                        {!! Form::button('<i class="fa fa-refresh fa-fw" aria-hidden="true"></i> Restore User', array('class' => 'btn btn-success btn-block btn-sm mt-1 mb-1', 'type' => 'submit', 'data-toggle' => 'tooltip', 'title' => 'Restore User')) !!}
-                                        {!! Form::close() !!}
-                                        {!! Form::model($user, array('action' => array('SoftDeletesController@destroy', $user->id), 'method' => 'DELETE', 'class' => 'form-inline', 'data-toggle' => 'tooltip', 'title' => 'Permanently Delete User')) !!}
-                                        {!! Form::hidden('_method', 'DELETE') !!}
-                                        {!! Form::button('<i class="fa fa-user-times fa-fw" aria-hidden="true"></i> Delete User', array('class' => 'btn btn-danger btn-sm ','type' => 'button', 'style' =>'width: 100%;' ,'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => 'Permanently Delete User', 'data-message' => 'Are you sure you want to permanently delete this user?')) !!}
-                                    {!! Form::close() !!}
+                                    {{ html()->model($user) }}
+                                    {{ html()->form('POST', action([App\Http\Controllers\SoftDeletesController::class, 'update'], $user->id))
+                                        ->class('form-inline')
+                                        ->open() }}
+                                        @csrf
+                                        @method('PUT')
+                                        {{ html()->button('<i class="fa fa-refresh fa-fw" aria-hidden="true"></i> Restore User')
+                                            ->class('btn btn-success btn-block btn-sm mt-1 mb-1')
+                                            ->type('submit')
+                                            ->attribute('data-toggle', 'tooltip')
+                                            ->attribute('title', 'Restore User') }}
+                                    {{ html()->form()->close() }}
+                                    {{ html()->endModel() }}
+                                    {{ html()->model($user) }}
+                                    {{ html()->form('POST', action([App\Http\Controllers\SoftDeletesController::class, 'destroy'], $user->id))
+                                        ->class('form-inline')
+                                        ->attribute('data-toggle', 'tooltip')
+                                        ->attribute('title', 'Permanently Delete User')
+                                        ->open() }}
+                                        @csrf
+                                        @method('DELETE')
+                                        {{ html()->button('<i class="fa fa-user-times fa-fw" aria-hidden="true"></i> Delete User')
+                                            ->class('btn btn-danger btn-sm ')
+                                            ->type('button')
+                                            ->style('width: 100%;')
+                                            ->attribute('data-toggle', 'modal')
+                                            ->attribute('data-target', '#confirmDelete')
+                                            ->attribute('data-title', 'Permanently Delete User')
+                                            ->attribute('data-message', 'Are you sure you want to permanently delete this user?') }}
+                                    {{ html()->form()->close() }}
+                                    {{ html()->endModel() }}
                                 </div>
                                 @endif
                             </div>
@@ -114,7 +138,7 @@
                                 </strong>
                             </div>
                             <div class="col-sm-7">
-                                {{ HTML::mailto($user->email, $user->email) }}
+                                {{ html()->mailto($user->email, $user->email) }}
                             </div>
 
                             <div class="clearfix"></div>

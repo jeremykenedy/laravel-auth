@@ -1,3 +1,5 @@
+@use "variables";
+
 @mixin vendor($property, $value) {
     -webkit-#{$property}: $value;
     -moz-#{$property}: $value;
@@ -7,7 +9,7 @@
 }
 
 @mixin transitions() {
-    @include vendor(transition, all $transitionSpeed ease-in-out);
+    @include vendor(transition, all variables.$transitionSpeed ease-in-out);
 }
 
 @mixin transitionless() {

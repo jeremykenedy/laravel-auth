@@ -41,16 +41,29 @@
                                                             <div class="collapseTwo card-collapse collapse @if($user->profile->avatar_status == 1) show @endif">
                                                                 <div class="card-body">
                                                                     <div class="dz-preview"></div>
-                                                                    {!! Form::open(array('route' => 'avatar.upload', 'method' => 'POST', 'name' => 'avatarDropzone','id' => 'avatarDropzone', 'class' => 'form single-dropzone dropzone single', 'files' => true)) !!}
+                                                                    {{ html()->form('POST', route('avatar.upload'))
+                                                                            ->name('avatarDropzone')
+                                                                            ->id('avatarDropzone')
+                                                                            ->class('form single-dropzone dropzone single')
+                                                                            ->acceptsFiles()
+                                                                            ->open() }}
+                                                                        @csrf
                                                                         <img id="user_selected_avatar" class="user-avatar" src="@if ($user->profile->avatar != NULL) {{ $user->profile->avatar }} @endif" alt="{{ $user->name }}">
-                                                                    {!! Form::close() !!}
+                                                                    {{ html()->form()->close() }}
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                {!! Form::model($user->profile, ['method' => 'PATCH', 'route' => ['profile.update', $user->name], 'id' => 'user_profile_form', 'class' => 'form-horizontal', 'role' => 'form', 'enctype' => 'multipart/form-data']) !!}
-                                                    {{ csrf_field() }}
+                                                {{ html()->model($user->profile) }}
+                                                {{ html()->form('POST', route('profile.update', $user->name))
+                                                        ->id('user_profile_form')
+                                                        ->class('form-horizontal')
+                                                        ->attribute('role', 'form')
+                                                        ->acceptsFiles()
+                                                        ->open() }}
+                                                    @csrf
+                                                    @method('PATCH')
                                                     <div class="row">
                                                         <div class="col-10 offset-1 col-sm-10 offset-sm-1 mb-1">
                                                             <div class="row" data-toggle="buttons">
@@ -68,7 +81,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group has-feedback {{ $errors->has('theme') ? ' has-error ' : '' }}">
-                                                        {!! Form::label('theme_id', trans('profile.label-theme') , array('class' => 'col-12 control-label')); !!}
+                                                        {{ html()->label('theme_id', trans('profile.label-theme'))->class('col-12 control-label') }}
                                                         <div class="col-12">
                                                             <select class="form-control" name="theme_id" id="theme_id">
                                                                 @if ($themes->count())
@@ -86,9 +99,9 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group has-feedback {{ $errors->has('location') ? ' has-error ' : '' }}">
-                                                        {!! Form::label('location', trans('profile.label-location') , array('class' => 'col-12 control-label')); !!}
+                                                        {{ html()->label('location', trans('profile.label-location'))->class('col-12 control-label') }}
                                                         <div class="col-12">
-                                                            {!! Form::text('location', old('location'), array('id' => 'location', 'class' => 'form-control', 'placeholder' => trans('profile.ph-location'))) !!}
+                                                            {{ html()->text('location')->id('location')->class('form-control')->placeholder(trans('profile.ph-location')) }}
                                                             <span class="glyphicon {{ $errors->has('location') ? ' glyphicon-asterisk ' : ' glyphicon-pencil ' }} form-control-feedback" aria-hidden="true"></span>
                                                             @if ($errors->has('location'))
                                                                 <span class="help-block">
@@ -98,9 +111,9 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group has-feedback {{ $errors->has('bio') ? ' has-error ' : '' }}">
-                                                        {!! Form::label('bio', trans('profile.label-bio') , array('class' => 'col-12 control-label')); !!}
+                                                        {{ html()->label('bio', trans('profile.label-bio'))->class('col-12 control-label') }}
                                                         <div class="col-12">
-                                                            {!! Form::textarea('bio', old('bio'), array('id' => 'bio', 'class' => 'form-control', 'placeholder' => trans('profile.ph-bio'))) !!}
+                                                            {{ html()->textarea('bio')->id('bio')->class('form-control')->placeholder(trans('profile.ph-bio')) }}
                                                             <span class="glyphicon glyphicon-pencil form-control-feedback" aria-hidden="true"></span>
                                                             @if ($errors->has('bio'))
                                                                 <span class="help-block">
@@ -110,9 +123,9 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group has-feedback {{ $errors->has('twitter_username') ? ' has-error ' : '' }}">
-                                                        {!! Form::label('twitter_username', trans('profile.label-twitter_username') , array('class' => 'col-12 control-label')); !!}
+                                                        {{ html()->label('twitter_username', trans('profile.label-twitter_username'))->class('col-12 control-label') }}
                                                         <div class="col-12">
-                                                            {!! Form::text('twitter_username', old('twitter_username'), array('id' => 'twitter_username', 'class' => 'form-control', 'placeholder' => trans('profile.ph-twitter_username'))) !!}
+                                                            {{ html()->text('twitter_username')->id('twitter_username')->class('form-control')->placeholder(trans('profile.ph-twitter_username')) }}
                                                             <span class="glyphicon glyphicon-pencil form-control-feedback" aria-hidden="true"></span>
                                                             @if ($errors->has('twitter_username'))
                                                                 <span class="help-block">
@@ -122,9 +135,9 @@
                                                         </div>
                                                     </div>
                                                     <div class="margin-bottom-2 form-group has-feedback {{ $errors->has('github_username') ? ' has-error ' : '' }}">
-                                                        {!! Form::label('github_username', trans('profile.label-github_username') , array('class' => 'col-12 control-label')); !!}
+                                                        {{ html()->label('github_username', trans('profile.label-github_username'))->class('col-12 control-label') }}
                                                         <div class="col-12">
-                                                            {!! Form::text('github_username', old('github_username'), array('id' => 'github_username', 'class' => 'form-control', 'placeholder' => trans('profile.ph-github_username'))) !!}
+                                                            {{ html()->text('github_username')->id('github_username')->class('form-control')->placeholder(trans('profile.ph-github_username')) }}
                                                             <span class="glyphicon glyphicon-pencil form-control-feedback" aria-hidden="true"></span>
                                                             @if ($errors->has('github_username'))
                                                                 <span class="help-block">
@@ -135,34 +148,36 @@
                                                     </div>
                                                     <div class="form-group margin-bottom-2">
                                                         <div class="col-12">
-                                                            {!! Form::button(
-                                                                '<i class="fa fa-fw fa-save" aria-hidden="true"></i> ' . trans('profile.submitButton'),
-                                                                 array(
-                                                                    'id'                => 'confirmFormSave',
-                                                                    'class'             => 'btn btn-success disabled',
-                                                                    'type'              => 'button',
-                                                                    'data-target'       => '#confirmForm',
-                                                                    'data-modalClass'   => 'modal-success',
-                                                                    'data-toggle'       => 'modal',
-                                                                    'data-title'        => trans('modals.edit_user__modal_text_confirm_title'),
-                                                                    'data-message'      => trans('modals.edit_user__modal_text_confirm_message')
-                                                            )) !!}
+                                                            {{ html()->button('<i class="fa fa-fw fa-save" aria-hidden="true"></i> ' . trans('profile.submitButton'))
+                                                                ->id('confirmFormSave')
+                                                                ->class('btn btn-success disabled')
+                                                                ->type('button')
+                                                                ->attribute('data-target', '#confirmForm')
+                                                                ->attribute('data-modalClass', 'modal-success')
+                                                                ->attribute('data-toggle', 'modal')
+                                                                ->attribute('data-title', trans('modals.edit_user__modal_text_confirm_title'))
+                                                                ->attribute('data-message', trans('modals.edit_user__modal_text_confirm_message')) }}
 
                                                         </div>
                                                     </div>
-                                                {!! Form::close() !!}
+                                                {{ html()->form()->close() }}
+                                                {{ html()->endModel() }}
                                             </div>
 
                                             <div class="tab-pane fade edit-settings-tab" role="tabpanel" aria-labelledby="edit-settings-tab">
-                                                {!! Form::model($user, array('action' => array('ProfilesController@updateUserAccount', $user->id), 'method' => 'PUT', 'id' => 'user_basics_form')) !!}
+                                                {{ html()->model($user) }}
+                                                {{ html()->form('POST', action([App\Http\Controllers\ProfilesController::class, 'updateUserAccount'], $user->id))
+                                                        ->id('user_basics_form')
+                                                        ->open() }}
 
-                                                    {!! csrf_field() !!}
+                                                    @csrf
+                                                    @method('PUT')
 
                                                     <div class="pt-4 pr-3 pl-2 form-group has-feedback row {{ $errors->has('name') ? ' has-error ' : '' }}">
-                                                        {!! Form::label('name', trans('forms.create_user_label_username'), array('class' => 'col-md-3 control-label')); !!}
+                                                        {{ html()->label('name', trans('forms.create_user_label_username'))->class('col-md-3 control-label') }}
                                                         <div class="col-md-9">
                                                             <div class="input-group">
-                                                                {!! Form::text('name', $user->name, array('id' => 'name', 'class' => 'form-control', 'placeholder' => trans('forms.create_user_ph_username'))) !!}
+                                                                {{ html()->text('name')->id('name')->class('form-control')->placeholder(trans('forms.create_user_ph_username')) }}
                                                                 <div class="input-group-append">
                                                                     <label class="input-group-text" for="name">
                                                                         <i class="fa fa-fw {{ trans('forms.create_user_icon_username') }}" aria-hidden="true"></i>
@@ -178,10 +193,10 @@
                                                     </div>
 
                                                     <div class="pr-3 pl-2 form-group has-feedback row {{ $errors->has('email') ? ' has-error ' : '' }}">
-                                                        {!! Form::label('email', trans('forms.create_user_label_email'), array('class' => 'col-md-3 control-label')); !!}
+                                                        {{ html()->label('email', trans('forms.create_user_label_email'))->class('col-md-3 control-label') }}
                                                         <div class="col-md-9">
                                                             <div class="input-group">
-                                                                {!! Form::text('email', $user->email, array('id' => 'email', 'class' => 'form-control', 'placeholder' => trans('forms.create_user_ph_email'))) !!}
+                                                                {{ html()->email('email')->id('email')->class('form-control')->placeholder(trans('forms.create_user_ph_email')) }}
                                                                 <div class="input-group-append">
                                                                     <label for="email" class="input-group-text">
                                                                         <i class="fa fa-fw {{ trans('forms.create_user_icon_email') }}" aria-hidden="true"></i>
@@ -197,10 +212,10 @@
                                                     </div>
 
                                                     <div class="pr-3 pl-2 form-group has-feedback row {{ $errors->has('first_name') ? ' has-error ' : '' }}">
-                                                        {!! Form::label('first_name', trans('forms.create_user_label_firstname'), array('class' => 'col-md-3 control-label')); !!}
+                                                        {{ html()->label('first_name', trans('forms.create_user_label_firstname'))->class('col-md-3 control-label') }}
                                                         <div class="col-md-9">
                                                             <div class="input-group">
-                                                                {!! Form::text('first_name', $user->first_name, array('id' => 'first_name', 'class' => 'form-control', 'placeholder' => trans('forms.create_user_ph_firstname'))) !!}
+                                                                {{ html()->text('first_name')->id('first_name')->class('form-control')->placeholder(trans('forms.create_user_ph_firstname')) }}
                                                                 <div class="input-group-append">
                                                                     <label class="input-group-text" for="first_name">
                                                                         <i class="fa fa-fw {{ trans('forms.create_user_icon_firstname') }}" aria-hidden="true"></i>
@@ -216,10 +231,10 @@
                                                     </div>
 
                                                     <div class="pr-3 pl-2 form-group has-feedback row {{ $errors->has('last_name') ? ' has-error ' : '' }}">
-                                                        {!! Form::label('last_name', trans('forms.create_user_label_lastname'), array('class' => 'col-md-3 control-label')); !!}
+                                                        {{ html()->label('last_name', trans('forms.create_user_label_lastname'))->class('col-md-3 control-label') }}
                                                         <div class="col-md-9">
                                                             <div class="input-group">
-                                                                {!! Form::text('last_name', $user->last_name, array('id' => 'last_name', 'class' => 'form-control', 'placeholder' => trans('forms.create_user_ph_lastname'))) !!}
+                                                                {{ html()->text('last_name')->id('last_name')->class('form-control')->placeholder(trans('forms.create_user_ph_lastname')) }}
                                                                 <div class="input-group-append">
                                                                     <label class="input-group-text" for="last_name">
                                                                         <i class="fa fa-fw {{ trans('forms.create_user_icon_lastname') }}" aria-hidden="true"></i>
@@ -236,23 +251,21 @@
 
                                                     <div class="form-group row">
                                                         <div class="col-md-9 offset-md-3">
-                                                            {!! Form::button(
-                                                                '<i class="fa fa-fw fa-save" aria-hidden="true"></i> ' . trans('profile.submitProfileButton'),
-                                                                 array(
-                                                                    'class'             => 'btn btn-success disabled',
-                                                                    'id'                => 'account_save_trigger',
-                                                                    'disabled'          => true,
-                                                                    'type'              => 'button',
-                                                                    'data-submit'       => trans('profile.submitProfileButton'),
-                                                                    'data-target'       => '#confirmForm',
-                                                                    'data-modalClass'   => 'modal-success',
-                                                                    'data-toggle'       => 'modal',
-                                                                    'data-title'        => trans('modals.edit_user__modal_text_confirm_title'),
-                                                                    'data-message'      => trans('modals.edit_user__modal_text_confirm_message')
-                                                            )) !!}
+                                                            {{ html()->button('<i class="fa fa-fw fa-save" aria-hidden="true"></i> ' . trans('profile.submitProfileButton'))
+                                                                ->class('btn btn-success disabled')
+                                                                ->id('account_save_trigger')
+                                                                ->disabled()
+                                                                ->type('button')
+                                                                ->attribute('data-submit', trans('profile.submitProfileButton'))
+                                                                ->attribute('data-target', '#confirmForm')
+                                                                ->attribute('data-modalClass', 'modal-success')
+                                                                ->attribute('data-toggle', 'modal')
+                                                                ->attribute('data-title', trans('modals.edit_user__modal_text_confirm_title'))
+                                                                ->attribute('data-message', trans('modals.edit_user__modal_text_confirm_message')) }}
                                                         </div>
                                                     </div>
-                                                {!! Form::close() !!}
+                                                {{ html()->form()->close() }}
+                                                {{ html()->endModel() }}
                                             </div>
 
                                             <div class="tab-pane fade edit-account-tab" role="tabpanel" aria-labelledby="edit-account-tab">
@@ -276,14 +289,20 @@
                                                             {{ trans('profile.changePwTitle') }}
                                                         </h3>
 
-                                                        {!! Form::model($user, array('action' => array('ProfilesController@updateUserPassword', $user->id), 'method' => 'PUT', 'autocomplete' => 'new-password')) !!}
+                                                        {{ html()->model($user) }}
+                                                        {{ html()->form('POST', action([App\Http\Controllers\ProfilesController::class, 'updateUserPassword'], $user->id))
+                                                                ->attribute('autocomplete', 'new-password')
+                                                                ->open() }}
+
+                                                            @csrf
+                                                            @method('PUT')
 
                                                             <div class="pw-change-container margin-bottom-2">
 
                                                                 <div class="form-group has-feedback row {{ $errors->has('password') ? ' has-error ' : '' }}">
-                                                                    {!! Form::label('password', trans('forms.create_user_label_password'), array('class' => 'col-md-3 control-label')); !!}
+                                                                    {{ html()->label('password', trans('forms.create_user_label_password'))->class('col-md-3 control-label') }}
                                                                     <div class="col-md-9">
-                                                                        {!! Form::password('password', array('id' => 'password', 'class' => 'form-control ', 'placeholder' => trans('forms.create_user_ph_password'), 'autocomplete' => 'new-password')) !!}
+                                                                        {{ html()->password('password')->id('password')->class('form-control ')->placeholder(trans('forms.create_user_ph_password'))->attribute('autocomplete', 'new-password') }}
                                                                         @if ($errors->has('password'))
                                                                             <span class="help-block">
                                                                                 <strong>{{ $errors->first('password') }}</strong>
@@ -293,9 +312,9 @@
                                                                 </div>
 
                                                                 <div class="form-group has-feedback row {{ $errors->has('password_confirmation') ? ' has-error ' : '' }}">
-                                                                    {!! Form::label('password_confirmation', trans('forms.create_user_label_pw_confirmation'), array('class' => 'col-md-3 control-label')); !!}
+                                                                    {{ html()->label('password_confirmation', trans('forms.create_user_label_pw_confirmation'))->class('col-md-3 control-label') }}
                                                                     <div class="col-md-9">
-                                                                        {!! Form::password('password_confirmation', array('id' => 'password_confirmation', 'class' => 'form-control', 'placeholder' => trans('forms.create_user_ph_pw_confirmation'))) !!}
+                                                                        {{ html()->password('password_confirmation')->id('password_confirmation')->class('form-control')->placeholder(trans('forms.create_user_ph_pw_confirmation')) }}
                                                                         <span id="pw_status"></span>
                                                                         @if ($errors->has('password_confirmation'))
                                                                             <span class="help-block">
@@ -307,23 +326,21 @@
                                                             </div>
                                                             <div class="form-group row">
                                                                 <div class="col-md-9 offset-md-3">
-                                                                    {!! Form::button(
-                                                                        '<i class="fa fa-fw fa-save" aria-hidden="true"></i> ' . trans('profile.submitPWButton'),
-                                                                         array(
-                                                                            'class'             => 'btn btn-warning',
-                                                                            'id'                => 'pw_save_trigger',
-                                                                            'disabled'          => true,
-                                                                            'type'              => 'button',
-                                                                            'data-submit'       => trans('profile.submitButton'),
-                                                                            'data-target'       => '#confirmForm',
-                                                                            'data-modalClass'   => 'modal-warning',
-                                                                            'data-toggle'       => 'modal',
-                                                                            'data-title'        => trans('modals.edit_user__modal_text_confirm_title'),
-                                                                            'data-message'      => trans('modals.edit_user__modal_text_confirm_message')
-                                                                    )) !!}
+                                                                    {{ html()->button('<i class="fa fa-fw fa-save" aria-hidden="true"></i> ' . trans('profile.submitPWButton'))
+                                                                        ->class('btn btn-warning')
+                                                                        ->id('pw_save_trigger')
+                                                                        ->disabled()
+                                                                        ->type('button')
+                                                                        ->attribute('data-submit', trans('profile.submitButton'))
+                                                                        ->attribute('data-target', '#confirmForm')
+                                                                        ->attribute('data-modalClass', 'modal-warning')
+                                                                        ->attribute('data-toggle', 'modal')
+                                                                        ->attribute('data-title', trans('modals.edit_user__modal_text_confirm_title'))
+                                                                        ->attribute('data-message', trans('modals.edit_user__modal_text_confirm_message')) }}
                                                                 </div>
                                                             </div>
-                                                        {!! Form::close() !!}
+                                                        {{ html()->form()->close() }}
+                                                        {{ html()->endModel() }}
 
                                                     </div>
 
@@ -340,7 +357,12 @@
                                                         <div class="row">
                                                             <div class="col-sm-6 offset-sm-3 margin-bottom-3 text-center">
 
-                                                                {!! Form::model($user, array('action' => array('ProfilesController@deleteUserAccount', $user->id), 'method' => 'DELETE')) !!}
+                                                                {{ html()->model($user) }}
+                                                                {{ html()->form('POST', action([App\Http\Controllers\ProfilesController::class, 'deleteUserAccount'], $user->id))
+                                                                        ->open() }}
+
+                                                                    @csrf
+                                                                    @method('DELETE')
 
                                                                     <div class="btn-group btn-group-vertical margin-bottom-2 custom-checkbox-fa" data-toggle="buttons">
                                                                         <label class="btn no-shadow" for="checkConfirmDelete" >
@@ -351,23 +373,20 @@
                                                                         </label>
                                                                     </div>
 
-                                                                    {!! Form::button(
-                                                                        '<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> ' . trans('profile.deleteAccountBtn'),
-                                                                        array(
-                                                                            'class'             => 'btn btn-block btn-danger',
-                                                                            'id'                => 'delete_account_trigger',
-                                                                            'disabled'          => true,
-                                                                            'type'              => 'button',
-                                                                            'data-toggle'       => 'modal',
-                                                                            'data-submit'       => trans('profile.deleteAccountBtnConfirm'),
-                                                                            'data-target'       => '#confirmForm',
-                                                                            'data-modalClass'   => 'modal-danger',
-                                                                            'data-title'        => trans('profile.deleteAccountConfirmTitle'),
-                                                                            'data-message'      => trans('profile.deleteAccountConfirmMsg')
-                                                                        )
-                                                                    ) !!}
+                                                                    {{ html()->button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i>' . trans('profile.deleteAccountBtn'))
+                ->class('btn btn-block btn-danger')
+                ->id('delete_account_trigger')
+                ->disabled()
+                ->type('button')
+                ->attribute('data-toggle', 'modal')
+                ->attribute('data-submit', trans('profile.deleteAccountBtnConfirm'))
+                ->attribute('data-target', '#confirmForm')
+                ->attribute('data-modalClass', 'modal-danger')
+                ->attribute('data-title', trans('profile.deleteAccountConfirmTitle'))
+                ->attribute('data-message', trans('profile.deleteAccountConfirmMsg')) }}
 
-                                                                {!! Form::close() !!}
+                                                                {{ html()->form()->close() }}
+                                                                {{ html()->endModel() }}
 
                                                             </div>
                                                         </div>

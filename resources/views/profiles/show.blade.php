@@ -100,7 +100,7 @@
                                         {{ trans('profile.showProfileTwitterUsername') }}
                                     </dt>
                                     <dd>
-                                        {!! HTML::link('https://twitter.com/'.$user->profile->twitter_username, $user->profile->twitter_username, array('class' => 'twitter-link', 'target' => '_blank')) !!}
+                                        {!! html()->link('https://twitter.com/'.$user->profile->twitter_username, $user->profile->twitter_username, array('class' => 'twitter-link', 'target' => '_blank')) !!}
                                     </dd>
                                 @endif
 
@@ -109,7 +109,7 @@
                                         {{ trans('profile.showProfileGitHubUsername') }}
                                     </dt>
                                     <dd>
-                                        {!! HTML::link('https://github.com/'.$user->profile->github_username, $user->profile->github_username, array('class' => 'github-link', 'target' => '_blank')) !!}
+                                        {!! html()->link('https://github.com/'.$user->profile->github_username, $user->profile->github_username, array('class' => 'github-link', 'target' => '_blank')) !!}
                                     </dd>
                                 @endif
                             @endif
@@ -118,13 +118,13 @@
 
                         @if ($user->profile)
                             @if ($currentUser->id == $user->id)
-                                {!! HTML::icon_link(URL::to('/profile/'.$currentUser->name.'/edit'), 'fa fa-fw fa-cog', trans('titles.editProfile'), array('class' => 'btn btn-small btn-info btn-block')) !!}
+                                {!! html()->icon_link(URL::to('/profile/'.$currentUser->name.'/edit'), 'fa fa-fw fa-cog', trans('titles.editProfile'), array('class' => 'btn btn-small btn-info btn-block')) !!}
                             @endif
                         @else
                             <p>
                                 {{ trans('profile.noProfileYet') }}
                             </p>
-                            {!! HTML::icon_link(URL::to('/profile/'.$currentUser->name.'/edit'), 'fa fa-fw fa-plus ', trans('titles.createProfile'), array('class' => 'btn btn-small btn-info btn-block')) !!}
+                            {!! html()->icon_link(URL::to('/profile/'.$currentUser->name.'/edit'), 'fa fa-fw fa-plus ', trans('titles.createProfile'), array('class' => 'btn btn-small btn-info btn-block')) !!}
                         @endif
                     </div>
                 </div>
