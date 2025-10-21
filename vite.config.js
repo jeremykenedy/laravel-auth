@@ -129,14 +129,14 @@ export default ({ mode }) => {
       // }),
       viteStaticCopy({
         targets: [
-          {
-            src: "node_modules/hideshowpassword/images/wink.svg",
-            dest: "assets/",
-          },
-          {
-            src: "node_modules/hideshowpassword/images/wink.png",
-            dest: "assets/",
-          },
+          // {
+          //   src: "node_modules/hideshowpassword/images/wink.svg",
+          //   dest: "assets/",
+          // },
+          // {
+          //   src: "node_modules/hideshowpassword/images/wink.png",
+          //   dest: "assets/",
+          // },
           // {
           //   src: 'resources/img/favicon/favicon.ico',
           //   dest: '../',
