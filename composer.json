@@ -20,7 +20,7 @@
     "jeremykenedy/laravel-email-database-log": "^12.0",
     "jeremykenedy/laravel-exception-notifier": "^4.1",
     "jeremykenedy/laravel-https": "^2.0",
-    "jeremykenedy/laravel-logger": "^10.0",
+    "jeremykenedy/laravel-logger": "^11.0",
     "jeremykenedy/laravel-phpinfo": "^1.3",
     "jeremykenedy/laravel-roles": "^11.5",
     "jeremykenedy/laravel2step": "^4.0",
@@ -101,6 +101,6 @@
       "pestphp/pest-plugin": true
     }
   },
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "prefer-stable": true
 }
