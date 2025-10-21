@@ -15,9 +15,9 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 use jeremykenedy\Uuid\Uuid;
-use Illuminate\Support\Facades\Validator;
 
 class ProfilesController extends Controller
 {
