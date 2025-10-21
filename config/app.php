@@ -4,7 +4,6 @@ use App\Providers\ComposerServiceProvider;
 use App\Providers\MacroServiceProvider;
 use Creativeorange\Gravatar\Facades\Gravatar;
 use Illuminate\Support\Facades\Facade;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redis;
 use Intervention\Image\Facades\Image;
 use jeremykenedy\Uuid\Uuid;
@@ -220,7 +219,6 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'Redis'     => Redis::class,
         'Socialite' => Socialite::class,
-        'Input'     => Input::class,
         'Gravatar'  => Gravatar::class,
         'Image'     => Image::class,
         'Uuid'      => Uuid::class,

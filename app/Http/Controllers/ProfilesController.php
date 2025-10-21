@@ -10,15 +10,14 @@ use App\Models\Theme;
 use App\Models\User;
 use App\Notifications\SendGoodbyeEmail;
 use App\Traits\CaptureIpTrait;
-use File;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
-use Image;
+use Intervention\Image\Facades\Image;
 use jeremykenedy\Uuid\Uuid;
-use Validator;
-use View;
+use Illuminate\Support\Facades\Validator;
 
 class ProfilesController extends Controller
 {
@@ -143,7 +142,7 @@ class ProfilesController extends Controller
      */
     public function updateUserAccount(Request $request, $id)
     {
-        $currentUser = \Auth::user();
+        $currentUser = Auth::user();
         $user = User::findOrFail($id);
         $emailCheck = ($request->input('email') !== '') && ($request->input('email') !== $user->email);
         $ipAddress = new CaptureIpTrait();
@@ -203,7 +202,7 @@ class ProfilesController extends Controller
      */
     public function updateUserPassword(UpdateUserPasswordRequest $request, $id)
     {
-        $currentUser = \Auth::user();
+        $currentUser = Auth::user();
         $user = User::findOrFail($id);
         $ipAddress = new CaptureIpTrait();
 
@@ -226,7 +225,7 @@ class ProfilesController extends Controller
     public function upload(Request $request)
     {
         if ($request->hasFile('file')) {
-            $currentUser = \Auth::user();
+            $currentUser = Auth::user();
             $avatar = $request->file('file');
             $filename = 'avatar.'.$avatar->getClientOriginalExtension();
             $save_path = storage_path().'/users/id/'.$currentUser->id.'/uploads/images/avatar/';
@@ -234,7 +233,7 @@ class ProfilesController extends Controller
             $public_path = '/images/profile/'.$currentUser->id.'/avatar/'.$filename;
 
             // Make the user a folder and set permissions
-            File::makeDirectory($save_path, $mode = 0755, true, true);
+            Filesystem::makeDirectory($save_path, $mode = 0755, true, true);
 
             // Save the file to the server
             Image::make($avatar)->resize(300, 300)->save($save_path.$filename);
@@ -270,7 +269,7 @@ class ProfilesController extends Controller
      */
     public function deleteUserAccount(DeleteUserAccount $request, $id)
     {
-        $currentUser = \Auth::user();
+        $currentUser = Auth::user();
         $user = User::findOrFail($id);
         $ipAddress = new CaptureIpTrait();
 
@@ -310,7 +309,7 @@ class ProfilesController extends Controller
     /**
      * Send GoodBye Email Function via Notify.
      *
-     * @param  array  $user
+     * @param  User  $user
      * @param  string  $token
      * @return void
      */

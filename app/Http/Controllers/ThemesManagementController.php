@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Theme;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class ThemesManagementController extends Controller
 {
