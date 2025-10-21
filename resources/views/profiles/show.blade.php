@@ -100,7 +100,7 @@
                                         {{ trans('profile.showProfileTwitterUsername') }}
                                     </dt>
                                     <dd>
-                                        {!! html()->link('https://twitter.com/'.$user->profile->twitter_username, $user->profile->twitter_username, array('class' => 'twitter-link', 'target' => '_blank')) !!}
+                                        {!! html()->a('https://twitter.com/'.$user->profile->twitter_username, $user->profile->twitter_username, array('class' => 'twitter-link', 'target' => '_blank')) !!}
                                     </dd>
                                 @endif
 
@@ -109,7 +109,7 @@
                                         {{ trans('profile.showProfileGitHubUsername') }}
                                     </dt>
                                     <dd>
-                                        {!! html()->link('https://github.com/'.$user->profile->github_username, $user->profile->github_username, array('class' => 'github-link', 'target' => '_blank')) !!}
+                                        {!! html()->a('https://github.com/'.$user->profile->github_username, $user->profile->github_username, array('class' => 'github-link', 'target' => '_blank')) !!}
                                     </dd>
                                 @endif
                             @endif

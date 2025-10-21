@@ -389,7 +389,7 @@ php artisan vendor:publish --tag=laravel-email-database-log-migration
         - Use Laravel HTML Facade with [Laravel Collective](https://laravelcollective.com/):
 
         ```
-        {!! html()->link(route('social.redirect', ['provider' => 'twitch']), 'Twitch', array('class' => 'btn btn-lg btn-primary btn-block twitch')) !!}
+        {!! html()->a(route('social.redirect', ['provider' => 'twitch']), 'Twitch', array('class' => 'btn btn-lg btn-primary btn-block twitch')) !!}
         ```
 
 ### Other API keys

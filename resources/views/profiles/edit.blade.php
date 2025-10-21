@@ -55,7 +55,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                {{ html()->model($user->profile) }}
+                                                @php( html()->model($user->profile) )
                                                 {{ html()->form('POST', route('profile.update', $user->name))
                                                         ->id('user_profile_form')
                                                         ->class('form-horizontal')
@@ -161,11 +161,11 @@
                                                         </div>
                                                     </div>
                                                 {{ html()->form()->close() }}
-                                                {{ html()->endModel() }}
+                                                @php( html()->endModel() )
                                             </div>
 
                                             <div class="tab-pane fade edit-settings-tab" role="tabpanel" aria-labelledby="edit-settings-tab">
-                                                {{ html()->model($user) }}
+                                                @php( html()->model($user) )
                                                 {{ html()->form('POST', action([App\Http\Controllers\ProfilesController::class, 'updateUserAccount'], $user->id))
                                                         ->id('user_basics_form')
                                                         ->open() }}
@@ -265,7 +265,7 @@
                                                         </div>
                                                     </div>
                                                 {{ html()->form()->close() }}
-                                                {{ html()->endModel() }}
+                                                @php( html()->endModel() )
                                             </div>
 
                                             <div class="tab-pane fade edit-account-tab" role="tabpanel" aria-labelledby="edit-account-tab">
@@ -289,7 +289,7 @@
                                                             {{ trans('profile.changePwTitle') }}
                                                         </h3>
 
-                                                        {{ html()->model($user) }}
+                                                        @php( html()->model($user) )
                                                         {{ html()->form('POST', action([App\Http\Controllers\ProfilesController::class, 'updateUserPassword'], $user->id))
                                                                 ->attribute('autocomplete', 'new-password')
                                                                 ->open() }}
@@ -340,7 +340,7 @@
                                                                 </div>
                                                             </div>
                                                         {{ html()->form()->close() }}
-                                                        {{ html()->endModel() }}
+                                                        @php( html()->endModel() )
 
                                                     </div>
 
@@ -357,7 +357,7 @@
                                                         <div class="row">
                                                             <div class="col-sm-6 offset-sm-3 margin-bottom-3 text-center">
 
-                                                                {{ html()->model($user) }}
+                                                                @php( html()->model($user) )
                                                                 {{ html()->form('POST', action([App\Http\Controllers\ProfilesController::class, 'deleteUserAccount'], $user->id))
                                                                         ->open() }}
 
@@ -374,19 +374,19 @@
                                                                     </div>
 
                                                                     {{ html()->button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i>' . trans('profile.deleteAccountBtn'))
-                ->class('btn btn-block btn-danger')
-                ->id('delete_account_trigger')
-                ->disabled()
-                ->type('button')
-                ->attribute('data-toggle', 'modal')
-                ->attribute('data-submit', trans('profile.deleteAccountBtnConfirm'))
-                ->attribute('data-target', '#confirmForm')
-                ->attribute('data-modalClass', 'modal-danger')
-                ->attribute('data-title', trans('profile.deleteAccountConfirmTitle'))
-                ->attribute('data-message', trans('profile.deleteAccountConfirmMsg')) }}
+                                                                        ->class('btn btn-block btn-danger')
+                                                                        ->id('delete_account_trigger')
+                                                                        ->disabled()
+                                                                        ->type('button')
+                                                                        ->attribute('data-toggle', 'modal')
+                                                                        ->attribute('data-submit', trans('profile.deleteAccountBtnConfirm'))
+                                                                        ->attribute('data-target', '#confirmForm')
+                                                                        ->attribute('data-modalClass', 'modal-danger')
+                                                                        ->attribute('data-title', trans('profile.deleteAccountConfirmTitle'))
+                                                                        ->attribute('data-message', trans('profile.deleteAccountConfirmMsg')) }}
 
                                                                 {{ html()->form()->close() }}
-                                                                {{ html()->endModel() }}
+                                                                @php( html()->endModel() )
 
                                                             </div>
                                                         </div>
