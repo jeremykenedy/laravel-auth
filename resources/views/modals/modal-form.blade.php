@@ -13,8 +13,14 @@
         </p>
       </div>
       <div class="modal-footer">
-        {!! Form::button('<i class="fa fa-fw fa-close" aria-hidden="true"></i> ' . trans('modals.form_modal_default_btn_cancel'), array('class' => 'btn btn-secondary', 'type' => 'button', 'data-dismiss' => 'modal' )) !!}
-        {!! Form::button('<i class="fa fa-fw fa-check" aria-hidden="true"></i> ' . trans('modals.form_modal_default_btn_submit'), array('class' => 'btn btn-primary', 'type' => 'button', 'id' => 'confirm' )) !!}
+        {{ html()->button('<i class="fa fa-fw fa-close" aria-hidden="true"></i> ' . trans('modals.form_modal_default_btn_cancel'))
+            ->class('btn btn-secondary')
+            ->type('button')
+            ->attribute('data-dismiss', 'modal') }}
+        {{ html()->button('<i class="fa fa-fw fa-check" aria-hidden="true"></i> ' . trans('modals.form_modal_default_btn_submit'))
+            ->class('btn btn-primary')
+            ->type('button')
+            ->id('confirm') }}
       </div>
     </div>
   </div>

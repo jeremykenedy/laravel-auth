@@ -111,22 +111,22 @@ export default ({ mode }) => {
         minifyCSS: true,
         removeComments: true,
       }),
-      createHtmlPlugin({
-        minify: true,
-        entry: "resources/assets/js/app.js",
-      }),
+      // createHtmlPlugin({
+      //   minify: true,
+      //   entry: "resources/assets/js/app.js",
+      // }),
       viteCommonjs(),
       manifestSRI(),
-      webUpdateNotice({
-        logVersion: true,
-        logHash: true,
-        checkInterval: 0.5 * 60 * 1000,
-        notificationProps: {
-          title: "system update",
-          description: "System update, please refresh the page",
-          buttonText: "refresh",
-        },
-      }),
+      // webUpdateNotice({
+      //   logVersion: true,
+      //   logHash: true,
+      //   checkInterval: 0.5 * 60 * 1000,
+      //   notificationProps: {
+      //     title: "system update",
+      //     description: "System update, please refresh the page",
+      //     buttonText: "refresh",
+      //   },
+      // }),
       viteStaticCopy({
         targets: [
           {

@@ -48,7 +48,7 @@
                   @if($user->email)
                     <br />
                     <span class="text-center" data-toggle="tooltip" data-placement="top" title="{{ trans('usersmanagement.tooltips.email-user', ['user' => $user->email]) }}">
-                      {{ Html::mailto($user->email, $user->email) }}
+                      {{ html()->mailto($user->email, $user->email) }}
                     </span>
                   @endif
                 </p>
@@ -60,10 +60,22 @@
                     <a href="/users/{{$user->id}}/edit" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="{{ trans('usersmanagement.editUser') }}">
                       <i class="fa fa-pencil fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm hidden-md"> {{ trans('usersmanagement.editUser') }} </span>
                     </a>
-                    {!! Form::open(array('url' => 'users/' . $user->id, 'class' => 'form-inline', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'title' => trans('usersmanagement.deleteUser'))) !!}
-                      {!! Form::hidden('_method', 'DELETE') !!}
-                      {!! Form::button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm hidden-md">' . trans('usersmanagement.deleteUser') . '</span>' , array('class' => 'btn btn-danger btn-sm','type' => 'button', 'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => 'Delete User', 'data-message' => 'Are you sure you want to delete this user?')) !!}
-                    {!! Form::close() !!}
+                    {{ html()->form('POST', url('users/' . $user->id))
+                        ->class('form-inline')
+                        ->attribute('data-toggle', 'tooltip')
+                        ->attribute('data-placement', 'right')
+                        ->attribute('title', trans('usersmanagement.deleteUser'))
+                        ->open() }}
+                      @csrf
+                      @method('DELETE')
+                      {{ html()->button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm hidden-md">' . trans('usersmanagement.deleteUser') . '</span>')
+                        ->class('btn btn-danger btn-sm')
+                        ->type('button')
+                        ->attribute('data-toggle', 'modal')
+                        ->attribute('data-target', '#confirmDelete')
+                        ->attribute('data-title', 'Delete User')
+                        ->attribute('data-message', 'Are you sure you want to delete this user?') }}
+                    {{ html()->form()->close() }}
                   </div>
                 @endif
               </div>
@@ -99,7 +111,7 @@
 
             <div class="col-sm-7">
               <span data-toggle="tooltip" data-placement="top" title="{{ trans('usersmanagement.tooltips.email-user', ['user' => $user->email]) }}">
-                {{ HTML::mailto($user->email, $user->email) }}
+                {{ html()->mailto($user->email, $user->email) }}
               </span>
             </div>
 

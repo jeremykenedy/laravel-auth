@@ -35,15 +35,19 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        {!! Form::open(array('route' => ['users.update', $user->id], 'method' => 'PUT', 'role' => 'form', 'class' => 'needs-validation')) !!}
+                        {{ html()->form('POST', route('users.update', $user->id))
+                                ->attribute('role', 'form')
+                                ->class('needs-validation')
+                                ->open() }}
 
-                            {!! csrf_field() !!}
+                            @csrf
+                            @method('PUT')
 
                             <div class="form-group has-feedback row {{ $errors->has('name') ? ' has-error ' : '' }}">
-                                {!! Form::label('name', trans('forms.create_user_label_username'), array('class' => 'col-md-3 control-label')); !!}
+                                {{ html()->label('name', trans('forms.create_user_label_username'))->class('col-md-3 control-label') }}
                                 <div class="col-md-9">
                                     <div class="input-group">
-                                        {!! Form::text('name', $user->name, array('id' => 'name', 'class' => 'form-control', 'placeholder' => trans('forms.create_user_ph_username'))) !!}
+                                        {{ html()->text('name')->id('name')->class('form-control')->placeholder(trans('forms.create_user_ph_username')) }}
                                         <div class="input-group-append">
                                             <label class="input-group-text" for="name">
                                                 <i class="fa fa-fw {{ trans('forms.create_user_icon_username') }}" aria-hidden="true"></i>
@@ -59,10 +63,10 @@
                             </div>
 
                             <div class="form-group has-feedback row {{ $errors->has('first_name') ? ' has-error ' : '' }}">
-                                {!! Form::label('first_name', trans('forms.create_user_label_firstname'), array('class' => 'col-md-3 control-label')); !!}
+                                {{ html()->label('first_name', trans('forms.create_user_label_firstname'))->class('col-md-3 control-label') }}
                                 <div class="col-md-9">
                                     <div class="input-group">
-                                        {!! Form::text('first_name', $user->first_name, array('id' => 'first_name', 'class' => 'form-control', 'placeholder' => trans('forms.create_user_ph_firstname'))) !!}
+                                        {{ html()->text('first_name')->id('first_name')->class('form-control')->placeholder(trans('forms.create_user_ph_firstname')) }}
                                         <div class="input-group-append">
                                             <label class="input-group-text" for="first_name">
                                                 <i class="fa fa-fw {{ trans('forms.create_user_icon_firstname') }}" aria-hidden="true"></i>
@@ -78,10 +82,10 @@
                             </div>
 
                             <div class="form-group has-feedback row {{ $errors->has('last_name') ? ' has-error ' : '' }}">
-                                {!! Form::label('last_name', trans('forms.create_user_label_lastname'), array('class' => 'col-md-3 control-label')); !!}
+                                {{ html()->label('last_name', trans('forms.create_user_label_lastname'))->class('col-md-3 control-label') }}
                                 <div class="col-md-9">
                                     <div class="input-group">
-                                        {!! Form::text('last_name', $user->last_name, array('id' => 'last_name', 'class' => 'form-control', 'placeholder' => trans('forms.create_user_ph_lastname'))) !!}
+                                        {{ html()->text('last_name')->id('last_name')->class('form-control')->placeholder(trans('forms.create_user_ph_lastname')) }}
                                         <div class="input-group-append">
                                             <label class="input-group-text" for="last_name">
                                                 <i class="fa fa-fw {{ trans('forms.create_user_icon_lastname') }}" aria-hidden="true"></i>
@@ -97,10 +101,10 @@
                             </div>
 
                             <div class="form-group has-feedback row {{ $errors->has('email') ? ' has-error ' : '' }}">
-                                {!! Form::label('email', trans('forms.create_user_label_email'), array('class' => 'col-md-3 control-label')); !!}
+                                {{ html()->label('email', trans('forms.create_user_label_email'))->class('col-md-3 control-label') }}
                                 <div class="col-md-9">
                                     <div class="input-group">
-                                        {!! Form::text('email', $user->email, array('id' => 'email', 'class' => 'form-control', 'placeholder' => trans('forms.create_user_ph_email'))) !!}
+                                        {{ html()->email('email')->id('email')->class('form-control')->placeholder(trans('forms.create_user_ph_email')) }}
                                         <div class="input-group-append">
                                             <label for="email" class="input-group-text">
                                                 <i class="fa fa-fw {{ trans('forms.create_user_icon_email') }}" aria-hidden="true"></i>
@@ -117,7 +121,7 @@
 
                             <div class="form-group has-feedback row {{ $errors->has('role') ? ' has-error ' : '' }}">
 
-                                {!! Form::label('role', trans('forms.create_user_label_role'), array('class' => 'col-md-3 control-label')); !!}
+                                {{ html()->label('role', trans('forms.create_user_label_role'))->class('col-md-3 control-label') }}
 
                                 <div class="col-md-9">
                                     <div class="input-group">
@@ -146,11 +150,11 @@
                             <div class="pw-change-container">
                                 <div class="form-group has-feedback row {{ $errors->has('password') ? ' has-error ' : '' }}">
 
-                                    {!! Form::label('password', trans('forms.create_user_label_password'), array('class' => 'col-md-3 control-label')); !!}
+                                    {{ html()->label('password', trans('forms.create_user_label_password'))->class('col-md-3 control-label') }}
 
                                     <div class="col-md-9">
                                         <div class="input-group">
-                                            {!! Form::password('password', array('id' => 'password', 'class' => 'form-control ', 'placeholder' => trans('forms.create_user_ph_password'))) !!}
+                                            {{ html()->password('password')->id('password')->class('form-control ')->placeholder(trans('forms.create_user_ph_password')) }}
                                             <div class="input-group-append">
                                                 <label class="input-group-text" for="password">
                                                     <i class="fa fa-fw {{ trans('forms.create_user_icon_password') }}" aria-hidden="true"></i>
@@ -166,11 +170,11 @@
                                 </div>
                                 <div class="form-group has-feedback row {{ $errors->has('password_confirmation') ? ' has-error ' : '' }}">
 
-                                    {!! Form::label('password_confirmation', trans('forms.create_user_label_pw_confirmation'), array('class' => 'col-md-3 control-label')); !!}
+                                    {{ html()->label('password_confirmation', trans('forms.create_user_label_pw_confirmation'))->class('col-md-3 control-label') }}
 
                                     <div class="col-md-9">
                                         <div class="input-group">
-                                            {!! Form::password('password_confirmation', array('id' => 'password_confirmation', 'class' => 'form-control', 'placeholder' => trans('forms.create_user_ph_pw_confirmation'))) !!}
+                                            {{ html()->password('password_confirmation')->id('password_confirmation')->class('form-control')->placeholder(trans('forms.create_user_ph_pw_confirmation')) }}
                                             <div class="input-group-append">
                                                 <label class="input-group-text" for="password_confirmation">
                                                     <i class="fa fa-fw {{ trans('forms.create_user_icon_pw_confirmation') }}" aria-hidden="true"></i>
@@ -193,10 +197,16 @@
                                     </a>
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    {!! Form::button(trans('forms.save-changes'), array('class' => 'btn btn-success btn-block margin-bottom-1 mt-3 mb-2 btn-save','type' => 'button', 'data-toggle' => 'modal', 'data-target' => '#confirmSave', 'data-title' => trans('modals.edit_user__modal_text_confirm_title'), 'data-message' => trans('modals.edit_user__modal_text_confirm_message'))) !!}
+                                    {{ html()->button(trans('forms.save-changes'))
+                                        ->class('btn btn-success btn-block margin-bottom-1 mt-3 mb-2 btn-save')
+                                        ->type('button')
+                                        ->attribute('data-toggle', 'modal')
+                                        ->attribute('data-target', '#confirmSave')
+                                        ->attribute('data-title', trans('modals.edit_user__modal_text_confirm_title'))
+                                        ->attribute('data-message', trans('modals.edit_user__modal_text_confirm_message')) }}
                                 </div>
                             </div>
-                        {!! Form::close() !!}
+                        {{ html()->form()->close() }}
                     </div>
 
                 </div>

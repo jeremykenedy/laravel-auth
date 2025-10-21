@@ -54,7 +54,10 @@
             </main>
         </div>
         @if(config('settings.googleMapsAPIStatus'))
-            {!! HTML::script('//maps.googleapis.com/maps/api/js?key='.config("settings.googleMapsAPIKey").'&libraries=places&dummy=.js', array('type' => 'text/javascript')) !!}
+            {!! \Spatie\Html\Elements\Element::withTag('script')
+                ->attribute('src', '//maps.googleapis.com/maps/api/js?key=' . config('settings.googleMapsAPIKey') . '&libraries=places&dummy=.js')
+                ->attribute('type', 'text/javascript')
+                ->close() !!}
         @endif
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         @yield('footer_scripts')

@@ -16,8 +16,14 @@
                 </p>
             </div>
             <div class="modal-footer">
-                {!! Form::button('<i class="fa fa-fw '.trans('modals.confirm_modal_button_cancel_icon').'" aria-hidden="true"></i> ' . trans('modals.confirm_modal_button_cancel_text'), array('class' => 'btn btn-outline pull-left btn-flat', 'type' => 'button', 'data-dismiss' => 'modal' )) !!}
-                {!! Form::button('<i class="fa fa-fw '.trans('modals.confirm_modal_button_save_icon').'" aria-hidden="true"></i> ' . trans('modals.confirm_modal_button_save_text'), array('class' => 'btn btn-success pull-right btn-flat', 'type' => 'button', 'id' => 'confirm' )) !!}
+                {{ html()->button('<i class="fa fa-fw '.trans('modals.confirm_modal_button_cancel_icon').'" aria-hidden="true"></i> ' . trans('modals.confirm_modal_button_cancel_text'))
+                    ->class('btn btn-outline pull-left btn-flat')
+                    ->type('button')
+                    ->attribute('data-dismiss', 'modal') }}
+                {{ html()->button('<i class="fa fa-fw '.trans('modals.confirm_modal_button_save_icon').'" aria-hidden="true"></i> ' . trans('modals.confirm_modal_button_save_text'))
+                    ->class('btn btn-success pull-right btn-flat')
+                    ->type('button')
+                    ->id('confirm') }}
             </div>
         </div>
     </div>

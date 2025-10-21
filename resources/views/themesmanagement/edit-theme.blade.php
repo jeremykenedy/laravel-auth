@@ -47,14 +47,17 @@
                         </div>
                     </div>
 
-                    {!! Form::model($theme, array('action' => array('ThemesManagementController@update', $theme->id), 'method' => 'PUT')) !!}
+                    {{ html()->model($theme) }}
+                    {{ html()->form('POST', action([App\Http\Controllers\ThemesManagementController::class, 'update'], $theme->id))
+                            ->open() }}
 
-                        {!! csrf_field() !!}
+                        @csrf
+                        @method('PUT')
 
                         <div class="card-body">
 
                             <div class="form-group has-feedback row {{ $errors->has('status') ? ' has-error ' : '' }} @if($theme->id == 1) disabled @endif ">
-                                {!! Form::label('status', trans('themes.statusLabel'), array('class' => 'col-md-3 control-label')); !!}
+                                {{ html()->label('status', trans('themes.statusLabel'))->class('col-md-3 control-label') }}
                                 <div class="col-md-9">
                                     <label class="switch {{ $themeActive['checked'] }}" for="status">
                                         <span class="active"><i class="fa fa-toggle-on fa-2x"></i> {{ trans('themes.statusEnabled') }}</span>
@@ -72,10 +75,10 @@
                             </div>
 
                             <div class="form-group has-feedback row {{ $errors->has('name') ? ' has-error ' : '' }}">
-                                {!! Form::label('name', trans('themes.nameLabel'), array('class' => 'col-md-3 control-label')); !!}
+                                {{ html()->label('name', trans('themes.nameLabel'))->class('col-md-3 control-label') }}
                                 <div class="col-md-9">
                                     <div class="input-group">
-                                        {!! Form::text('name', $theme->name, array('id' => 'name', 'class' => 'form-control', 'placeholder' => trans('themes.namePlaceholder'))) !!}
+                                        {{ html()->text('name')->id('name')->class('form-control')->placeholder(trans('themes.namePlaceholder')) }}
                                         <div class="input-group-append">
                                             <label for="name" class="input-group-text">
                                                 <i class="fa fa-fw fa-pencil" aria-hidden="true"></i>
@@ -91,10 +94,10 @@
                             </div>
 
                             <div class="form-group has-feedback row {{ $errors->has('link') ? ' has-error ' : '' }}">
-                                {!! Form::label('link', trans('themes.linkLabel'), array('class' => 'col-md-3 control-label')); !!}
+                                {{ html()->label('link', trans('themes.linkLabel'))->class('col-md-3 control-label') }}
                                 <div class="col-md-9">
                                     <div class="input-group">
-                                        {!! Form::text('link', $theme->link, array('id' => 'link', 'class' => 'form-control', 'placeholder' => trans('themes.linkPlaceholder'))) !!}
+                                        {{ html()->text('link')->id('link')->class('form-control')->placeholder(trans('themes.linkPlaceholder')) }}
                                         <div class="input-group-append">
                                             <label for="link" class="input-group-text">
                                                 <i class="fa fa-fw fa-link fa-rotate-90" aria-hidden="true"></i>
@@ -110,10 +113,10 @@
                             </div>
 
                             <div class="form-group has-feedback row {{ $errors->has('notes') ? ' has-error ' : '' }}">
-                                {!! Form::label('notes', trans('themes.notesLabel') , array('class' => 'col-md-3 control-label')); !!}
+                                {{ html()->label('notes', trans('themes.notesLabel'))->class('col-md-3 control-label') }}
                                 <div class="col-md-9">
                                     <div class="input-group">
-                                        {!! Form::textarea('notes', old('notes'), array('id' => 'notes', 'class' => 'form-control', 'placeholder' => trans('themes.notesPlaceholder'))) !!}
+                                        {{ html()->textarea('notes')->id('notes')->class('form-control')->placeholder(trans('themes.notesPlaceholder')) }}
                                         <div class="input-group-append">
                                             <label for="notes" class="input-group-text">
                                                 <i class="fa fa-fw fa-pencil" aria-hidden="true"></i>
@@ -133,12 +136,19 @@
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    {!! Form::button('<i class="fa fa-fw fa-save" aria-hidden="true"></i> ' . trans('themes.editSave'), array('class' => 'btn btn-success btn-block mb-0 btn-save','type' => 'button', 'data-toggle' => 'modal', 'data-target' => '#confirmSave', 'data-title' => trans('modals.edit_user__modal_text_confirm_title'), 'data-message' => trans('modals.edit_user__modal_text_confirm_message'))) !!}
+                                    {{ html()->button('<i class="fa fa-fw fa-save" aria-hidden="true"></i> ' . trans('themes.editSave'))
+                                        ->class('btn btn-success btn-block mb-0 btn-save')
+                                        ->type('button')
+                                        ->attribute('data-toggle', 'modal')
+                                        ->attribute('data-target', '#confirmSave')
+                                        ->attribute('data-title', trans('modals.edit_user__modal_text_confirm_title'))
+                                        ->attribute('data-message', trans('modals.edit_user__modal_text_confirm_message')) }}
                                 </div>
                             </div>
                         </div>
 
-                    {!! Form::close() !!}
+                    {{ html()->form()->close() }}
+                    {{ html()->endModel() }}
 
                 </div>
             </div>

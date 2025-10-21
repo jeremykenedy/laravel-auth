@@ -1,5 +1,7 @@
+@use "mixins";
+
 .btn {
-    @include transitions();
+    @include mixins.transitions();
 }
 
 // .btn-youtube {
@@ -21,7 +23,7 @@
         &.left-btn-container {
             padding-left: 0;
             .btn {
-                @include vendor(
+                @include mixins.vendor(
                     border-radius,
                     0 $standard-radius $standard-radius 0
                 );
@@ -30,7 +32,7 @@
         &.right-btn-container {
             padding-right: 0;
             .btn {
-                @include vendor(
+                @include mixins.vendor(
                     border-radius,
                     $standard-radius 0 0 $standard-radius
                 );

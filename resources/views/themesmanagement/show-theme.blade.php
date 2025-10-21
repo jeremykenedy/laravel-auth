@@ -105,10 +105,19 @@
                                 <i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Edit<span class="hidden-sm"> this</span><span class="hidden-sm"> Theme</span>
                             </a>
                         </div>
-                        {!! Form::open(array('url' => 'themes/' . $theme->id, 'class' => 'col-sm-6 mb-2')) !!}
-                            {!! Form::hidden('_method', 'DELETE') !!}
-                            {!! Form::button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> Delete<span class="hidden-sm"> this</span><span class="hidden-sm"> Theme</span>', array('class' => 'btn btn-danger btn-block btn-flat','type' => 'button', 'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => trans('themes.confirmDeleteHdr'), 'data-message' => trans('themes.confirmDelete'))) !!}
-                        {!! Form::close() !!}
+                        {{ html()->form('POST', url('themes/' . $theme->id))
+                                ->class('col-sm-6 mb-2')
+                                ->open() }}
+                            @csrf
+                            @method('DELETE')
+                            {{ html()->button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> Delete<span class="hidden-sm"> this</span><span class="hidden-sm"> Theme</span>')
+                                ->class('btn btn-danger btn-block btn-flat')
+                                ->type('button')
+                                ->attribute('data-toggle', 'modal')
+                                ->attribute('data-target', '#confirmDelete')
+                                ->attribute('data-title', trans('themes.confirmDeleteHdr'))
+                                ->attribute('data-message', trans('themes.confirmDelete')) }}
+                        {{ html()->form()->close() }}
                     </div>
                 </div>
             </div>

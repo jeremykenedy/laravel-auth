@@ -1,3 +1,5 @@
+@use "mixins";
+
 .no-padding {
     padding: 0;
 }
@@ -7,8 +9,8 @@
 }
 
 .no-shadow {
-    @include vendor(box-shadow, none !important);
-    @include vendor(outline, none !important);
+    @include mixins.vendor(box-shadow, none !important);
+    @include mixins.vendor(outline, none !important);
     -webkit-appearance: none !important;
 }
 
@@ -18,7 +20,7 @@
 }
 
 .border-radius {
-    @include vendor(border-radius, $standard-radius);
+    @include mixins.vendor(border-radius, $standard-radius);
 }
 
 @media (max-width: $mq-tiny) {

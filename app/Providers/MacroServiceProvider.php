@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Logic\Macros\Macros;
-use Collective\Html\HtmlServiceProvider;
+use Spatie\Html\HtmlServiceProvider;
 
 /**
  * Class MacroServiceProvider.

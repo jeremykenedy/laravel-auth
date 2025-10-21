@@ -113,10 +113,21 @@
                                         </a>
                                     </td>
                                     <td>
-                                        {!! Form::open(array('url' => 'themes/' . $aTheme->id, 'class' => '', 'data-toggle' => 'tooltip', 'title' => 'Delete Theme')) !!}
-                                            {!! Form::hidden('_method', 'DELETE') !!}
-                                            {!! Form::button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> <span class="sr-only">Delete Theme</span>', array('class' => 'btn btn-danger btn-sm','type' => 'button', 'style' =>'width: 100%;' ,'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => trans('themes.confirmDeleteHdr'), 'data-message' => trans('themes.confirmDelete'))) !!}
-                                        {!! Form::close() !!}
+                                        {{ html()->form('POST', url('themes/' . $aTheme->id))
+                                                ->attribute('data-toggle', 'tooltip')
+                                                ->attribute('title', 'Delete Theme')
+                                                ->open() }}
+                                            @csrf
+                                            @method('DELETE')
+                                            {{ html()->button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> <span class="sr-only">Delete Theme</span>')
+                                                ->class('btn btn-danger btn-sm')
+                                                ->type('button')
+                                                ->style('width: 100%;')
+                                                ->attribute('data-toggle', 'modal')
+                                                ->attribute('data-target', '#confirmDelete')
+                                                ->attribute('data-title', trans('themes.confirmDeleteHdr'))
+                                                ->attribute('data-message', trans('themes.confirmDelete')) }}
+                                        {{ html()->form()->close() }}
                                     </td>
                                 </tr>
                             @endforeach
