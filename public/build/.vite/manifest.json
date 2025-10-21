@@ -52,7 +52,7 @@
     "src": "node_modules/font-awesome/fonts/fontawesome-webfont.woff2"
   },
   "resources/assets/js/app-legacy.js": {
-    "file": "assets/app-legacy-DDUFYwBY.js",
+    "file": "assets/app-legacy-Di10rcz8.js",
     "name": "app",
     "src": "resources/assets/js/app-legacy.js",
     "isEntry": true,
@@ -68,12 +68,12 @@
     ]
   },
   "resources/assets/js/app.js": {
-    "file": "assets/app-BG0_vVbD.js",
+    "file": "assets/app-DnP7L1MN.js",
     "name": "app",
     "src": "resources/assets/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app-B7vS8Mbm.css"
+      "assets/app-Bd-mmswS.css"
     ],
     "assets": [
       "assets/fa-brands-400-D_cYUPeE.woff2",
@@ -87,7 +87,7 @@
     ]
   },
   "resources/assets/sass/app-legacy.scss": {
-    "file": "assets/app-legacy-Mb7mMJCE.js",
+    "file": "assets/app-legacy-BCh_1KIn.js",
     "name": "app",
     "src": "resources/assets/sass/app-legacy.scss",
     "isEntry": true,
@@ -108,12 +108,12 @@
     ]
   },
   "resources/assets/sass/app.scss": {
-    "file": "assets/app-WPGwnzyH.css",
+    "file": "assets/app-Dr1V4Nnx.css",
     "src": "resources/assets/sass/app.scss",
     "isEntry": true
   },
   "vite/legacy-polyfills-legacy": {
-    "file": "assets/polyfills-legacy-Ci8jmAHT.js",
+    "file": "assets/polyfills-legacy-CQdBMXVu.js",
     "name": "polyfills",
     "src": "vite/legacy-polyfills-legacy",
     "isEntry": true
