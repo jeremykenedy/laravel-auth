@@ -1,5 +1,5 @@
 <script type="text/javascript">
-
+$(function () {
 	var modalId = $('#confirmForm');
 
 	modalId.on('show.bs.modal', function (e) {
@@ -23,5 +23,5 @@
 	modalId.find('.modal-footer #confirm').on('click', function(){
 	  	$(this).data('form').submit();
 	});
-
+});
 </script>
