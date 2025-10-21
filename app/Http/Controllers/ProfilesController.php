@@ -11,9 +11,9 @@ use App\Models\User;
 use App\Notifications\SendGoodbyeEmail;
 use App\Traits\CaptureIpTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
@@ -233,7 +233,7 @@ class ProfilesController extends Controller
             $public_path = '/images/profile/'.$currentUser->id.'/avatar/'.$filename;
 
             // Make the user a folder and set permissions
-            Filesystem::makeDirectory($save_path, $mode = 0755, true, true);
+            File::makeDirectory($save_path, $mode = 0755, true, true);
 
             // Save the file to the server
             Image::make($avatar)->resize(300, 300)->save($save_path.$filename);
