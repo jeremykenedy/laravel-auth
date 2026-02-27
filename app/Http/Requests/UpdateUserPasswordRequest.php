@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 class UpdateUserPasswordRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateUserPasswordRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -19,27 +20,34 @@ class UpdateUserPasswordRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array
+     * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'password'              => 'required|min:6|max:20|confirmed',
-            'password_confirmation' => 'required|same:password',
+            'password' => [
+                'required',
+                'confirmed',
+                Password::min(8)
+                    ->mixedCase()
+                    ->numbers()
+                    ->symbols()
+                    ->uncompromised(),
+            ],
+            'password_confirmation' => ['required', 'same:password'],
         ];
     }
 
     /**
      * Get the error messages for the defined validation rules.
      *
-     * @return array
+     * @return array<string, string>
      */
-    public function messages()
+    public function messages(): array
     {
         return [
-            'password.required' => trans('auth.passwordRequired'),
-            'password.min'      => trans('auth.PasswordMin'),
-            'password.max'      => trans('auth.PasswordMax'),
+            'password.required'  => trans('auth.passwordRequired'),
+            'password.confirmed' => __('The password confirmation does not match.'),
         ];
     }
 }

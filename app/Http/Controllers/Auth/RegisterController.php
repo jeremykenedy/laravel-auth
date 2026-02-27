@@ -12,6 +12,8 @@ use App\Traits\CaptureIpTrait;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rules\Password;
 
 class RegisterController extends Controller
 {
@@ -52,6 +54,13 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
+     * Enforces strong password policy:
+     *   - Minimum 8 characters
+     *   - At least one uppercase and one lowercase letter
+     *   - At least one number
+     *   - At least one symbol
+     *   - Cannot be a commonly-used password (uncompromised check)
+     *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
@@ -66,11 +75,19 @@ class RegisterController extends Controller
         return Validator::make(
             $data,
             [
-                'name'                  => 'required|max:255|unique:users|alpha_dash',
-                'first_name'            => 'alpha_dash',
-                'last_name'             => 'alpha_dash',
-                'email'                 => 'required|email|max:255|unique:users',
-                'password'              => 'required|min:6|max:30|confirmed',
+                'name'                  => 'required|string|max:255|unique:users|alpha_dash',
+                'first_name'            => 'nullable|string|max:255|alpha_dash',
+                'last_name'             => 'nullable|string|max:255|alpha_dash',
+                'email'                 => 'required|string|email:rfc,dns|max:255|unique:users',
+                'password'              => [
+                    'required',
+                    'confirmed',
+                    Password::min(8)
+                        ->mixedCase()
+                        ->numbers()
+                        ->symbols()
+                        ->uncompromised(),
+                ],
                 'password_confirmation' => 'required|same:password',
                 'g-recaptcha-response'  => '',
                 'captcha'               => 'required|min:1',
@@ -78,13 +95,13 @@ class RegisterController extends Controller
             [
                 'name.unique'                   => trans('auth.userNameTaken'),
                 'name.required'                 => trans('auth.userNameRequired'),
-                'first_name.required'           => trans('auth.fNameRequired'),
-                'last_name.required'            => trans('auth.lNameRequired'),
+                'name.alpha_dash'               => __('Username may only contain letters, numbers, dashes, and underscores.'),
+                'first_name.alpha_dash'         => __('First name may only contain letters, numbers, dashes, and underscores.'),
+                'last_name.alpha_dash'          => __('Last name may only contain letters, numbers, dashes, and underscores.'),
                 'email.required'                => trans('auth.emailRequired'),
                 'email.email'                   => trans('auth.emailInvalid'),
+                'email.unique'                  => __('This email address is already registered. Please login or use a different email.'),
                 'password.required'             => trans('auth.passwordRequired'),
-                'password.min'                  => trans('auth.PasswordMin'),
-                'password.max'                  => trans('auth.PasswordMax'),
                 'g-recaptcha-response.required' => trans('auth.captchaRequire'),
                 'captcha.min'                   => trans('auth.CaptchaWrong'),
             ]
@@ -102,20 +119,20 @@ class RegisterController extends Controller
         $ipAddress = new CaptureIpTrait();
 
         if (config('settings.activation')) {
-            $role = Role::where('slug', '=', 'unverified')->first();
+            $role      = Role::where('slug', '=', 'unverified')->first();
             $activated = false;
         } else {
-            $role = Role::where('slug', '=', 'user')->first();
+            $role      = Role::where('slug', '=', 'user')->first();
             $activated = true;
         }
 
         $user = User::create([
             'name'              => strip_tags($data['name']),
-            'first_name'        => strip_tags($data['first_name']),
-            'last_name'         => strip_tags($data['last_name']),
-            'email'             => $data['email'],
+            'first_name'        => strip_tags($data['first_name'] ?? ''),
+            'last_name'         => strip_tags($data['last_name'] ?? ''),
+            'email'             => strtolower(trim($data['email'])),
             'password'          => Hash::make($data['password']),
-            'token'             => str_random(64),
+            'token'             => Str::random(64),
             'signup_ip_address' => $ipAddress->getClientIp(),
             'activated'         => $activated,
         ]);

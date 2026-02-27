@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -28,7 +28,28 @@ class LoginController extends Controller
      *
      * @var string
      */
+    protected $redirectTo = '/home';
+
+    /**
+     * Where to redirect users after logout.
+     *
+     * @var string
+     */
     protected $redirectAfterLogout = '/';
+
+    /**
+     * Maximum login attempts before lockout.
+     *
+     * @var int
+     */
+    protected $maxAttempts = 5;
+
+    /**
+     * Minutes to lock the user out.
+     *
+     * @var int
+     */
+    protected $decayMinutes = 15;
 
     /**
      * Create a new controller instance.
@@ -41,17 +62,30 @@ class LoginController extends Controller
     }
 
     /**
-     * Logout, Clear Session, and Return.
+     * Securely log the user out of the application.
+     * Invalidates the session and regenerates CSRF token.
      *
-     * @return void
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function logout()
+    public function logout(Request $request)
     {
-        // $user = Auth::user();
-        // Log::info('User Logged Out. ', [$user]);
-        Auth::logout();
-        Session::flush();
+        $user = Auth::user();
 
-        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
+        if ($user) {
+            Log::info('User logged out.', [
+                'user_id' => $user->id,
+                'email'   => $user->email,
+                'ip'      => $request->ip(),
+            ]);
+        }
+
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect($this->redirectAfterLogout)
+            ->with('status', __('You have been successfully logged out.'));
     }
 }
