@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ThemesTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(AppSettingsSeeder::class);
+        $this->call(PostsTableSeeder::class);
 
         Model::reguard();
     }
