@@ -46,7 +46,7 @@
 
                 @auth
                     {{-- Notification bell --}}
-                    <div class="relative" x-data="{ nOpen: false, count: 0 }" x-init="fetch('/api/notifications/count', { headers: { 'Accept': 'application/json', 'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]')?.content } }).then(r => r.json()).then(d => count = d.count || 0).catch(() => {})">
+                    <div class="relative" x-data="{ nOpen: false, count: 0 }" x-init="fetch('{{ route('notifications.count') }}', { headers: { 'Accept': 'application/json', 'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]')?.content } }).then(r => r.json()).then(d => count = d.count || 0).catch(() => {})">
                         <a href="{{ route('notifications.index') }}" class="relative p-2 rounded-md text-[#706f6c] hover:text-[#1b1b18] dark:text-[#A1A09A] dark:hover:text-[#EDEDEC] hover:bg-gray-100 dark:hover:bg-[#1b1b18] transition-colors">
                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" /></svg>
                             <span x-show="count > 0" x-cloak x-text="count" class="absolute -top-0.5 -right-0.5 inline-flex items-center justify-center h-4 min-w-[1rem] px-1 text-[10px] font-bold text-white bg-red-500 rounded-full"></span>
