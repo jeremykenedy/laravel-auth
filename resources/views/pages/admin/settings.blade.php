@@ -58,7 +58,7 @@
         @endforeach
 
         <div class="flex justify-end">
-            <x-ui::button type="submit" variant="primary">Save Settings</x-ui::button>
+            <x-ui::button type="submit" variant="primary" icon="save">Save Settings</x-ui::button>
         </div>
     </form>
 </div>
