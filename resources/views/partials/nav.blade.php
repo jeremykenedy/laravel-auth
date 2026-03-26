@@ -22,7 +22,7 @@
                                     <a href="{{ url('/users') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18] {{ Request::is('users', 'users/*') ? 'text-[#1b1b18] dark:text-[#EDEDEC] font-medium' : '' }}">Users</a>
                                     <a href="{{ url('/users/create') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18]">New User</a>
                                     <hr class="my-1 border-[#e3e3e0] dark:border-[#3E3E3A]">
-                                    <a href="{{ route('themes.index') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18]">Themes</a>
+                                    <a href="{{ route('admin.themes.index') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18]">Themes CRUD</a>
                                     <a href="{{ route('admin.posts.index') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18]">Posts</a>
                                     <hr class="my-1 border-[#e3e3e0] dark:border-[#3E3E3A]">
                                     <a href="{{ url('/activity') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18]">Activity</a>
@@ -71,6 +71,7 @@
                         <div x-show="open" x-cloak @click.away="open = false" x-transition class="absolute right-0 top-full mt-1 w-48 rounded-lg bg-white dark:bg-[#161615] shadow-lg ring-1 ring-[#e3e3e0] dark:ring-[#3E3E3A] z-50">
                             <div class="py-1">
                                 <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18]">Profile</a>
+                                <a href="{{ route('themes.index') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18]">Themes</a>
                                 <a href="{{ route('notifications.index') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18]">Notifications</a>
                                 <a href="{{ route('profile.sessions') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18]">Sessions</a>
                                 <hr class="my-1 border-[#e3e3e0] dark:border-[#3E3E3A]">
@@ -106,10 +107,11 @@
                 @endif
             @else
                 <a href="{{ route('profile.show') }}" class="block py-2 text-sm text-[#706f6c]">Profile</a>
+                <a href="{{ route('themes.index') }}" class="block py-2 text-sm text-[#706f6c]">Themes</a>
+                <a href="{{ route('notifications.index') }}" class="block py-2 text-sm text-[#706f6c]">Notifications</a>
                 @level(5)
                     <hr class="my-1 border-[#e3e3e0] dark:border-[#3E3E3A]">
                     <a href="{{ url('/users') }}" class="block py-2 text-sm text-[#706f6c]">Users</a>
-                    <a href="{{ route('themes.index') }}" class="block py-2 text-sm text-[#706f6c]">Themes</a>
                     <a href="{{ route('admin.posts.index') }}" class="block py-2 text-sm text-[#706f6c]">Posts</a>
                     <a href="{{ url('/activity') }}" class="block py-2 text-sm text-[#706f6c]">Activity</a>
                     <a href="{{ url('/blocker') }}" class="block py-2 text-sm text-[#706f6c]">Blocker</a>
