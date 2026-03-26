@@ -22,7 +22,7 @@
             </div>
         </x-slot>
 
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto" id="users_table">
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                 <caption class="py-2 text-sm text-gray-500 text-left">
                     {{ trans_choice('usersmanagement.users-table.caption', 1, ['userscount' => $users->count()]) }}
@@ -74,4 +74,87 @@
             <div class="mt-4">{{ $users->links() }}</div>
         @endif
     </x-ui::card>
+
+    <div id="search_results" class="hidden mt-4">
+        <x-ui::card>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                    <thead class="bg-gray-50 dark:bg-gray-800">
+                        <tr>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Role</th>
+                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="search_results_body" class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+                    </tbody>
+                </table>
+            </div>
+        </x-ui::card>
+    </div>
+
+@endsection
+
+@section('footer_scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('user_search_box');
+    const usersTable = document.getElementById('users_table');
+    const searchResults = document.getElementById('search_results');
+    const searchBody = document.getElementById('search_results_body');
+
+    if (!searchInput) return;
+
+    let debounceTimer;
+
+    searchInput.addEventListener('input', function() {
+        clearTimeout(debounceTimer);
+        const query = this.value.trim();
+
+        if (query.length < 2) {
+            searchResults.classList.add('hidden');
+            usersTable.closest('.overflow-x-auto')?.parentElement?.classList.remove('hidden');
+            return;
+        }
+
+        debounceTimer = setTimeout(function() {
+            fetch('{{ route("search-users") }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({ user_search_box: query })
+            })
+            .then(response => response.json())
+            .then(data => {
+                usersTable.closest('.overflow-x-auto')?.parentElement?.classList.add('hidden');
+                searchResults.classList.remove('hidden');
+
+                if (data.length === 0) {
+                    searchBody.innerHTML = '<tr><td colspan="5" class="px-4 py-8 text-center text-gray-500">No users found.</td></tr>';
+                    return;
+                }
+
+                searchBody.innerHTML = data.map(user => {
+                    const roles = (user.roles || []).map(r => '<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">' + r.name + '</span>').join(' ');
+                    return '<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">' +
+                        '<td class="px-4 py-3 text-sm">' + user.id + '</td>' +
+                        '<td class="px-4 py-3 text-sm font-medium">' + user.name + '</td>' +
+                        '<td class="px-4 py-3 text-sm">' + user.email + '</td>' +
+                        '<td class="px-4 py-3 text-sm">' + roles + '</td>' +
+                        '<td class="px-4 py-3 text-sm text-right">' +
+                            '<a href="/users/' + user.id + '" class="text-green-600 hover:underline text-xs mr-2">Show</a>' +
+                            '<a href="/users/' + user.id + '/edit" class="text-blue-600 hover:underline text-xs">Edit</a>' +
+                        '</td></tr>';
+                }).join('');
+            })
+            .catch(() => {});
+        }, 300);
+    });
+});
+</script>
 @endsection
