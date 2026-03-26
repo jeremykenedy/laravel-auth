@@ -52,8 +52,8 @@ return [
 
     // Blade Extension Placement
     'blockerBladePlacement' => env('LARAVEL_BLOCKER_BLADE_PLACEMENT', 'yield'),
-    'blockerBladePlacementCss' => env('LARAVEL_BLOCKER_BLADE_PLACEMENT_CSS', 'inline_template_linked_css'),
-    'blockerBladePlacementJs' => env('LARAVEL_BLOCKER_BLADE_PLACEMENT_JS', 'inline_footer_scripts'),
+    'blockerBladePlacementCss' => env('LARAVEL_BLOCKER_BLADE_PLACEMENT_CSS', 'template_linked_css'),
+    'blockerBladePlacementJs' => env('LARAVEL_BLOCKER_BLADE_PLACEMENT_JS', 'footer_scripts'),
 
     // jQuery
     'enablejQueryCDN' => env('LARAVEL_BLOCKER_JQUERY_CDN_ENABLED', true),
