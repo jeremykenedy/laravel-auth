@@ -1,6 +1,21 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\AdminDetailsController;
+use App\Http\Controllers\AppSettingsController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\ImpersonationController;
+use App\Http\Controllers\TermsController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UsersManagementController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -8,129 +23,81 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-| Middleware options can be located in `app/Http/Kernel.php`
+| Thin shell routes. Package-registered routes handle profiles, themes,
+| social auth, chat, notifications, face auth, health, roles, logger,
+| blocker, 2step, phpinfo, and users management.
 |
 */
 
-// Homepage Route
+// Homepage Routes
 Route::group(['middleware' => ['web', 'checkblocked']], function () {
-    Route::get('/', 'App\Http\Controllers\WelcomeController@welcome')->name('welcome');
-    Route::get('/terms', 'App\Http\Controllers\TermsController@terms')->name('terms');
+    Route::get('/', [WelcomeController::class, 'welcome'])->name('welcome');
+    Route::get('/terms', [TermsController::class, 'terms'])->name('terms');
 });
 
-// Authentication Routes
-Auth::routes();
-
-// Public Routes
-Route::group(['middleware' => ['web', 'activity', 'checkblocked']], function () {
-    // Activation Routes
-    Route::get('/activate', ['as' => 'activate', 'uses' => 'App\Http\Controllers\Auth\ActivateController@initial']);
-
-    Route::get('/activate/{token}', ['as' => 'authenticated.activate', 'uses' => 'App\Http\Controllers\Auth\ActivateController@activate']);
-    Route::get('/activation', ['as' => 'authenticated.activation-resend', 'uses' => 'App\Http\Controllers\Auth\ActivateController@resend']);
-    Route::get('/exceeded', ['as' => 'exceeded', 'uses' => 'App\Http\Controllers\Auth\ActivateController@exceeded']);
-
-    // Socialite Register Routes
-    Route::get('/social/redirect/{provider}', ['as' => 'social.redirect', 'uses' => 'App\Http\Controllers\Auth\SocialController@getSocialRedirect']);
-    Route::get('/social/handle/{provider}', ['as' => 'social.handle', 'uses' => 'App\Http\Controllers\Auth\SocialController@getSocialHandle']);
-
-    // Route to for user to reactivate their user deleted account.
-    Route::get('/re-activate/{token}', ['as' => 'user.reactivate', 'uses' => 'App\Http\Controllers\RestoreUserController@userReActivate']);
+// Guest Auth Routes
+Route::middleware('guest')->group(function () {
+    Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
+    Route::post('register', [RegisteredUserController::class, 'store']);
+    Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
+    Route::post('login', [AuthenticatedSessionController::class, 'store']);
+    Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
+    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
+    Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])->name('password.reset');
+    Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.store');
 });
 
-// Registered and Activated User Routes
-Route::group(['middleware' => ['auth', 'activated', 'activity', 'checkblocked']], function () {
-    // Activation Routes
-    Route::get('/activation-required', ['uses' => 'App\Http\Controllers\Auth\ActivateController@activationRequired'])->name('activation-required');
-    // Route::get('/logout', ['uses' => 'App\Http\Controllers\Auth\LoginController@logout'])->name('logout');
+// Authenticated Auth Routes
+Route::middleware('auth')->group(function () {
+    // Email Verification
+    Route::get('verify-email', EmailVerificationPromptController::class)->name('verification.notice');
+    Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
+        ->middleware(['signed', 'throttle:6,1'])
+        ->name('verification.verify');
+    Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
+        ->middleware('throttle:6,1')
+        ->name('verification.send');
+
+    // Password
+    Route::put('password', [PasswordController::class, 'update'])->name('password.update');
+    Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])->name('password.confirm');
+    Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
 
-// Registered and Activated User Routes
-Route::group(['middleware' => ['auth', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
-    //  Homepage Route - Redirect based on user role is in controller.
-    Route::get('/home', [
-        'as'   => 'public.home',
-        'uses' => 'App\Http\Controllers\UserController@index',
-        'name' => 'home',
-    ]);
-
-    // Show users profile - viewable by other users.
-    Route::get('profile/{username}', [
-        'as'   => '{username}',
-        'uses' => 'App\Http\Controllers\ProfilesController@show',
-    ]);
+// Authenticated User Routes
+Route::group(['middleware' => ['auth', 'verified', 'activity', 'twostep', 'checkblocked']], function () {
+    Route::get('/home', [UserController::class, 'index'])->name('home');
 });
 
-// Registered, activated, and is current user routes.
-Route::group(['middleware' => ['auth', 'activated', 'currentUser', 'activity', 'twostep', 'checkblocked']], function () {
-    // User Profile and Account Routes
-    Route::resource(
-        'profile',
-        \App\Http\Controllers\ProfilesController::class,
-        [
-            'only' => [
-                'show',
-                'edit',
-                'update',
-                'create',
-            ],
-        ]
-    );
-    Route::put('profile/{username}/updateUserAccount', [
-        'as'   => 'profile.updateUserAccount',
-        'uses' => 'App\Http\Controllers\ProfilesController@updateUserAccount',
-    ]);
-    Route::put('profile/{username}/updateUserPassword', [
-        'as'   => 'profile.updateUserPassword',
-        'uses' => 'App\Http\Controllers\ProfilesController@updateUserPassword',
-    ]);
-    Route::delete('profile/{username}/deleteUserAccount', [
-        'as'   => 'profile.deleteUserAccount',
-        'uses' => 'App\Http\Controllers\ProfilesController@deleteUserAccount',
-    ]);
-
-    // Route to show user avatar
-    Route::get('images/profile/{id}/avatar/{image}', [
-        'uses' => 'App\Http\Controllers\ProfilesController@userProfileAvatar',
-    ]);
-
-    // Route to upload user avatar.
-    Route::post('avatar/upload', ['as' => 'avatar.upload', 'uses' => 'App\Http\Controllers\ProfilesController@upload']);
+// Impersonation Routes
+Route::group(['middleware' => ['auth', 'verified', 'activity', 'twostep', 'checkblocked']], function () {
+    Route::post('/impersonate/{user}', [ImpersonationController::class, 'start'])->name('impersonate.start');
+    Route::post('/impersonate-stop', [ImpersonationController::class, 'stop'])->name('impersonate.stop');
 });
 
-// Registered, activated, and is admin routes.
-Route::group(['middleware' => ['auth', 'activated', 'role:admin', 'activity', 'twostep', 'checkblocked']], function () {
-    Route::resource('/users/deleted', \App\Http\Controllers\SoftDeletesController::class, [
-        'only' => [
-            'index', 'show', 'update', 'destroy',
-        ],
-    ]);
+// Admin Routes
+Route::group(['middleware' => ['auth', 'verified', 'level:5', 'activity', 'twostep', 'checkblocked']], function () {
+    // Admin route listing
+    Route::get('/routes', [AdminDetailsController::class, 'listRoutes'])->name('admin.routes');
 
-    Route::resource('users', \App\Http\Controllers\UsersManagementController::class, [
+    // App settings
+    Route::get('/settings', [AppSettingsController::class, 'index'])->name('admin.settings');
+    Route::put('/settings', [AppSettingsController::class, 'update'])->name('admin.settings.update');
+
+    // Soft-deleted users management (must be before resource route)
+    Route::get('users/deleted', [UsersManagementController::class, 'deletedIndex'])->name('deleted.index');
+    Route::get('users/deleted/{id}', [UsersManagementController::class, 'deletedShow'])->name('deleted.show');
+    Route::put('users/deleted/{id}', [UsersManagementController::class, 'restore'])->name('deleted.restore');
+    Route::delete('users/deleted/{id}', [UsersManagementController::class, 'forceDestroy'])->name('deleted.destroy');
+
+    Route::resource('users', UsersManagementController::class, [
         'names' => [
-            'index'   => 'users',
+            'index' => 'users',
             'destroy' => 'user.destroy',
         ],
-        'except' => [
-            'deleted',
-        ],
-    ]);
-    Route::post('search-users', 'App\Http\Controllers\UsersManagementController@search')->name('search-users');
-
-    Route::resource('themes', \App\Http\Controllers\ThemesManagementController::class, [
-        'names' => [
-            'index'   => 'themes',
-            'destroy' => 'themes.destroy',
-        ],
-    ]);
-
-    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
-    Route::get('routes', 'App\Http\Controllers\AdminDetailsController@listRoutes');
-    // Route::get('active-users', 'App\Http\Controllers\AdminDetailsController@activeUsers');
+    ])->where(['user' => '[0-9]+']);
+    Route::post('search-users', [UsersManagementController::class, 'search'])->name('search-users');
 });
 
 Route::redirect('/php', '/phpinfo', 301);

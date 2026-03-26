@@ -1,0 +1,79 @@
+# === Laravel dev stack: PHP app + MySQL + Redis; optional Vite profile ===
+#
+# First time:
+#   cp .env.example .env
+#   docker compose build
+#   docker compose run --rm app composer install
+#   docker compose run --rm app php artisan key:generate
+#   docker compose run --rm app php artisan migrate
+#   docker compose up
+#
+# Vite in Docker (hot reload): docker compose --profile vite up
+# Or run assets on the host: npm run dev
+#
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${APP_PORT:-8000}:8000"
+    volumes:
+      - .:/var/www/html
+    env_file:
+      - .env
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: ${DOCKER_DB_DATABASE:-laravel}
+      DB_USERNAME: ${DOCKER_DB_USERNAME:-laravel}
+      DB_PASSWORD: ${DOCKER_DB_PASSWORD:-secret}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      APP_URL: ${APP_URL:-http://localhost:8000}
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    command: php artisan serve --host=0.0.0.0 --port=8000
+
+  mysql:
+    image: mysql:8.4
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    environment:
+      MYSQL_DATABASE: ${DOCKER_DB_DATABASE:-laravel}
+      MYSQL_USER: ${DOCKER_DB_USERNAME:-laravel}
+      MYSQL_PASSWORD: ${DOCKER_DB_PASSWORD:-secret}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 15s
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
+
+  vite:
+    image: node:22-bookworm-slim
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "${VITE_PORT:-5173}:5173"
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0 --port 5173"
+    profiles:
+      - vite
+
+volumes:
+  mysql_data:
+  redis_data:

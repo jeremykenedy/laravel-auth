@@ -1,122 +1,55 @@
 @php
-
-    $levelAmount = 'level';
-
-    if (Auth::User()->level() >= 2) {
-        $levelAmount = 'levels';
-
-    }
-
+    $levelAmount = Auth::user()->level() >= 2 ? 'levels' : 'level';
 @endphp
 
-<div class="card">
-    <div class="card-header @role('admin', true) bg-secondary text-white @endrole">
+<x-ui::card>
+    <x-slot name="header">
+        <div class="flex items-center justify-between">
+            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                Welcome {{ Auth::user()->name }}
+            </h3>
+            @level(5)
+                <x-ui::badge variant="primary">Admin Access</x-ui::badge>
+            @else
+                <x-ui::badge variant="warning">User Access</x-ui::badge>
+            @endlevel
+        </div>
+    </x-slot>
 
-        Welcome {{ Auth::user()->name }}
+    <div class="space-y-4 text-sm text-gray-700 dark:text-gray-300">
+        <p class="text-base">{{ trans('auth.loggedIn') }}</p>
+        <p><em>Thank you</em> for checking this project out. <strong>Please remember to star it!</strong></p>
 
-        @role('admin', true)
-            <span class="pull-right badge badge-primary" style="margin-top:4px">
-                Admin Access
-            </span>
-        @else
-            <span class="pull-right badge badge-warning" style="margin-top:4px">
-                User Access
-            </span>
-        @endrole
-
-    </div>
-    <div class="card-body">
-        <h2 class="lead">
-            {{ trans('auth.loggedIn') }}
-        </h2>
-        <p>
-            <em>Thank you</em> for checking this project out. <strong>Please remember to star it!</strong>
-        </p>
-        <p>
-            <iframe src="https://ghbtns.com/github-btn.html?user=jeremykenedy&repo=laravel-auth&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px" style="margin: 0px 0 -3px .5em;"></iframe>
-        </p>
-        <p>
-            This page route is protected by <code>activated</code> middleware. Only accounts with activated emails are able pass this middleware.
-        </p>
-        <p>
-            <small>
-                Users registered via Social providers are by default activated.
-            </small>
-        </p>
-
-        <hr>
+        <hr class="border-gray-200 dark:border-gray-700">
 
         <p>
             You have
-                <strong>
-                    @role('admin')
-                       Admin
-                    @endrole
-                    @role('user')
-                       User
-                    @endrole
-                </strong>
+            <strong>
+                @level(5) Admin @else User @endlevel
+            </strong>
             Access
         </p>
 
-        <hr>
+        <hr class="border-gray-200 dark:border-gray-700">
 
         <p>
             You have access to {{ $levelAmount }}:
-            @level(5)
-                <span class="badge badge-primary margin-half">5</span>
-            @endlevel
-
-            @level(4)
-                <span class="badge badge-info margin-half">4</span>
-            @endlevel
-
-            @level(3)
-                <span class="badge badge-success margin-half">3</span>
-            @endlevel
-
-            @level(2)
-                <span class="badge badge-warning margin-half">2</span>
-            @endlevel
-
-            @level(1)
-                <span class="badge badge-default margin-half">1</span>
-            @endlevel
+            @level(5) <x-ui::badge variant="primary">5</x-ui::badge> @endlevel
+            @level(4) <x-ui::badge variant="info">4</x-ui::badge> @endlevel
+            @level(3) <x-ui::badge variant="success">3</x-ui::badge> @endlevel
+            @level(2) <x-ui::badge variant="warning">2</x-ui::badge> @endlevel
+            @level(1) <x-ui::badge variant="secondary">1</x-ui::badge> @endlevel
         </p>
 
-        @role('admin')
-
-            <hr>
-
+        @level(5)
+            <hr class="border-gray-200 dark:border-gray-700">
             <p>
                 You have permissions:
-                @permission('view.users')
-                    <span class="badge badge-primary margin-half margin-left-0">
-                        {{ trans('permsandroles.permissionView') }}
-                    </span>
-                @endpermission
-
-                @permission('create.users')
-                    <span class="badge badge-info margin-half margin-left-0">
-                        {{ trans('permsandroles.permissionCreate') }}
-                    </span>
-                @endpermission
-
-                @permission('edit.users')
-                    <span class="badge badge-warning margin-half margin-left-0">
-                        {{ trans('permsandroles.permissionEdit') }}
-                    </span>
-                @endpermission
-
-                @permission('delete.users')
-                    <span class="badge badge-danger margin-half margin-left-0">
-                        {{ trans('permsandroles.permissionDelete') }}
-                    </span>
-                @endpermission
-
+                @permission('view.users') <x-ui::badge variant="primary">View</x-ui::badge> @endpermission
+                @permission('create.users') <x-ui::badge variant="info">Create</x-ui::badge> @endpermission
+                @permission('edit.users') <x-ui::badge variant="warning">Edit</x-ui::badge> @endpermission
+                @permission('delete.users') <x-ui::badge variant="danger">Delete</x-ui::badge> @endpermission
             </p>
-
-        @endrole
-
+        @endlevel
     </div>
-</div>
+</x-ui::card>

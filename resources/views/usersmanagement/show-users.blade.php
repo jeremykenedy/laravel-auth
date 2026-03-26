@@ -1,176 +1,77 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {!! trans('usersmanagement.showing-all-users') !!}
-@endsection
-
-@section('template_linked_css')
-    @if(config('usersmanagement.enabledDatatablesJs'))
-        <link rel="stylesheet" type="text/css" href="{{ config('usersmanagement.datatablesCssCDN') }}">
-    @endif
-    <style type="text/css" media="screen">
-        .users-table {
-            border: 0;
-        }
-        .users-table tr td:first-child {
-            padding-left: 15px;
-        }
-        .users-table tr td:last-child {
-            padding-right: 15px;
-        }
-        .users-table.table-responsive,
-        .users-table.table-responsive table {
-            margin-bottom: 0;
-        }
-    </style>
+    {{ trans('usersmanagement.showing-all-users') }}
 @endsection
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
+    @include('partials.search-users-form')
 
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-
-                            <span id="card_title">
-                                {!! trans('usersmanagement.showing-all-users') !!}
-                            </span>
-
-                            <div class="btn-group pull-right btn-group-xs">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-ellipsis-v fa-fw" aria-hidden="true"></i>
-                                    <span class="sr-only">
-                                        {!! trans('usersmanagement.users-menu-alt') !!}
-                                    </span>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="/users/create">
-                                        <i class="fa fa-fw fa-user-plus" aria-hidden="true"></i>
-                                        {!! trans('usersmanagement.buttons.create-new') !!}
-                                    </a>
-                                    <a class="dropdown-item" href="/users/deleted">
-                                        <i class="fa fa-fw fa-group" aria-hidden="true"></i>
-                                        {!! trans('usersmanagement.show-deleted-users') !!}
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card-body">
-
-                        @if(config('usersmanagement.enableSearchUsers'))
-                            @include('partials.search-users-form')
-                        @endif
-
-                        <div class="table-responsive users-table">
-                            <table class="table table-striped table-sm data-table">
-                                <caption id="user_count">
-                                    {{ trans_choice('usersmanagement.users-table.caption', 1, ['userscount' => $users->count()]) }}
-                                </caption>
-                                <thead class="thead">
-                                    <tr>
-                                        <th>{!! trans('usersmanagement.users-table.id') !!}</th>
-                                        <th>{!! trans('usersmanagement.users-table.name') !!}</th>
-                                        <th class="hidden-xs">{!! trans('usersmanagement.users-table.email') !!}</th>
-                                        <th class="hidden-xs">{!! trans('usersmanagement.users-table.fname') !!}</th>
-                                        <th class="hidden-xs">{!! trans('usersmanagement.users-table.lname') !!}</th>
-                                        <th>{!! trans('usersmanagement.users-table.role') !!}</th>
-                                        <th class="hidden-sm hidden-xs hidden-md">{!! trans('usersmanagement.users-table.created') !!}</th>
-                                        <th class="hidden-sm hidden-xs hidden-md">{!! trans('usersmanagement.users-table.updated') !!}</th>
-                                        <th>{!! trans('usersmanagement.users-table.actions') !!}</th>
-                                        <th class="no-search no-sort"></th>
-                                        <th class="no-search no-sort"></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="users_table">
-                                    @foreach($users as $user)
-                                        <tr>
-                                            <td>{{$user->id}}</td>
-                                            <td>{{$user->name}}</td>
-                                            <td class="hidden-xs"><a href="mailto:{{ $user->email }}" title="email {{ $user->email }}">{{ $user->email }}</a></td>
-                                            <td class="hidden-xs">{{$user->first_name}}</td>
-                                            <td class="hidden-xs">{{$user->last_name}}</td>
-                                            <td>
-                                                @foreach ($user->roles as $user_role)
-                                                    @if ($user_role->name == 'User')
-                                                        @php $badgeClass = 'primary' @endphp
-                                                    @elseif ($user_role->name == 'Admin')
-                                                        @php $badgeClass = 'warning' @endphp
-                                                    @elseif ($user_role->name == 'Unverified')
-                                                        @php $badgeClass = 'danger' @endphp
-                                                    @else
-                                                        @php $badgeClass = 'default' @endphp
-                                                    @endif
-                                                    <span class="badge badge-{{$badgeClass}}">{{ $user_role->name }}</span>
-                                                @endforeach
-                                            </td>
-                                            <td class="hidden-sm hidden-xs hidden-md">{{$user->created_at}}</td>
-                                            <td class="hidden-sm hidden-xs hidden-md">{{$user->updated_at}}</td>
-                                            <td>
-                                                {{ html()->form('POST', url('users/' . $user->id))
-                                                        ->attribute('data-toggle', 'tooltip')
-                                                        ->attribute('title', 'Delete')
-                                                        ->open() }}
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    {{ html()->button(trans('usersmanagement.buttons.delete'))
-                                                        ->class('btn btn-danger btn-sm')
-                                                        ->type('button')
-                                                        ->style('width: 100%;')
-                                                        ->attribute('data-toggle', 'modal')
-                                                        ->attribute('data-target', '#confirmDelete')
-                                                        ->attribute('data-title', 'Delete User')
-                                                        ->attribute('data-message', 'Are you sure you want to delete this user ?') }}
-                                                {{ html()->form()->close() }}
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-sm btn-success btn-block" href="{{ URL::to('users/' . $user->id) }}" data-toggle="tooltip" title="Show">
-                                                    {!! trans('usersmanagement.buttons.show') !!}
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-sm btn-info btn-block" href="{{ URL::to('users/' . $user->id . '/edit') }}" data-toggle="tooltip" title="Edit">
-                                                    {!! trans('usersmanagement.buttons.edit') !!}
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                                <tbody id="search_results"></tbody>
-                                @if(config('usersmanagement.enableSearchUsers'))
-                                    <tbody id="search_results"></tbody>
-                                @endif
-
-                            </table>
-
-                            @if(config('usersmanagement.enablePagination'))
-                                {{ $users->links() }}
-                            @endif
-
-                        </div>
-                    </div>
+    <x-ui::card>
+        <x-slot name="header">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-medium">{{ trans('usersmanagement.showing-all-users') }}</h3>
+                <div class="flex gap-2">
+                    <x-ui::button href="{{ url('/users/create') }}" variant="primary" size="sm">
+                        Create New User
+                    </x-ui::button>
+                    <x-ui::button href="{{ url('/users/deleted') }}" variant="secondary" size="sm" outline>
+                        Deleted Users
+                    </x-ui::button>
                 </div>
             </div>
+        </x-slot>
+
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <caption class="py-2 text-sm text-gray-500 text-left">
+                    {{ trans_choice('usersmanagement.users-table.caption', 1, ['userscount' => $users->count()]) }}
+                </caption>
+                <thead class="bg-gray-50 dark:bg-gray-800">
+                    <tr>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">Email</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">First</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">Last</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell">Created</th>
+                        <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+                    @foreach($users as $user)
+                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                            <td class="px-4 py-3 text-sm">{{ $user->id }}</td>
+                            <td class="px-4 py-3 text-sm font-medium">{{ $user->name }}</td>
+                            <td class="px-4 py-3 text-sm hidden sm:table-cell"><a href="mailto:{{ $user->email }}" class="text-blue-600 hover:underline">{{ $user->email }}</a></td>
+                            <td class="px-4 py-3 text-sm hidden md:table-cell">{{ $user->first_name }}</td>
+                            <td class="px-4 py-3 text-sm hidden md:table-cell">{{ $user->last_name }}</td>
+                            <td class="px-4 py-3 text-sm">
+                                @foreach($user->roles as $role)
+                                    <x-ui::badge :variant="$role->name === 'Admin' ? 'warning' : ($role->name === 'Unverified' ? 'danger' : 'primary')" size="sm">{{ $role->name }}</x-ui::badge>
+                                @endforeach
+                            </td>
+                            <td class="px-4 py-3 text-sm text-gray-500 hidden lg:table-cell">{{ $user->created_at->format('M d, Y') }}</td>
+                            <td class="px-4 py-3 text-sm text-right">
+                                <div class="flex items-center justify-end gap-1">
+                                    <x-ui::button href="{{ url('users/' . $user->id) }}" variant="success" size="xs">Show</x-ui::button>
+                                    <x-ui::button href="{{ url('users/' . $user->id . '/edit') }}" variant="info" size="xs">Edit</x-ui::button>
+                                    <form method="POST" action="{{ url('users/' . $user->id) }}" x-data @submit.prevent="if(confirm('Are you sure you want to delete this user?')) $el.submit()">
+                                        @csrf
+                                        @method('DELETE')
+                                        <x-ui::button type="submit" variant="danger" size="xs">Delete</x-ui::button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
-    </div>
 
-    @include('modals.modal-delete')
-
-@endsection
-
-@section('footer_scripts')
-    @if ((count($users) > config('usersmanagement.datatablesJsStartCount')) && config('usersmanagement.enabledDatatablesJs'))
-        @include('scripts.datatables')
-    @endif
-    @include('scripts.delete-modal-script')
-    @include('scripts.save-modal-script')
-    @if(config('usersmanagement.tooltipsEnabled'))
-        @include('scripts.tooltips')
-    @endif
-    @if(config('usersmanagement.enableSearchUsers'))
-        @include('scripts.search-users')
-    @endif
+        @if(config('usersmanagement.enablePagination'))
+            <div class="mt-4">{{ $users->links() }}</div>
+        @endif
+    </x-ui::card>
 @endsection

@@ -1,6 +1,5 @@
 @if(Session::has('message'))
-    <div class="alert alert-{{ Session::get('status') }} status-box">
-        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <x-ui::alert :variant="Session::get('status', 'info')" :dismissible="true" class="mb-4">
         {{ Session::get('message') }}
-    </div>
+    </x-ui::alert>
 @endif
