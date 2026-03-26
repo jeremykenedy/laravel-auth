@@ -127,8 +127,8 @@ return [
 
     // Blade Extension Placement
     'bladePlacement' => env('ROLES_GUI_BLADE_PLACEMENT', 'yield'),
-    'bladePlacementCss' => env('ROLES_GUI_BLADE_PLACEMENT_CSS', 'inline_template_linked_css'),
-    'bladePlacementJs' => env('ROLES_GUI_BLADE_PLACEMENT_JS', 'inline_footer_scripts'),
+    'bladePlacementCss' => env('ROLES_GUI_BLADE_PLACEMENT_CSS', 'template_linked_css'),
+    'bladePlacementJs' => env('ROLES_GUI_BLADE_PLACEMENT_JS', 'footer_scripts'),
 
     // Titles placement extend
     'titleExtended' => env('ROLES_GUI_TITLE_EXTENDED', 'template_title'),
