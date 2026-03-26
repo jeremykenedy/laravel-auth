@@ -43,7 +43,12 @@
                     @foreach($users as $user)
                         <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">
                             <td class="px-4 py-3 text-sm">{{ $user->id }}</td>
-                            <td class="px-4 py-3 text-sm font-medium">{{ $user->name }}</td>
+                            <td class="px-4 py-3 text-sm font-medium">
+                                <div class="flex items-center gap-2">
+                                    <x-ui::avatar :src="$user->getAvatarUrl(32)" :alt="$user->name" size="xs" />
+                                    <a href="{{ url('users/' . $user->id) }}" class="hover:text-blue-600 dark:hover:text-blue-400">{{ $user->name }}</a>
+                                </div>
+                            </td>
                             <td class="px-4 py-3 text-sm hidden sm:table-cell"><a href="mailto:{{ $user->email }}" class="text-blue-600 hover:underline">{{ $user->email }}</a></td>
                             <td class="px-4 py-3 text-sm hidden md:table-cell">{{ $user->first_name }}</td>
                             <td class="px-4 py-3 text-sm hidden md:table-cell">{{ $user->last_name }}</td>
@@ -55,8 +60,8 @@
                             <td class="px-4 py-3 text-sm text-gray-500 hidden lg:table-cell">{{ $user->created_at->format('M d, Y') }}</td>
                             <td class="px-4 py-3 text-sm text-right">
                                 <div class="flex items-center justify-end gap-1">
-                                    <x-ui::button href="{{ url('users/' . $user->id) }}" variant="success" size="xs">Show</x-ui::button>
-                                    <x-ui::button href="{{ url('users/' . $user->id . '/edit') }}" variant="info" size="xs">Edit</x-ui::button>
+                                    <x-ui::button href="{{ url('users/' . $user->id) }}" variant="success" size="xs" icon="eye">Show</x-ui::button>
+                                    <x-ui::button href="{{ url('users/' . $user->id . '/edit') }}" variant="info" size="xs" icon="edit">Edit</x-ui::button>
                                     <form method="POST" action="{{ url('users/' . $user->id) }}" x-data @submit.prevent="if(confirm('Are you sure you want to delete this user?')) $el.submit()">
                                         @csrf
                                         @method('DELETE')

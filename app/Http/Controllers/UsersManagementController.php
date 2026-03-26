@@ -16,10 +16,11 @@ class UsersManagementController extends Controller
     public function index()
     {
         $paginationEnabled = config('usersmanagement.enablePagination');
+        $query = User::with('roles', 'profile');
         if ($paginationEnabled) {
-            $users = User::paginate(config('usersmanagement.paginateListSize'));
+            $users = $query->paginate(config('usersmanagement.paginateListSize'));
         } else {
-            $users = User::all();
+            $users = $query->get();
         }
         $roles = Role::all();
 
