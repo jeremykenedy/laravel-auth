@@ -9,7 +9,7 @@
         <x-slot name="header">
             <div class="flex items-center justify-between">
                 <h3 class="text-lg font-medium">Deleted Users</h3>
-                <x-ui::button href="{{ route('users') }}" variant="secondary" size="sm" outline>
+                <x-ui::button href="{{ route('users') }}" variant="secondary" size="sm" outline icon="arrow-left">
                     Back to Users
                 </x-ui::button>
             </div>
@@ -41,16 +41,16 @@
                             <td class="px-4 py-3 text-sm text-gray-500 hidden md:table-cell">{{ $user->deleted_at->format('M d, Y') }}</td>
                             <td class="px-4 py-3 text-sm text-right">
                                 <div class="flex items-center justify-end gap-1">
-                                    <x-ui::button href="{{ url('users/deleted/' . $user->id) }}" variant="info" size="xs">Show</x-ui::button>
+                                    <x-ui::button href="{{ url('users/deleted/' . $user->id) }}" variant="info" size="xs" icon="eye">Show</x-ui::button>
                                     <form method="POST" action="{{ url('users/deleted/' . $user->id) }}">
                                         @csrf
                                         @method('PUT')
-                                        <x-ui::button type="submit" variant="success" size="xs">Restore</x-ui::button>
+                                        <x-ui::button type="submit" variant="success" size="xs" icon="check">Restore</x-ui::button>
                                     </form>
                                     <form method="POST" action="{{ url('users/deleted/' . $user->id) }}" x-data @submit.prevent="if(confirm('Permanently delete this user?')) $el.submit()">
                                         @csrf
                                         @method('DELETE')
-                                        <x-ui::button type="submit" variant="danger" size="xs">Destroy</x-ui::button>
+                                        <x-ui::button type="submit" variant="danger" size="xs" icon="trash">Destroy</x-ui::button>
                                     </form>
                                 </div>
                             </td>

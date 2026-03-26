@@ -66,12 +66,12 @@
                     <form method="POST" action="{{ url('users/deleted/' . $user->id) }}">
                         @csrf
                         @method('PUT')
-                        <x-ui::button type="submit" variant="success" size="sm">Restore User</x-ui::button>
+                        <x-ui::button type="submit" variant="success" size="sm" icon="check">Restore User</x-ui::button>
                     </form>
                     <form method="POST" action="{{ url('users/deleted/' . $user->id) }}" x-data @submit.prevent="if(confirm('This will permanently delete this user. Continue?')) $el.submit()">
                         @csrf
                         @method('DELETE')
-                        <x-ui::button type="submit" variant="danger" size="sm">Permanently Delete</x-ui::button>
+                        <x-ui::button type="submit" variant="danger" size="sm" icon="trash">Permanently Delete</x-ui::button>
                     </form>
                 </div>
             </x-slot>
