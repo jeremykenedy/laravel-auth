@@ -1,11 +1,12 @@
-@if(config('settings.googleanalyticsId'))
-    {{-- Global site tag (gtag.js) - Google Analytics --}}
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('settings.googleanalyticsId') }}"></script>
+@php
+    $gaId = \App\Models\AppSetting::get('app.google_analytics_id');
+@endphp
+@if($gaId)
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ $gaId }}"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
-        gtag('config', '{{ config('settings.googleanalyticsId') }}');
+        gtag('config', '{{ $gaId }}');
     </script>
 @endif

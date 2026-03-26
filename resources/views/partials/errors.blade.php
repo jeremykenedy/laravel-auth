@@ -1,11 +1,9 @@
 @if(session()->has('errors'))
-    <div class="alert alert-danger fade in">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <h4>Following errors occurred:</h4>
-        <ul>
+    <x-ui::alert variant="danger" :dismissible="true" title="Following errors occurred">
+        <ul class="mt-1 list-disc list-inside text-sm">
             @foreach($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
         </ul>
-    </div>
+    </x-ui::alert>
 @endif

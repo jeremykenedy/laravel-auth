@@ -8,24 +8,18 @@ use Illuminate\Database\Seeder;
 
 class ConnectRelationshipsSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run(): void
     {
-        /**
-         * Get Available Permissions.
-         */
         $permissions = Permission::all();
 
-        /**
-         * Attach Permissions to Roles.
-         */
-        $roleAdmin = Role::where('name', '=', 'Admin')->first();
-        foreach ($permissions as $permission) {
-            $roleAdmin->attachPermission($permission);
+        // Attach all permissions to Super Admin and Admin
+        foreach (['superadmin', 'admin'] as $roleSlug) {
+            $role = Role::where('slug', $roleSlug)->first();
+            if ($role) {
+                foreach ($permissions as $permission) {
+                    $role->attachPermission($permission);
+                }
+            }
         }
     }
 }

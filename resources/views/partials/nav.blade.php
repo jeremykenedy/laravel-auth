@@ -1,101 +1,111 @@
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-    <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            {!! config('app.name', trans('titles.app')) !!}
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            <span class="sr-only">{!! trans('titles.toggleNav') !!}</span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            {{-- Left Side Of Navbar --}}
-            <ul class="navbar-nav mr-auto">
-                @role('admin')
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {!! trans('titles.adminDropdownNav') !!}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item {{ (Request::is('roles') || Request::is('permissions')) ? 'active' : null }}" href="{{ route('laravelroles::roles.index') }}">
-                                {!! trans('titles.laravelroles') !!}
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item {{ Request::is('users', 'users/' . Auth::user()->id, 'users/' . Auth::user()->id . '/edit') ? 'active' : null }}" href="{{ url('/users') }}">
-                                {!! trans('titles.adminUserList') !!}
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item {{ Request::is('users/create') ? 'active' : null }}" href="{{ url('/users/create') }}">
-                                {!! trans('titles.adminNewUser') !!}
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item {{ Request::is('themes','themes/create') ? 'active' : null }}" href="{{ url('/themes') }}">
-                                {!! trans('titles.adminThemesList') !!}
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item {{ Request::is('logs') ? 'active' : null }}" href="{{ url('/logs') }}">
-                                {!! trans('titles.adminLogs') !!}
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item {{ Request::is('activity') ? 'active' : null }}" href="{{ url('/activity') }}">
-                                {!! trans('titles.adminActivity') !!}
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item {{ Request::is('phpinfo') ? 'active' : null }}" href="{{ url('/phpinfo') }}">
-                                {!! trans('titles.adminPHP') !!}
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item {{ Request::is('routes') ? 'active' : null }}" href="{{ url('/routes') }}">
-                                {!! trans('titles.adminRoutes') !!}
-                            </a>
-                            {{--
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item {{ Request::is('active-users') ? 'active' : null }}" href="{{ url('/active-users') }}">
-                                {!! trans('titles.activeUsers') !!}
-                            </a>
-                            --}}
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item {{ Request::is('blocker') ? 'active' : null }}" href="{{ route('laravelblocker::blocker.index') }}">
-                                {!! trans('titles.laravelBlocker') !!}
-                            </a>
+<nav class="bg-white dark:bg-[#161615] border-b border-[#e3e3e0] dark:border-[#3E3E3A]" x-data="{ mobileOpen: false }">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            {{-- Brand --}}
+            <div class="flex items-center">
+                <a href="{{ url('/') }}" class="text-xl font-semibold text-[#1b1b18] dark:text-[#EDEDEC]">
+                    {{ config('app.name', 'Laravel') }}
+                </a>
+
+                {{-- Admin dropdown (desktop) --}}
+                @auth
+                    @level(5)
+                        <div class="hidden sm:ml-8 sm:flex sm:items-center relative" x-data="{ open: false }">
+                            <button @click="open = !open" class="inline-flex items-center px-3 py-2 text-sm font-medium text-[#706f6c] hover:text-[#1b1b18] dark:text-[#A1A09A] dark:hover:text-[#EDEDEC]">
+                                Admin
+                                <svg class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div x-show="open" x-cloak @click.away="open = false" x-transition class="absolute left-0 top-full mt-1 w-48 rounded-lg bg-white dark:bg-[#161615] shadow-lg ring-1 ring-[#e3e3e0] dark:ring-[#3E3E3A] z-50">
+                                <div class="py-1">
+                                    <a href="{{ route('laravelroles::roles.index') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18] {{ Request::is('roles', 'permissions') ? 'text-[#1b1b18] dark:text-[#EDEDEC] font-medium' : '' }}">Roles & Permissions</a>
+                                    <hr class="my-1 border-[#e3e3e0] dark:border-[#3E3E3A]">
+                                    <a href="{{ url('/users') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18] {{ Request::is('users', 'users/*') ? 'text-[#1b1b18] dark:text-[#EDEDEC] font-medium' : '' }}">Users</a>
+                                    <a href="{{ url('/users/create') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18]">New User</a>
+                                    <hr class="my-1 border-[#e3e3e0] dark:border-[#3E3E3A]">
+                                    <a href="{{ route('themes.index') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18]">Themes</a>
+                                    <a href="{{ route('admin.posts.index') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18]">Posts</a>
+                                    <hr class="my-1 border-[#e3e3e0] dark:border-[#3E3E3A]">
+                                    <a href="{{ url('/activity') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18]">Activity</a>
+                                    <a href="{{ route('laravelblocker::blocker.index') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18]">Blocker</a>
+                                    <hr class="my-1 border-[#e3e3e0] dark:border-[#3E3E3A]">
+                                    <a href="{{ url('/phpinfo') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18]">PHP Info</a>
+                                    <a href="{{ route('admin.routes') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18]">Routes</a>
+                                    <hr class="my-1 border-[#e3e3e0] dark:border-[#3E3E3A]">
+                                    <a href="{{ route('admin.settings') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18] {{ Request::is('settings') ? 'text-[#1b1b18] dark:text-[#EDEDEC] font-medium' : '' }}">Settings</a>
+                                </div>
+                            </div>
                         </div>
-                    </li>
-                @endrole
-            </ul>
-            {{-- Right Side Of Navbar --}}
-            <ul class="navbar-nav ml-auto">
-                {{-- Authentication Links --}}
+                    @endlevel
+                @endauth
+            </div>
+
+            {{-- Right side (desktop) --}}
+            <div class="hidden sm:flex sm:items-center sm:gap-4">
+                <x-ui::theme-toggle />
+
                 @guest
-                    <li><a class="nav-link" href="{{ route('login') }}">{{ trans('titles.login') }}</a></li>
+                    <a href="{{ route('login') }}" class="inline-block px-5 py-1.5 text-sm text-[#1b1b18] dark:text-[#EDEDEC] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm">Login</a>
                     @if (Route::has('register'))
-                        <li><a class="nav-link" href="{{ route('register') }}">{{ trans('titles.register') }}</a></li>
+                        <a href="{{ route('register') }}" class="inline-block px-5 py-1.5 text-sm text-[#1b1b18] dark:text-[#EDEDEC] border border-[#19140035] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm">Register</a>
                     @endif
                 @else
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            @if ((Auth::User()->profile) && Auth::user()->profile->avatar_status == 1)
-                                <img src="{{ Auth::user()->profile->avatar }}" alt="{{ Auth::user()->name }}" class="user-avatar-nav">
-                            @else
-                                <div class="user-avatar-nav"></div>
+                    <div class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="inline-flex items-center px-3 py-2 text-sm font-medium text-[#706f6c] hover:text-[#1b1b18] dark:text-[#A1A09A] dark:hover:text-[#EDEDEC]">
+                            @if (Auth::user()->profile?->avatar_status == 1)
+                                <x-ui::avatar :src="Auth::user()->profile->avatar" :alt="Auth::user()->name" size="xs" class="mr-2" />
                             @endif
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item {{ Request::is('profile/'.Auth::user()->name, 'profile/'.Auth::user()->name . '/edit') ? 'active' : null }}" href="{{ url('/profile/'.Auth::user()->name) }}">
-                                {!! trans('titles.profile') !!}
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
+                            {{ Auth::user()->name }}
+                            <svg class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div x-show="open" x-cloak @click.away="open = false" x-transition class="absolute right-0 top-full mt-1 w-48 rounded-lg bg-white dark:bg-[#161615] shadow-lg ring-1 ring-[#e3e3e0] dark:ring-[#3E3E3A] z-50">
+                            <div class="py-1">
+                                <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18]">Profile</a>
+                                <hr class="my-1 border-[#e3e3e0] dark:border-[#3E3E3A]">
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18]">Logout</button>
+                                </form>
+                            </div>
                         </div>
-                    </li>
+                    </div>
                 @endguest
-            </ul>
+            </div>
+
+            {{-- Mobile: theme toggle + hamburger --}}
+            <div class="flex items-center gap-2 sm:hidden">
+                <x-ui::theme-toggle />
+                <button @click="mobileOpen = !mobileOpen" class="p-2 rounded-md text-[#706f6c] hover:text-[#1b1b18] dark:text-[#A1A09A] dark:hover:text-[#EDEDEC]">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="mobileOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    {{-- Mobile menu --}}
+    <div x-show="mobileOpen" x-cloak x-transition class="sm:hidden border-t border-[#e3e3e0] dark:border-[#3E3E3A]">
+        <div class="py-2 px-4 space-y-1">
+            @guest
+                <a href="{{ route('login') }}" class="block py-2 text-sm text-[#706f6c]">Login</a>
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="block py-2 text-sm text-[#706f6c]">Register</a>
+                @endif
+            @else
+                <a href="{{ route('profile.show') }}" class="block py-2 text-sm text-[#706f6c]">Profile</a>
+                @level(5)
+                    <hr class="my-1 border-[#e3e3e0] dark:border-[#3E3E3A]">
+                    <a href="{{ url('/users') }}" class="block py-2 text-sm text-[#706f6c]">Users</a>
+                    <a href="{{ route('themes.index') }}" class="block py-2 text-sm text-[#706f6c]">Themes</a>
+                    <a href="{{ url('/activity') }}" class="block py-2 text-sm text-[#706f6c]">Activity</a>
+                    <a href="{{ route('admin.settings') }}" class="block py-2 text-sm text-[#706f6c]">Settings</a>
+                @endlevel
+                <hr class="my-1 border-[#e3e3e0] dark:border-[#3E3E3A]">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="block w-full text-left py-2 text-sm text-[#706f6c]">Logout</button>
+                </form>
+            @endguest
         </div>
     </div>
 </nav>

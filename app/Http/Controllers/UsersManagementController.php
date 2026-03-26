@@ -2,33 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Profile;
 use App\Models\Role;
 use App\Models\User;
-use App\Traits\CaptureIpTrait;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class UsersManagementController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $paginationEnabled = config('usersmanagement.enablePagination');
@@ -42,11 +26,6 @@ class UsersManagementController extends Controller
         return View('usersmanagement.show-users', compact('users', 'roles'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $roles = Role::all();
@@ -54,36 +33,28 @@ class UsersManagementController extends Controller
         return view('usersmanagement.create-user', compact('roles'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validator = Validator::make(
             $request->all(),
             [
-                'name'                  => 'required|max:255|unique:users|alpha_dash',
-                'first_name'            => 'alpha_dash',
-                'last_name'             => 'alpha_dash',
-                'email'                 => 'required|email|max:255|unique:users',
-                'password'              => 'required|min:6|max:20|confirmed',
+                'name' => 'required|max:255|unique:users|alpha_dash',
+                'first_name' => 'nullable|alpha_dash',
+                'last_name' => 'nullable|alpha_dash',
+                'email' => 'required|email|max:255|unique:users',
+                'password' => 'required|min:8|max:128|confirmed',
                 'password_confirmation' => 'required|same:password',
-                'role'                  => 'required',
+                'role' => 'required',
             ],
             [
-                'name.unique'         => trans('auth.userNameTaken'),
-                'name.required'       => trans('auth.userNameRequired'),
-                'first_name.required' => trans('auth.fNameRequired'),
-                'last_name.required'  => trans('auth.lNameRequired'),
-                'email.required'      => trans('auth.emailRequired'),
-                'email.email'         => trans('auth.emailInvalid'),
-                'password.required'   => trans('auth.passwordRequired'),
-                'password.min'        => trans('auth.PasswordMin'),
-                'password.max'        => trans('auth.PasswordMax'),
-                'role.required'       => trans('auth.roleRequired'),
+                'name.unique' => trans('auth.userNameTaken'),
+                'name.required' => trans('auth.userNameRequired'),
+                'email.required' => trans('auth.emailRequired'),
+                'email.email' => trans('auth.emailInvalid'),
+                'password.required' => trans('auth.passwordRequired'),
+                'password.min' => trans('auth.PasswordMin'),
+                'password.max' => trans('auth.PasswordMax'),
+                'role.required' => trans('auth.roleRequired'),
             ]
         );
 
@@ -91,89 +62,62 @@ class UsersManagementController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        $ipAddress = new CaptureIpTrait();
-        $profile = new Profile();
-
         $user = User::create([
-            'name'             => strip_tags($request->input('name')),
-            'first_name'       => strip_tags($request->input('first_name')),
-            'last_name'        => strip_tags($request->input('last_name')),
-            'email'            => $request->input('email'),
-            'password'         => Hash::make($request->input('password')),
-            'token'            => str_random(64),
-            'admin_ip_address' => $ipAddress->getClientIp(),
-            'activated'        => 1,
+            'name' => strip_tags($request->input('name')),
+            'first_name' => strip_tags($request->input('first_name')),
+            'last_name' => strip_tags($request->input('last_name')),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+            'token' => Str::random(64),
+            'activated' => 1,
         ]);
 
-        $user->profile()->save($profile);
+        if (method_exists($user, 'setAdminIp')) {
+            $user->setAdminIp()->save();
+        }
+
+        if (method_exists($user, 'ensureProfile')) {
+            $user->ensureProfile();
+        }
+
         $user->attachRole($request->input('role'));
-        $user->save();
 
         return redirect('users')->with('success', trans('usersmanagement.createSuccess'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function show(User $user)
     {
         return view('usersmanagement.show-user', compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function edit(User $user)
     {
         $roles = Role::all();
+        $currentRole = $user->roles->first();
 
-        foreach ($user->roles as $userRole) {
-            $currentRole = $userRole;
-        }
-
-        $data = [
-            'user'        => $user,
-            'roles'       => $roles,
+        return view('usersmanagement.edit-user', [
+            'user' => $user,
+            'roles' => $roles,
             'currentRole' => $currentRole,
-        ];
-
-        return view('usersmanagement.edit-user')->with($data);
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, User $user)
     {
         $emailCheck = ($request->input('email') !== '') && ($request->input('email') !== $user->email);
-        $ipAddress = new CaptureIpTrait();
+
+        $rules = [
+            'name' => 'required|max:255|alpha_dash|unique:users,name,'.$user->id,
+            'first_name' => 'nullable|alpha_dash',
+            'last_name' => 'nullable|alpha_dash',
+            'password' => 'nullable|confirmed|min:8',
+        ];
 
         if ($emailCheck) {
-            $validator = Validator::make($request->all(), [
-                'name'          => 'required|max:255|unique:users|alpha_dash',
-                'email'         => 'email|max:255|unique:users',
-                'first_name'    => 'alpha_dash',
-                'last_name'     => 'alpha_dash',
-                'password'      => 'present|confirmed|min:6',
-            ]);
-        } else {
-            $validator = Validator::make($request->all(), [
-                'name'          => 'required|max:255|alpha_dash|unique:users,name,'.$user->id,
-                'first_name'    => 'alpha_dash',
-                'last_name'     => 'alpha_dash',
-                'password'      => 'nullable|confirmed|min:6',
-            ]);
+            $rules['email'] = 'email|max:255|unique:users';
         }
+
+        $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
@@ -197,37 +141,24 @@ class UsersManagementController extends Controller
             $user->attachRole($userRole);
         }
 
-        $user->updated_ip_address = $ipAddress->getClientIp();
-
-        switch ($userRole) {
-            case 3:
-                $user->activated = 0;
-                break;
-
-            default:
-                $user->activated = 1;
-                break;
+        if (method_exists($user, 'setUpdatedIp')) {
+            $user->setUpdatedIp();
         }
 
+        $user->activated = ($userRole == 3) ? 0 : 1;
         $user->save();
 
         return back()->with('success', trans('usersmanagement.updateSuccess'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(User $user)
     {
         $currentUser = Auth::user();
-        $ipAddress = new CaptureIpTrait();
 
         if ($user->id !== $currentUser->id) {
-            $user->deleted_ip_address = $ipAddress->getClientIp();
-            $user->save();
+            if (method_exists($user, 'setDeletedIp')) {
+                $user->setDeletedIp()->save();
+            }
             $user->delete();
 
             return redirect('users')->with('success', trans('usersmanagement.deleteSuccess'));
@@ -236,46 +167,56 @@ class UsersManagementController extends Controller
         return back()->with('error', trans('usersmanagement.deleteSelfError'));
     }
 
-    /**
-     * Method to search the users.
-     *
-     * @param  Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function search(Request $request)
     {
         $searchTerm = $request->input('user_search_box');
-        $searchRules = [
-            'user_search_box' => 'required|string|max:255',
-        ];
-        $searchMessages = [
-            'user_search_box.required' => 'Search term is required',
-            'user_search_box.string'   => 'Search term has invalid characters',
-            'user_search_box.max'      => 'Search term has too many characters - 255 allowed',
-        ];
 
-        $validator = Validator::make($request->all(), $searchRules, $searchMessages);
+        $validator = Validator::make($request->all(), [
+            'user_search_box' => 'required|string|max:255',
+        ]);
 
         if ($validator->fails()) {
-            return response()->json([
-                json_encode($validator),
-            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+            return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         $results = User::where('id', 'like', $searchTerm.'%')
-                            ->orWhere('name', 'like', $searchTerm.'%')
-                            ->orWhere('email', 'like', $searchTerm.'%')->get();
+            ->orWhere('name', 'like', $searchTerm.'%')
+            ->orWhere('email', 'like', $searchTerm.'%')
+            ->with('roles')
+            ->get();
 
-        // Attach roles to results
-        foreach ($results as $result) {
-            $roles = [
-                'roles' => $result->roles,
-            ];
-            $result->push($roles);
-        }
+        return response()->json($results, Response::HTTP_OK);
+    }
 
-        return response()->json([
-            json_encode($results),
-        ], Response::HTTP_OK);
+    // ---- Soft-Deleted User Management ----
+
+    public function deletedIndex()
+    {
+        $users = User::onlyTrashed()->get();
+
+        return view('usersmanagement.show-deleted-users', compact('users'));
+    }
+
+    public function deletedShow(int $id)
+    {
+        $user = User::onlyTrashed()->findOrFail($id);
+
+        return view('usersmanagement.show-deleted-user', compact('user'));
+    }
+
+    public function restore(int $id)
+    {
+        $user = User::onlyTrashed()->findOrFail($id);
+        $user->restore();
+
+        return redirect('users/deleted')->with('success', trans('usersmanagement.successRestore'));
+    }
+
+    public function forceDestroy(int $id)
+    {
+        $user = User::onlyTrashed()->findOrFail($id);
+        $user->forceDelete();
+
+        return redirect('users/deleted')->with('success', trans('usersmanagement.successDestroy'));
     }
 }

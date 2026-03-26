@@ -10,30 +10,25 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
         if ($this->app->environment('production')) {
             URL::forceScheme('https');
         }
 
-        // Mock the email by using env MAIL_MOCK_TO
         if (env('MAIL_MOCK')) {
             Mail::alwaysTo(env('MAIL_MOCK_TO'));
         }
 
-        //Paginator::useBootstrapThree();
         Paginator::useBootstrap();
         Schema::defaultStringLength(191);
+
+        // Register HTML macros (icon_link, image_link, icon_btn, show_username)
+        require base_path('app/Logic/Macros/HtmlMacros.php');
     }
 }

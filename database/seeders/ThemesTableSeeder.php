@@ -2,150 +2,197 @@
 
 namespace Database\Seeders;
 
-use App\Models\Theme;
 use Illuminate\Database\Seeder;
+use Jeremykenedy\LaravelThemes\Domain\Models\Theme;
 
 class ThemesTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run(): void
     {
         $themes = [
             [
                 'name' => 'Default',
-                'link' => 'null',
+                'slug' => 'default',
+                'css_file' => null,
+                'description' => 'Default application theme',
+                'is_active' => true,
+                'is_default' => true,
             ],
             [
                 'name' => 'Darkly',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/darkly/bootstrap.min.css',
+                'slug' => 'darkly',
+                'css_file' => 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/darkly/bootstrap.min.css',
+                'description' => 'Flatly in night mode',
+                'is_active' => true,
+                'is_default' => false,
             ],
             [
                 'name' => 'Cyborg',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/cyborg/bootstrap.min.css',
+                'slug' => 'cyborg',
+                'css_file' => 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/cyborg/bootstrap.min.css',
+                'description' => 'Jet black and electric blue',
+                'is_active' => true,
+                'is_default' => false,
             ],
             [
                 'name' => 'Cosmo',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css',
+                'slug' => 'cosmo',
+                'css_file' => 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/cosmo/bootstrap.min.css',
+                'description' => 'An ode to metro',
+                'is_active' => true,
+                'is_default' => false,
             ],
             [
                 'name' => 'Cerulean',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/cerulean/bootstrap.min.css',
+                'slug' => 'cerulean',
+                'css_file' => 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/cerulean/bootstrap.min.css',
+                'description' => 'A calm blue sky',
+                'is_active' => true,
+                'is_default' => false,
             ],
             [
                 'name' => 'Flatly',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/flatly/bootstrap.min.css',
+                'slug' => 'flatly',
+                'css_file' => 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/flatly/bootstrap.min.css',
+                'description' => 'Flat and modern',
+                'is_active' => true,
+                'is_default' => false,
             ],
             [
                 'name' => 'Journal',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/journal/bootstrap.min.css',
+                'slug' => 'journal',
+                'css_file' => 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/journal/bootstrap.min.css',
+                'description' => 'Crisp like a new sheet of paper',
+                'is_active' => true,
+                'is_default' => false,
             ],
             [
                 'name' => 'Lumen',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/lumen/bootstrap.min.css',
-            ],
-            [
-                'name' => 'Paper',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/paper/bootstrap.min.css',
-            ],
-            [
-                'name' => 'Readable',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/readable/bootstrap.min.css',
-            ],
-            [
-                'name' => 'Sandstone',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/sandstone/bootstrap.min.css',
-            ],
-            [
-                'name' => 'Simplex',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/simplex/bootstrap.min.css',
-            ],
-            [
-                'name' => 'Slate',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/slate/bootstrap.min.css',
-            ],
-            [
-                'name' => 'Spacelab',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/spacelab/bootstrap.min.css',
-            ],
-            [
-                'name' => 'Superhero',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/superhero/bootstrap.min.css',
-            ],
-            [
-                'name' => 'United',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/united/bootstrap.min.css',
-            ],
-            [
-                'name' => 'Yeti',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/yeti/bootstrap.min.css',
-            ],
-            [
-                'name' => 'Bootstrap 4.3.1',
-                'link' => 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css',
-            ],
-            [
-                'name' => 'Materialize',
-                'link' => 'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css',
-            ],
-            [
-                'name' => 'Material Design for Bootstrap (MDB) 4.8.7',
-                'link' => 'https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.7/css/mdb.css',
-            ],
-            [
-                'name' => 'mdbootstrap',
-                'link' => 'https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.1/css/mdb.min.css',
+                'slug' => 'lumen',
+                'css_file' => 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/lumen/bootstrap.min.css',
+                'description' => 'Light and shadow',
+                'is_active' => true,
+                'is_default' => false,
             ],
             [
                 'name' => 'Litera',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/litera/bootstrap.min.css',
+                'slug' => 'litera',
+                'css_file' => 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/litera/bootstrap.min.css',
+                'description' => 'The medium is the message',
+                'is_active' => true,
+                'is_default' => false,
             ],
             [
                 'name' => 'Lux',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/lux/bootstrap.min.css',
+                'slug' => 'lux',
+                'css_file' => 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/lux/bootstrap.min.css',
+                'description' => 'A touch of class',
+                'is_active' => true,
+                'is_default' => false,
             ],
             [
                 'name' => 'Materia',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/materia/bootstrap.min.css',
+                'slug' => 'materia',
+                'css_file' => 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/materia/bootstrap.min.css',
+                'description' => 'Material is the metaphor',
+                'is_active' => true,
+                'is_default' => false,
             ],
             [
                 'name' => 'Minty',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/minty/bootstrap.min.css',
+                'slug' => 'minty',
+                'css_file' => 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/minty/bootstrap.min.css',
+                'description' => 'A fresh feel',
+                'is_active' => true,
+                'is_default' => false,
             ],
             [
                 'name' => 'Pulse',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/pulse/bootstrap.min.css',
+                'slug' => 'pulse',
+                'css_file' => 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/pulse/bootstrap.min.css',
+                'description' => 'A trace of purple',
+                'is_active' => true,
+                'is_default' => false,
+            ],
+            [
+                'name' => 'Sandstone',
+                'slug' => 'sandstone',
+                'css_file' => 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/sandstone/bootstrap.min.css',
+                'description' => 'A touch of warmth',
+                'is_active' => true,
+                'is_default' => false,
+            ],
+            [
+                'name' => 'Simplex',
+                'slug' => 'simplex',
+                'css_file' => 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/simplex/bootstrap.min.css',
+                'description' => 'Mini and minimalist',
+                'is_active' => true,
+                'is_default' => false,
             ],
             [
                 'name' => 'Sketchy',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/sketchy/bootstrap.min.css',
+                'slug' => 'sketchy',
+                'css_file' => 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/sketchy/bootstrap.min.css',
+                'description' => 'A hand-drawn look for mockups',
+                'is_active' => true,
+                'is_default' => false,
+            ],
+            [
+                'name' => 'Slate',
+                'slug' => 'slate',
+                'css_file' => 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/slate/bootstrap.min.css',
+                'description' => 'Shades of gunmetal gray',
+                'is_active' => true,
+                'is_default' => false,
             ],
             [
                 'name' => 'Solar',
-                'link' => 'https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/solar/bootstrap.min.css',
+                'slug' => 'solar',
+                'css_file' => 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/solar/bootstrap.min.css',
+                'description' => 'A spin on Solarized',
+                'is_active' => true,
+                'is_default' => false,
             ],
-
+            [
+                'name' => 'Spacelab',
+                'slug' => 'spacelab',
+                'css_file' => 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/spacelab/bootstrap.min.css',
+                'description' => 'Silvery and sleek',
+                'is_active' => true,
+                'is_default' => false,
+            ],
+            [
+                'name' => 'Superhero',
+                'slug' => 'superhero',
+                'css_file' => 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/superhero/bootstrap.min.css',
+                'description' => 'The brave and the blue',
+                'is_active' => true,
+                'is_default' => false,
+            ],
+            [
+                'name' => 'United',
+                'slug' => 'united',
+                'css_file' => 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/united/bootstrap.min.css',
+                'description' => 'Ubuntu orange and unique font',
+                'is_active' => true,
+                'is_default' => false,
+            ],
+            [
+                'name' => 'Yeti',
+                'slug' => 'yeti',
+                'css_file' => 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/yeti/bootstrap.min.css',
+                'description' => 'A friendly foundation',
+                'is_active' => true,
+                'is_default' => false,
+            ],
         ];
 
-        foreach ($themes as $theme) {
-            $newTheme = Theme::where('name', '=', $theme['name'])->first();
-            if ($newTheme === null) {
-                $newTheme = Theme::create([
-                    'name'          => $theme['name'],
-                    'link'          => $theme['link'],
-                    'taggable_id'   => 0,
-                    'taggable_type' => 'theme',
-                ]);
-            }
-        }
-
-        $allThemes = Theme::All();
-        foreach ($allThemes as $theme) {
-            $theme->taggable_id = $theme->id;
-            $theme->save();
+        foreach ($themes as $themeData) {
+            Theme::firstOrCreate(
+                ['slug' => $themeData['slug']],
+                $themeData
+            );
         }
     }
 }
