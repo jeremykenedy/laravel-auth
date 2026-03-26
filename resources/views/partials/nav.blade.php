@@ -110,7 +110,9 @@
                     <hr class="my-1 border-[#e3e3e0] dark:border-[#3E3E3A]">
                     <a href="{{ url('/users') }}" class="block py-2 text-sm text-[#706f6c]">Users</a>
                     <a href="{{ route('themes.index') }}" class="block py-2 text-sm text-[#706f6c]">Themes</a>
+                    <a href="{{ route('admin.posts.index') }}" class="block py-2 text-sm text-[#706f6c]">Posts</a>
                     <a href="{{ url('/activity') }}" class="block py-2 text-sm text-[#706f6c]">Activity</a>
+                    <a href="{{ url('/blocker') }}" class="block py-2 text-sm text-[#706f6c]">Blocker</a>
                     <a href="{{ route('admin.settings') }}" class="block py-2 text-sm text-[#706f6c]">Settings</a>
                 @endlevel
                 <hr class="my-1 border-[#e3e3e0] dark:border-[#3E3E3A]">
