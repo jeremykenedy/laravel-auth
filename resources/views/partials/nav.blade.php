@@ -30,6 +30,7 @@
                                     <hr class="my-1 border-[#e3e3e0] dark:border-[#3E3E3A]">
                                     <a href="{{ url('/phpinfo') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18]">PHP Info</a>
                                     <a href="{{ route('admin.routes') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18]">Routes</a>
+                                    <a href="{{ url('/log-viewer') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18]">Logs</a>
                                     <hr class="my-1 border-[#e3e3e0] dark:border-[#3E3E3A]">
                                     <a href="{{ route('admin.settings') }}" class="block px-4 py-2 text-sm text-[#706f6c] hover:bg-gray-50 dark:hover:bg-[#1b1b18] {{ Request::is('settings') ? 'text-[#1b1b18] dark:text-[#EDEDEC] font-medium' : '' }}">Settings</a>
                                 </div>
