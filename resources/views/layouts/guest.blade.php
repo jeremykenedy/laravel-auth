@@ -44,6 +44,12 @@
             {{ $slot ?? '' }}
             @yield('content')
         </div>
+        @php
+            $tm = app(\Jeremykenedy\LaravelToast\Services\ToastManager::class);
+            if (session('success')) $tm->success(session('success'));
+            if (session('error')) $tm->error(session('error'));
+        @endphp
+        @include('toast::toasts')
         @livewireScripts
         @yield('footer_scripts')
     </body>
