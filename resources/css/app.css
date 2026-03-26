@@ -12,8 +12,72 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+    --color-accent: #2563eb;
+    --color-accent-hover: #1d4ed8;
 }
 
 [x-cloak] {
     display: none !important;
+}
+
+/* Theme color overrides via body class from ThemeComposer */
+.theme-cerulean { --color-accent: #2fa4e7; --color-accent-hover: #1a8ccf; }
+.theme-cosmo { --color-accent: #2780e3; --color-accent-hover: #1a6dca; }
+.theme-cyborg { --color-accent: #2a9fd6; --color-accent-hover: #1f8abd; }
+.theme-darkly { --color-accent: #375a7f; --color-accent-hover: #2c4866; }
+.theme-flatly { --color-accent: #2c3e50; --color-accent-hover: #1a252f; }
+.theme-journal { --color-accent: #eb6864; --color-accent-hover: #d44f4b; }
+.theme-litera { --color-accent: #4582ec; --color-accent-hover: #2d6de0; }
+.theme-lumen { --color-accent: #158cba; --color-accent-hover: #107396; }
+.theme-lux { --color-accent: #1a1a2e; --color-accent-hover: #0f0f1a; }
+.theme-materia { --color-accent: #2196f3; --color-accent-hover: #1976d2; }
+.theme-minty { --color-accent: #78c2ad; --color-accent-hover: #5fb89b; }
+.theme-morph { --color-accent: #378dfc; --color-accent-hover: #1a75e8; }
+.theme-pulse { --color-accent: #593196; --color-accent-hover: #44256e; }
+.theme-quartz { --color-accent: #e83283; --color-accent-hover: #c91e6c; }
+.theme-sandstone { --color-accent: #325d88; --color-accent-hover: #274a6e; }
+.theme-simplex { --color-accent: #d9230f; --color-accent-hover: #b81c0d; }
+.theme-sketchy { --color-accent: #333; --color-accent-hover: #1a1a1a; }
+.theme-slate { --color-accent: #3a3f44; --color-accent-hover: #2b2f33; }
+.theme-solar { --color-accent: #b58900; --color-accent-hover: #946e00; }
+.theme-spacelab { --color-accent: #446e9b; --color-accent-hover: #365a7e; }
+.theme-superhero { --color-accent: #df691a; --color-accent-hover: #c25a15; }
+.theme-united { --color-accent: #e95420; --color-accent-hover: #cc4418; }
+.theme-vapor { --color-accent: #6f42c1; --color-accent-hover: #5a34a0; }
+.theme-yeti { --color-accent: #008cba; --color-accent-hover: #00739a; }
+.theme-zephyr { --color-accent: #3459e6; --color-accent-hover: #2445c7; }
+
+/* Apply accent color to key UI elements when theme is active */
+body[class*="theme-"] nav {
+    border-bottom-color: var(--color-accent);
+    border-bottom-width: 2px;
+}
+
+body[class*="theme-"] a.text-blue-600,
+body[class*="theme-"] a.text-blue-500,
+body[class*="theme-"] .text-blue-600,
+body[class*="theme-"] .text-blue-400 {
+    color: var(--color-accent);
+}
+
+body[class*="theme-"] .bg-blue-600,
+body[class*="theme-"] button[class*="bg-blue"],
+body[class*="theme-"] a[class*="bg-blue"] {
+    background-color: var(--color-accent);
+}
+
+body[class*="theme-"] .bg-blue-600:hover,
+body[class*="theme-"] button[class*="bg-blue"]:hover,
+body[class*="theme-"] a[class*="bg-blue"]:hover {
+    background-color: var(--color-accent-hover);
+}
+
+body[class*="theme-"] .border-blue-500,
+body[class*="theme-"] .focus\:border-blue-500:focus,
+body[class*="theme-"] .focus\:ring-blue-500:focus {
+    border-color: var(--color-accent);
+}
+
+body[class*="theme-"] .ring-blue-500 {
+    --tw-ring-color: var(--color-accent);
 }

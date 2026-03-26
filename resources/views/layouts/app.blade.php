@@ -62,6 +62,16 @@
             </main>
         </div>
 
+        {{-- Toast notifications (convert flash messages to toasts) --}}
+        @php
+            $tm = app(\Jeremykenedy\LaravelToast\Services\ToastManager::class);
+            if (session('success')) $tm->success(session('success'));
+            if (session('error')) $tm->error(session('error'));
+            if (session('warning')) $tm->warning(session('warning'));
+            if (session('info') && is_string(session('info'))) $tm->info(session('info'));
+        @endphp
+        @include('toast::toasts')
+
         @yield('footer_scripts')
         @include('scripts.ga-analytics')
         @livewireScripts
