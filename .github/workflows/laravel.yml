@@ -1,25 +1,91 @@
-name: Laravel
+name: Tests
 
 on:
   push:
-    branches: ["master"]
+    branches: [v13-modern, master]
   pull_request:
-    branches: ["master"]
+    branches: [v13-modern, master]
 
 jobs:
-  laravel-tests:
+  tests:
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: modern_test
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
     steps:
-      - uses: shivammathur/setup-php@v2
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.3"
-      - uses: actions/checkout@v5
-      - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-      - name: Install Dependencies
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-      - name: Generate key
+          php-version: '8.4'
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql, bcmath, intl, gd
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Copy env
+        run: cp .env.example .env
+
+      - name: Generate app key
         run: php artisan key:generate
-      - name: Directory Permissions
+
+      - name: Set permissions
         run: chmod -R 777 storage bootstrap/cache
+
+      - name: Run Pest tests
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: modern_test
+          DB_USERNAME: root
+          DB_PASSWORD: password
+          MAIL_MAILER: array
+          SESSION_DRIVER: array
+          LARAVEL_2STEP_ENABLED: false
+          LARAVEL_LOGGER_ENABLED: false
+          LARAVEL_BLOCKER_ENABLED: false
+        run: php artisan test
+
+  pint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Run Laravel Pint
+        run: vendor/bin/pint --test
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Build assets
+        run: npm run build
