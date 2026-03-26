@@ -12,10 +12,10 @@
             <div class="flex items-center justify-between">
                 <h3 class="text-lg font-medium">{{ trans('usersmanagement.showing-all-users') }}</h3>
                 <div class="flex gap-2">
-                    <x-ui::button href="{{ url('/users/create') }}" variant="primary" size="sm">
+                    <x-ui::button href="{{ url('/users/create') }}" variant="primary" size="sm" icon="plus">
                         Create New User
                     </x-ui::button>
-                    <x-ui::button href="{{ url('/users/deleted') }}" variant="secondary" size="sm" outline>
+                    <x-ui::button href="{{ url('/users/deleted') }}" variant="secondary" size="sm" outline icon="trash">
                         Deleted Users
                     </x-ui::button>
                 </div>

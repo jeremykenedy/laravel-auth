@@ -11,8 +11,8 @@
                 <div class="flex items-center justify-between">
                     <h3 class="text-lg font-medium">{{ $user->name }}</h3>
                     <div class="flex gap-2">
-                        <x-ui::button href="{{ url('users/' . $user->id . '/edit') }}" variant="info" size="sm">Edit</x-ui::button>
-                        <x-ui::button href="{{ route('users') }}" variant="secondary" size="sm" outline>Back</x-ui::button>
+                        <x-ui::button href="{{ url('users/' . $user->id . '/edit') }}" variant="info" size="sm" icon="edit">Edit</x-ui::button>
+                        <x-ui::button href="{{ route('users') }}" variant="secondary" size="sm" outline icon="arrow-left">Back</x-ui::button>
                     </div>
                 </div>
             </x-slot>
@@ -85,18 +85,18 @@
             <x-slot name="footerSlot">
                 <div class="flex items-center justify-between">
                     <div class="flex gap-2">
-                        <x-ui::button href="{{ url('users/' . $user->id . '/edit') }}" variant="info" size="sm">Edit User</x-ui::button>
+                        <x-ui::button href="{{ url('users/' . $user->id . '/edit') }}" variant="info" size="sm" icon="edit">Edit User</x-ui::button>
                         @if($user->level() < 5 && Auth::id() !== $user->id && !session('impersonator_id'))
                             <form method="POST" action="{{ route('impersonate.start', $user) }}">
                                 @csrf
-                                <x-ui::button type="submit" variant="warning" size="sm">Impersonate</x-ui::button>
+                                <x-ui::button type="submit" variant="warning" size="sm" icon="eye">Impersonate</x-ui::button>
                             </form>
                         @endif
                     </div>
                     <form method="POST" action="{{ url('users/' . $user->id) }}" x-data @submit.prevent="if(confirm('Are you sure you want to delete this user?')) $el.submit()">
                         @csrf
                         @method('DELETE')
-                        <x-ui::button type="submit" variant="danger" size="sm">Delete User</x-ui::button>
+                        <x-ui::button type="submit" variant="danger" size="sm" icon="trash">Delete User</x-ui::button>
                     </form>
                 </div>
             </x-slot>
