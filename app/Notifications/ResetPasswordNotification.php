@@ -12,7 +12,7 @@ class ResetPasswordNotification extends Notification
      * Get the reset password notification mail message for the given URL.
      *
      * @param  string  $url
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @return MailMessage
      */
     public function toMail($notifiable)
     {
