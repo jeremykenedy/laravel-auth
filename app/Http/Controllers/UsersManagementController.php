@@ -220,4 +220,32 @@ class UsersManagementController extends Controller
 
         return redirect('users/deleted')->with('success', trans('usersmanagement.successDestroy'));
     }
+
+    public function export()
+    {
+        $users = User::with('roles', 'profile')->get();
+
+        $csv = "ID,Name,Email,First Name,Last Name,Role,Verified,Created,Signup IP\n";
+        foreach ($users as $user) {
+            $role = $user->roles->first()?->name ?? 'None';
+            $verified = $user->email_verified_at ? 'Yes' : 'No';
+            $csv .= implode(',', [
+                $user->id,
+                '"'.str_replace('"', '""', $user->name).'"',
+                $user->email,
+                '"'.str_replace('"', '""', $user->first_name ?? '').'"',
+                '"'.str_replace('"', '""', $user->last_name ?? '').'"',
+                $role,
+                $verified,
+                $user->created_at?->format('Y-m-d'),
+                $user->signup_ip_address ?? '',
+            ])."\n";
+        }
+
+        $filename = 'users-export-'.now()->format('Y-m-d').'.csv';
+
+        return response($csv)
+            ->header('Content-Type', 'text/csv')
+            ->header('Content-Disposition', 'attachment; filename="'.$filename.'"');
+    }
 }

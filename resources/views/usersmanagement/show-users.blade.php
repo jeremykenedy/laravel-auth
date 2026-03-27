@@ -15,6 +15,9 @@
                     <x-ui::button href="{{ url('/users/create') }}" variant="primary" size="sm" icon="plus">
                         Create New User
                     </x-ui::button>
+                    <x-ui::button href="{{ route('users.export') }}" variant="secondary" size="sm" outline icon="download">
+                        Export CSV
+                    </x-ui::button>
                     <x-ui::button href="{{ url('/users/deleted') }}" variant="secondary" size="sm" outline icon="trash">
                         Deleted Users
                     </x-ui::button>
