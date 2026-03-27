@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Jeremykenedy\LaravelChat\Traits\HasChat;
 use Jeremykenedy\LaravelFaceAuth\Traits\HasFaceAuth;
 use Jeremykenedy\LaravelIpCapture\Traits\CapturesIp;
@@ -77,5 +79,33 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token): void
     {
         $this->notify(new ResetPasswordNotification($token));
+    }
+
+    public function isOnline(): bool
+    {
+        if (config('session.driver') !== 'database') {
+            return false;
+        }
+
+        return DB::table(config('session.table', 'sessions'))
+            ->where('user_id', $this->id)
+            ->where('last_activity', '>=', now()->subMinutes(5)->timestamp)
+            ->exists();
+    }
+
+    public function lastActivity(): ?string
+    {
+        if (config('session.driver') !== 'database') {
+            return null;
+        }
+
+        $session = DB::table(config('session.table', 'sessions'))
+            ->where('user_id', $this->id)
+            ->orderBy('last_activity', 'desc')
+            ->first();
+
+        return $session
+            ? Carbon::createFromTimestamp($session->last_activity)->diffForHumans()
+            : null;
     }
 }
