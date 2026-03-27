@@ -85,6 +85,9 @@ Route::group(['middleware' => ['auth', 'verified', 'level:5', 'activity', 'twost
     Route::get('/settings', [AppSettingsController::class, 'index'])->name('admin.settings');
     Route::put('/settings', [AppSettingsController::class, 'update'])->name('admin.settings.update');
 
+    // User export
+    Route::get('users/export', [UsersManagementController::class, 'export'])->name('users.export');
+
     // Soft-deleted users management (must be before resource route)
     Route::get('users/deleted', [UsersManagementController::class, 'deletedIndex'])->name('deleted.index');
     Route::get('users/deleted/{id}', [UsersManagementController::class, 'deletedShow'])->name('deleted.show');
