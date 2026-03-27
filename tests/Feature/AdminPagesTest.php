@@ -103,9 +103,9 @@ it('allows admin to access activity log', function () {
 });
 
 it('allows admin to access blocker', function () {
-    // Blocker package has session middleware ordering issue in test env
-    // Verified working via browser at /blocker
-    $this->markTestSkipped('Blocker session middleware incompatible with test session driver');
+    $this->actingAs($this->admin)
+        ->get('/blocker')
+        ->assertOk();
 });
 
 it('allows admin to access roles', function () {
