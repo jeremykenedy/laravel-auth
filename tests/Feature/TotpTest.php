@@ -61,3 +61,56 @@ it('denies TOTP setup for guests', function () {
     $this->get('/two-factor/setup')
         ->assertRedirect('/login');
 });
+
+it('can enable TOTP with valid code', function () {
+    $user = User::factory()->create();
+    $service = new TotpService;
+    $secret = $service->generateSecret();
+
+    $reflection = new ReflectionMethod($service, 'generateCode');
+    $code = $reflection->invoke($service, $secret, floor(time() / 30));
+
+    $this->actingAs($user)
+        ->withSession(['totp_setup_secret' => $secret])
+        ->post('/two-factor/enable', ['code' => $code])
+        ->assertRedirect();
+
+    expect($user->fresh()->two_factor_secret)->not->toBeNull();
+    expect($user->fresh()->two_factor_recovery_codes)->not->toBeNull();
+});
+
+it('rejects enable with invalid code', function () {
+    $user = User::factory()->create();
+    $service = new TotpService;
+    $secret = $service->generateSecret();
+
+    $this->actingAs($user)
+        ->withSession(['totp_setup_secret' => $secret])
+        ->post('/two-factor/enable', ['code' => '000000'])
+        ->assertRedirect()
+        ->assertSessionHasErrors('code');
+});
+
+it('can disable TOTP with correct password', function () {
+    $user = User::factory()->create();
+    $user->forceFill([
+        'two_factor_secret' => encrypt('TESTSECRET'),
+        'two_factor_recovery_codes' => encrypt(json_encode(['code1', 'code2'])),
+    ])->save();
+
+    $this->actingAs($user)
+        ->post('/two-factor/disable', ['password' => 'password'])
+        ->assertRedirect();
+
+    expect($user->fresh()->two_factor_secret)->toBeNull();
+});
+
+it('renders challenge page for users with TOTP', function () {
+    $user = User::factory()->create();
+    $user->forceFill(['two_factor_secret' => encrypt('TESTSECRET')])->save();
+
+    $this->actingAs($user)
+        ->get('/two-factor/challenge')
+        ->assertOk()
+        ->assertSee('Authentication Code');
+});
