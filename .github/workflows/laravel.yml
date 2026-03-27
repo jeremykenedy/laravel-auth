@@ -1,5 +1,9 @@
 name: Tests
 
+# NOTE: This CI requires all 23 packages to be published on Packagist.
+# During development, packages are in packages/ (gitignored, path repos).
+# The CI will work once packages are tagged and published.
+
 on:
   push:
     branches: [v13-modern, master]
