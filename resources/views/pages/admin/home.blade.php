@@ -29,6 +29,20 @@
         </x-ui::card>
     </div>
 
+    {{-- Quick Actions --}}
+    <x-ui::card title="Quick Actions">
+        <div class="flex flex-wrap gap-2">
+            <x-ui::button href="{{ url('/users/create') }}" variant="primary" size="sm" icon="plus">New User</x-ui::button>
+            <x-ui::button href="{{ route('admin.posts.create') }}" variant="primary" size="sm" icon="edit">New Post</x-ui::button>
+            <x-ui::button href="{{ url('/activity') }}" variant="secondary" size="sm" icon="eye">Activity Log</x-ui::button>
+            <x-ui::button href="{{ url('/blocker') }}" variant="secondary" size="sm" icon="shield">Blocker</x-ui::button>
+            <x-ui::button href="{{ url('/roles') }}" variant="secondary" size="sm" icon="users">Roles</x-ui::button>
+            <x-ui::button href="{{ route('admin.settings') }}" variant="secondary" size="sm" icon="cog">Settings</x-ui::button>
+            <x-ui::button href="{{ url('/log-viewer') }}" variant="secondary" size="sm" outline>Log Viewer</x-ui::button>
+            <x-ui::button href="{{ url('/health') }}" variant="secondary" size="sm" outline>Health Check</x-ui::button>
+        </div>
+    </x-ui::card>
+
     {{-- Recently Active Users --}}
     <x-ui::card title="Recently Active Users">
         @php
