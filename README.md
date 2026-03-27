@@ -139,9 +139,17 @@ php artisan db:seed
 # Build
 npm run build
 
+# Interactive setup (pick your CSS + frontend framework)
+php artisan auth:setup
+
 # Serve (or use Laravel Herd)
 php artisan serve
 ```
+
+The `auth:setup` command lets you choose:
+- **CSS Framework:** Tailwind v4, Bootstrap 5, or Bootstrap 4
+- **Frontend Framework:** Blade/Alpine.js, Livewire 3, Vue 3, React, or Svelte
+- **Features:** Social auth, 2FA, face auth, captcha, chat (each togglable)
 
 ### Default Users
 
