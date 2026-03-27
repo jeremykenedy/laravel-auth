@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
+use App\Listeners\AuditSecurityEvent;
 use App\Listeners\NotifyAdminOfNewUser;
 use App\Listeners\SendWelcomeNotification;
+use Illuminate\Auth\Events\Login;
+use Illuminate\Auth\Events\Logout;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Event;
@@ -24,6 +28,11 @@ class AppServiceProvider extends ServiceProvider
         // Event listeners
         Event::listen(Registered::class, SendWelcomeNotification::class);
         Event::listen(Registered::class, NotifyAdminOfNewUser::class);
+
+        // Security audit events
+        Event::listen(Login::class, [AuditSecurityEvent::class, 'handleLogin']);
+        Event::listen(Logout::class, [AuditSecurityEvent::class, 'handleLogout']);
+        Event::listen(PasswordReset::class, [AuditSecurityEvent::class, 'handlePasswordReset']);
 
         if ($this->app->environment('production')) {
             URL::forceScheme('https');
