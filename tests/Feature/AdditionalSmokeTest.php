@@ -80,3 +80,18 @@ it('can access the two-factor setup page', function () {
         ->get('/two-factor/setup')
         ->assertOk();
 });
+
+it('auth:setup command is registered', function () {
+    $this->artisan('list')
+        ->assertSuccessful();
+
+    expect(Artisan::all())->toHaveKey('auth:setup');
+});
+
+it('profiles:install command is registered', function () {
+    expect(Artisan::all())->toHaveKey('profiles:install');
+});
+
+it('themes:install command is registered', function () {
+    expect(Artisan::all())->toHaveKey('themes:install');
+});
