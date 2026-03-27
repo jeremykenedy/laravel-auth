@@ -119,3 +119,11 @@ it('can view a single blog post', function () {
         ->assertOk()
         ->assertSee($post->title);
 });
+
+it('can export users as CSV', function () {
+    $this->actingAs($this->admin)
+        ->get('/users/export')
+        ->assertOk()
+        ->assertHeader('content-type', 'text/csv; charset=UTF-8')
+        ->assertHeader('content-disposition');
+});
