@@ -82,6 +82,38 @@
                 </div>
             </div>
 
+        </x-ui::card>
+
+        {{-- Recent Activity --}}
+        @php
+            $activities = \Illuminate\Support\Facades\DB::table('laravel_logger_activity')
+                ->where('userId', $user->id)
+                ->orderBy('created_at', 'desc')
+                ->limit(10)
+                ->get();
+        @endphp
+        @if($activities->isNotEmpty())
+        <x-ui::card title="Recent Activity" class="mt-6">
+            <div class="divide-y divide-gray-200 dark:divide-gray-700">
+                @foreach($activities as $activity)
+                    <div class="py-2 flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-900 dark:text-gray-100">{{ $activity->description }}</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">{{ $activity->route }} &middot; {{ $activity->ipAddress }}</p>
+                        </div>
+                        <div class="text-right">
+                            <x-ui::badge :variant="$activity->methodType === 'GET' ? 'info' : ($activity->methodType === 'POST' ? 'success' : 'warning')" size="sm">{{ $activity->methodType }}</x-ui::badge>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">{{ \Carbon\Carbon::parse($activity->created_at)->diffForHumans() }}</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </x-ui::card>
+        @endif
+    </div>
+
+    <div class="max-w-4xl mx-auto mt-6">
+        <x-ui::card>
             <x-slot name="footerSlot">
                 <div class="flex items-center justify-between">
                     <div class="flex gap-2">
