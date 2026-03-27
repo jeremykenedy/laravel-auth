@@ -28,8 +28,9 @@ Laravel Auth is a thin root shell that assembles 23 independently publishable Co
 - Social OAuth login (Google, GitHub, Facebook, Twitter + 18 more configurable providers)
 - Role-based access control with levels and permissions (4 default roles: Super Admin, Admin, User, Unverified)
 - Blade directives: `@role`, `@permission`, `@level`
-- Optional two-step verification
+- Two-factor authentication: email codes OR TOTP (Google Authenticator/Authy) with recovery codes
 - Optional reCAPTCHA/hCaptcha protection
+- Optional face authentication (browser-side, face-api.js)
 
 ### User Management
 - Full admin CRUD (create, show, edit, update, delete)
@@ -228,12 +229,21 @@ laravel-auth/
   routes/web.php        # Thin route file (packages register their own)
 ```
 
+**Multi-framework support (515 frontend files):**
+- CSS: Tailwind v4 (139 views), Bootstrap 5 (114 views), Bootstrap 4 (114 views)
+- Frontend: Blade/Alpine.js (default), Livewire 3, Vue 3, React, Svelte (37 each)
+- Each package has separate view directories per framework. They are NEVER mixed.
+- `config('ui-kit.css_framework')` selects which CSS views load at runtime
+- `php artisan auth:setup` interactively configures CSS + frontend framework
+
 **Key conventions:**
 - Package controllers extend `Illuminate\Routing\Controller` (not `App\Http\Controllers\Controller`)
 - Admin access uses `level:5` middleware (not `role:admin`) so both Admin and Super Admin pass
 - Dark mode is class-based (`@custom-variant dark`), not `prefers-color-scheme`
 - `<x-ui::*>` components via `Blade::componentNamespace()` from `laravel-ui-kit`
 - CSS framework selected via `config('ui-kit.css_framework')` with Tailwind fallback
+- Tailwind views use ZERO Bootstrap classes. Bootstrap views use ZERO Tailwind classes.
+- Architecture rules enforced by automated Pest tests
 
 ## Routes
 
