@@ -76,6 +76,13 @@ class AuthSetup extends Command
         $this->updateEnv('FACE_AUTH_ENABLED', $features['face_auth'] ? 'true' : 'false');
         $this->updateEnv('CAPTCHA_ENABLED', $features['captcha'] ? 'true' : 'false');
 
+        if ($features['socialite']) {
+            $this->updateEnv('SOCIALITE_GOOGLE_ENABLED', 'true');
+            $this->updateEnv('SOCIALITE_GITHUB_ENABLED', 'true');
+            $this->updateEnv('SOCIALITE_FACEBOOK_ENABLED', 'true');
+            $this->updateEnv('SOCIALITE_TWITTER_ENABLED', 'true');
+        }
+
         Artisan::call('config:clear');
         Artisan::call('view:clear');
 
