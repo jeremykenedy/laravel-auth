@@ -88,12 +88,36 @@ class AuthSetup extends Command
 
         info('Configuration applied successfully!');
 
-        if ($frontend === 'vue' || $frontend === 'react' || $frontend === 'svelte') {
-            warning("Don't forget to install Inertia.js: composer require inertiajs/inertia-laravel");
-            warning('Then run: npm install && npm run build');
-        } else {
-            info('Run: npm run build');
+        $runMigrate = confirm('Run database migrations now?', true);
+        if ($runMigrate) {
+            Artisan::call('migrate', ['--force' => true]);
+            info('Migrations complete.');
+
+            $runSeed = confirm('Seed the database with demo data?', true);
+            if ($runSeed) {
+                Artisan::call('db:seed', ['--force' => true]);
+                info('Database seeded.');
+            }
         }
+
+        $runBuild = confirm('Build frontend assets now?', true);
+        if ($runBuild) {
+            exec('npm run build', $output, $code);
+            if ($code === 0) {
+                info('Assets built successfully.');
+            } else {
+                warning('Asset build failed. Run manually: npm run build');
+            }
+        }
+
+        if ($frontend === 'vue' || $frontend === 'react' || $frontend === 'svelte') {
+            warning('Install Inertia.js: composer require inertiajs/inertia-laravel');
+        }
+
+        $this->newLine();
+        info('Laravel Auth is ready!');
+        info('Default login: admin@user.com / password');
+        info('URL: '.config('app.url'));
 
         return self::SUCCESS;
     }
