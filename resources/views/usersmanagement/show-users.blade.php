@@ -48,7 +48,10 @@
                             <td class="px-4 py-3 text-sm">{{ $user->id }}</td>
                             <td class="px-4 py-3 text-sm font-medium">
                                 <div class="flex items-center gap-2">
-                                    <x-ui::avatar :src="$user->getAvatarUrl(32)" :alt="$user->name" size="xs" />
+                                    <div class="relative">
+                                        <x-ui::avatar :src="$user->getAvatarUrl(32)" :alt="$user->name" size="xs" />
+                                        <span class="absolute bottom-0 right-0 block h-2 w-2 rounded-full ring-1 ring-white dark:ring-gray-900 {{ $user->isOnline() ? 'bg-green-400' : 'bg-gray-300 dark:bg-gray-600' }}" title="{{ $user->isOnline() ? 'Online' : ($user->lastActivity() ?? 'Offline') }}"></span>
+                                    </div>
                                     <a href="{{ url('users/' . $user->id) }}" class="hover:text-blue-600 dark:hover:text-blue-400">{{ $user->name }}</a>
                                 </div>
                             </td>

@@ -9,7 +9,14 @@
         <x-ui::card>
             <x-slot name="header">
                 <div class="flex items-center justify-between">
-                    <h3 class="text-lg font-medium">{{ $user->name }}</h3>
+                    <h3 class="text-lg font-medium">
+                        {{ $user->name }}
+                        @if($user->isOnline())
+                            <x-ui::badge variant="success" size="sm">Online</x-ui::badge>
+                        @else
+                            <span class="text-xs text-gray-400 dark:text-gray-500 font-normal ml-2">{{ $user->lastActivity() ?? 'Never' }}</span>
+                        @endif
+                    </h3>
                     <div class="flex gap-2">
                         <x-ui::button href="{{ url('users/' . $user->id . '/edit') }}" variant="info" size="sm" icon="edit">Edit</x-ui::button>
                         <x-ui::button href="{{ route('users') }}" variant="secondary" size="sm" outline icon="arrow-left">Back</x-ui::button>
