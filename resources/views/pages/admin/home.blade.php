@@ -3,30 +3,10 @@
 
     {{-- Admin Dashboard Stats --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <x-ui::card>
-            <div class="text-center">
-                <p class="text-3xl font-bold text-gray-900 dark:text-gray-100">{{ \App\Models\User::count() }}</p>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Total Users</p>
-            </div>
-        </x-ui::card>
-        <x-ui::card>
-            <div class="text-center">
-                <p class="text-3xl font-bold text-green-600 dark:text-green-400">{{ \App\Models\User::whereNotNull('email_verified_at')->count() }}</p>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Verified Users</p>
-            </div>
-        </x-ui::card>
-        <x-ui::card>
-            <div class="text-center">
-                <p class="text-3xl font-bold text-blue-600 dark:text-blue-400">{{ \Illuminate\Support\Facades\DB::table('sessions')->whereNotNull('user_id')->distinct('user_id')->count('user_id') }}</p>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Active Sessions</p>
-            </div>
-        </x-ui::card>
-        <x-ui::card>
-            <div class="text-center">
-                <p class="text-3xl font-bold text-amber-600 dark:text-amber-400">{{ \App\Models\User::onlyTrashed()->count() }}</p>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Deleted Users</p>
-            </div>
-        </x-ui::card>
+        <x-ui::stat-card value="{{ \App\Models\User::count() }}" label="Total Users" icon="users" href="{{ url('/users') }}" />
+        <x-ui::stat-card value="{{ \App\Models\User::whereNotNull('email_verified_at')->count() }}" label="Verified Users" variant="success" icon="check" />
+        <x-ui::stat-card value="{{ \Illuminate\Support\Facades\DB::table('sessions')->whereNotNull('user_id')->distinct('user_id')->count('user_id') }}" label="Active Sessions" variant="primary" icon="globe" />
+        <x-ui::stat-card value="{{ \App\Models\User::onlyTrashed()->count() }}" label="Deleted Users" variant="warning" icon="trash" href="{{ url('/users/deleted') }}" />
     </div>
 
     {{-- Quick Actions --}}
