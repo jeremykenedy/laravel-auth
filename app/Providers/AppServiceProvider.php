@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\Listeners\NotifyAdminOfNewUser;
+use App\Listeners\SendWelcomeNotification;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\URL;
@@ -17,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        // Event listeners
+        Event::listen(Registered::class, SendWelcomeNotification::class);
+        Event::listen(Registered::class, NotifyAdminOfNewUser::class);
+
         if ($this->app->environment('production')) {
             URL::forceScheme('https');
         }
