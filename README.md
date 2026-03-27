@@ -209,7 +209,7 @@ MAIL_FROM_ADDRESS=noreply@example.com
 # Create test database
 mysql -u root -h 127.0.0.1 -e "CREATE DATABASE IF NOT EXISTS modern_test;"
 
-# Run tests (57 passing)
+# Run tests (115 passing)
 php artisan test
 
 # Code style
@@ -237,7 +237,7 @@ laravel-auth/
 
 ## Routes
 
-185 routes across all packages. Key route groups:
+209 routes across all packages. Key route groups:
 
 | Path | Access | Features |
 |---|---|---|
