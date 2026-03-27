@@ -82,8 +82,13 @@ body[class*="theme-"] .ring-blue-500 {
     --tw-ring-color: var(--color-accent);
 }
 
-/* Dark mode overrides for Bootstrap 4 package views (roles, blocker, logger, phpinfo) */
-/* Uses html.dark body prefix for higher specificity than Bootstrap defaults */
+/*
+ * Dark mode overrides for Bootstrap 4 package views.
+ * These apply when config('ui-kit.css_framework') is 'bootstrap4' or 'bootstrap5'.
+ * When in Tailwind mode, packages load their Tailwind views instead,
+ * so these rules only affect Bootstrap view rendering.
+ * Uses html.dark body prefix for specificity over Bootstrap defaults.
+ */
 html.dark body .card { background-color: #1f2937; border-color: #374151; color: #e5e7eb; }
 html.dark body .card-header { background-color: #111827; border-color: #374151; color: #f3f4f6; }
 html.dark body .card-body { background-color: #1f2937; color: #e5e7eb; }
@@ -99,28 +104,16 @@ html.dark body .btn-success { background-color: #16a34a; border-color: #16a34a; 
 html.dark body .btn-danger { background-color: #dc2626; border-color: #dc2626; }
 html.dark body .btn-warning { background-color: #d97706; border-color: #d97706; }
 html.dark body .btn-info { background-color: #0891b2; border-color: #0891b2; }
-html.dark body .btn-outline-primary { color: #60a5fa; border-color: #60a5fa; }
-html.dark body .btn-outline-danger { color: #f87171; border-color: #f87171; }
 html.dark body .modal-content { background-color: #1f2937; border-color: #374151; color: #e5e7eb; }
 html.dark body .modal-header { border-color: #374151; }
 html.dark body .modal-footer { border-color: #374151; }
 html.dark body .form-control { background-color: #374151; border-color: #4b5563; color: #e5e7eb; }
 html.dark body .form-control::placeholder { color: #9ca3af; }
-html.dark body .custom-select, html.dark body select.form-control { background-color: #374151; border-color: #4b5563; color: #e5e7eb; }
-html.dark body .input-group-text { background-color: #374151; border-color: #4b5563; color: #9ca3af; }
 html.dark body .dropdown-menu { background-color: #1f2937; border-color: #374151; }
 html.dark body .dropdown-item { color: #e5e7eb; }
 html.dark body .dropdown-item:hover { background-color: #374151; }
-html.dark body .badge-primary, html.dark body .badge-info { background-color: #2563eb; }
-html.dark body .badge-success { background-color: #16a34a; }
-html.dark body .badge-danger { background-color: #dc2626; }
-html.dark body .badge-warning { background-color: #d97706; color: #fff; }
 html.dark body .text-muted { color: #9ca3af; }
 html.dark body .bg-light { background-color: #111827; }
 html.dark body .bg-white { background-color: #1f2937; }
-html.dark body .close { color: #e5e7eb; text-shadow: none; }
-html.dark body .accordion .card { border-color: #374151; }
 html.dark body .pagination .page-link { background-color: #1f2937; border-color: #374151; color: #60a5fa; }
 html.dark body .pagination .page-item.active .page-link { background-color: #2563eb; border-color: #2563eb; color: #fff; }
-html.dark body .pagination .page-item.disabled .page-link { background-color: #111827; color: #6b7280; }
-html.dark body a:not([class*="btn"]):not([class*="nav"]):not([class*="dropdown"]) { color: #60a5fa; }
