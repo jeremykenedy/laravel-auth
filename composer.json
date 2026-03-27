@@ -184,6 +184,11 @@
             "@php artisan config:clear --ansi",
             "@php artisan test"
         ],
+        "fresh": [
+            "@php artisan migrate:fresh --seed --ansi",
+            "@php artisan view:clear --ansi",
+            "@php artisan config:clear --ansi"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
