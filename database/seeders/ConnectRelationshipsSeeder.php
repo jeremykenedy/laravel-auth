@@ -2,24 +2,28 @@
 
 namespace Database\Seeders;
 
-use App\Models\Permission;
-use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class ConnectRelationshipsSeeder extends Seeder
 {
-    public function run(): void
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
     {
-        $permissions = Permission::all();
+        /**
+         * Get Available Permissions.
+         */
+        $permissions = config('roles.models.permission')::all();
 
-        // Attach all permissions to Super Admin and Admin
-        foreach (['superadmin', 'admin'] as $roleSlug) {
-            $role = Role::where('slug', $roleSlug)->first();
-            if ($role) {
-                foreach ($permissions as $permission) {
-                    $role->attachPermission($permission);
-                }
-            }
+        /**
+         * Attach Permissions to Roles.
+         */
+        $roleAdmin = config('roles.models.role')::where('name', '=', 'Admin')->first();
+        foreach ($permissions as $permission) {
+            $roleAdmin->attachPermission($permission);
         }
     }
 }

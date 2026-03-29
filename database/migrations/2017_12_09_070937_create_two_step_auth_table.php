@@ -12,25 +12,28 @@ class CreateTwoStepAuthTable extends Migration
      *
      * @return void
      */
-    public function up(): void
+    public function up()
     {
         $twoStepAuth = new TwoStepAuth();
         $connection = $twoStepAuth->getConnectionName();
         $table = $twoStepAuth->getTableName();
         $tableCheck = Schema::connection($connection)->hasTable($table);
 
-        if (! $tableCheck) {
-            Schema::connection($connection)->create($table, function (Blueprint $table) {
-                $table->increments('id');
-                $table->unsignedBigInteger('userId')->unsigned()->index();
-                $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
-                $table->string('authCode')->nullable();
-                $table->integer('authCount');
-                $table->boolean('authStatus')->default(false);
-                $table->dateTime('authDate')->nullable();
-                $table->dateTime('requestDate')->nullable();
-                $table->timestamps();
-            });
+        if (!$tableCheck) {
+            Schema::connection($connection)->create(
+                $table,
+                function (Blueprint $table) {
+                    $table->increments('id');
+                    $table->unsignedBigInteger('userId')->unsigned()->index();
+                    $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
+                    $table->string('authCode')->nullable();
+                    $table->integer('authCount');
+                    $table->boolean('authStatus')->default(false);
+                    $table->dateTime('authDate')->nullable();
+                    $table->dateTime('requestDate')->nullable();
+                    $table->timestamps();
+                }
+            );
         }
     }
 
@@ -39,7 +42,7 @@ class CreateTwoStepAuthTable extends Migration
      *
      * @return void
      */
-    public function down(): void
+    public function down()
     {
         $twoStepAuth = new TwoStepAuth();
         $connection = $twoStepAuth->getConnectionName();

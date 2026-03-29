@@ -14,9 +14,9 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\ImpersonationController;
 use App\Http\Controllers\TermsController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\UsersManagementController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
+use Spatie\Health\Http\Controllers\HealthCheckResultsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 |
 | Thin shell routes. Package-registered routes handle profiles, themes,
 | social auth, chat, notifications, face auth, health, roles, logger,
-| blocker, 2step, phpinfo, and users management.
+| blocker, 2step, phpinfo, users management, and more.
 |
 */
 
@@ -76,7 +76,7 @@ Route::group(['middleware' => ['auth', 'verified', 'activity', 'twostep', 'check
     Route::post('/impersonate-stop', [ImpersonationController::class, 'stop'])->name('impersonate.stop');
 });
 
-// Admin Routes
+// Admin Routes (non-user-management)
 Route::group(['middleware' => ['auth', 'verified', 'level:5', 'activity', 'twostep', 'checkblocked']], function () {
     // Admin route listing
     Route::get('/routes', [AdminDetailsController::class, 'listRoutes'])->name('admin.routes');
@@ -85,22 +85,11 @@ Route::group(['middleware' => ['auth', 'verified', 'level:5', 'activity', 'twost
     Route::get('/settings', [AppSettingsController::class, 'index'])->name('admin.settings');
     Route::put('/settings', [AppSettingsController::class, 'update'])->name('admin.settings.update');
 
-    // User export
-    Route::get('users/export', [UsersManagementController::class, 'export'])->name('users.export');
+    // Admin Notifications now handled by laravel-notifications package
+    // Route: GET /notifications/send (uses notifications.send.middleware from config)
 
-    // Soft-deleted users management (must be before resource route)
-    Route::get('users/deleted', [UsersManagementController::class, 'deletedIndex'])->name('deleted.index');
-    Route::get('users/deleted/{id}', [UsersManagementController::class, 'deletedShow'])->name('deleted.show');
-    Route::put('users/deleted/{id}', [UsersManagementController::class, 'restore'])->name('deleted.restore');
-    Route::delete('users/deleted/{id}', [UsersManagementController::class, 'forceDestroy'])->name('deleted.destroy');
-
-    Route::resource('users', UsersManagementController::class, [
-        'names' => [
-            'index' => 'users',
-            'destroy' => 'user.destroy',
-        ],
-    ])->where(['user' => '[0-9]+']);
-    Route::post('search-users', [UsersManagementController::class, 'search'])->name('search-users');
+    // Spatie Health Dashboard
+    Route::get('/health-checks', HealthCheckResultsController::class)->name('health-checks');
 });
 
 Route::redirect('/php', '/phpinfo', 301);

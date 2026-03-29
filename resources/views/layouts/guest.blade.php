@@ -8,16 +8,7 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
-        {{-- Prevent Alpine FOUC + dark mode flash --}}
-        <style>[x-cloak] { display: none !important; }</style>
-        <script>
-            (function() {
-                var t = localStorage.getItem('theme');
-                if (t === 'dark' || (t !== 'light' && t !== 'dark' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                    document.documentElement.classList.add('dark');
-                }
-            })();
-        </script>
+        @include('darkmode::init-script')
 
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
             @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -31,7 +22,9 @@
             <link rel="stylesheet" href="{{ $themeCssFile }}">
         @endif
 
-        @livewireStyles
+        @if(config('ui-kit.frontend') === 'livewire' || config('ui-kit.frontend') === 'blade')
+            @livewireStyles
+        @endif
         @yield('head')
     </head>
     <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] dark:text-[#EDEDEC] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col font-sans antialiased {{ $themeBodyClass ?? '' }}">
@@ -50,7 +43,9 @@
             if (session('error')) $tm->error(session('error'));
         @endphp
         @include('toast::toasts')
-        @livewireScripts
+        @if(config('ui-kit.frontend') === 'livewire' || config('ui-kit.frontend') === 'blade')
+            @livewireScripts
+        @endif
         @yield('footer_scripts')
     </body>
 </html>

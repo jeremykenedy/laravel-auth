@@ -11,13 +11,13 @@ class CreatePermissionsTable extends Migration
      *
      * @return void
      */
-    public function up(): void
+    public function up()
     {
         $connection = config('roles.connection');
         $table = config('roles.permissionsTable');
         $tableCheck = Schema::connection($connection)->hasTable($table);
 
-        if (! $tableCheck) {
+        if (!$tableCheck) {
             Schema::connection($connection)->create($table, function (Blueprint $table) {
                 $table->increments('id')->unsigned();
                 $table->string('name');
@@ -35,7 +35,7 @@ class CreatePermissionsTable extends Migration
      *
      * @return void
      */
-    public function down(): void
+    public function down()
     {
         $connection = config('roles.connection');
         $table = config('roles.permissionsTable');

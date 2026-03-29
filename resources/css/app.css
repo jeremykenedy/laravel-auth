@@ -20,6 +20,10 @@
     display: none !important;
 }
 
+a, button, [role="button"], input[type="submit"], input[type="button"], .btn, select, label[for] {
+    cursor: pointer;
+}
+
 /* Theme color overrides via body class from ThemeComposer */
 .theme-cerulean { --color-accent: #2fa4e7; --color-accent-hover: #1a8ccf; }
 .theme-cosmo { --color-accent: #2780e3; --color-accent-hover: #1a6dca; }
@@ -47,11 +51,7 @@
 .theme-yeti { --color-accent: #008cba; --color-accent-hover: #00739a; }
 .theme-zephyr { --color-accent: #3459e6; --color-accent-hover: #2445c7; }
 
-/* Apply accent color to key UI elements when theme is active */
-body[class*="theme-"] nav {
-    border-bottom-color: var(--color-accent);
-    border-bottom-width: 2px;
-}
+/* Accent color on interactive elements when theme is active */
 
 body[class*="theme-"] a.text-blue-600,
 body[class*="theme-"] a.text-blue-500,

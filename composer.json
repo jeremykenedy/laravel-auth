@@ -17,7 +17,7 @@
         },
         {
             "type": "path",
-            "url": "packages/laravel-ip-capture"
+            "url": "packages/laravel-avatar"
         },
         {
             "type": "path",
@@ -46,10 +46,6 @@
         {
             "type": "path",
             "url": "packages/laravel-chat"
-        },
-        {
-            "type": "path",
-            "url": "packages/laravel-observability"
         },
         {
             "type": "path",
@@ -97,11 +93,15 @@
         },
         {
             "type": "path",
-            "url": "packages/laravel-seedster"
+            "url": "packages/laravel-simple-search"
         },
         {
             "type": "path",
             "url": "packages/laravel-posts"
+        },
+        {
+            "type": "path",
+            "url": "packages/laravel-login-history"
         }
     ],
     "require": {
@@ -109,22 +109,26 @@
         "guzzlehttp/guzzle": "^7.2",
         "jenssegers/agent": "^2.6",
         "jeremykenedy/laravel-auth-api": "@dev",
+        "jeremykenedy/laravel-avatar": "@dev",
         "jeremykenedy/laravel-blocker": "@dev",
         "jeremykenedy/laravel-captcha": "@dev",
         "jeremykenedy/laravel-chat": "@dev",
+        "jeremykenedy/laravel-darkmode-toggle": "^1.0",
         "jeremykenedy/laravel-email-database-log": "@dev",
         "jeremykenedy/laravel-exception-notifier": "@dev",
         "jeremykenedy/laravel-face-auth": "@dev",
-        "jeremykenedy/laravel-ip-capture": "@dev",
+        "jeremykenedy/laravel-ip-capture": "^1.0",
         "jeremykenedy/laravel-logger": "@dev",
+        "jeremykenedy/laravel-login-history": "@dev",
         "jeremykenedy/laravel-native-kit": "@dev",
-        "jeremykenedy/laravel-posts": "@dev",
         "jeremykenedy/laravel-notifications": "@dev",
-        "jeremykenedy/laravel-observability": "@dev",
+        "jeremykenedy/laravel-observability": "^1.0",
         "jeremykenedy/laravel-phpinfo": "@dev",
+        "jeremykenedy/laravel-posts": "@dev",
         "jeremykenedy/laravel-profiles": "@dev",
         "jeremykenedy/laravel-roles": "@dev",
-        "jeremykenedy/laravel-seedster": "@dev",
+        "jeremykenedy/laravel-seedster": "^1.0",
+        "jeremykenedy/laravel-simple-search": "@dev",
         "jeremykenedy/laravel-socialite-kit": "@dev",
         "jeremykenedy/laravel-themes": "@dev",
         "jeremykenedy/laravel-toast": "@dev",
@@ -132,12 +136,15 @@
         "jeremykenedy/laravel-users": "@dev",
         "jeremykenedy/laravel2step": "@dev",
         "laravel/framework": "^13.0",
+        "laravel/horizon": "^5.45",
+        "laravel/reverb": "^1.9",
         "laravel/sanctum": "^4.2",
         "laravel/socialite": "^5.6",
         "laravel/tinker": "^3.0",
         "livewire/livewire": "^3.0",
         "nesbot/carbon": "^3.8",
         "predis/predis": "^2.1",
+        "spatie/laravel-health": "^1.39",
         "spatie/laravel-html": "^3.12"
     },
     "require-dev": {
