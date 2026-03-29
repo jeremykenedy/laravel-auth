@@ -23,6 +23,7 @@ class UserFactory extends Factory
             'password' => Hash::make('password'),
             'token' => Str::random(64),
             'activated' => true,
+            'chat_enabled' => false,
             'remember_token' => Str::random(10),
             'signup_ip_address' => fake()->ipv4(),
         ];
@@ -32,6 +33,13 @@ class UserFactory extends Factory
     {
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
+        ]);
+    }
+
+    public function chatEnabled(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'chat_enabled' => true,
         ]);
     }
 }

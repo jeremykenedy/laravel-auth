@@ -9,26 +9,26 @@ return [
     */
 
     // The parent blade file
-    'laravelPhpInfoBladeExtended' => 'layouts.app',
+    'laravelPhpInfoBladeExtended'   => 'layouts.app',
 
     // Enable `auth` middleware
-    'authEnabled' => true,
+    'authEnabled'                   => true,
 
     // Enable Optional Roles Middleware
-    'rolesEnabled' => true,
+    'rolesEnabled'                  => false,
 
     // Optional Roles Middleware
-    'rolesMiddlware' => ['verified', 'level:5', 'activity', 'twostep'],
+    'rolesMiddlware'                => 'level:5',
 
     // Switch Between bootstrap 3 `panel` and bootstrap 4 `card` classes
-    'bootstapVersion' => '4',
+    'bootstapVersion'               => '4',
 
     // Additional Card classes for styling -
     // See: https://getbootstrap.com/docs/4.0/components/card/#background-and-color
     // Example classes: 'text-white bg-primary mb-3'
-    'bootstrapCardClasses' => '',
+    'bootstrapCardClasses'          => '',
 
     // Inline CSS
-    'usePHPinfoCSS' => true,
+    'usePHPinfoCSS'                 => true,
 
 ];

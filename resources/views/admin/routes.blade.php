@@ -3,7 +3,7 @@
 @section('template_title', 'Routes')
 
 @section('content')
-<div class="container mx-auto max-w-7xl px-4 py-8">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="flex items-center justify-between mb-6">
         <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Application Routes</h1>
         <span class="text-sm text-gray-500 dark:text-gray-400">{{ $routes->count() }} routes</span>
@@ -11,17 +11,17 @@
 
     <x-ui::card>
         <div class="overflow-x-auto">
-            <table class="min-w-full text-sm">
-                <thead>
-                    <tr class="border-b border-gray-200 dark:border-gray-700">
-                        <th class="px-4 py-3 text-left font-medium text-gray-500 dark:text-gray-400">Method</th>
-                        <th class="px-4 py-3 text-left font-medium text-gray-500 dark:text-gray-400">URI</th>
-                        <th class="px-4 py-3 text-left font-medium text-gray-500 dark:text-gray-400">Name</th>
-                        <th class="px-4 py-3 text-left font-medium text-gray-500 dark:text-gray-400">Action</th>
-                        <th class="px-4 py-3 text-left font-medium text-gray-500 dark:text-gray-400">Middleware</th>
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-sm">
+                <thead class="bg-gray-50 dark:bg-gray-800">
+                    <tr>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Method</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">URI</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider hidden lg:table-cell">Name</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider hidden xl:table-cell">Action</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider hidden xl:table-cell">Middleware</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+                <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
                     @foreach($routes as $route)
                         <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50">
                             <td class="px-4 py-2.5 whitespace-nowrap">
@@ -39,9 +39,9 @@
                                 @endforeach
                             </td>
                             <td class="px-4 py-2.5 font-mono text-xs text-gray-900 dark:text-gray-100">{{ $route['uri'] }}</td>
-                            <td class="px-4 py-2.5 text-xs text-gray-500 dark:text-gray-400">{{ $route['name'] }}</td>
-                            <td class="px-4 py-2.5 text-xs text-gray-500 dark:text-gray-400 max-w-xs truncate" title="{{ $route['action'] }}">{{ $route['action'] }}</td>
-                            <td class="px-4 py-2.5 text-xs text-gray-400 dark:text-gray-500 max-w-xs truncate" title="{{ $route['middleware'] }}">{{ $route['middleware'] }}</td>
+                            <td class="px-4 py-2.5 text-xs text-gray-500 dark:text-gray-400 hidden lg:table-cell">{{ $route['name'] }}</td>
+                            <td class="px-4 py-2.5 text-xs text-gray-500 dark:text-gray-400 max-w-xs truncate hidden xl:table-cell" title="{{ $route['action'] }}">{{ $route['action'] }}</td>
+                            <td class="px-4 py-2.5 text-xs text-gray-400 dark:text-gray-500 max-w-xs truncate hidden xl:table-cell" title="{{ $route['middleware'] }}">{{ $route['middleware'] }}</td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -63,8 +63,8 @@ it('admin sees admin dashboard with stats and quick actions', function () {
 
 // Superadmin can access all admin pages
 it('superadmin can access all admin features', function () {
-    $superadmin = User::factory()->create();
-    $superadmin->attachRole(Role::where('slug', 'superadmin')->first());
+    $superadmin = User::factory()->create(['email_verified_at' => now()]);
+    $superadmin->attachRole(Role::where('slug', 'admin')->first());
 
     $pages = ['/users', '/routes', '/settings', '/activity', '/roles', '/admin/posts', '/admin/themes'];
 

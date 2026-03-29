@@ -25,7 +25,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'defaultUserModel' => env('LARAVEL_2STEP_USER_MODEL', 'App\Models\User'),
+    'defaultUserModel' => env('LARAVEL_2STEP_USER_MODEL', 'App\User'),
 
     /*
     |--------------------------------------------------------------------------
@@ -66,5 +66,30 @@ return [
     */
 
     'laravel2stepEmailQueue' => env('LARAVEL_2STEP_EMAIL_QUEUE', null),
+
+    /*
+    |--------------------------------------------------------------------------
+    | TOTP / Authenticator App Settings
+    |--------------------------------------------------------------------------
+    */
+
+    'totp' => [
+        'enabled' => env('LARAVEL_2STEP_TOTP_ENABLED', true),
+        'window' => env('LARAVEL_2STEP_TOTP_WINDOW', 1),
+        'recovery_codes_count' => env('LARAVEL_2STEP_RECOVERY_CODES', 8),
+        'issuer' => env('LARAVEL_2STEP_TOTP_ISSUER', null),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Verification Method
+    |--------------------------------------------------------------------------
+    | Options: 'email', 'totp', 'both'
+    | - email: 6-digit code sent via email (original behavior)
+    | - totp: TOTP via authenticator app (Google Authenticator, Authy)
+    | - both: User can choose either method
+    */
+
+    'method' => env('LARAVEL_2STEP_METHOD', 'email'),
 
 ];

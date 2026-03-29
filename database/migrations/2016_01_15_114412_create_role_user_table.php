@@ -11,14 +11,14 @@ class CreateRoleUserTable extends Migration
      *
      * @return void
      */
-    public function up(): void
+    public function up()
     {
         $connection = config('roles.connection');
         $table = config('roles.roleUserTable');
         $rolesTable = config('roles.rolesTable');
         $tableCheck = Schema::connection($connection)->hasTable($table);
 
-        if (! $tableCheck) {
+        if (!$tableCheck) {
             Schema::connection($connection)->create($table, function (Blueprint $table) use ($rolesTable) {
                 $table->increments('id')->unsigned();
                 $table->integer('role_id')->unsigned()->index();
@@ -36,7 +36,7 @@ class CreateRoleUserTable extends Migration
      *
      * @return void
      */
-    public function down(): void
+    public function down()
     {
         $connection = config('roles.connection');
         $table = config('roles.roleUserTable');

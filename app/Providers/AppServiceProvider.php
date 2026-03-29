@@ -15,6 +15,16 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+use Spatie\Health\Checks\Checks\CacheCheck;
+use Spatie\Health\Checks\Checks\DatabaseCheck;
+use Spatie\Health\Checks\Checks\DebugModeCheck;
+use Spatie\Health\Checks\Checks\EnvironmentCheck;
+use Spatie\Health\Checks\Checks\HorizonCheck;
+use Spatie\Health\Checks\Checks\OptimizedAppCheck;
+use Spatie\Health\Checks\Checks\RedisCheck;
+use Spatie\Health\Checks\Checks\ScheduleCheck;
+use Spatie\Health\Checks\Checks\UsedDiskSpaceCheck;
+use Spatie\Health\Facades\Health;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -47,5 +57,21 @@ class AppServiceProvider extends ServiceProvider
 
         // Register HTML macros (icon_link, image_link, icon_btn, show_username)
         require base_path('app/Logic/Macros/HtmlMacros.php');
+
+        // Register Spatie Health checks
+        Health::checks([
+            UsedDiskSpaceCheck::new()
+                ->warnWhenUsedSpaceIsAbovePercentage(70)
+                ->failWhenUsedSpaceIsAbovePercentage(90),
+            DatabaseCheck::new(),
+            CacheCheck::new(),
+            ScheduleCheck::new()
+                ->heartbeatMaxAgeInMinutes(2),
+            DebugModeCheck::new(),
+            EnvironmentCheck::new(),
+            RedisCheck::new(),
+            HorizonCheck::new(),
+            OptimizedAppCheck::new(),
+        ]);
     }
 }
