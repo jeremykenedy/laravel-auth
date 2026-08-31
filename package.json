@@ -61,7 +61,7 @@
     "sass-loader": "^16.0.3",
     "stylelint": "^16.3.1",
     "stylelint-webpack-plugin": "^5.0.1",
-    "tailwindcss": "^3.2.7",
+    "tailwindcss": "^4.3.3",
     "terser": "^5.16.5",
     "toasty": "^6.0.3",
     "tw-elements": "^1.0.0-beta1",
