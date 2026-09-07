@@ -29,6 +29,7 @@ If you like this, you will love [Laravel Auth Spa](https://github.com/jeremykene
 -   [About](#about)
 -   [Features](#features)
 -   [Installation Instructions](#installation-instructions)
+    -   [Full XAMPP / Localhost Guide](INSTALLATION.md)
     -   [Build the Front End Assets with Mix](#build-the-front-end-assets-with-mix)
     -   [Optionally Build Cache](#optionally-build-cache)
 -   [Seeds](#seeds)

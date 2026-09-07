@@ -84,13 +84,11 @@
                                 {!! trans('titles.profile') !!}
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <form class="logout-form" action="{{ route('logout') }}" method="POST" style="margin:0;">
                                 @csrf
+                                <button type="submit" class="dropdown-item">
+                                    <i class="fa fa-sign-out-alt mr-1"></i>{{ __('Sign Out') }}
+                                </button>
                             </form>
                         </div>
                     </li>

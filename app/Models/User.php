@@ -90,6 +90,7 @@ class User extends Authenticatable
         'admin_ip_address'                  => 'string',
         'updated_ip_address'                => 'string',
         'deleted_ip_address'                => 'string',
+        'email_verified_at'                 => 'datetime',
         'created_at'                        => 'datetime',
         'updated_at'                        => 'datetime',
         'deleted_at'                        => 'datetime',
@@ -98,6 +99,27 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
+    }
+
+    /**
+     * Scope a query to only include active (activated) users.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('activated', true);
+    }
+
+    /**
+     * Get the user's full name.
+     *
+     * @return string
+     */
+    public function getFullNameAttribute(): string
+    {
+        return trim("{$this->first_name} {$this->last_name}") ?: $this->name;
     }
 
     /**
