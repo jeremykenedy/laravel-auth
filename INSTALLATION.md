@@ -8,11 +8,11 @@ A step-by-step guide for setting up **Laravel Auth** on **XAMPP (localhost)** or
 
 | Requirement | Minimum Version |
 |---|---|
-| PHP | 8.1+ |
+| PHP | 8.2+ |
 | MySQL | 5.7+ / MariaDB 10.4+ |
 | Composer | 2.x |
 | Node.js + npm | 18.x+ |
-| XAMPP | 8.x (with PHP 8.1+) |
+| XAMPP | 8.x (with PHP 8.2+) |
 
 ---
 
@@ -107,8 +107,9 @@ After seeding, you can login with:
 
 | Role | Email | Password |
 |---|---|---|
-| Admin | `admin@admin.com` | `password` |
+| Admin | `admin@user.com` | `password` |
 | User | `user@user.com` | `password` |
+| Unverified | `unverified@user.com` | `password` |
 
 > **Important:** Change these passwords immediately after first login.
 
@@ -122,7 +123,7 @@ After seeding, you can login with:
 - ✅ Remember Me
 - ✅ Logout with session invalidation + confirmation
 - ✅ Social authentication (Google, Facebook, Twitter, GitHub, etc.)
-- ✅ Two-step verification (optional, off by default)
+- ✅ Two-step verification (enabled by default, see `LARAVEL_2STEP_ENABLED`)
 - ✅ Roles & Permissions system
 - ✅ User profile with avatar
 - ✅ Admin panel (user management, themes, logs)
@@ -145,7 +146,7 @@ ACTIVATION_LIMIT_MAX_ATTEMPTS=3  # Max activation attempts before lockout
 ### Two-Step Auth
 
 ```dotenv
-LARAVEL_2STEP_ENABLED=false      # Enable two-step verification
+LARAVEL_2STEP_ENABLED=true       # Two-step verification (defaults to true)
 ```
 
 ### Social Login (Socialite)
@@ -159,7 +160,7 @@ GOOGLE_REDIRECT=http://localhost:8000/social/handle/google
 
 GITHUB_ID=your-github-id
 GITHUB_SECRET=your-github-secret
-GITHUB_URL=http://localhost:8000/social/handle/github
+GITHUB_REDIRECT=http://localhost:8000/social/handle/github
 ```
 
 ### reCAPTCHA

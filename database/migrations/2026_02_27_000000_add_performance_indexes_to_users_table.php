@@ -17,17 +17,17 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             // Index on activated column: used heavily for filtering active vs unverified users
-            if (! $this->indexExists('users', 'users_activated_index')) {
+            if (! Schema::hasIndex('users', 'users_activated_index')) {
                 $table->index('activated', 'users_activated_index');
             }
 
             // Index on deleted_at for soft delete queries
-            if (! $this->indexExists('users', 'users_deleted_at_index')) {
+            if (! Schema::hasIndex('users', 'users_deleted_at_index')) {
                 $table->index('deleted_at', 'users_deleted_at_index');
             }
 
-            // Composite index for activated + deleted_at — most common combined filter
-            if (! $this->indexExists('users', 'users_activated_deleted_at_index')) {
+            // Composite index for activated + deleted_at - most common combined filter
+            if (! Schema::hasIndex('users', 'users_activated_deleted_at_index')) {
                 $table->index(['activated', 'deleted_at'], 'users_activated_deleted_at_index');
             }
         });
@@ -39,29 +39,15 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropIndexIfExists('users_activated_index');
-            $table->dropIndexIfExists('users_deleted_at_index');
-            $table->dropIndexIfExists('users_activated_deleted_at_index');
+            foreach ([
+                'users_activated_index',
+                'users_deleted_at_index',
+                'users_activated_deleted_at_index',
+            ] as $index) {
+                if (Schema::hasIndex('users', $index)) {
+                    $table->dropIndex($index);
+                }
+            }
         });
-    }
-
-    /**
-     * Check whether a given index already exists on the table.
-     *
-     * @param  string  $table
-     * @param  string  $indexName
-     * @return bool
-     */
-    private function indexExists(string $table, string $indexName): bool
-    {
-        $conn    = Schema::getConnection();
-        $dbName  = $conn->getDatabaseName();
-        $indexes = $conn->select(
-            "SELECT INDEX_NAME FROM information_schema.STATISTICS
-             WHERE TABLE_SCHEMA = ? AND TABLE_NAME = ? AND INDEX_NAME = ?",
-            [$dbName, $table, $indexName]
-        );
-
-        return count($indexes) > 0;
     }
 };

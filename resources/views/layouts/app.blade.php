@@ -7,10 +7,9 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         {{-- Security headers via meta --}}
         <meta name="referrer" content="strict-origin-when-cross-origin">
-        <meta name="robots" content="noindex, nofollow">
         <title>@hasSection('template_title')@yield('template_title') | @endif {{ config('app.name', Lang::get('titles.app')) }}</title>
         <meta name="description" content="@yield('meta_description', config('app.name') . ' - Secure Authentication')">
-        <meta name="author" content="jeremykenedy">
+        <meta name="author" content="Jeremy Kenedy">
         <link rel="shortcut icon" href="/favicon.ico">
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />

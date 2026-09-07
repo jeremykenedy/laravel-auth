@@ -36,9 +36,9 @@
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <div class="alert alert-success alert-dismissible auto-dismiss fade show" role="alert">
                             <i class="fa fa-check-circle mr-2"></i>{{ session('status') }}
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="{{ __('Close') }}"><span aria-hidden="true">&times;</span></button>
                         </div>
                     @endif
 
