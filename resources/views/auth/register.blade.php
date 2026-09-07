@@ -204,7 +204,7 @@
                                     required
                                     autocomplete="new-password"
                                 >
-                                <button type="button" class="password-toggle" id="togglePassword" tabindex="-1">
+                                <button type="button" class="password-toggle" id="togglePassword" aria-label="{{ __('Show password') }}" aria-pressed="false" aria-controls="password">
                                     <i class="fa fa-eye" id="togglePasswordIcon"></i>
                                 </button>
                                 @if ($errors->has('password'))
@@ -250,7 +250,7 @@
                                     required
                                     autocomplete="new-password"
                                 >
-                                <button type="button" class="password-toggle" id="togglePasswordConfirm" tabindex="-1">
+                                <button type="button" class="password-toggle" id="togglePasswordConfirm" aria-label="{{ __('Show password confirmation') }}" aria-pressed="false" aria-controls="password-confirm">
                                     <i class="fa fa-eye" id="togglePasswordConfirmIcon"></i>
                                 </button>
                                 @if ($errors->has('password_confirmation'))
@@ -314,6 +314,7 @@
                     pwd.type = show ? 'text' : 'password';
                     icon.classList.toggle('fa-eye',       !show);
                     icon.classList.toggle('fa-eye-slash',  show);
+                    btn.setAttribute('aria-pressed', show ? 'true' : 'false');
                 });
             }
         }

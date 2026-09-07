@@ -78,12 +78,14 @@
     <div class="row justify-content-center w-100">
         <div class="col-12 col-sm-9 col-md-7 col-lg-5">
 
-            {{-- Flash Messages --}}
-            @if (session('status'))
-                <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+            {{-- Flash Messages. `partials.form-status` (rendered by the layout) already handles
+                 the status+message pair used by ActivateController/SocialController, where `status`
+                 is an alert type. Only render here when `status` is a standalone message. --}}
+            @if (session('status') && ! session('message'))
+                <div class="alert alert-success alert-dismissible auto-dismiss fade show mb-3" role="alert">
                     <i class="fa fa-check-circle mr-2"></i>{{ session('status') }}
-                    <button type="button" class="close" data-dismiss="alert">
-                        <span>&times;</span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="{{ __('Close') }}">
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
             @endif
@@ -154,7 +156,7 @@
                                     required
                                     autocomplete="current-password"
                                 >
-                                <button type="button" class="password-toggle" id="togglePassword" tabindex="-1" aria-label="{{ __('Toggle password visibility') }}">
+                                <button type="button" class="password-toggle" id="togglePassword" aria-label="{{ __('Show password') }}" aria-pressed="false" aria-controls="password">
                                     <i class="fa fa-eye" id="togglePasswordIcon"></i>
                                 </button>
                                 @if ($errors->has('password'))
@@ -227,6 +229,7 @@
                     pwd.type       = isPassword ? 'text' : 'password';
                     icon.classList.toggle('fa-eye',      !isPassword);
                     icon.classList.toggle('fa-eye-slash', isPassword);
+                    btn.setAttribute('aria-pressed', isPassword ? 'true' : 'false');
                 });
             }
         })();

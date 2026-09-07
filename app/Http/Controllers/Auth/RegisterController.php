@@ -78,7 +78,7 @@ class RegisterController extends Controller
                 'name'                  => 'required|string|max:255|unique:users|alpha_dash',
                 'first_name'            => 'nullable|string|max:255|alpha_dash',
                 'last_name'             => 'nullable|string|max:255|alpha_dash',
-                'email'                 => 'required|string|email:rfc,dns|max:255|unique:users',
+                'email'                 => 'required|string|email:rfc|max:255|unique:users',
                 'password'              => [
                     'required',
                     'confirmed',
@@ -119,10 +119,10 @@ class RegisterController extends Controller
         $ipAddress = new CaptureIpTrait();
 
         if (config('settings.activation')) {
-            $role      = Role::where('slug', '=', 'unverified')->first();
+            $role = Role::where('slug', '=', 'unverified')->first();
             $activated = false;
         } else {
-            $role      = Role::where('slug', '=', 'user')->first();
+            $role = Role::where('slug', '=', 'user')->first();
             $activated = true;
         }
 

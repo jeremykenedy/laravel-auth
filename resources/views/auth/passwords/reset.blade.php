@@ -45,9 +45,9 @@
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <div class="alert alert-success alert-dismissible auto-dismiss fade show" role="alert">
                             <i class="fa fa-check-circle mr-2"></i>{{ session('status') }}
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="{{ __('Close') }}"><span aria-hidden="true">&times;</span></button>
                         </div>
                     @endif
 
@@ -107,7 +107,7 @@
                                     required
                                     autocomplete="new-password"
                                 >
-                                <button type="button" class="password-toggle" id="togglePassword" tabindex="-1">
+                                <button type="button" class="password-toggle" id="togglePassword" aria-label="{{ __('Show password') }}" aria-pressed="false" aria-controls="password">
                                     <i class="fa fa-eye" id="togglePasswordIcon"></i>
                                 </button>
                                 @if ($errors->has('password'))
@@ -153,7 +153,7 @@
                                     required
                                     autocomplete="new-password"
                                 >
-                                <button type="button" class="password-toggle" id="togglePasswordConfirm" tabindex="-1">
+                                <button type="button" class="password-toggle" id="togglePasswordConfirm" aria-label="{{ __('Show password confirmation') }}" aria-pressed="false" aria-controls="password-confirm">
                                     <i class="fa fa-eye" id="togglePasswordConfirmIcon"></i>
                                 </button>
                                 @if ($errors->has('password_confirmation'))
@@ -189,6 +189,7 @@
                 pwd.type = show ? 'text' : 'password';
                 icon.classList.toggle('fa-eye',       !show);
                 icon.classList.toggle('fa-eye-slash',  show);
+                btn.setAttribute('aria-pressed', show ? 'true' : 'false');
             });
         }
     }
