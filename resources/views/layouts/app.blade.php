@@ -5,8 +5,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        {{-- Security headers via meta --}}
+        <meta name="referrer" content="strict-origin-when-cross-origin">
         <title>@hasSection('template_title')@yield('template_title') | @endif {{ config('app.name', Lang::get('titles.app')) }}</title>
-        <meta name="description" content="">
+        <meta name="description" content="@yield('meta_description', config('app.name') . ' - Secure Authentication')">
         <meta name="author" content="Jeremy Kenedy">
         <link rel="shortcut icon" href="/favicon.ico">
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -61,5 +63,28 @@
         @endif
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         @yield('footer_scripts')
+        <script>
+            // Logout confirmation
+            document.addEventListener('DOMContentLoaded', function () {
+                var logoutForms = document.querySelectorAll('.logout-form');
+                logoutForms.forEach(function (form) {
+                    form.addEventListener('submit', function (e) {
+                        if (!confirm('{{ __("Are you sure you want to sign out?") }}')) {
+                            e.preventDefault();
+                        }
+                    });
+                });
+
+                // Auto-dismiss success alerts after 5 seconds
+                setTimeout(function () {
+                    var alerts = document.querySelectorAll('.alert-success.auto-dismiss');
+                    alerts.forEach(function (el) {
+                        el.style.transition = 'opacity .5s';
+                        el.style.opacity    = '0';
+                        setTimeout(function () { el.remove(); }, 600);
+                    });
+                }, 5000);
+            });
+        </script>
     </body>
 </html>
