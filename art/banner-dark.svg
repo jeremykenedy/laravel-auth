@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" width="800" height="200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c0a09"/>
+      <stop offset="1" stop-color="#1c1917"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="800" height="200" rx="16" fill="url(#bg)"/>
+
+  <g transform="translate(600,20)">
+    <circle cx="40" cy="35" r="24" fill="none" stroke="#a78bfa" stroke-width="9"/>
+    <rect x="10" y="50" width="60" height="55" rx="10" fill="#8b5cf6"/>
+    <circle cx="40" cy="72" r="6" fill="#161412"/>
+    <rect x="37" y="76" width="6" height="14" fill="#161412"/>
+  </g>
+
+  <text x="24" y="80" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="40" font-weight="700" letter-spacing="-.5" fill="#fff">Laravel Auth</text>
+  <text x="24" y="112" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" fill="#a8a29e">Laravel 12 authentication, roles, social login &amp; user profiles</text>
+
+  <g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="10" font-weight="500" text-anchor="middle">
+    <rect x="24" y="128" width="92" height="22" rx="11" fill="#1a1a1a" opacity=".8" stroke="#a78bfa" stroke-width=".8"/>
+    <text x="70" y="142" fill="#a78bfa">Social Login</text>
+
+    <rect x="126" y="128" width="140" height="22" rx="11" fill="#1a1a1a" opacity=".8" stroke="#60a5fa" stroke-width=".8"/>
+    <text x="196" y="142" fill="#60a5fa">Roles &amp; Permissions</text>
+
+    <rect x="276" y="128" width="50" height="22" rx="11" fill="#1a1a1a" opacity=".8" stroke="#4ade80" stroke-width=".8"/>
+    <text x="301" y="142" fill="#4ade80">2FA</text>
+
+    <rect x="336" y="128" width="92" height="22" rx="11" fill="#1a1a1a" opacity=".8" stroke="#fbbf24" stroke-width=".8"/>
+    <text x="382" y="142" fill="#fbbf24">Soft Deletes</text>
+
+    <rect x="438" y="128" width="92" height="22" rx="11" fill="#1a1a1a" opacity=".8" stroke="#f87171" stroke-width=".8"/>
+    <text x="484" y="142" fill="#f87171">Activity Log</text>
+  </g>
+</svg>
