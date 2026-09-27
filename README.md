@@ -1,10 +1,29 @@
-## Laravel Auth
+<p align="center">
+    <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="art/banner-dark.svg">
+        <source media="(prefers-color-scheme: light)" srcset="art/banner-light.svg">
+        <img src="art/banner-light.svg" alt="Laravel Auth" width="800">
+    </picture>
+</p>
 
-#### Laravel Auth is a Complete Build of Laravel 12 with Email Registration Verification, Social Authentication, User Roles and Permissions, User Profiles, and Admin restricted user management system. Built on Bootstrap 4.
+<p align="center">Laravel Auth is a Complete Build of Laravel 12 with Email Registration Verification, Social Authentication, User Roles and Permissions, User Profiles, and Admin restricted user management system. Built on Bootstrap 4.</p>
 
-[![Tests](https://github.com/jeremykenedy/laravel-auth/actions/workflows/laravel.yml/badge.svg)](https://github.com/jeremykenedy/laravel-auth/actions/workflows/laravel.yml)
-[![StyleCI](https://styleci.io/repos/44714043/shield?branch=master)](https://styleci.io/repos/44714043)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<p align="center">
+    <a href="https://github.com/jeremykenedy/laravel-auth/actions/workflows/laravel.yml"><img src="https://github.com/jeremykenedy/laravel-auth/actions/workflows/laravel.yml/badge.svg" alt="Tests"></a>
+    <a href="https://styleci.io/repos/44714043"><img src="https://styleci.io/repos/44714043/shield?branch=master" alt="StyleCI"></a>
+    <a href="https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/?branch=master"><img src="https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality"></a>
+    <a href="https://scrutinizer-ci.com/code-intelligence"><img src="https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/badges/code-intelligence.svg?b=master" alt="Code Intelligence Status"></a>
+    <a href="#contributors"><img src="https://img.shields.io/badge/all_contributors-23-orange.svg?style=flat-square" alt="All Contributors"></a>
+    <a href="https://madewithlaravel.com/p/laravel-auth/shield-link"><img src="https://madewithlaravel.com/storage/repo-shields/1342-shield.svg" alt="MadeWithLaravel.com shield"></a>
+    <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+</p>
+
+<p align="center">
+    <a href="https://github.com/sponsors/jeremykenedy"><img src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86" alt="Sponsor me on GitHub"></a>
+    <a href="https://github.com/jeremykenedy/laravel-auth/stargazers"><img src="https://img.shields.io/github/stars/jeremykenedy/laravel-auth?style=social" alt="GitHub Stars"></a>
+    <a href="https://github.com/jeremykenedy"><img src="https://img.shields.io/github/followers/jeremykenedy?style=social" alt="Follow on GitHub"></a>
+    <a href="https://twitter.com/intent/follow?screen_name=developernator"><img src="https://img.shields.io/twitter/follow/developernator?style=social&logo=twitter" alt="Follow on Twitter"></a>
+</p>
 
 ### Note
 
@@ -23,10 +42,10 @@ If you like this, you will love [Laravel Auth Spa](https://github.com/jeremykene
 -   [Socialite](docs/socialite.md)
 -   [Environment File](docs/environment.md)
 -   [Updates](docs/updates.md)
--   [Screenshots](docs/screenshots.md)
+-   [Screenshots](#screenshots)
 -   [File Tree](docs/file-tree.md)
 -   [Opening an Issue](#opening-an-issue)
--   [Laravel Auth License](#laravel-auth-license)
+-   [License](#license)
 -   [Contributors](#Contributors)
 
 ### About
@@ -37,55 +56,46 @@ Laravel 12 with user authentication, registration with email confirmation, socia
 
 #### A [Laravel](https://laravel.com/) 12 with [Bootstrap](https://getbootstrap.com) 4.x project.
 
-| Laravel Auth Features                                                                                                                                |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Built on [Laravel](https://laravel.com/) 12                                                                                                          |
-| Built on [Bootstrap](https://getbootstrap.com/) 4                                                                                                    |
-| Uses [MySQL](https://github.com/mysql) Database (can be changed)                                                                                     |
-| Uses [Artisan](https://laravel.com/docs/master/artisan) to manage database migration, schema creations, and create/publish page controller templates |
-| Dependencies are managed with [COMPOSER](https://getcomposer.org/)                                                                                   |
-| Laravel Scaffolding **User** and **Administrator Authentication**.                                                                                   |
-| User [Socialite Logins](https://github.com/laravel/socialite) ready to go - See API list used below                                                  |
-| [Google Maps API v3](https://developers.google.com/maps/documentation/javascript/) for User Location lookup and Geocoding                            |
-| CRUD (Create, Read, Update, Delete) Themes Management                                                                                                |
-| CRUD (Create, Read, Update, Delete) User Management                                                                                                  |
-| Robust [Laravel Logging](https://laravel.com/docs/master/errors#logging) with admin UI using MonoLog                                                 |
-| Google [reCaptcha Protection with Google API](https://developers.google.com/recaptcha/)                                                              |
-| User Registration with email verification                                                                                                            |
-| Makes use of Laravel [Mix](https://laravel.com/docs/master/mix) to compile assets                                                                    |
-| Makes use of [Language Localization Files](https://laravel.com/docs/master/localization)                                                             |
-| Active Nav states using [Laravel Requests](https://laravel.com/docs/master/requests)                                                                 |
-| Restrict User Email Activation Attempts                                                                                                              |
-| Capture IP to users table upon signup                                                                                                                |
-| Uses [Laravel Debugger](https://github.com/barryvdh/laravel-debugbar) for development                                                                |
-| Makes use of [Password Strength Meter](https://github.com/elboletaire/password-strength-meter)                                                       |
-| Makes use of [hideShowPassword](https://github.com/cloudfour/hideShowPassword)                                                                       |
-| User Avatar Image AJAX Upload with [Dropzone.js](https://www.dropzonejs.com/#configuration)                                                          |
-| User Gravatar using [Gravatar API](https://github.com/creativeorange/gravatar)                                                                       |
-| User Password Reset via Email Token                                                                                                                  |
-| User Login with remember password                                                                                                                    |
-| User [Roles/ACL Implementation](https://github.com/jeremykenedy/laravel-roles)                                                                       |
-| Roles and Permissions GUI                                                                                                                            |
-| Makes use of [Laravel's Soft Delete Structure](https://laravel.com/docs/master/eloquent#soft-deleting)                                               |
-| Soft Deleted Users Management System                                                                                                                 |
-| Permanently Delete Soft Deleted Users                                                                                                                |
-| User Delete Account with Goodbye email                                                                                                               |
-| User Restore Deleted Account Token                                                                                                                   |
-| Restore Soft Deleted Users                                                                                                                           |
-| View Soft Deleted Users                                                                                                                              |
-| Captures Soft Delete Date                                                                                                                            |
-| Captures Soft Delete IP                                                                                                                              |
-| Admin Routing Details UI                                                                                                                             |
-| Admin PHP Information UI                                                                                                                             |
-| Eloquent user profiles                                                                                                                               |
-| User Themes                                                                                                                                          |
-| 404 Page                                                                                                                                             |
-| 403 Page                                                                                                                                             |
-| Configurable Email Notification via [Laravel-Exception-Notifier](https://github.com/jeremykenedy/laravel-exception-notifier)                         |
-| Activity Logging using [Laravel-logger](https://github.com/jeremykenedy/laravel-logger)                                                              |
-| Optional 2-step account login verfication with [Laravel 2-Step Verification](https://github.com/jeremykenedy/laravel2step)                           |
-| Uses [Laravel PHP Info](https://github.com/jeremykenedy/laravel-phpinfo) package                                                                     |
-| Uses [Laravel Blocker](https://github.com/jeremykenedy/laravel-blocker) package                                                                      |
+-   Built on [Laravel](https://laravel.com/) 12 and [Bootstrap](https://getbootstrap.com/) 4
+-   Uses [MySQL](https://github.com/mysql) Database (can be changed)
+-   Uses [Artisan](https://laravel.com/docs/master/artisan) to manage database migration, schema creations, and create/publish page controller templates
+-   Dependencies are managed with [COMPOSER](https://getcomposer.org/)
+-   Laravel Scaffolding **User** and **Administrator Authentication**
+-   User [Socialite Logins](https://github.com/laravel/socialite) ready to go - See API list used below
+-   [Google Maps API v3](https://developers.google.com/maps/documentation/javascript/) for User Location lookup and Geocoding
+-   CRUD (Create, Read, Update, Delete) Themes Management
+-   CRUD (Create, Read, Update, Delete) User Management
+-   Robust [Laravel Logging](https://laravel.com/docs/master/errors#logging) with admin UI using MonoLog
+-   Google [reCaptcha Protection with Google API](https://developers.google.com/recaptcha/)
+-   User Registration with email verification
+-   Makes use of Laravel [Mix](https://laravel.com/docs/master/mix) to compile assets
+-   Makes use of [Language Localization Files](https://laravel.com/docs/master/localization)
+-   Active Nav states using [Laravel Requests](https://laravel.com/docs/master/requests)
+-   Restrict User Email Activation Attempts
+-   Capture IP to users table upon signup
+-   Uses [Laravel Debugger](https://github.com/barryvdh/laravel-debugbar) for development
+-   Makes use of [Password Strength Meter](https://github.com/elboletaire/password-strength-meter)
+-   Makes use of [hideShowPassword](https://github.com/cloudfour/hideShowPassword)
+-   User Avatar Image AJAX Upload with [Dropzone.js](https://www.dropzonejs.com/#configuration)
+-   User Gravatar using [Gravatar API](https://github.com/creativeorange/gravatar)
+-   User Password Reset via Email Token
+-   User Login with remember password
+-   User [Roles/ACL Implementation](https://github.com/jeremykenedy/laravel-roles) with a Roles and Permissions GUI
+-   Makes use of [Laravel's Soft Delete Structure](https://laravel.com/docs/master/eloquent#soft-deleting)
+-   Soft Deleted Users Management System: restore, permanently delete, and view soft deleted users
+-   Captures Soft Delete Date and Soft Delete IP
+-   User Delete Account with Goodbye email
+-   User Restore Deleted Account Token
+-   Admin Routing Details UI
+-   Admin PHP Information UI
+-   Eloquent user profiles
+-   User Themes
+-   404 and 403 Pages
+-   Configurable Email Notification via [Laravel-Exception-Notifier](https://github.com/jeremykenedy/laravel-exception-notifier)
+-   Activity Logging using [Laravel-logger](https://github.com/jeremykenedy/laravel-logger)
+-   Optional 2-step account login verfication with [Laravel 2-Step Verification](https://github.com/jeremykenedy/laravel2step)
+-   Uses [Laravel PHP Info](https://github.com/jeremykenedy/laravel-phpinfo) package
+-   Uses [Laravel Blocker](https://github.com/jeremykenedy/laravel-blocker) package
 
 ### Installation Instructions
 
@@ -130,8 +140,6 @@ php artisan vendor:publish --tag=laravel-email-database-log-migration
 
 1. From the projects root folder run `php artisan config:cache`
 
-###### And thats it with the caveat of setting up and configuring your development environment. I recommend [Laravel Homestead](https://laravel.com/docs/master/homestead)
-
 ### Seeds
 
 Seeded roles, permissions, users, themes, and blocker lists: see [docs/seeds.md](docs/seeds.md).
@@ -154,7 +162,69 @@ Changelog: see [docs/updates.md](docs/updates.md).
 
 ### Screenshots
 
-See [docs/screenshots.md](docs/screenshots.md).
+![Login](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/1laravel-auth2-login.jpg)
+![Register](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/2laravel-auth2-register.jpg)
+![Registration Confirmation](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/3laravel-auth2-account-req-activation.jpg)
+![Registration Email](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/4laravel-auth2-activation-email.jpg)
+![Registration Complete](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/5laravel-auth2-userhome-with-flash-success.jpg)
+![Intial User Profile](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/6laravel-auth2-profile-mapless.jpg)
+![Edit User Profile](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/7laravel-auth2-profile-edit.jpg)
+![Find Location Using Google Maps API v3](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/8laravel-auth2-edit-profile-lookup.jpg)
+![Profile Updated](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/9laravel-auth2-flash-success.jpg)
+![Profile Semi-completed](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/10laravel-auth2-profile-with-map.jpg)
+
+![Admin Panel Users List](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/11laravel-auth2-users-list.jpg)
+![Admin Panel Delete User](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/12laravel-auth2-modal-delete.jpg)
+![Admin Panel Flash Error](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/13laravel-auth2-flash-error.jpg)
+![Admin Panel Show User](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/14laravel-auth2-show-edit.jpg)
+![Admin Panel Edit User](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/15laravel-auth2-edit-user.jpg)
+![Admin Panel Save Edits](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/16laravel-auth2-modal-save.jpg)
+![Admin Panel Create User](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/17laravel-auth-create-user.jpg)
+
+![dashboard](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/1-dashboard.jpg)
+![drilldown](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/2-drilldown.jpg)
+![confirm-clear](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/3-confirm-clear.jpg)
+![log-cleared-msg](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/4-log-cleared-msg.jpg)
+![cleared-log](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/5-cleared-log.jpg)
+![confirm-restore](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/5-confirm-restore.jpg)
+![confirm-destroy](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/6-confirm-destroy.jpg)
+![success-destroy](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/7-success-destroy.jpg)
+![success-restored](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/8-success-restored.jpg)
+![cleared-drilldown](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/9-cleared-drilldown.jpg)
+
+![Verification Page](https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/1-verification-page.jpeg)
+![Resent Email Modal](https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/2-verification-email-resent.jpeg)
+![Lock Warning Modal](https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/3-lock-warning.jpeg)
+![Locked Page](https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/4-lock-screen.jpeg)
+![Verification Email](https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/5-verification-email.jpeg)
+
+![Laravel Blocker Dashboard](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker0.jpg)
+![Laravel Blocker Search](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker1.jpg)
+![Laravel Blocker Create](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker2.jpg)
+![Laravel Blocker View](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker3.jpg)
+![Laravel Blocker Edit](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker4.jpg)
+![Laravel Blocker Delete Modal](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker5.jpg)
+![Laravel Blocker Deleted Dashboard](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker6.jpg)
+![Laravel Blocker Destroy Modal](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker7.jpg)
+![Laravel Blocker Flash Message](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker8.jpg)
+![Laravel Blocker Restore Modal](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker9.jpg)
+![Laravel Blocker Restore Flash Message](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker10.jpg)
+
+![Laravel Roles GUI Dashboard](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-1.png)
+![Laravel Roles GUI Create New Role](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-2.png)
+![Laravel Roles GUI Edit Role](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-3.png)
+![Laravel Roles GUI Show Role](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-4.png)
+![Laravel Roles GUI Delete Role](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-5.png)
+![Laravel Roles GUI Success Deleted](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-6.png)
+![Laravel Roles GUI Deleted Role Show](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-7.png)
+![Laravel Roles GUI Restore Role](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-8.png)
+![Laravel Roles GUI Delete Permission](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-9.png)
+![Laravel Roles GUI Show Permission](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-10.png)
+![Laravel Roles GUI Permissions Dashboard](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-11.png)
+![Laravel Roles GUI Create New Permission](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-12.png)
+![Laravel Roles GUI Roles Soft Deletes Dashboard](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-13.png)
+![Laravel Roles GUI Permissions Soft Deletes Dashboard](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-14.png)
+![Laravel Roles GUI Success Restore](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-15.png)
 
 ### File Tree
 
@@ -172,9 +242,9 @@ Before opening an issue there are a couple of considerations:
 -   **Please Show that you have made an attempt** to _look into the issue_.
 -   **Please Check** to see if the issue you are _reporting is a duplicate_ of a previous reported issue.
 
-### Laravel Auth License
+### License
 
-Licensed under the [MIT license](https://opensource.org/licenses/MIT). Enjoy!
+This package is open-sourced software licensed under the [MIT license](LICENSE).
 
 ### Contributors
 

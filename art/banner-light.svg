@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" width="800" height="200">
+  <rect x="0" y="0" width="800" height="200" rx="16" fill="#fff" stroke="#e5e7eb"/>
+
+  <g transform="translate(600,20)">
+    <circle cx="40" cy="35" r="24" fill="none" stroke="#6d28d9" stroke-width="9"/>
+    <rect x="10" y="50" width="60" height="55" rx="10" fill="#8b5cf6"/>
+    <circle cx="40" cy="72" r="6" fill="#fff"/>
+    <rect x="37" y="76" width="6" height="14" fill="#fff"/>
+  </g>
+
+  <text x="24" y="80" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="40" font-weight="700" letter-spacing="-.5" fill="#0f172a">Laravel Auth</text>
+  <text x="24" y="112" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" fill="#64748b">Laravel 12 authentication, roles, social login &amp; user profiles</text>
+
+  <g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="10" font-weight="500" text-anchor="middle">
+    <rect x="24" y="128" width="92" height="22" rx="11" fill="#f5f3ff" stroke="#6d28d9" stroke-width=".8"/>
+    <text x="70" y="142" fill="#6d28d9">Social Login</text>
+
+    <rect x="126" y="128" width="140" height="22" rx="11" fill="#eff6ff" stroke="#1e40af" stroke-width=".8"/>
+    <text x="196" y="142" fill="#1e40af">Roles &amp; Permissions</text>
+
+    <rect x="276" y="128" width="50" height="22" rx="11" fill="#f0fdf4" stroke="#166534" stroke-width=".8"/>
+    <text x="301" y="142" fill="#166534">2FA</text>
+
+    <rect x="336" y="128" width="92" height="22" rx="11" fill="#fffbeb" stroke="#b45309" stroke-width=".8"/>
+    <text x="382" y="142" fill="#b45309">Soft Deletes</text>
+
+    <rect x="438" y="128" width="92" height="22" rx="11" fill="#fef2f2" stroke="#b91c1c" stroke-width=".8"/>
+    <text x="484" y="142" fill="#b91c1c">Activity Log</text>
+  </g>
+</svg>
