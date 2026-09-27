@@ -144,6 +144,11 @@ class ProfilesController extends Controller
     {
         $currentUser = Auth::user();
         $user = User::findOrFail($id);
+
+        if ($user->id !== $currentUser->id) {
+            return redirect('profile/'.$currentUser->name.'/edit')->with('error', trans('profile.notYourProfile'));
+        }
+
         $emailCheck = ($request->input('email') !== '') && ($request->input('email') !== $user->email);
         $ipAddress = new CaptureIpTrait();
         $rules = [];
@@ -204,6 +209,11 @@ class ProfilesController extends Controller
     {
         $currentUser = Auth::user();
         $user = User::findOrFail($id);
+
+        if ($user->id !== $currentUser->id) {
+            return redirect('profile/'.$currentUser->name.'/edit')->with('error', trans('profile.notYourProfile'));
+        }
+
         $ipAddress = new CaptureIpTrait();
 
         if ($request->input('password') !== null) {
