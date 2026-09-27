@@ -1,0 +1,45 @@
+# Updates
+
+[Back to README](../README.md)
+
+-   Update to Laravel 12
+-   Update to Laravel 10 (Major Changes)
+-   Update to Laravel 9
+-   Update to Laravel 8
+-   Update to Laravel 7 [See changes in this PR](https://github.com/jeremykenedy/laravel-auth/pull/348/files)
+-   Update to Laravel 6
+-   Update to Laravel 5.8
+-   Added [Laravel Blocker Package](https://github.com/jeremykenedy/laravel-blocker)
+-   Added [PHP Info Package](https://github.com/jeremykenedy/laravel-phpinfo)
+-   Update to Bootstrap 4
+-   Update to Laravel 5.7
+-   Added optional 2-step account login verfication with [Laravel 2-Step Verification](https://github.com/jeremykenedy/laravel2step)
+-   Added activity logging using [Laravel-logger](https://github.com/jeremykenedy/laravel-logger)
+-   Added Configurable Email Notification using [Laravel-Exception-Notifier](https://github.com/jeremykenedy/laravel-exception-notifier)
+-   Update to Laravel 5.5
+-   Added User Delete with Goodbye email
+-   Added User Restore Deleted Account from email with secure token
+-   Added [Soft Deletes](https://laravel.com/docs/master/eloquent#soft-deleting) and Soft Deletes Management panel
+-   Added User Account Settings to Profile Edit
+-   Added User Change Password to Profile Edit
+-   Added User Delete Account to Profile Edit
+-   Added [Password Strength Meter](https://github.com/elboletaire/password-strength-meter)
+-   Added [hideShowPassword](https://github.com/cloudfour/hideShowPassword)
+-   Added Admin Routing Details
+-   Admin PHP Information
+-   Added Robust [Laravel Logging](https://laravel.com/docs/master/errors#logging) with admin UI using MonoLog
+-   Added Active Nav states using [Laravel Requests](https://laravel.com/docs/master/requests)
+-   Added [Laravel Debugger](https://github.com/barryvdh/laravel-debugbar) with Service Provider to manage status in `.env` file.
+-   Updated Capture IP not found IP address
+-   Added User Avatar Image AJAX Upload with [Dropzone.js](http://www.dropzonejs.com/#configuration)
+-   Added User Gravatar using Gravatar API
+-   Added Themes Management.
+-   Add user profiles with seeded list and global view
+-   Major overhaul on Laravel 5.4
+-   Update from Laravel 5.1 to 5.2
+-   Added eloquent editable user profile
+-   Added IP Capture
+-   Added Google Maps API v3 for User Location lookup
+-   Added Google Maps API v3 for User Location Input Geocoding
+-   Added Google Maps API v3 for User Location Map with Options
+-   Added CRUD(Create, Read, Update, Delete) User Management
