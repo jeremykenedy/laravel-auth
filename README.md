@@ -199,8 +199,7 @@ Changelog: see [docs/updates.md](docs/updates.md).
         <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/16laravel-auth2-modal-save.jpg" alt="Admin Panel Save Edits" width="400"></td>
     </tr>
     <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/17laravel-auth-create-user.jpg" alt="Admin Panel Create User" width="400"></td>
-        <td width="50%"></td>
+        <td width="100%" colspan="2"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/17laravel-auth-create-user.jpg" alt="Admin Panel Create User" width="400"></td>
     </tr>
 </table>
 
@@ -237,8 +236,7 @@ Changelog: see [docs/updates.md](docs/updates.md).
         <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/4-lock-screen.jpeg" alt="Locked Page" width="400"></td>
     </tr>
     <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/5-verification-email.jpeg" alt="Verification Email" width="400"></td>
-        <td width="50%"></td>
+        <td width="100%" colspan="2"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/5-verification-email.jpeg" alt="Verification Email" width="400"></td>
     </tr>
 </table>
 
@@ -264,8 +262,7 @@ Changelog: see [docs/updates.md](docs/updates.md).
         <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker9.jpg" alt="Laravel Blocker Restore Modal" width="400"></td>
     </tr>
     <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker10.jpg" alt="Laravel Blocker Restore Flash Message" width="400"></td>
-        <td width="50%"></td>
+        <td width="100%" colspan="2"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker10.jpg" alt="Laravel Blocker Restore Flash Message" width="400"></td>
     </tr>
 </table>
 
@@ -299,8 +296,7 @@ Changelog: see [docs/updates.md](docs/updates.md).
         <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-14.png" alt="Laravel Roles GUI Permissions Soft Deletes Dashboard" width="400"></td>
     </tr>
     <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-15.png" alt="Laravel Roles GUI Success Restore" width="400"></td>
-        <td width="50%"></td>
+        <td width="100%" colspan="2"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-15.png" alt="Laravel Roles GUI Success Restore" width="400"></td>
     </tr>
 </table>
 
