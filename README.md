@@ -162,143 +162,69 @@ Changelog: see [docs/updates.md](docs/updates.md).
 
 ### Screenshots
 
-<table>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/1laravel-auth2-login.jpg" alt="Login" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/2laravel-auth2-register.jpg" alt="Register" width="400"></td>
-    </tr>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/3laravel-auth2-account-req-activation.jpg" alt="Registration Confirmation" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/4laravel-auth2-activation-email.jpg" alt="Registration Email" width="400"></td>
-    </tr>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/5laravel-auth2-userhome-with-flash-success.jpg" alt="Registration Complete" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/6laravel-auth2-profile-mapless.jpg" alt="Intial User Profile" width="400"></td>
-    </tr>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/7laravel-auth2-profile-edit.jpg" alt="Edit User Profile" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/8laravel-auth2-edit-profile-lookup.jpg" alt="Find Location Using Google Maps API v3" width="400"></td>
-    </tr>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/9laravel-auth2-flash-success.jpg" alt="Profile Updated" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/10laravel-auth2-profile-with-map.jpg" alt="Profile Semi-completed" width="400"></td>
-    </tr>
-</table>
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/1laravel-auth2-login.jpg" alt="Login" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/2laravel-auth2-register.jpg" alt="Register" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/3laravel-auth2-account-req-activation.jpg" alt="Registration Confirmation" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/4laravel-auth2-activation-email.jpg" alt="Registration Email" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/5laravel-auth2-userhome-with-flash-success.jpg" alt="Registration Complete" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/6laravel-auth2-profile-mapless.jpg" alt="Intial User Profile" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/7laravel-auth2-profile-edit.jpg" alt="Edit User Profile" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/8laravel-auth2-edit-profile-lookup.jpg" alt="Find Location Using Google Maps API v3" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/9laravel-auth2-flash-success.jpg" alt="Profile Updated" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/10laravel-auth2-profile-with-map.jpg" alt="Profile Semi-completed" width="400">
 
-<table>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/11laravel-auth2-users-list.jpg" alt="Admin Panel Users List" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/12laravel-auth2-modal-delete.jpg" alt="Admin Panel Delete User" width="400"></td>
-    </tr>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/13laravel-auth2-flash-error.jpg" alt="Admin Panel Flash Error" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/14laravel-auth2-show-edit.jpg" alt="Admin Panel Show User" width="400"></td>
-    </tr>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/15laravel-auth2-edit-user.jpg" alt="Admin Panel Edit User" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/16laravel-auth2-modal-save.jpg" alt="Admin Panel Save Edits" width="400"></td>
-    </tr>
-    <tr>
-        <td width="100%" colspan="2"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/17laravel-auth-create-user.jpg" alt="Admin Panel Create User" width="400"></td>
-    </tr>
-</table>
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/11laravel-auth2-users-list.jpg" alt="Admin Panel Users List" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/12laravel-auth2-modal-delete.jpg" alt="Admin Panel Delete User" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/13laravel-auth2-flash-error.jpg" alt="Admin Panel Flash Error" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/14laravel-auth2-show-edit.jpg" alt="Admin Panel Show User" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/15laravel-auth2-edit-user.jpg" alt="Admin Panel Edit User" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/16laravel-auth2-modal-save.jpg" alt="Admin Panel Save Edits" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/17laravel-auth-create-user.jpg" alt="Admin Panel Create User" width="400">
 
-<table>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/1-dashboard.jpg" alt="dashboard" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/2-drilldown.jpg" alt="drilldown" width="400"></td>
-    </tr>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/3-confirm-clear.jpg" alt="confirm-clear" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/4-log-cleared-msg.jpg" alt="log-cleared-msg" width="400"></td>
-    </tr>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/5-cleared-log.jpg" alt="cleared-log" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/5-confirm-restore.jpg" alt="confirm-restore" width="400"></td>
-    </tr>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/6-confirm-destroy.jpg" alt="confirm-destroy" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/7-success-destroy.jpg" alt="success-destroy" width="400"></td>
-    </tr>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/8-success-restored.jpg" alt="success-restored" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/9-cleared-drilldown.jpg" alt="cleared-drilldown" width="400"></td>
-    </tr>
-</table>
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/1-dashboard.jpg" alt="dashboard" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/2-drilldown.jpg" alt="drilldown" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/3-confirm-clear.jpg" alt="confirm-clear" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/4-log-cleared-msg.jpg" alt="log-cleared-msg" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/5-cleared-log.jpg" alt="cleared-log" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/5-confirm-restore.jpg" alt="confirm-restore" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/6-confirm-destroy.jpg" alt="confirm-destroy" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/7-success-destroy.jpg" alt="success-destroy" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/8-success-restored.jpg" alt="success-restored" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-logger/9-cleared-drilldown.jpg" alt="cleared-drilldown" width="400">
 
-<table>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/1-verification-page.jpeg" alt="Verification Page" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/2-verification-email-resent.jpeg" alt="Resent Email Modal" width="400"></td>
-    </tr>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/3-lock-warning.jpeg" alt="Lock Warning Modal" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/4-lock-screen.jpeg" alt="Locked Page" width="400"></td>
-    </tr>
-    <tr>
-        <td width="100%" colspan="2"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/5-verification-email.jpeg" alt="Verification Email" width="400"></td>
-    </tr>
-</table>
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/1-verification-page.jpeg" alt="Verification Page" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/2-verification-email-resent.jpeg" alt="Resent Email Modal" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/3-lock-warning.jpeg" alt="Lock Warning Modal" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/4-lock-screen.jpeg" alt="Locked Page" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel2step/5-verification-email.jpeg" alt="Verification Email" width="400">
 
-<table>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker0.jpg" alt="Laravel Blocker Dashboard" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker1.jpg" alt="Laravel Blocker Search" width="400"></td>
-    </tr>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker2.jpg" alt="Laravel Blocker Create" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker3.jpg" alt="Laravel Blocker View" width="400"></td>
-    </tr>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker4.jpg" alt="Laravel Blocker Edit" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker5.jpg" alt="Laravel Blocker Delete Modal" width="400"></td>
-    </tr>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker6.jpg" alt="Laravel Blocker Deleted Dashboard" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker7.jpg" alt="Laravel Blocker Destroy Modal" width="400"></td>
-    </tr>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker8.jpg" alt="Laravel Blocker Flash Message" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker9.jpg" alt="Laravel Blocker Restore Modal" width="400"></td>
-    </tr>
-    <tr>
-        <td width="100%" colspan="2"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker10.jpg" alt="Laravel Blocker Restore Flash Message" width="400"></td>
-    </tr>
-</table>
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker0.jpg" alt="Laravel Blocker Dashboard" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker1.jpg" alt="Laravel Blocker Search" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker2.jpg" alt="Laravel Blocker Create" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker3.jpg" alt="Laravel Blocker View" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker4.jpg" alt="Laravel Blocker Edit" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker5.jpg" alt="Laravel Blocker Delete Modal" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker6.jpg" alt="Laravel Blocker Deleted Dashboard" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker7.jpg" alt="Laravel Blocker Destroy Modal" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker8.jpg" alt="Laravel Blocker Flash Message" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker9.jpg" alt="Laravel Blocker Restore Modal" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-blocker/blocker10.jpg" alt="Laravel Blocker Restore Flash Message" width="400">
 
-<table>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-1.png" alt="Laravel Roles GUI Dashboard" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-2.png" alt="Laravel Roles GUI Create New Role" width="400"></td>
-    </tr>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-3.png" alt="Laravel Roles GUI Edit Role" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-4.png" alt="Laravel Roles GUI Show Role" width="400"></td>
-    </tr>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-5.png" alt="Laravel Roles GUI Delete Role" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-6.png" alt="Laravel Roles GUI Success Deleted" width="400"></td>
-    </tr>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-7.png" alt="Laravel Roles GUI Deleted Role Show" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-8.png" alt="Laravel Roles GUI Restore Role" width="400"></td>
-    </tr>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-9.png" alt="Laravel Roles GUI Delete Permission" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-10.png" alt="Laravel Roles GUI Show Permission" width="400"></td>
-    </tr>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-11.png" alt="Laravel Roles GUI Permissions Dashboard" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-12.png" alt="Laravel Roles GUI Create New Permission" width="400"></td>
-    </tr>
-    <tr>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-13.png" alt="Laravel Roles GUI Roles Soft Deletes Dashboard" width="400"></td>
-        <td width="50%"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-14.png" alt="Laravel Roles GUI Permissions Soft Deletes Dashboard" width="400"></td>
-    </tr>
-    <tr>
-        <td width="100%" colspan="2"><img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-15.png" alt="Laravel Roles GUI Success Restore" width="400"></td>
-    </tr>
-</table>
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-1.png" alt="Laravel Roles GUI Dashboard" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-2.png" alt="Laravel Roles GUI Create New Role" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-3.png" alt="Laravel Roles GUI Edit Role" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-4.png" alt="Laravel Roles GUI Show Role" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-5.png" alt="Laravel Roles GUI Delete Role" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-6.png" alt="Laravel Roles GUI Success Deleted" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-7.png" alt="Laravel Roles GUI Deleted Role Show" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-8.png" alt="Laravel Roles GUI Restore Role" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-9.png" alt="Laravel Roles GUI Delete Permission" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-10.png" alt="Laravel Roles GUI Show Permission" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-11.png" alt="Laravel Roles GUI Permissions Dashboard" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-12.png" alt="Laravel Roles GUI Create New Permission" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-13.png" alt="Laravel Roles GUI Roles Soft Deletes Dashboard" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-14.png" alt="Laravel Roles GUI Permissions Soft Deletes Dashboard" width="400">
+<img src="https://s3-us-west-2.amazonaws.com/github-project-images/laravel-roles/screenshots/roles-gui-15.png" alt="Laravel Roles GUI Success Restore" width="400">
 
 
 ### File Tree
