@@ -209,13 +209,13 @@ INSTAGRAM_REDIRECT_URI=https://YOURWEBURLHERE.COM/social/handle/instagram
 
 ## Laravel Development Packages Used References
 
--   https://laravel.com/docs/master/authentication
--   https://laravel.com/docs/master/authorization
--   https://laravel.com/docs/master/routing
--   https://laravel.com/docs/master/migrations
--   https://laravel.com/docs/master/queries
--   https://laravel.com/docs/master/views
--   https://laravel.com/docs/master/eloquent
--   https://laravel.com/docs/master/eloquent-relationships
--   https://laravel.com/docs/master/requests
--   https://laravel.com/docs/master/errors
+-   <https://laravel.com/docs/master/authentication>
+-   <https://laravel.com/docs/master/authorization>
+- https://laravel.com/docs/master/routing
+-   <https://laravel.com/docs/master/migrations>
+-   <https://laravel.com/docs/master/queries>
+- https://laravel.com/docs/master/views
+-   <https://laravel.com/docs/master/eloquent>
+- https://laravel.com/docs/master/eloquent-relationships
+-   <https://laravel.com/docs/master/requests>
+- https://laravel.com/docs/master/errors
