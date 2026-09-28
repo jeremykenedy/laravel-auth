@@ -290,7 +290,7 @@ class ProfilesController extends Controller
         // Create and encrypt user account restore token
         $sepKey = $this->getSeperationKey();
         $userIdKey = $this->getIdMultiKey();
-        $restoreKey = config('settings.restoreKey');
+        $restoreKey = $this->getRestoreKey();
         $encrypter = config('settings.restoreUserEncType');
         $level1 = $user->id * $userIdKey;
         $level2 = urlencode(Uuid::generate(4).$sepKey.$level1);
@@ -346,5 +346,21 @@ class ProfilesController extends Controller
     public function getSeperationKey()
     {
         return $this->seperationKey;
+    }
+
+    /**
+     * Get User Restore Encryption Key.
+     *
+     * @return string
+     */
+    public function getRestoreKey()
+    {
+        $restoreKey = config('settings.restoreKey');
+
+        if (empty($restoreKey)) {
+            throw new \RuntimeException('USER_RESTORE_ENCRYPTION_KEY is not set. Set it in your .env file before deleting or restoring user accounts.');
+        }
+
+        return $restoreKey;
     }
 }
