@@ -86,6 +86,12 @@ class ProfilesController extends Controller
                 ->with('error_title', trans('profile.notYourProfileTitle'));
         }
 
+        $currentUser = Auth::user();
+
+        if ($user->id !== $currentUser->id) {
+            return redirect('profile/'.$currentUser->name.'/edit')->with('error', trans('profile.notYourProfile'));
+        }
+
         $themes = Theme::where('status', 1)
                         ->orderBy('name', 'asc')
                         ->get();

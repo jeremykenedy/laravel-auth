@@ -34,7 +34,6 @@ export default ({ mode }) => {
       minify: "esnext",
       reportCompressedSize: true,
       chunkSizeWarningLimit: 1600,
-      manifest: true,
       sourcemap: process.env.VITE_APP_ENV == "local" ? true : false,
       rollupOptions: {
         external: ["Vue"],
