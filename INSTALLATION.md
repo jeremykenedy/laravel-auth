@@ -1,6 +1,6 @@
 # Laravel Auth — Installation Guide
 
-A step-by-step guide for setting up **Laravel Auth** on **XAMPP (localhost)** or any standard LAMP/LEMP server.
+A step-by-step guide for setting up **Laravel Auth** on any standard LAMP/LEMP server or local development environment.
 
 ---
 
@@ -12,16 +12,14 @@ A step-by-step guide for setting up **Laravel Auth** on **XAMPP (localhost)** or
 | MySQL | 5.7+ / MariaDB 10.4+ |
 | Composer | 2.x |
 | Node.js + npm | 18.x+ |
-| XAMPP | 8.x (with PHP 8.2+) |
 
 ---
 
-## Quick Start (XAMPP)
+## Quick Start
 
 ### 1. Clone the Repository
 
 ```bash
-cd C:\xampp\htdocs
 git clone https://github.com/jeremykenedy/laravel-auth.git laravel-auth
 cd laravel-auth
 ```
@@ -52,13 +50,13 @@ Edit `.env` and update these values:
 
 ```dotenv
 APP_NAME="Laravel Auth"
-APP_URL=http://localhost/laravel-auth/public
+APP_URL=http://localhost:8000
 
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=laravel_auth   # create this database in phpMyAdmin first
+DB_DATABASE=laravel_auth
 DB_USERNAME=root
-DB_PASSWORD=               # leave empty for default XAMPP
+DB_PASSWORD=               # leave empty if your local MySQL root user has no password
 ```
 
 > **Tip:** For email verification during development, set `MAIL_MAILER=log`.  
@@ -66,7 +64,7 @@ DB_PASSWORD=               # leave empty for default XAMPP
 
 ### 5. Create the Database
 
-Open **phpMyAdmin** (`http://localhost/phpmyadmin`) and create a new database named `laravel_auth` (utf8mb4_unicode_ci collation).
+Using your preferred MySQL client (phpMyAdmin, TablePlus, the `mysql` CLI, etc.), create a new database named `laravel_auth` (utf8mb4_unicode_ci collation).
 
 ### 6. Run Migrations & Seed Data
 
@@ -75,6 +73,7 @@ php artisan migrate --seed
 ```
 
 This creates all tables and seeds:
+
 - Default roles (admin, user, unverified)
 - Default permissions
 - A demo admin user
@@ -96,8 +95,8 @@ chmod -R 775 storage bootstrap/cache
 
 | Method | URL |
 |---|---|
-| XAMPP (Apache) | `http://localhost/laravel-auth/public` |
 | Artisan Dev Server | `php artisan serve` → `http://localhost:8000` |
+| Your own web server (Apache/Nginx) | Point the document root at `public/` |
 
 ---
 
