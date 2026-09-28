@@ -75,7 +75,7 @@ class ProfilesController extends Controller
         $currentTheme = Theme::find($user->profile->theme_id);
 
         $data = [
-            'user' => $user,
+            'user'         => $user,
             'currentTheme' => $currentTheme,
         ];
 
@@ -110,8 +110,8 @@ class ProfilesController extends Controller
         $currentTheme = Theme::find($user->profile->theme_id);
 
         $data = [
-            'user' => $user,
-            'themes' => $themes,
+            'user'         => $user,
+            'themes'       => $themes,
             'currentTheme' => $currentTheme,
 
         ];
@@ -187,7 +187,7 @@ class ProfilesController extends Controller
         }
         $additionalRules = [
             'first_name' => 'nullable|string|max:255',
-            'last_name' => 'nullable|string|max:255',
+            'last_name'  => 'nullable|string|max:255',
         ];
 
         $rules = array_merge($usernameRules, $emailRules, $additionalRules);
