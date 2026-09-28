@@ -31,7 +31,6 @@
     <a href="https://github.com/sponsors/jeremykenedy"><img src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86" alt="Sponsor me on GitHub"></a>
     <a href="https://github.com/jeremykenedy/laravel-auth/stargazers"><img src="https://img.shields.io/github/stars/jeremykenedy/laravel-auth?style=social" alt="GitHub Stars"></a>
     <a href="https://github.com/jeremykenedy"><img src="https://img.shields.io/github/followers/jeremykenedy?style=social" alt="Follow on GitHub"></a>
-    <a href="https://twitter.com/intent/follow?screen_name=developernator"><img src="https://img.shields.io/twitter/follow/developernator?style=social&logo=twitter" alt="Follow on Twitter"></a>
 </p>
 
 ### Note
@@ -40,22 +39,22 @@ If you like this, you will love [Laravel Auth Spa](https://github.com/jeremykene
 
 #### Table of contents
 
--   [About](#about)
--   [Features](#features)
--   [Installation Instructions](#installation-instructions)
-    -   [Full XAMPP / Localhost Guide](INSTALLATION.md)
-    -   [Build the Front End Assets with Mix](#build-the-front-end-assets-with-mix)
-    -   [Optionally Build Cache](#optionally-build-cache)
--   [Seeds](docs/seeds.md)
--   [Routes](docs/routes.md)
--   [Socialite](docs/socialite.md)
--   [Environment File](docs/environment.md)
--   [Updates](docs/updates.md)
--   [Screenshots](#screenshots)
--   [File Tree](docs/file-tree.md)
--   [Opening an Issue](#opening-an-issue)
--   [License](#license)
--   [Contributors](#Contributors)
+- [About](#about)
+- [Features](#features)
+- [Installation Instructions](#installation-instructions)
+  - [Full Installation Guide](INSTALLATION.md)
+  - [Build the Front End Assets with Mix](#build-the-front-end-assets-with-mix)
+  - [Optionally Build Cache](#optionally-build-cache)
+- [Seeds](docs/seeds.md)
+- [Routes](docs/routes.md)
+- [Socialite](docs/socialite.md)
+- [Environment File](docs/environment.md)
+- [Updates](docs/updates.md)
+- [Screenshots](#screenshots)
+- [File Tree](docs/file-tree.md)
+- [Opening an Issue](#opening-an-issue)
+- [License](#license)
+-   [Contributors](#contributors)
 
 ### About
 
@@ -63,19 +62,19 @@ Laravel 12 with user authentication, registration with email confirmation, socia
 
 ### Features
 
-#### A [Laravel](https://laravel.com/) 12 with [Bootstrap](https://getbootstrap.com) 4.x project.
+#### A [Laravel](https://laravel.com/) 12 with [Bootstrap](https://getbootstrap.com) 4.x project
 
--   Built on [Laravel](https://laravel.com/) 12 and [Bootstrap](https://getbootstrap.com/) 4
--   Uses [MySQL](https://github.com/mysql) Database (can be changed)
--   Uses [Artisan](https://laravel.com/docs/master/artisan) to manage database migration, schema creations, and create/publish page controller templates
--   Dependencies are managed with [COMPOSER](https://getcomposer.org/)
--   Laravel Scaffolding **User** and **Administrator Authentication**
--   User [Socialite Logins](https://github.com/laravel/socialite) ready to go - See API list used below
--   [Google Maps API v3](https://developers.google.com/maps/documentation/javascript/) for User Location lookup and Geocoding
--   CRUD (Create, Read, Update, Delete) Themes Management
--   CRUD (Create, Read, Update, Delete) User Management
--   Robust [Laravel Logging](https://laravel.com/docs/master/errors#logging) with admin UI using MonoLog
--   Google [reCaptcha Protection with Google API](https://developers.google.com/recaptcha/)
+- Built on [Laravel](https://laravel.com/) 12 and [Bootstrap](https://getbootstrap.com/) 4
+- Uses [MySQL](https://github.com/mysql) Database (can be changed)
+- Uses [Artisan](https://laravel.com/docs/master/artisan) to manage database migration, schema creations, and create/publish page controller templates
+- Dependencies are managed with [COMPOSER](https://getcomposer.org/)
+- Laravel Scaffolding **User** and **Administrator Authentication**
+- User [Socialite Logins](https://github.com/laravel/socialite) ready to go - See API list used below
+- [Google Maps API v3](https://developers.google.com/maps/documentation/javascript/) for User Location lookup and Geocoding
+- CRUD (Create, Read, Update, Delete) Themes Management
+- CRUD (Create, Read, Update, Delete) User Management
+- Robust [Laravel Logging](https://laravel.com/docs/master/errors#logging) with admin UI using MonoLog
+- Google [reCaptcha Protection with Google API](https://developers.google.com/recaptcha/)
 -   User Registration with email verification
 -   Makes use of Laravel [Mix](https://laravel.com/docs/master/mix) to compile assets
 -   Makes use of [Language Localization Files](https://laravel.com/docs/master/localization)
@@ -125,22 +124,22 @@ php artisan vendor:publish --tag=laravel2step &&
 php artisan vendor:publish --tag=laravel-email-database-log-migration
 ```
 
-7. From the projects root folder run `sudo chmod -R 755 ../laravel-auth`
-8. From the projects root folder run `php artisan key:generate`
-9. From the projects root folder run `php artisan migrate`
-10. From the projects root folder run `composer dump-autoload`
-11. From the projects root folder run `php artisan db:seed`
-12. Compile the front end assets with [npm steps](#using-npm) or [yarn steps](#using-yarn).
+1. From the projects root folder run `sudo chmod -R 755 ../laravel-auth`
+2. From the projects root folder run `php artisan key:generate`
+3. From the projects root folder run `php artisan migrate`
+4. From the projects root folder run `composer dump-autoload`
+5. From the projects root folder run `php artisan db:seed`
+6. Compile the front end assets with [npm steps](#using-npm) or [yarn steps](#using-yarn).
 
 #### Build the Front End Assets with Vite
 
-##### Using Yarn:
+##### Using Yarn
 
 1. Install yarn (dependent on your distribution)
 2. From the projects root folder run `yarn install`
 3. From the projects root folder run `yarn run dev` or `yarn run build`
 
-##### Using NPM:
+##### Using NPM
 
 1. From the projects root folder run `npm install`
 2. From the projects root folder run `npm run dev` or `npm run build`

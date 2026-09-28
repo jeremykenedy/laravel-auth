@@ -4,19 +4,19 @@
 
 ## Get Socialite Login API Keys
 
--   [Google Captcha API](https://www.google.com/recaptcha/admin#list)
--   [Facebook API](https://developers.facebook.com/)
--   [Twitter API](https://apps.twitter.com/)
--   [Google &plus; API](https://console.developers.google.com/)
--   [GitHub API](https://github.com/settings/applications/new)
--   [YouTube API](https://developers.google.com/youtube/v3/getting-started)
--   [Twitch TV API](https://www.twitch.tv/kraken/oauth2/clients/new)
--   [Instagram API](https://instagram.com/developer/register/)
--   [37 Signals API](https://github.com/basecamp/basecamp-classic-api)
+- [Google Captcha API](https://www.google.com/recaptcha/admin#list)
+- [Facebook API](https://developers.facebook.com/)
+- [Twitter API](https://apps.twitter.com/)
+- [Google &plus; API](https://console.developers.google.com/)
+- [GitHub API](https://github.com/settings/applications/new)
+- [YouTube API](https://developers.google.com/youtube/v3/getting-started)
+- [Twitch TV API](https://www.twitch.tv/kraken/oauth2/clients/new)
+- [Instagram API](https://instagram.com/developer/register/)
+- [37 Signals API](https://github.com/basecamp/basecamp-classic-api)
 
 ## Add More Socialite Logins
 
--   See full list of providers: [https://socialiteproviders.github.io](https://socialiteproviders.github.io/#providers)
+- See full list of providers: [https://socialiteproviders.github.io](https://socialiteproviders.github.io/#providers)
 
 ### Steps
 
@@ -42,7 +42,7 @@
        ],
     ```
 
-5. Add the API credentials to `/.env `
+5. Add the API credentials to `/.env`
 
     - Example:
 
@@ -71,4 +71,4 @@
 
 ## Other API keys
 
--   [Google Maps API v3 Key](https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key)
+- [Google Maps API v3 Key](https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key)
