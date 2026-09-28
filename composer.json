@@ -9,7 +9,7 @@
   ],
   "license": "MIT",
   "require": {
-    "php": "^8.1",
+    "php": "^8.3",
     "ext-intl": "*",
     "creativeorange/gravatar": "^1.0",
     "doctrine/dbal": "^3.6",

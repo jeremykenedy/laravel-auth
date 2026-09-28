@@ -6,10 +6,6 @@ on:
   push:
     branches:
       - released
-  pull_request:
-    types: [approved]
-    branches:
-      - released
   pull_request_review:
     types: [submitted]
     branches:
@@ -17,29 +13,15 @@ on:
 
 jobs:
   build:
+    if: github.event_name == 'push' || github.event.review.state == 'approved'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v5
       - name: Deploy to server
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@0ff4204d59e8e51228ff73bce53f80d53301dee2 # v1.2.5
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
           script: cd ${{ secrets.SPAPATH }} && bash .scripts/deploy.sh
-# jobs:
-#   approved:
-#     if: github.event.review.state == 'approved'
-#     runs-on: ubuntu-latest
-#     steps:
-#       - run: echo "This PR was approved"
-#       - uses: actions/checkout@v2
-#       - name: Deploy to server
-#         uses: appleboy/ssh-action@master
-#         with:
-#           host: ${{ secrets.HOST }}
-#           username: ${{ secrets.USERNAME }}
-#           port: ${{ secrets.PORT }}
-#           key: ${{ secrets.SSHKEY }}
-#           script: cd ${{ secrets.SPAPATH }} && bash .scripts/deploy.sh

@@ -26,7 +26,7 @@ class ThemesManagementController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::with('profile')->get();
 
         $themes = Theme::orderBy('name', 'asc')->get();
 
@@ -143,7 +143,7 @@ class ThemesManagementController extends Controller
      */
     protected function getThemeData(Theme $theme): array
     {
-        $users = User::all();
+        $users = User::with('profile')->get();
         $themeUsers = [];
 
         foreach ($users as $user) {

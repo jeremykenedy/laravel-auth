@@ -32,7 +32,6 @@ Homestead.json
 
 ### Master Configs ###
 .env
-composer.lock
 package-lock.json
 yarn.lock
 
@@ -53,4 +52,8 @@ packages/
 # Debug Files
 npm-debug.log
 yarn-error.log
+
+# Local tooling artifacts
+VERITY.md
+.verity/
 
