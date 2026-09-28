@@ -1,0 +1,11 @@
+---
+engines:
+  phpcs:
+    enabled: false
+
+exclude_paths:
+  - "vendor/**"
+  - "node_modules/**"
+  - "public/build/**"
+  - "composer.lock"
+  - "package-lock.json"

@@ -1,4 +1,4 @@
-name: Laravel
+name: SonarCloud
 
 on:
   push:
@@ -7,13 +7,11 @@ on:
     branches: ["master"]
 
 jobs:
-  laravel-tests:
+  sonarcloud:
+    name: SonarCloud
     runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        php-version: ["8.3", "8.4"]
+    env:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
     services:
       mysql:
@@ -31,26 +29,45 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+          # Sonar needs the full history to attribute issues to new code.
+          fetch-depth: 0
+
       - uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2.37.2
         with:
-          php-version: ${{ matrix.php-version }}
-          extensions: intl
-      - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+          php-version: "8.3"
+          coverage: pcov
+
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+
       - name: Generate key
         run: php artisan key:generate
-      - name: Directory Permissions
-        run: chmod -R 777 storage bootstrap/cache
+
       - uses: actions/setup-node@v4
         with:
           node-version: "24.x"
+
       - name: Install Node Dependencies
         run: npm install
+
       - name: Build Frontend Assets
         run: npm run build
+
       - name: Run Migrations
         run: php artisan migrate --force
-      - name: Execute tests
-        run: php artisan test
+
+      - name: Build coverage report
+        run: php artisan test --coverage-clover coverage.xml
+
+      - name: Scan
+        # The scan is skipped until SONAR_TOKEN is added to the repository,
+        # so a missing token leaves the build green rather than failing it.
+        if: env.SONAR_TOKEN != ''
+        uses: SonarSource/sonarqube-scan-action@ba9859eae8dd6bd29e412f25ddbbef3d032000f4 # v8.2.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

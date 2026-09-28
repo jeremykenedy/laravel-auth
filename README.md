@@ -11,11 +11,20 @@
 <p align="center">
     <a href="https://github.com/jeremykenedy/laravel-auth/actions/workflows/laravel.yml"><img src="https://github.com/jeremykenedy/laravel-auth/actions/workflows/laravel.yml/badge.svg" alt="Tests"></a>
     <a href="https://styleci.io/repos/44714043"><img src="https://styleci.io/repos/44714043/shield?branch=master" alt="StyleCI"></a>
+    <a href="https://dashboard.gitguardian.com"><img src="https://github.com/jeremykenedy/laravel-auth/actions/workflows/gitguardian.yml/badge.svg" alt="GitGuardian scan"></a>
+    <a href="https://sonarcloud.io/summary/new_code?id=jeremykenedy_laravel-auth"><img src="https://sonarcloud.io/api/project_badges/measure?project=jeremykenedy_laravel-auth&metric=alert_status" alt="Quality Gate Status"></a>
+    <a href="https://www.codefactor.io/repository/github/jeremykenedy/laravel-auth"><img src="https://www.codefactor.io/repository/github/jeremykenedy/laravel-auth/badge" alt="CodeFactor"></a>
+    <a href="https://app.codacy.com/gh/jeremykenedy/laravel-auth/dashboard"><img src="https://app.codacy.com/project/badge/Grade/014f2e900f26447f852f547dbd7ac3bd" alt="Codacy Badge"></a>
+    <a href="https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/build-status/master"><img src="https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/badges/build.png?b=master" alt="Scrutinizer Build Status"></a>
     <a href="https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/?branch=master"><img src="https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality"></a>
     <a href="https://scrutinizer-ci.com/code-intelligence"><img src="https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/badges/code-intelligence.svg?b=master" alt="Code Intelligence Status"></a>
     <a href="#contributors"><img src="https://img.shields.io/badge/all_contributors-23-orange.svg?style=flat-square" alt="All Contributors"></a>
     <a href="https://madewithlaravel.com/p/laravel-auth/shield-link"><img src="https://madewithlaravel.com/storage/repo-shields/1342-shield.svg" alt="MadeWithLaravel.com shield"></a>
     <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+</p>
+
+<p align="center">
+    <a href="https://app.aikido.dev/repositories/3224660"><img src="https://app.aikido.dev/assets/badges/full-light-theme.svg" alt="Secured by Aikido" height="32"></a>
 </p>
 
 <p align="center">

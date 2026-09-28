@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\MissingRestoreKeyException;
 use App\Http\Requests\DeleteUserAccount;
 use App\Http\Requests\UpdateUserPasswordRequest;
 use App\Http\Requests\UpdateUserProfile;
@@ -21,7 +22,8 @@ use jeremykenedy\Uuid\Uuid;
 
 class ProfilesController extends Controller
 {
-    protected $idMultiKey = '618423'; //int
+    protected $idMultiKey = '618423'; // int
+
     protected $seperationKey = '****';
 
     /**
@@ -38,12 +40,22 @@ class ProfilesController extends Controller
      * Fetch user
      * (You can extract this to repository method).
      *
-     * @param  $username
      * @return mixed
      */
     public function getUserByUsername($username)
     {
         return User::with('profile')->wherename($username)->firstOrFail();
+    }
+
+    /**
+     * Build the profile edit path for the given username.
+     *
+     * @param  string  $username
+     * @return string
+     */
+    private function profileEditPath($username)
+    {
+        return 'profile/'.$username.'/edit';
     }
 
     /**
@@ -73,7 +85,6 @@ class ProfilesController extends Controller
     /**
      * /profiles/username/edit.
      *
-     * @param  $username
      * @return mixed
      */
     public function edit($username)
@@ -86,9 +97,15 @@ class ProfilesController extends Controller
                 ->with('error_title', trans('profile.notYourProfileTitle'));
         }
 
+        $currentUser = Auth::user();
+
+        if ($user->id !== $currentUser->id) {
+            return redirect($this->profileEditPath($currentUser->name))->with('error', trans('profile.notYourProfile'));
+        }
+
         $themes = Theme::where('status', 1)
-                        ->orderBy('name', 'asc')
-                        ->get();
+            ->orderBy('name', 'asc')
+            ->get();
 
         $currentTheme = Theme::find($user->profile->theme_id);
 
@@ -105,8 +122,6 @@ class ProfilesController extends Controller
     /**
      * Update a user's profile.
      *
-     * @param  \App\Http\Requests\UpdateUserProfile  $request
-     * @param  $username
      * @return mixed
      *
      * @throws Laracasts\Validation\FormValidationException
@@ -117,10 +132,10 @@ class ProfilesController extends Controller
 
         $input = $request->only('theme_id', 'location', 'bio', 'twitter_username', 'github_username', 'avatar_status');
 
-        $ipAddress = new CaptureIpTrait();
+        $ipAddress = new CaptureIpTrait;
 
         if ($user->profile === null) {
-            $profile = new Profile();
+            $profile = new Profile;
             $profile->fill($input);
             $user->profile()->save($profile);
         } else {
@@ -130,13 +145,12 @@ class ProfilesController extends Controller
         $user->updated_ip_address = $ipAddress->getClientIp();
         $user->save();
 
-        return redirect('profile/'.$user->name.'/edit')->with('success', trans('profile.updateSuccess'));
+        return redirect($this->profileEditPath($user->name))->with('success', trans('profile.updateSuccess'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -146,11 +160,11 @@ class ProfilesController extends Controller
         $user = User::findOrFail($id);
 
         if ($user->id !== $currentUser->id) {
-            return redirect('profile/'.$currentUser->name.'/edit')->with('error', trans('profile.notYourProfile'));
+            return redirect($this->profileEditPath($currentUser->name))->with('error', trans('profile.notYourProfile'));
         }
 
         $emailCheck = ($request->input('email') !== '') && ($request->input('email') !== $user->email);
-        $ipAddress = new CaptureIpTrait();
+        $ipAddress = new CaptureIpTrait;
         $rules = [];
 
         if ($user->name !== $request->input('name')) {
@@ -195,13 +209,12 @@ class ProfilesController extends Controller
 
         $user->save();
 
-        return redirect('profile/'.$user->name.'/edit')->with('success', trans('profile.updateAccountSuccess'));
+        return redirect($this->profileEditPath($user->name))->with('success', trans('profile.updateAccountSuccess'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateUserPasswordRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -211,10 +224,10 @@ class ProfilesController extends Controller
         $user = User::findOrFail($id);
 
         if ($user->id !== $currentUser->id) {
-            return redirect('profile/'.$currentUser->name.'/edit')->with('error', trans('profile.notYourProfile'));
+            return redirect($this->profileEditPath($currentUser->name))->with('error', trans('profile.notYourProfile'));
         }
 
-        $ipAddress = new CaptureIpTrait();
+        $ipAddress = new CaptureIpTrait;
 
         if ($request->input('password') !== null) {
             $user->password = Hash::make($request->input('password'));
@@ -223,7 +236,7 @@ class ProfilesController extends Controller
         $user->updated_ip_address = $ipAddress->getClientIp();
         $user->save();
 
-        return redirect('profile/'.$user->name.'/edit')->with('success', trans('profile.updatePWSuccess'));
+        return redirect($this->profileEditPath($user->name))->with('success', trans('profile.updatePWSuccess'));
     }
 
     /**
@@ -261,8 +274,6 @@ class ProfilesController extends Controller
     /**
      * Show user avatar.
      *
-     * @param  $id
-     * @param  $image
      * @return string
      */
     public function userProfileAvatar($id, $image)
@@ -273,7 +284,6 @@ class ProfilesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\DeleteUserAccount  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -281,10 +291,10 @@ class ProfilesController extends Controller
     {
         $currentUser = Auth::user();
         $user = User::findOrFail($id);
-        $ipAddress = new CaptureIpTrait();
+        $ipAddress = new CaptureIpTrait;
 
         if ($user->id !== $currentUser->id) {
-            return redirect('profile/'.$user->name.'/edit')->with('error', trans('profile.errorDeleteNotYour'));
+            return redirect($this->profileEditPath($user->name))->with('error', trans('profile.errorDeleteNotYour'));
         }
 
         // Create and encrypt user account restore token
@@ -319,7 +329,6 @@ class ProfilesController extends Controller
     /**
      * Send GoodBye Email Function via Notify.
      *
-     * @param  User  $user
      * @param  string  $token
      * @return void
      */
@@ -358,7 +367,7 @@ class ProfilesController extends Controller
         $restoreKey = config('settings.restoreKey');
 
         if (empty($restoreKey)) {
-            throw new \RuntimeException('USER_RESTORE_ENCRYPTION_KEY is not set. Set it in your .env file before deleting or restoring user accounts.');
+            throw new MissingRestoreKeyException('USER_RESTORE_ENCRYPTION_KEY is not set. Set it in your .env file before deleting or restoring user accounts.');
         }
 
         return $restoreKey;
