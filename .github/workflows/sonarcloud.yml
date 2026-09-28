@@ -13,6 +13,20 @@ jobs:
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_DATABASE: laravel_auth
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
     steps:
       - uses: actions/checkout@v5
         with:
@@ -33,6 +47,19 @@ jobs:
 
       - name: Generate key
         run: php artisan key:generate
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24.x"
+
+      - name: Install Node Dependencies
+        run: npm install
+
+      - name: Build Frontend Assets
+        run: npm run build
+
+      - name: Run Migrations
+        run: php artisan migrate --force
 
       - name: Build coverage report
         run: php artisan test --coverage-clover coverage.xml
