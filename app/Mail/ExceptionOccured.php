@@ -29,38 +29,48 @@ class ExceptionOccured extends Mailable
      */
     public function build()
     {
-        $emailsTo = str_getcsv(config('exceptions.emailExceptionsTo'), ',');
-        $ccEmails = str_getcsv(config('exceptions.emailExceptionCCto'), ',');
-        $bccEmails = str_getcsv(config('exceptions.emailExceptionBCCto'), ',');
-        $fromSender = config('exceptions.emailExceptionFrom');
-        $subject = config('exceptions.emailExceptionSubject');
+        return $this->from($this->resolveConfigValue('emailExceptionFrom', 'emailExceptionFromDefault'))
+            ->to($this->resolveRecipients('emailExceptionsTo', 'emailExceptionsToDefault'))
+            ->cc($this->resolveRecipients('emailExceptionCCto', 'emailExceptionCCtoDefault'))
+            ->bcc($this->resolveRecipients('emailExceptionBCCto', 'emailExceptionBCCtoDefault'))
+            ->subject($this->resolveConfigValue('emailExceptionSubject', 'emailExceptionSubjectDefault'))
+            ->view(config('exceptions.emailExceptionView'))
+            ->with('content', $this->content);
+    }
 
-        if ($emailsTo[0] === null) {
-            $emailsTo = config('exceptions.emailExceptionsToDefault');
+    /**
+     * Resolve a comma-separated recipient list config, falling back to its default when empty.
+     *
+     * @param  string  $key
+     * @param  string  $defaultKey
+     * @return array
+     */
+    private function resolveRecipients($key, $defaultKey)
+    {
+        $recipients = str_getcsv(config('exceptions.'.$key), ',');
+
+        if ($recipients[0] === null) {
+            $recipients = config('exceptions.'.$defaultKey);
         }
 
-        if ($ccEmails[0] === null) {
-            $ccEmails = config('exceptions.emailExceptionCCtoDefault');
+        return $recipients;
+    }
+
+    /**
+     * Resolve a single config value, falling back to its default when falsy.
+     *
+     * @param  string  $key
+     * @param  string  $defaultKey
+     * @return mixed
+     */
+    private function resolveConfigValue($key, $defaultKey)
+    {
+        $value = config('exceptions.'.$key);
+
+        if (! $value) {
+            $value = config('exceptions.'.$defaultKey);
         }
 
-        if ($bccEmails[0] === null) {
-            $bccEmails = config('exceptions.emailExceptionBCCtoDefault');
-        }
-
-        if (! $fromSender) {
-            $fromSender = config('exceptions.emailExceptionFromDefault');
-        }
-
-        if (! $subject) {
-            $subject = config('exceptions.emailExceptionSubjectDefault');
-        }
-
-        return $this->from($fromSender)
-                    ->to($emailsTo)
-                    ->cc($ccEmails)
-                    ->bcc($bccEmails)
-                    ->subject($subject)
-                    ->view(config('exceptions.emailExceptionView'))
-                    ->with('content', $this->content);
+        return $value;
     }
 }
