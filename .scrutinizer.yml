@@ -1,0 +1,9 @@
+build:
+    image: default-jammy
+    environment:
+        php: 8.3
+    nodes:
+        analysis:
+            tests:
+                override:
+                    - php-scrutinizer-run
