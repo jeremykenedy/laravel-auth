@@ -262,7 +262,8 @@ class UsersManagementController extends Controller
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $results = User::where('id', 'like', $searchTerm.'%')
+        $results = User::with('roles')
+                            ->where('id', 'like', $searchTerm.'%')
                             ->orWhere('name', 'like', $searchTerm.'%')
                             ->orWhere('email', 'like', $searchTerm.'%')->get();
 
