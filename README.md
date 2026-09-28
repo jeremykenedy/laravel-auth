@@ -11,6 +11,7 @@
 <p align="center">
     <a href="https://github.com/jeremykenedy/laravel-auth/actions/workflows/laravel.yml"><img src="https://github.com/jeremykenedy/laravel-auth/actions/workflows/laravel.yml/badge.svg" alt="Tests"></a>
     <a href="https://styleci.io/repos/44714043"><img src="https://styleci.io/repos/44714043/shield?branch=master" alt="StyleCI"></a>
+    <a href="https://dashboard.gitguardian.com"><img src="https://github.com/jeremykenedy/laravel-auth/actions/workflows/gitguardian.yml/badge.svg" alt="GitGuardian scan"></a>
     <a href="https://sonarcloud.io/summary/new_code?id=jeremykenedy_laravel-auth"><img src="https://sonarcloud.io/api/project_badges/measure?project=jeremykenedy_laravel-auth&metric=alert_status" alt="Quality Gate Status"></a>
     <a href="https://www.codefactor.io/repository/github/jeremykenedy/laravel-auth"><img src="https://www.codefactor.io/repository/github/jeremykenedy/laravel-auth/badge" alt="CodeFactor"></a>
     <a href="https://app.codacy.com/gh/jeremykenedy/laravel-auth/dashboard"><img src="https://app.codacy.com/project/badge/Grade/014f2e900f26447f852f547dbd7ac3bd" alt="Codacy Badge"></a>
