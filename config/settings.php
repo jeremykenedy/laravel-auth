@@ -45,7 +45,7 @@ return [
     /*
      * User restore encryption key
      */
-    'restoreKey' => env('USER_RESTORE_ENCRYPTION_KEY', 'sup3rDuP3rS3cr3tR35t0r3K3y21!'),
+    'restoreKey' => env('USER_RESTORE_ENCRYPTION_KEY'),
 
     /*
      * ReCaptcha Status
