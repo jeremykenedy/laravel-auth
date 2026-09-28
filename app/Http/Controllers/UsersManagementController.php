@@ -27,7 +27,7 @@ class UsersManagementController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -45,7 +45,7 @@ class UsersManagementController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -57,8 +57,7 @@ class UsersManagementController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -91,8 +90,8 @@ class UsersManagementController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        $ipAddress = new CaptureIpTrait();
-        $profile = new Profile();
+        $ipAddress = new CaptureIpTrait;
+        $profile = new Profile;
 
         $user = User::create([
             'name'             => strip_tags($request->input('name')),
@@ -115,8 +114,7 @@ class UsersManagementController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  User  $user
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show(User $user)
     {
@@ -126,8 +124,7 @@ class UsersManagementController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  User  $user
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit(User $user)
     {
@@ -149,36 +146,60 @@ class UsersManagementController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  User  $user
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, User $user)
     {
-        $emailCheck = ($request->input('email') !== '') && ($request->input('email') !== $user->email);
-        $ipAddress = new CaptureIpTrait();
+        $emailCheck = $this->emailChanged($request, $user);
+        $validator = $this->buildUpdateValidator($request, $user, $emailCheck);
 
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $this->applyUpdateAttributes($request, $user, $emailCheck);
+
+        return back()->with('success', trans('usersmanagement.updateSuccess'));
+    }
+
+    /**
+     * Determine whether the request is changing the user's email.
+     */
+    private function emailChanged(Request $request, User $user): bool
+    {
+        return ($request->input('email') !== '') && ($request->input('email') !== $user->email);
+    }
+
+    /**
+     * Build the validator for updating a user, using stricter rules when the email is changing.
+     *
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    private function buildUpdateValidator(Request $request, User $user, bool $emailCheck)
+    {
         if ($emailCheck) {
-            $validator = Validator::make($request->all(), [
+            return Validator::make($request->all(), [
                 'name'          => 'required|max:255|unique:users|alpha_dash',
                 'email'         => 'email|max:255|unique:users',
                 'first_name'    => 'alpha_dash',
                 'last_name'     => 'alpha_dash',
                 'password'      => 'present|confirmed|min:6',
             ]);
-        } else {
-            $validator = Validator::make($request->all(), [
-                'name'          => 'required|max:255|alpha_dash|unique:users,name,'.$user->id,
-                'first_name'    => 'alpha_dash',
-                'last_name'     => 'alpha_dash',
-                'password'      => 'nullable|confirmed|min:6',
-            ]);
         }
 
-        if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
-        }
+        return Validator::make($request->all(), [
+            'name'          => 'required|max:255|alpha_dash|unique:users,name,'.$user->id,
+            'first_name'    => 'alpha_dash',
+            'last_name'     => 'alpha_dash',
+            'password'      => 'nullable|confirmed|min:6',
+        ]);
+    }
 
+    /**
+     * Apply the validated attributes, role, and activation state to the user.
+     */
+    private function applyUpdateAttributes(Request $request, User $user, bool $emailCheck): void
+    {
         $user->name = strip_tags($request->input('name'));
         $user->first_name = strip_tags($request->input('first_name'));
         $user->last_name = strip_tags($request->input('last_name'));
@@ -192,38 +213,28 @@ class UsersManagementController extends Controller
         }
 
         $userRole = $request->input('role');
+
         if ($userRole !== null) {
             $user->detachAllRoles();
             $user->attachRole($userRole);
         }
 
+        $ipAddress = new CaptureIpTrait;
         $user->updated_ip_address = $ipAddress->getClientIp();
-
-        switch ($userRole) {
-            case 3:
-                $user->activated = 0;
-                break;
-
-            default:
-                $user->activated = 1;
-                break;
-        }
+        $user->activated = $userRole == 3 ? 0 : 1;
 
         $user->save();
-
-        return back()->with('success', trans('usersmanagement.updateSuccess'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  User  $user
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy(User $user)
     {
         $currentUser = Auth::user();
-        $ipAddress = new CaptureIpTrait();
+        $ipAddress = new CaptureIpTrait;
 
         if ($user->id !== $currentUser->id) {
             $user->deleted_ip_address = $ipAddress->getClientIp();
@@ -239,8 +250,7 @@ class UsersManagementController extends Controller
     /**
      * Method to search the users.
      *
-     * @param  Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function search(Request $request)
     {
@@ -263,9 +273,9 @@ class UsersManagementController extends Controller
         }
 
         $results = User::with('roles')
-                            ->where('id', 'like', $searchTerm.'%')
-                            ->orWhere('name', 'like', $searchTerm.'%')
-                            ->orWhere('email', 'like', $searchTerm.'%')->get();
+            ->where('id', 'like', $searchTerm.'%')
+            ->orWhere('name', 'like', $searchTerm.'%')
+            ->orWhere('email', 'like', $searchTerm.'%')->get();
 
         // Attach roles to results
         foreach ($results as $result) {

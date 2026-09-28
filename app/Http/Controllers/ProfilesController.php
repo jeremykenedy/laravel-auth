@@ -163,40 +163,54 @@ class ProfilesController extends Controller
             return redirect($this->profileEditPath($currentUser->name))->with('error', trans('profile.notYourProfile'));
         }
 
-        $emailCheck = ($request->input('email') !== '') && ($request->input('email') !== $user->email);
-        $ipAddress = new CaptureIpTrait;
-        $rules = [];
-
-        if ($user->name !== $request->input('name')) {
-            $usernameRules = [
-                'name' => 'required|max:255|unique:users',
-            ];
-        } else {
-            $usernameRules = [
-                'name' => 'required|max:255',
-            ];
-        }
-        if ($emailCheck) {
-            $emailRules = [
-                'email' => 'email|max:255|unique:users',
-            ];
-        } else {
-            $emailRules = [
-                'email' => 'email|max:255',
-            ];
-        }
-        $additionalRules = [
-            'first_name' => 'nullable|string|max:255',
-            'last_name'  => 'nullable|string|max:255',
-        ];
-
-        $rules = array_merge($usernameRules, $emailRules, $additionalRules);
-        $validator = Validator::make($request->all(), $rules);
+        $emailCheck = $this->accountEmailChanged($request, $user);
+        $validator = Validator::make($request->all(), $this->updateAccountRules($request, $user, $emailCheck));
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
 
+        $this->applyAccountUpdate($request, $user, $emailCheck);
+
+        return redirect($this->profileEditPath($user->name))->with('success', trans('profile.updateAccountSuccess'));
+    }
+
+    /**
+     * Determine whether the request is changing the user's email.
+     */
+    private function accountEmailChanged(Request $request, User $user): bool
+    {
+        return ($request->input('email') !== '') && ($request->input('email') !== $user->email);
+    }
+
+    /**
+     * Build the validation rules for updating a user's account.
+     *
+     * @return array<string, string>
+     */
+    private function updateAccountRules(Request $request, User $user, bool $emailCheck): array
+    {
+        $usernameRule = $user->name !== $request->input('name')
+            ? 'required|max:255|unique:users'
+            : 'required|max:255';
+
+        $emailRule = $emailCheck
+            ? 'email|max:255|unique:users'
+            : 'email|max:255';
+
+        return [
+            'name'       => $usernameRule,
+            'email'      => $emailRule,
+            'first_name' => 'nullable|string|max:255',
+            'last_name'  => 'nullable|string|max:255',
+        ];
+    }
+
+    /**
+     * Apply the validated attributes to the user's account.
+     */
+    private function applyAccountUpdate(Request $request, User $user, bool $emailCheck): void
+    {
         $user->name = strip_tags($request->input('name'));
         $user->first_name = strip_tags($request->input('first_name'));
         $user->last_name = strip_tags($request->input('last_name'));
@@ -205,11 +219,10 @@ class ProfilesController extends Controller
             $user->email = $request->input('email');
         }
 
+        $ipAddress = new CaptureIpTrait;
         $user->updated_ip_address = $ipAddress->getClientIp();
 
         $user->save();
-
-        return redirect($this->profileEditPath($user->name))->with('success', trans('profile.updateAccountSuccess'));
     }
 
     /**
