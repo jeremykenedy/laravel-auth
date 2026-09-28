@@ -21,6 +21,6 @@ class MacroServiceProvider extends HtmlServiceProvider
         parent::register();
 
         // Load HTML Macros
-        require base_path().'/app/Logic/Macros/HtmlMacros.php';
+        require_once base_path().'/app/Logic/Macros/HtmlMacros.php';
     }
 }
