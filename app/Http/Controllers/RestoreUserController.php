@@ -30,7 +30,7 @@ class RestoreUserController extends ProfilesController
         $userKeys = new ProfilesController();
         $sepKey = $userKeys->getSeperationKey();
         $userIdKey = $userKeys->getIdMultiKey();
-        $restoreKey = config('settings.restoreKey');
+        $restoreKey = $userKeys->getRestoreKey();
         $encrypter = config('settings.restoreUserEncType');
         $level5 = base64_decode($token);
         $level4 = openssl_decrypt($level5, $encrypter, $restoreKey);
