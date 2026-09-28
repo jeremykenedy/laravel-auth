@@ -53,3 +53,7 @@ packages/
 npm-debug.log
 yarn-error.log
 
+# Local tooling artifacts
+VERITY.md
+.verity/
+
