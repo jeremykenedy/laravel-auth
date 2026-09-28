@@ -8,8 +8,8 @@ assignees: ""
 
 **First, take a look at:**
 
-1. https://github.com/jeremykenedy/laravel-auth#opening-an-issue
-2. https://github.com/jeremykenedy/laravel-auth/issues?q=is%3Aissue+is%3Aclosed
+1. <https://github.com/jeremykenedy/laravel-auth#opening-an-issue>
+2. <https://github.com/jeremykenedy/laravel-auth/issues?q=is%3Aissue+is%3Aclosed>
 
 **Did you star the repo?**
 Yes or No
