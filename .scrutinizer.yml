@@ -7,7 +7,7 @@ build:
         analysis:
             dependencies:
                 override:
-                    - true
+                    - composer install --no-interaction --prefer-dist --no-progress
             tests:
                 override:
                     - php-scrutinizer-run
