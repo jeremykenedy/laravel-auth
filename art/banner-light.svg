@@ -9,7 +9,7 @@
   </g>
 
   <text x="24" y="80" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="40" font-weight="700" letter-spacing="-.5" fill="#0f172a">Laravel Auth</text>
-  <text x="24" y="112" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" fill="#64748b">Laravel 12 authentication, roles, social login &amp; user profiles</text>
+  <text x="24" y="112" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" fill="#64748b">Laravel 13 authentication, roles, social login &amp; user profiles</text>
 
   <g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="10" font-weight="500" text-anchor="middle">
     <rect x="24" y="128" width="92" height="22" rx="11" fill="#f5f3ff" stroke="#6d28d9" stroke-width=".8"/>
