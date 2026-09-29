@@ -6,7 +6,7 @@
     </picture>
 </p>
 
-<p align="center">Laravel Auth is a Complete Build of Laravel 12 with Email Registration Verification, Social Authentication, User Roles and Permissions, User Profiles, and Admin restricted user management system. Built on Bootstrap 4.</p>
+<p align="center">Laravel Auth is a Complete Build of Laravel 13 with Email Registration Verification, Social Authentication, User Roles and Permissions, User Profiles, and Admin restricted user management system. Built on Bootstrap 4.</p>
 
 <p align="center">
     <a href="https://github.com/jeremykenedy/laravel-auth/actions/workflows/laravel.yml"><img src="https://github.com/jeremykenedy/laravel-auth/actions/workflows/laravel.yml/badge.svg" alt="Tests"></a>
@@ -58,13 +58,13 @@ If you like this, you will love [Laravel Auth Spa](https://github.com/jeremykene
 
 ### About
 
-Laravel 12 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. Uses official [Bootstrap 4](https://getbootstrap.com). This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
+Laravel 13 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. Uses official [Bootstrap 4](https://getbootstrap.com). This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
 
 ### Features
 
-#### A [Laravel](https://laravel.com/) 12 with [Bootstrap](https://getbootstrap.com) 4.x project
+#### A [Laravel](https://laravel.com/) 13 with [Bootstrap](https://getbootstrap.com) 4.x project
 
-- Built on [Laravel](https://laravel.com/) 12 and [Bootstrap](https://getbootstrap.com/) 4
+- Built on [Laravel](https://laravel.com/) 13 and [Bootstrap](https://getbootstrap.com/) 4
 - Uses [MySQL](https://github.com/mysql) Database (can be changed)
 - Uses [Artisan](https://laravel.com/docs/master/artisan) to manage database migration, schema creations, and create/publish page controller templates
 - Dependencies are managed with [COMPOSER](https://getcomposer.org/)

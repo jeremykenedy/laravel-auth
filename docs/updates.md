@@ -2,6 +2,7 @@
 
 [Back to README](../README.md)
 
+- Update to Laravel 13
 - Update to Laravel 12
 - Update to Laravel 10 (Major Changes)
 - Update to Laravel 9
