@@ -9,7 +9,7 @@
     "prod": "npm run lint && npm run clean && node --max-old-space-size=16384 ./node_modules/vite/bin/vite.js build"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.0",
+    "@babel/core": "^8.0.6",
     "@babel/eslint-parser": "^7.19.1",
     "@eslint/js": "^9.35.0",
     "@originjs/vite-plugin-commonjs": "^1.0.3",
