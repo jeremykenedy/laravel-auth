@@ -54,20 +54,139 @@ class SocialController extends Controller
 
         $socialUserObject = Socialite::driver($provider)->user();
 
-        // Check if email is already registered
-        $existingUser = User::where('email', '=', $socialUserObject->email)->first();
+        // 1. A social account already linked to a local user: log that user in.
+        $linkedUser = $this->findLinkedUser($provider, $socialUserObject);
+
+        if (! empty($linkedUser)) {
+            auth()->login($linkedUser, true);
+
+            return redirect($this->redirectSuccessLogin);
+        }
+
+        // 2. No link yet, but a local user has the same email address.
+        $existingUser = $this->findUserByEmail($socialUserObject->email);
 
         if (! empty($existingUser)) {
+            if (! $this->providerVerifiedEmail($provider, $socialUserObject)) {
+                return redirect()->to('login')
+                    ->with('status', 'danger')
+                    ->with('message', trans('socials.existingAccount'));
+            }
+
+            $this->linkSocialAccount($existingUser, $provider, $socialUserObject);
+
             auth()->login($existingUser, true);
 
             return redirect($this->redirectSuccessLogin);
         }
 
-        $socialUser = $this->resolveSocialUser($provider, $socialUserObject);
+        // 3. Brand new user.
+        $socialUser = $this->createUserFromSocialProfile($provider, $socialUserObject);
 
         auth()->login($socialUser, true);
 
         return redirect($this->redirectSuccessLogin)->with('success', trans('socials.registerSuccess'));
+    }
+
+    /**
+     * Find the local user already linked to this provider account, if any.
+     *
+     * @param  string  $provider
+     * @return User|null
+     */
+    private function findLinkedUser($provider, $socialUserObject)
+    {
+        if ($socialUserObject->id === null || $socialUserObject->id === '') {
+            return null;
+        }
+
+        $social = Social::where('social_id', '=', $socialUserObject->id)
+            ->where('provider', '=', $provider)
+            ->first();
+
+        if (empty($social)) {
+            return null;
+        }
+
+        return $social->user;
+    }
+
+    /**
+     * Find a local user by email address. A missing email never matches anyone.
+     *
+     * @param  string|null  $email
+     * @return User|null
+     */
+    private function findUserByEmail($email)
+    {
+        if (! is_string($email) || trim($email) === '') {
+            return null;
+        }
+
+        return User::where('email', '=', $email)->first();
+    }
+
+    /**
+     * Determine whether the provider positively confirmed that the email address is verified.
+     *
+     * Only providers that expose an explicit verification claim in their raw user payload
+     * are trusted. Anything else is treated as unverified.
+     *
+     * @param  string  $provider
+     * @return bool
+     */
+    private function providerVerifiedEmail($provider, $socialUserObject)
+    {
+        $raw = is_array($socialUserObject->user) ? $socialUserObject->user : [];
+
+        switch ($provider) {
+            case 'google':
+                // Google OpenID Connect userinfo: "email_verified" boolean claim.
+                return $this->isTrue($raw['email_verified'] ?? null);
+
+            case 'github':
+                // GitHub exposes no verified flag on the user object. Socialite only resolves the
+                // email through /user/emails (primary and verified) when the "user:email" scope is
+                // requested; without that scope the address is the user-settable public email.
+                return ! empty($raw['email'])
+                    && in_array('user:email', Socialite::driver($provider)->getScopes(), true);
+
+            case 'twitter':
+                // X (Twitter) OAuth 2 user object: "confirmed_email" is the confirmed address.
+                // OAuth 1 (the default for this app) exposes no verification claim.
+                return ! empty($raw['confirmed_email']);
+
+            default:
+                // Facebook, LinkedIn (v2 profile API), Twitch, YouTube, Instagram and 37signals
+                // expose no email verification claim.
+                return false;
+        }
+    }
+
+    /**
+     * Normalize a provider boolean claim.
+     *
+     * @param  mixed  $value
+     * @return bool
+     */
+    private function isTrue($value)
+    {
+        return $value === true || $value === 1 || $value === '1' || $value === 'true';
+    }
+
+    /**
+     * Link a provider account to an existing local user.
+     *
+     * @param  string  $provider
+     * @return void
+     */
+    private function linkSocialAccount(User $user, $provider, $socialUserObject)
+    {
+        $socialData = new Social;
+        $socialData->social_id = $socialUserObject->id;
+        $socialData->provider = $provider;
+
+        $user->social()->save($socialData);
     }
 
     /**
@@ -80,25 +199,6 @@ class SocialController extends Controller
         $denied = $request->denied ? $request->denied : null;
 
         return $denied != null || $denied != '';
-    }
-
-    /**
-     * Resolve the user for an existing social link, or create a new one.
-     *
-     * @param  string  $provider
-     * @return User
-     */
-    private function resolveSocialUser($provider, $socialUserObject)
-    {
-        $sameSocialId = Social::where('social_id', '=', $socialUserObject->id)
-            ->where('provider', '=', $provider)
-            ->first();
-
-        if (! empty($sameSocialId)) {
-            return $sameSocialId->user;
-        }
-
-        return $this->createUserFromSocialProfile($provider, $socialUserObject);
     }
 
     /**
