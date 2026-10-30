@@ -1,9 +1,6 @@
 <p align="center">
-    <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="art/banner-dark.svg">
-        <source media="(prefers-color-scheme: light)" srcset="art/banner-light.svg">
-        <img src="art/banner-light.svg" alt="Laravel Auth" width="800">
-    </picture>
+  <a href="https://github.com/jeremykenedy/laravel-auth#gh-light-mode-only"><picture><source media="(max-width: 600px) and (prefers-reduced-motion: reduce)" srcset="art/banner-mobile-still-light.9409b8094b93.svg"><source media="(prefers-reduced-motion: reduce)" srcset="art/banner-still-light.d8ad9ebf2c37.svg"><source media="(max-width: 600px)" srcset="art/banner-mobile-light.f5d002173be2.svg"><img src="art/banner-light.eb0e73d15e83.svg#gh-light-mode-only" alt="Laravel Auth" width="800"></picture></a>
+  <a href="https://github.com/jeremykenedy/laravel-auth#gh-dark-mode-only"><picture><source media="(max-width: 600px) and (prefers-reduced-motion: reduce)" srcset="art/banner-mobile-still-dark.2872a0143002.svg"><source media="(prefers-reduced-motion: reduce)" srcset="art/banner-still-dark.aca6cfcc0146.svg"><source media="(max-width: 600px)" srcset="art/banner-mobile-dark.9d2d42e41dff.svg"><img src="art/banner-dark.0a462d96084f.svg#gh-dark-mode-only" alt="Laravel Auth" width="800"></picture></a>
 </p>
 
 <p align="center">Laravel Auth is a Complete Build of Laravel 13 with Email Registration Verification, Social Authentication, User Roles and Permissions, User Profiles, and Admin restricted user management system. Built on Bootstrap 4.</p>
