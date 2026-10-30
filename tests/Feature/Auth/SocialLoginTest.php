@@ -28,8 +28,10 @@ class SocialLoginTest extends TestCase
             'level' => 1,
         ]);
 
-        // New social users get a profile whose theme_id defaults to 1.
-        Theme::create([
+        // New social users get a profile whose theme_id defaults to 1. The id is set
+        // explicitly because MySQL keeps auto-increment counters across rolled back tests.
+        Theme::forceCreate([
+            'id'            => 1,
             'name'          => 'Default',
             'link'          => 'null',
             'notes'         => 'Test Default Theme.',
