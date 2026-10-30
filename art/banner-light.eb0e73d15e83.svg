@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" width="800" height="200">
+  <style>.shackle,.pulse,.press{transform-box:fill-box;transform-origin:center}.type{transform-box:fill-box;transform-origin:left center;animation:type 8s ease-in-out infinite}.dot-1{animation:dot-1 8s linear infinite}.dot-2{animation:dot-2 8s linear infinite}.dot-3{animation:dot-3 8s linear infinite}.dot-4{animation:dot-4 8s linear infinite}.dot-5{animation:dot-5 8s linear infinite}.press{animation:press 8s ease-in-out infinite}.shackle{animation:unlock 8s ease-in-out infinite}.pulse{animation:click 8s ease-out infinite}.social{animation:twinkle 3s ease-in-out infinite alternate}.social-b{animation-delay:-1s}.social-c{animation-delay:-2s}@keyframes type{0%,12%{transform:scaleX(0);opacity:1}30%,92%{transform:scaleX(1);opacity:1}97%,to{transform:scaleX(1);opacity:0}}@keyframes dot-1{0%,33%{opacity:0}35%,92%{opacity:1}97%,to{opacity:0}}@keyframes dot-2{0%,37%{opacity:0}39%,92%{opacity:1}97%,to{opacity:0}}@keyframes dot-3{0%,41%{opacity:0}43%,92%{opacity:1}97%,to{opacity:0}}@keyframes dot-4{0%,45%{opacity:0}47%,92%{opacity:1}97%,to{opacity:0}}@keyframes dot-5{0%,49%{opacity:0}51%,92%{opacity:1}97%,to{opacity:0}}@keyframes press{0%,53%{transform:scale(1)}55%{transform:scale(.9)}58%,to{transform:scale(1)}}@keyframes unlock{0%,58%{transform:translateY(0) rotate(0)}66%{transform:translateY(-12px) rotate(0)}71%,84%{transform:translateY(-12px) rotate(10deg)}88%{transform:translateY(-12px) rotate(0)}93%,to{transform:translateY(0) rotate(0)}}@keyframes click{0%,92%{transform:scale(1);opacity:0}93%{transform:scale(1);opacity:.8}to{transform:scale(2.6);opacity:0}}@keyframes twinkle{0%{opacity:.4}to{opacity:1}}@media (prefers-reduced-motion:reduce){.type,.dot,.press,.shackle,.pulse,.social{animation:none}}</style>
+  <rect x="0" y="0" width="800" height="200" rx="16" fill="#fff" stroke="#e5e7eb"/>
+
+  <g transform="translate(560,35)">
+    <rect width="150" height="130" rx="12" fill="#faf5ff" stroke="#6d28d9" stroke-width="3"/>
+    <circle cx="75" cy="30" r="20" fill="#ede9fe"/>
+    <circle cx="75" cy="26" r="6.5" fill="#8b5cf6"/>
+    <rect x="64" y="36" width="22" height="12" rx="6" fill="#8b5cf6"/>
+    <rect x="20" y="58" width="100" height="12" rx="6" fill="#fff" stroke="#c4b5fd"/>
+    <rect class="type" x="25" y="61" width="60" height="6" rx="3" fill="#a78bfa"/>
+    <rect x="20" y="76" width="100" height="12" rx="6" fill="#fff" stroke="#c4b5fd"/>
+    <g fill="#6d28d9">
+      <circle class="dot dot-1" cx="30" cy="82" r="2.2"/>
+      <circle class="dot dot-2" cx="38" cy="82" r="2.2"/>
+      <circle class="dot dot-3" cx="46" cy="82" r="2.2"/>
+      <circle class="dot dot-4" cx="54" cy="82" r="2.2"/>
+      <circle class="dot dot-5" cx="62" cy="82" r="2.2"/>
+    </g>
+    <rect class="press" x="45" y="92" width="60" height="14" rx="7" fill="#8b5cf6"/>
+    <circle class="social" cx="55" cy="118" r="6" fill="#3b82f6"/>
+    <circle class="social social-b" cx="75" cy="118" r="6" fill="#ef4444"/>
+    <circle class="social social-c" cx="95" cy="118" r="6" fill="#22c55e"/>
+    <g transform="translate(118,44) scale(.75)">
+      <path class="shackle" d="M16 58V35C16 3 64 3 64 35V72" fill="none" stroke="#6d28d9" stroke-width="9"/>
+      <rect x="10" y="50" width="60" height="55" rx="10" fill="#8b5cf6"/>
+      <circle class="pulse" cx="40" cy="72" r="7" fill="none" stroke="#fff" stroke-width="2" opacity="0"/>
+      <circle cx="40" cy="72" r="6" fill="#fff"/>
+      <rect x="37" y="76" width="6" height="14" fill="#fff"/>
+    </g>
+  </g>
+
+  <text x="24" y="80" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="40" font-weight="700" letter-spacing="-.5" fill="#0f172a">Laravel Auth</text>
+  <text x="24" y="112" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" fill="#64748b">Laravel 13 authentication, roles, social login &amp; user profiles</text>
+
+  <g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="10" font-weight="500" text-anchor="middle">
+    <rect x="24" y="128" width="92" height="22" rx="11" fill="#f5f3ff" stroke="#6d28d9" stroke-width=".8"/>
+    <text x="70" y="142" fill="#6d28d9">Social Login</text>
+
+    <rect x="126" y="128" width="140" height="22" rx="11" fill="#eff6ff" stroke="#1e40af" stroke-width=".8"/>
+    <text x="196" y="142" fill="#1e40af">Roles &amp; Permissions</text>
+
+    <rect x="276" y="128" width="50" height="22" rx="11" fill="#f0fdf4" stroke="#166534" stroke-width=".8"/>
+    <text x="301" y="142" fill="#166534">2FA</text>
+
+    <rect x="336" y="128" width="92" height="22" rx="11" fill="#fffbeb" stroke="#b45309" stroke-width=".8"/>
+    <text x="382" y="142" fill="#b45309">Soft Deletes</text>
+
+    <rect x="438" y="128" width="92" height="22" rx="11" fill="#fef2f2" stroke="#b91c1c" stroke-width=".8"/>
+    <text x="484" y="142" fill="#b91c1c">Activity Log</text>
+  </g>
+</svg>
