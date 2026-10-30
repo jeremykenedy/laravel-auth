@@ -28,9 +28,9 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/sponsors/jeremykenedy"><img src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86" alt="Sponsor me on GitHub"></a>
-    <a href="https://github.com/jeremykenedy/laravel-auth/stargazers"><img src="https://img.shields.io/github/stars/jeremykenedy/laravel-auth?style=social" alt="GitHub Stars"></a>
     <a href="https://github.com/jeremykenedy"><img src="https://img.shields.io/github/followers/jeremykenedy?style=social" alt="Follow on GitHub"></a>
+    <a href="https://github.com/jeremykenedy/laravel-auth/stargazers"><img src="https://img.shields.io/github/stars/jeremykenedy/laravel-auth?style=social" alt="GitHub Stars"></a>
+    <a href="https://github.com/sponsors/jeremykenedy"><img src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86" alt="Sponsor me on GitHub"></a>
 </p>
 
 ### Note
