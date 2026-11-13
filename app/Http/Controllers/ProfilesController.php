@@ -129,6 +129,11 @@ class ProfilesController extends Controller
     public function update(UpdateUserProfile $request, $username)
     {
         $user = $this->getUserByUsername($username);
+        $currentUser = Auth::user();
+
+        if ($user->id !== $currentUser->id) {
+            return redirect($this->profileEditPath($currentUser->name))->with('error', trans('profile.notYourProfile'));
+        }
 
         $input = $request->only('theme_id', 'location', 'bio', 'twitter_username', 'github_username', 'avatar_status');
 
